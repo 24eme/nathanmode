@@ -245,11 +245,6 @@ class CollectionForm extends BaseCollectionForm
 
     public function doUpdateObject($values) {
         parent::doUpdateObject($values);
-        
-        /*if ($this->isNew()) {
-            $this->getObject()->devise_fournisseur_id = $this->getObject()->getFournisseur()->devise_id;
-            $this->getObject()->devise_commercial_id = $this->getObject()->getCommercial()->devise_id;
-        }*/
 		
         $quantiteEntree = 0;
         if(is_array($values['details'])) {

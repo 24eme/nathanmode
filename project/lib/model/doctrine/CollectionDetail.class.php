@@ -30,9 +30,9 @@ class CollectionDetail extends BaseCollectionDetail
   public function save(Doctrine_Connection $conn = null)
   {
   	$commande = $this->updateCommande();
- 	//$commande->save();
- 	//$this->setCommandeId($commande->getId());
- 	//$this->setCommande($commande);
+ 	$commande->save();
+ 	$this->setCommandeId($commande->getId());
+ 	$this->setCommande($commande);
     return parent::save($conn);
   }
   
