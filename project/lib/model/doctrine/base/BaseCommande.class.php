@@ -21,6 +21,7 @@
  * @property double $montant
  * @property string $colori
  * @property string $metrage
+ * @property string $piece
  * @property string $qualite
  * @property string $situation
  * @property string $relation
@@ -50,6 +51,7 @@
  * @method double              getMontant()               Returns the current record's "montant" value
  * @method string              getColori()                Returns the current record's "colori" value
  * @method string              getMetrage()               Returns the current record's "metrage" value
+ * @method string              getPiece()                 Returns the current record's "piece" value
  * @method string              getQualite()               Returns the current record's "qualite" value
  * @method string              getSituation()             Returns the current record's "situation" value
  * @method string              getRelation()              Returns the current record's "relation" value
@@ -78,6 +80,7 @@
  * @method Commande            setMontant()               Sets the current record's "montant" value
  * @method Commande            setColori()                Sets the current record's "colori" value
  * @method Commande            setMetrage()               Sets the current record's "metrage" value
+ * @method Commande            setPiece()                 Sets the current record's "piece" value
  * @method Commande            setQualite()               Sets the current record's "qualite" value
  * @method Commande            setSituation()             Sets the current record's "situation" value
  * @method Commande            setRelation()              Sets the current record's "relation" value
@@ -156,6 +159,10 @@ abstract class BaseCommande extends sfDoctrineRecord
              'length' => 128,
              ));
         $this->hasColumn('metrage', 'string', 128, array(
+             'type' => 'string',
+             'length' => 128,
+             ));
+        $this->hasColumn('piece', 'string', 128, array(
              'type' => 'string',
              'length' => 128,
              ));

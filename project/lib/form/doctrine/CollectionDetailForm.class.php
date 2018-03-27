@@ -15,13 +15,25 @@ class CollectionDetailForm extends BaseCollectionDetailForm
         $this->useFields(array('devise_id', 
                                'colori',
                                'metrage',
+                               'piece',
                                'prix'));
 
         $this->getWidgetSchema()->setLabels(array(
           'devise_id' => 'Devise', 
           'colori' => 'Colori',
           'metrage' => 'Métrage',
+          'piece' => 'Pièce',
           'prix' => 'Prix',
         ));
+        
+        $this->mergePostValidator(new sfValidatorCallback(array('callback' => array($this, 'fctValidatorCallback'))));
+    }
+    
+    public function fctValidatorCallback($validator, $values, $arguments)
+    {
+    	if ($values['metrage'] && $values['piece'])
+    	{
+    		throw new sfValidatorErrorSchema($validator, array('piece' => new sfValidatorError($validator, "Métrage ou pièce")));
+    	}
     }
 }

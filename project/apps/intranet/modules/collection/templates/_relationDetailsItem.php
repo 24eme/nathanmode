@@ -8,6 +8,10 @@
         <?php echo $form['metrage']->renderError(); ?>
     </td>
     <td>
+        <?php echo $form['piece']->render(array('class' => 'small')); ?>
+        <?php echo $form['piece']->renderError(); ?>
+    </td>
+    <td>
         <?php echo $form['prix']->render(array('class' => 'small', 'style' => 'width:50px;')); ?>
         <?php echo $form['prix']->renderError(); ?>
     </td>

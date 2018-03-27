@@ -30,9 +30,9 @@ class CollectionDetail extends BaseCollectionDetail
   public function save(Doctrine_Connection $conn = null)
   {
   	$commande = $this->updateCommande();
- 	$commande->save();
- 	$this->setCommandeId($commande->getId());
- 	$this->setCommande($commande);
+ 	//$commande->save();
+ 	//$this->setCommandeId($commande->getId());
+ 	//$this->setCommande($commande);
     return parent::save($conn);
   }
   
@@ -63,6 +63,7 @@ class CollectionDetail extends BaseCollectionDetail
 	$commande->setColori($this->getColori());
     $commande->setMontant($this->getMetrage() * $this->getPrix());
     $commande->setMetrage($this->getMetrage());
+    $commande->setPiece($this->getPiece());
     $commande->setQualite($this->getCollection()->getQualite());
     $commande->setSituation($this->getCollection()->getSituation());
     if ($this->getCollection()->getProduction())

@@ -21,6 +21,7 @@ abstract class BaseCollectionDetailForm extends BaseFormDoctrine
       'commande_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Commande'), 'add_empty' => false)),
       'colori'        => new sfWidgetFormInputText(),
       'metrage'       => new sfWidgetFormInputText(),
+      'piece'         => new sfWidgetFormInputText(),
       'prix'          => new sfWidgetFormInputText(),
     ));
 
@@ -31,6 +32,7 @@ abstract class BaseCollectionDetailForm extends BaseFormDoctrine
       'commande_id'   => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Commande'))),
       'colori'        => new sfValidatorString(array('max_length' => 128, 'required' => false)),
       'metrage'       => new sfValidatorString(array('max_length' => 128, 'required' => false)),
+      'piece'         => new sfValidatorString(array('max_length' => 128, 'required' => false)),
       'prix'          => new sfValidatorPass(array('required' => false)),
     ));
 

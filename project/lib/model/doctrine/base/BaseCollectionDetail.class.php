@@ -10,6 +10,7 @@
  * @property integer $commande_id
  * @property string $colori
  * @property string $metrage
+ * @property string $piece
  * @property double $prix
  * @property Collection $Collection
  * @property Devise $Devise
@@ -20,6 +21,7 @@
  * @method integer          getCommandeId()    Returns the current record's "commande_id" value
  * @method string           getColori()        Returns the current record's "colori" value
  * @method string           getMetrage()       Returns the current record's "metrage" value
+ * @method string           getPiece()         Returns the current record's "piece" value
  * @method double           getPrix()          Returns the current record's "prix" value
  * @method Collection       getCollection()    Returns the current record's "Collection" value
  * @method Devise           getDevise()        Returns the current record's "Devise" value
@@ -29,6 +31,7 @@
  * @method CollectionDetail setCommandeId()    Sets the current record's "commande_id" value
  * @method CollectionDetail setColori()        Sets the current record's "colori" value
  * @method CollectionDetail setMetrage()       Sets the current record's "metrage" value
+ * @method CollectionDetail setPiece()         Sets the current record's "piece" value
  * @method CollectionDetail setPrix()          Sets the current record's "prix" value
  * @method CollectionDetail setCollection()    Sets the current record's "Collection" value
  * @method CollectionDetail setDevise()        Sets the current record's "Devise" value
@@ -61,6 +64,10 @@ abstract class BaseCollectionDetail extends sfDoctrineRecord
              'length' => 128,
              ));
         $this->hasColumn('metrage', 'string', 128, array(
+             'type' => 'string',
+             'length' => 128,
+             ));
+        $this->hasColumn('piece', 'string', 128, array(
              'type' => 'string',
              'length' => 128,
              ));

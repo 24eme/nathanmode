@@ -18,6 +18,7 @@ abstract class BaseCollectionDetailFormFilter extends BaseFormFilterDoctrine
       'commande_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Commande'), 'add_empty' => true)),
       'colori'        => new sfWidgetFormFilterInput(),
       'metrage'       => new sfWidgetFormFilterInput(),
+      'piece'         => new sfWidgetFormFilterInput(),
       'prix'          => new sfWidgetFormFilterInput(),
     ));
 
@@ -27,6 +28,7 @@ abstract class BaseCollectionDetailFormFilter extends BaseFormFilterDoctrine
       'commande_id'   => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Commande'), 'column' => 'id')),
       'colori'        => new sfValidatorPass(array('required' => false)),
       'metrage'       => new sfValidatorPass(array('required' => false)),
+      'piece'         => new sfValidatorPass(array('required' => false)),
       'prix'          => new sfValidatorPass(array('required' => false)),
     ));
 
@@ -53,6 +55,7 @@ abstract class BaseCollectionDetailFormFilter extends BaseFormFilterDoctrine
       'commande_id'   => 'ForeignKey',
       'colori'        => 'Text',
       'metrage'       => 'Text',
+      'piece'         => 'Text',
       'prix'          => 'Text',
     );
   }

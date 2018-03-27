@@ -501,6 +501,9 @@ CollectionDetail:
     metrage:
       type: string(128)
       default: NULL
+    piece:
+      type: string(128)
+      default: NULL
     prix:
       type: double
       default: NULL
@@ -815,6 +818,9 @@ Commande:
       type: string(128)
       default: NULL
     metrage:
+      type: string(128)
+      default: NULL
+    piece:
       type: string(128)
       default: NULL
     qualite:
