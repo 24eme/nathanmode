@@ -1,0 +1,26 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/13-View
+
+default:
+  http_metas:
+    content-type: text/html
+
+  metas:
+    title:        NATHAN MODE
+    description:  "Intranet de gestion des activités NATHAN MODE"
+    #keywords:     symfony, project
+    language:     fr
+    robots:       noindex, nofollow
+
+  stylesheets:
+   - reset.css: { media: all }
+   - global.css: { media: all }
+   - chosen.css: { media: all }
+   - admin.css: { media: all }
+   - jquery-ui.min.css: { media: all }
+   #- iefix.css : { media: all, condition: IE}
+
+  javascripts:    [jquery-1.7.2.min.js, jquery-ui.min.js, jquery.plugins.min.js, datepicker-fr.js, global.js, chosen.jquery.min.js]
+
+  has_layout:     true
+  layout:         layout

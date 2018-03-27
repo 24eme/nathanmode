@@ -1,0 +1,31 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Qualite
+    theme:                 nathanmode
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          qualite
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:
+        libelle: { label: "Nom de la qualité" }
+      list:
+        batch_actions: {}
+        actions:
+          _new: ~
+        title: "Liste des qualités"
+        fields:
+          libelle: { label: "Qualité" }
+        display: [libelle]
+      filter:  ~
+      form:    ~
+      edit:
+        title: "Modification de la qualité %%libelle%%"
+      new:
+        title: "Nouvelle qualité"

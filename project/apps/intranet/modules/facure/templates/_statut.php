@@ -1,0 +1,1 @@
+<?php echo ($facture->getStatut())? StatutsFacture::getLibelle($facture->getStatut()) : null; ?>
