@@ -1,7 +1,7 @@
 project/web/uploads/*
 project/web/intranet_dev.php
-project/app/cache/*
-project/app/logs/*
+project/cache/*
+project/logs/*
 project/lib/vendor/*
 project/data/sql
 project/data/fixtures
