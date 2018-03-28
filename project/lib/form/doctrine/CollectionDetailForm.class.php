@@ -35,5 +35,6 @@ class CollectionDetailForm extends BaseCollectionDetailForm
     	{
     		throw new sfValidatorErrorSchema($validator, array('piece' => new sfValidatorError($validator, "Métrage ou pièce")));
     	}
+    	return $values;
     }
 }
