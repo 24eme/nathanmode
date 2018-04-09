@@ -44,3 +44,9 @@ user:
   class: myUser
   param:
     timeout: 14400
+
+storage:
+  class: sfSessionStorage
+  param:
+    session_cookie_lifetime: 14400
+    session_cookie_httponly: true

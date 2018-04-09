@@ -53,13 +53,20 @@ class Collection extends BaseCollection
     }
     public function save(Doctrine_Connection $conn = null)
     {
+	$dateRetardMax = null;
     	foreach ($this->getCollectionRetards() as $collectionRetard) {
     		if ($date = $collectionRetard->getDate()) {
-				if (!$this->date_retard || $date > $this->date_retard) {
-					$this->date_retard = $date;
+			if (!$dateRetardMax) {
+				$dateRetardMax = $date;
+			}
+			else {
+				if ($date > $dateRetardMax) {
+					$dateRetardMax = $date;
 				}
+			}
     		}
     	}
+	$this->date_retard = $dateRetardMax;
         parent::save($conn);
     	foreach ($this->getCollectionLivraisons() as $collectionLivraison) {
     		if ($facture = $collectionLivraison->getFacture()) {
