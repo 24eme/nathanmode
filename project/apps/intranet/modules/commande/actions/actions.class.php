@@ -58,7 +58,8 @@ class commandeActions extends autoCommandeActions
   
   public function executeStats(sfWebRequest $request)
   {
-  	
+  	$this->print = $request->getParameter('print', false);
+
   	$filters = $this->getFilters();
   	if (isset($filters['date'])) {
   		$this->hasDate = true;
@@ -69,6 +70,9 @@ class commandeActions extends autoCommandeActions
   		$this->from = null;
   		$this->to = null;
   	}
+
+    $query = $this->buildQuery();
+    $query->addWhere('r.montant > 0');
   	
   	if ($this->from && $this->to) {
     	$from = new DateTime($this->from);
@@ -77,8 +81,10 @@ class commandeActions extends autoCommandeActions
     	$fromCumul = new DateTime($from->format('Y').'-01-01');
     	$this->toCumul = new DateTime($to->format('Y-m-d'));
     	$this->fromCumul = new DateTime($fromCumul->format('Y-m-d'));
-    	$this->n = $this->reqStats($from->format('Y-m-d'), $to->format('Y-m-d'));
-    	$this->cn = $this->reqStats($fromCumul->format('Y-m-d'), $to->format('Y-m-d'));
+      $this->toN0 = clone $to;
+      $this->fromN0 = clone $from;
+    	$this->n = $this->reqStats($query, $from->format('Y-m-d'), $to->format('Y-m-d'));
+    	$this->cn = $this->reqStats($query, $fromCumul->format('Y-m-d'), $to->format('Y-m-d'));
     	
     	$from->modify('-1 year');
     	$fromCumul->modify('-1 year');
@@ -86,8 +92,10 @@ class commandeActions extends autoCommandeActions
     	
     	$this->toCumul1 = new DateTime($to->format('Y-m-d'));
     	$this->fromCumul1 = new DateTime($fromCumul->format('Y-m-d'));
-    	$this->n1 = $this->reqStats($from->format('Y-m-d'), $to->format('Y-m-d'));
-    	$this->cn1 = $this->reqStats($fromCumul->format('Y-m-d'), $to->format('Y-m-d'));
+      $this->toN1 = clone $to;
+      $this->fromN1 = clone $from;
+    	$this->n1 = $this->reqStats($query, $from->format('Y-m-d'), $to->format('Y-m-d'));
+    	$this->cn1 = $this->reqStats($query, $fromCumul->format('Y-m-d'), $to->format('Y-m-d'));
     	
     	$from->modify('-1 year');
     	$fromCumul->modify('-1 year');
@@ -95,8 +103,10 @@ class commandeActions extends autoCommandeActions
     	
     	$this->toCumul2 = new DateTime($to->format('Y-m-d'));
     	$this->fromCumul2 = new DateTime($fromCumul->format('Y-m-d'));
-    	$this->n2 = $this->reqStats($from->format('Y-m-d'), $to->format('Y-m-d'));
-    	$this->cn2 = $this->reqStats($fromCumul->format('Y-m-d'), $to->format('Y-m-d'));
+      $this->toN2 = clone $to;
+      $this->fromN2 = clone $from;
+    	$this->n2 = $this->reqStats($query, $from->format('Y-m-d'), $to->format('Y-m-d'));
+    	$this->cn2 = $this->reqStats($query, $fromCumul->format('Y-m-d'), $to->format('Y-m-d'));
     } else {
     	$this->n = array();
     	$this->n1 = array();
@@ -110,7 +120,8 @@ class commandeActions extends autoCommandeActions
   
   public function executeRapport(sfWebRequest $request)
   {
-  	
+    $this->print = $request->getParameter('print', false);
+
   	$filters = $this->getFilters();
   	if (isset($filters['date'])) {
   		$this->hasDate = true;
@@ -124,30 +135,37 @@ class commandeActions extends autoCommandeActions
     $query = $this->buildQuery();
     $rootAlias = $query->getRootAlias();
     $query->orderBy('f.raison_sociale ASC, cl.raison_sociale ASC');
+    $query->addWhere('r.montant > 0');
     $this->commandes = $query->execute();
-    $query = $this->buildCumulQuery();
-    $this->commandes_cumul = $query->execute();
+    $queryCumul = $this->buildCumulQuery();
+    $this->commandes_cumul = $queryCumul->execute();
     if ($this->from && $this->to) {
     	$from = new DateTime($this->from);
     	$to = new DateTime($this->to);
     	$fromCumul = new DateTime($from->format('Y').'-01-01');
     	$this->toCumul = new DateTime($to->format('Y-m-d'));
     	$this->fromCumul = new DateTime($fromCumul->format('Y-m-d'));
-    	$this->cn = $this->reqSpec($fromCumul->format('Y-m-d'), $to->format('Y-m-d'));
+      $this->toN0 = clone $to;
+      $this->fromN0 = clone $from;
+    	$this->cn = $this->reqSpec($query, $fromCumul->format('Y-m-d'), $to->format('Y-m-d'));
     	$from->modify('-1 year');
     	$fromCumul->modify('-1 year');
     	$to->modify('-1 year');
     	$this->toCumul1 = new DateTime($to->format('Y-m-d'));
     	$this->fromCumul1 = new DateTime($fromCumul->format('Y-m-d'));
-    	$this->n1 = $this->reqSpec($from->format('Y-m-d'), $to->format('Y-m-d'));
-    	$this->cn1 = $this->reqSpec($fromCumul->format('Y-m-d'), $to->format('Y-m-d'));
+      $this->toN1 = clone $to;
+      $this->fromN1 = clone $from;
+    	$this->n1 = $this->reqSpec($query, $from->format('Y-m-d'), $to->format('Y-m-d'));
+    	$this->cn1 = $this->reqSpec($query, $fromCumul->format('Y-m-d'), $to->format('Y-m-d'));
     	$from->modify('-1 year');
     	$fromCumul->modify('-1 year');
     	$to->modify('-1 year');
     	$this->toCumul2 = new DateTime($to->format('Y-m-d'));
     	$this->fromCumul2 = new DateTime($fromCumul->format('Y-m-d'));
-    	$this->n2 = $this->reqSpec($from->format('Y-m-d'), $to->format('Y-m-d'));
-    	$this->cn2 = $this->reqSpec($fromCumul->format('Y-m-d'), $to->format('Y-m-d'));
+      $this->toN2 = clone $to;
+      $this->fromN2 = clone $from;
+    	$this->n2 = $this->reqSpec($query, $from->format('Y-m-d'), $to->format('Y-m-d'));
+    	$this->cn2 = $this->reqSpec($query, $fromCumul->format('Y-m-d'), $to->format('Y-m-d'));
     } else {
     	$this->n1 = array();
     	$this->n2 = array();
@@ -157,14 +175,31 @@ class commandeActions extends autoCommandeActions
     }
   }
   
-  protected function reqStats($to, $from)
+  protected function reqStats($query, $from, $to)
   {
-  	
-  		$reqEur = "SELECT SUM(b.metrage) as metrage, SUM(b.montant) as montant, SUM(b.total_fournisseur) as nm, SUM(b.total_commercial) as cc FROM commande b WHERE b.date <= '".$from."' AND b.date >= '".$to."' AND b.devise_montant_id = 1";
-  		$reqDoll = "SELECT SUM(b.metrage) as metrage, SUM(b.montant) as montant, SUM(b.total_fournisseur) as nm, SUM(b.total_commercial) as cc FROM commande b WHERE b.date <= '".$from."' AND b.date >= '".$to."' AND b.devise_montant_id = 2";
-		
-		$resultEur = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc($reqEur);
-		$resultDoll = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc($reqDoll);
+  	  $query = clone $query;
+      $query->removeDqlQueryPart("select");
+
+      $query->addSelect("SUM(r.metrage) as metrage, SUM(r.montant) as montant, SUM(r.total_fournisseur) as nm, SUM(r.total_commercial) as cc");
+
+
+      $params = $query->getParams();
+      $date = $from;
+      foreach($params["where"] as $key => $param) {
+        if(preg_match("/^[0-9]+-[0-9]+-[0-9]+/", $param)) {
+          $params["where"][$key] = $date;
+          $date = $to;
+        }
+      }
+      $query->setParams($params);
+
+      $queryEur = clone $query;
+      $queryEur->addWhere('r.devise_montant_id = 1'); 
+      $resultEur = $queryEur->fetchArray();
+
+      $queryDoll = clone $query;
+      $queryDoll->addWhere('r.devise_montant_id = 2'); 
+      $resultDoll = $queryDoll->fetchArray();
 		
   		$result = array();
 		foreach ($resultEur as $re) {
@@ -198,14 +233,31 @@ class commandeActions extends autoCommandeActions
 		return $result;
   }
   
-  protected function reqSpec($to, $from)
+  protected function reqSpec($query, $from, $to)
   {
-  		$reqEur = "SELECT b.fournisseur_id as fournisseur, SUM(b.metrage) as metrage, SUM(b.montant) as montant, SUM(b.total_fournisseur) as nm, SUM(b.total_commercial) as cc FROM commande b WHERE b.date <= '".$from."' AND b.date >= '".$to."' AND b.devise_montant_id = 1 GROUP BY fournisseur";
-  		$reqDoll = "SELECT b.fournisseur_id as fournisseur, SUM(b.metrage) as metrage, SUM(b.montant) as montant, SUM(b.total_fournisseur) as nm, SUM(b.total_commercial) as cc FROM commande b WHERE b.date <= '".$from."' AND b.date >= '".$to."' AND b.devise_montant_id = 2 GROUP BY fournisseur";
-		
-		$resultEur = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc($reqEur);
-		$resultDoll = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc($reqDoll);
-		
+      $query = clone $query;
+		  $query->removeDqlQueryPart("select");
+
+      $query->addSelect("r.fournisseur_id as fournisseur, SUM(r.metrage) as metrage, SUM(r.montant) as montant, SUM(r.total_fournisseur) as nm, SUM(r.total_commercial) as cc")->groupBy('fournisseur');
+  		
+      $params = $query->getParams();
+      $date = $from;
+      foreach($params["where"] as $key => $param) {
+        if(preg_match("/^[0-9]+-[0-9]+-[0-9]+/", $param)) {
+          $params["where"][$key] = $date;
+          $date = $to;
+        }
+      }
+      $query->setParams($params);
+
+      $queryEur = clone $query;
+      $queryEur->addWhere('r.devise_montant_id = 1'); 
+      $resultEur = $queryEur->fetchArray();
+
+      $queryDoll = clone $query;
+      $queryDoll->addWhere('r.devise_montant_id = 2'); 
+      $resultDoll = $queryDoll->fetchArray();
+
   		$result = array();
 		foreach ($resultEur as $re) {
 			$metrage = ($re['metrage'])? $re['metrage'] : 0;
