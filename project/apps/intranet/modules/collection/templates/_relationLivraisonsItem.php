@@ -16,6 +16,13 @@
             </td>
         </tr>
         <tr>
+            <td><?php echo $form['piece']->renderLabel() ?>&nbsp;:</td>
+            <td>
+                <?php echo $form['piece']->render() ?>
+                <?php echo $form['piece']->renderError() ?>
+            </td>
+        </tr>
+        <tr>
             <td><?php echo $form['prix']->renderLabel() ?>&nbsp;:</td>
             <td>
                 <?php echo $form['prix']->render() ?>

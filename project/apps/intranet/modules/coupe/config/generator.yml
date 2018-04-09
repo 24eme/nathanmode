@@ -25,9 +25,9 @@ generator:
           csv: { label: "CSV" }
           _new: ~
         title: "Liste des coupes"
-        display: [Saison, Fournisseur, Client, tissu, colori, metrage, livre_le, _facture]
+        display: [Saison, Fournisseur, Client, tissu, colori, metrage, piece, livre_le, _facture]
       filter:
-        display: [saison_id, fournisseur_id, client_id, tissu, colori, metrage, livre_le, fichier]
+        display: [saison_id, fournisseur_id, client_id, tissu, colori, metrage, piece, livre_le, fichier]
       form: ~
       edit:
         title: "Modification de la coupe %%tissu%% %%colori%% %%metrage%%"

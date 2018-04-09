@@ -100,6 +100,13 @@
 			  <?php endif; ?>
 			</tr>
   			<tr>
+			  <td><?php echo $form['piece']->renderLabel() ?></td>
+			  <td><?php echo $form['piece']->render() ?><br /><?php echo $form['piece']->renderError() ?></td>
+			  <?php if ($help = $form['piece']->renderHelp()): ?>
+			  <td class="help"><?php echo $help ?></td>
+			  <?php endif; ?>
+			</tr>
+  			<tr>
 			  <td><?php echo $form['livre_le']->renderLabel() ?></td>
 			  <td><?php echo $form['livre_le']->render() ?><br /><?php echo $form['livre_le']->renderError() ?></td>
 			  <?php if ($help = $form['livre_le']->renderHelp()): ?>

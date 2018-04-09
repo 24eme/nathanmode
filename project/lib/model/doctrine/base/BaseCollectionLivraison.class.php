@@ -11,6 +11,7 @@
  * @property integer $facture_id
  * @property string $colori
  * @property string $metrage
+ * @property string $piece
  * @property double $prix
  * @property double $escompte
  * @property string $adresse_livraison
@@ -29,6 +30,7 @@
  * @method integer             getFactureId()          Returns the current record's "facture_id" value
  * @method string              getColori()             Returns the current record's "colori" value
  * @method string              getMetrage()            Returns the current record's "metrage" value
+ * @method string              getPiece()              Returns the current record's "piece" value
  * @method double              getPrix()               Returns the current record's "prix" value
  * @method double              getEscompte()           Returns the current record's "escompte" value
  * @method string              getAdresseLivraison()   Returns the current record's "adresse_livraison" value
@@ -46,6 +48,7 @@
  * @method CollectionLivraison setFactureId()          Sets the current record's "facture_id" value
  * @method CollectionLivraison setColori()             Sets the current record's "colori" value
  * @method CollectionLivraison setMetrage()            Sets the current record's "metrage" value
+ * @method CollectionLivraison setPiece()              Sets the current record's "piece" value
  * @method CollectionLivraison setPrix()               Sets the current record's "prix" value
  * @method CollectionLivraison setEscompte()           Sets the current record's "escompte" value
  * @method CollectionLivraison setAdresseLivraison()   Sets the current record's "adresse_livraison" value
@@ -89,6 +92,10 @@ abstract class BaseCollectionLivraison extends sfDoctrineRecord
              'length' => 128,
              ));
         $this->hasColumn('metrage', 'string', 128, array(
+             'type' => 'string',
+             'length' => 128,
+             ));
+        $this->hasColumn('piece', 'string', 128, array(
              'type' => 'string',
              'length' => 128,
              ));

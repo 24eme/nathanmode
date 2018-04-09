@@ -61,9 +61,13 @@ class CollectionDetail extends BaseCollectionDetail
     $commande->setNumero($this->getCollection()->getNumCommande());
     $commande->setDate($this->getCollection()->getDateCommande());
 	$commande->setColori($this->getColori());
-    $commande->setMontant($this->getMetrage() * $this->getPrix());
     $commande->setMetrage($this->getMetrage());
     $commande->setPiece($this->getPiece());
+    if ($this->getPiece()) {
+    	$commande->setMontant($this->getPiece() * $this->getPrix());
+    } else {
+    	$commande->setMontant($this->getMetrage() * $this->getPrix());
+    }
     $commande->setQualite($this->getCollection()->getQualite());
     $commande->setSituation($this->getCollection()->getSituation());
     if ($this->getCollection()->getProduction())
@@ -73,7 +77,11 @@ class CollectionDetail extends BaseCollectionDetail
     
     if ($this->getCollection()->getDeviseFournisseur() == Devise::POURCENTAGE) {
     	try {
-    		$commande->setTotalFournisseur($this->getMetrage() * $this->getPrix() * $commande->getPrixFournisseur() / 100);
+    		if ($this->getPiece()) {
+    			$commande->setTotalFournisseur($this->getPiece() * $this->getPrix() * $commande->getPrixFournisseur() / 100);
+    		} else {
+    			$commande->setTotalFournisseur($this->getMetrage() * $this->getPrix() * $commande->getPrixFournisseur() / 100);
+    		}
     	} catch (Exception $e) {
     		$commande->setTotalFournisseur(0);
     	}
@@ -83,7 +91,11 @@ class CollectionDetail extends BaseCollectionDetail
     
     if ($this->getCollection()->getDeviseCommercial() == Devise::POURCENTAGE) {
     	try {
-    		$commande->setTotalCommercial($this->getMetrage() * $this->getPrix() * $commande->getPrixCommercial() / 100);
+    		if ($this->getPiece()) {
+    			$commande->setTotalCommercial($this->getPiece() * $this->getPrix() * $commande->getPrixCommercial() / 100);
+    		} else {
+    			$commande->setTotalCommercial($this->getMetrage() * $this->getPrix() * $commande->getPrixCommercial() / 100);
+    		}
     	} catch (Exception $e) {
     		$commande->setTotalCommercial(0);
     	}

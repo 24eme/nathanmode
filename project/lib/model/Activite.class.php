@@ -11,11 +11,18 @@ class Activite
 		$this->to = $to;
 	}
 	
-	public function getMontant($devise = 1)
+	public function getMontant($devise = 1, $client = null, $fournisseur = null)
 	{
+		$where = "";
+		if ($client) {
+			$where .= " AND b.client_id = ".$client;
+		}
+		if ($fournisseur) {
+			$where .= " AND b.fournisseur_id = ".$fournisseur;
+		}
 		
-		$reqFacture = "SELECT SUM(b.montant) as montant FROM commande b WHERE b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0";
-		$reqCredit = "SELECT SUM(b.montant) as montant FROM bon b WHERE b.type = 'Credit' AND b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0";
+		$reqFacture = "SELECT SUM(b.montant) as montant FROM commande b WHERE b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
+		$reqCredit = "SELECT SUM(b.montant) as montant FROM bon b WHERE b.type = 'Credit' AND b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
 		$req = "SELECT (".$reqFacture.") as facture, (".$reqCredit.") as credit, (SELECT ifnull(facture,0) - ifnull(credit,0)) as total";
 		
 		$result = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc($req);
@@ -24,11 +31,18 @@ class Activite
 		
 	}
 	
-	public function getCom($devise = 1)
+	public function getCom($devise = 1, $client = null, $fournisseur = null)
 	{
+		$where = "";
+		if ($client) {
+			$where .= " AND b.client_id = ".$client;
+		}
+		if ($fournisseur) {
+			$where .= " AND b.fournisseur_id = ".$fournisseur;
+		}
 		
-		$reqFacture = "SELECT SUM(b.total_fournisseur) as montant FROM commande b WHERE b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0";
-		$reqCredit = "SELECT SUM(b.total_fournisseur) as montant FROM bon b WHERE b.type = 'Credit' AND b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0";
+		$reqFacture = "SELECT SUM(b.total_fournisseur) as montant FROM commande b WHERE b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
+		$reqCredit = "SELECT SUM(b.total_fournisseur) as montant FROM bon b WHERE b.type = 'Credit' AND b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
 		$req = "SELECT (".$reqFacture.") as facture, (".$reqCredit.") as credit, (SELECT ifnull(facture,0) - ifnull(credit,0)) as total";
 		
 		$result = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc($req);
@@ -37,16 +51,63 @@ class Activite
 		
 	}
 	
-	public function getMts($devise = 1)
+	public function getMts($devise = 1, $client = null, $fournisseur = null)
 	{
+		$where = "";
+		if ($client) {
+			$where .= " AND b.client_id = ".$client;
+		}
+		if ($fournisseur) {
+			$where .= " AND b.fournisseur_id = ".$fournisseur;
+		}
 		
-		$reqFacture = "SELECT SUM(b.metrage) as montant FROM commande b WHERE b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0";
-		$reqCredit = "SELECT SUM(b.metrage) as montant FROM bon b WHERE b.type = 'Credit' AND b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0";
+		$reqFacture = "SELECT SUM(b.metrage) as montant FROM commande b WHERE b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
+		$reqCredit = "SELECT SUM(b.metrage) as montant FROM bon b WHERE b.type = 'Credit' AND b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
 		$req = "SELECT (".$reqFacture.") as facture, (".$reqCredit.") as credit, (SELECT ifnull(facture,0) - ifnull(credit,0)) as total";
 		
 		$result = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc($req);
 
 		return ($result[0]['total'])? $result[0]['total'] : 0;
+		
+	}
+	
+	public function getPcs($devise = 1, $client = null, $fournisseur = null)
+	{
+		$where = "";
+		if ($client) {
+			$where .= " AND b.client_id = ".$client;
+		}
+		if ($fournisseur) {
+			$where .= " AND b.fournisseur_id = ".$fournisseur;
+		}
+		
+		$reqFacture = "SELECT SUM(b.piece) as montant FROM commande b WHERE b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
+		$reqCredit = "SELECT SUM(b.piece) as montant FROM bon b WHERE b.type = 'Credit' AND b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
+		
+		$req = "SELECT (".$reqFacture.") as facture, (".$reqCredit.") as credit, (SELECT ifnull(facture,0) - ifnull(credit,0)) as total";
+		
+		$result = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc($req);
+
+		return ($result[0]['total'])? $result[0]['total'] : 0;
+		
+	}
+	
+	public function getDetails($devise = 1, $client = null, $fournisseur = null)
+	{
+		$where = "";
+		if ($client) {
+			$where .= " AND b.client_id = ".$client;
+		}
+		if ($fournisseur) {
+			$where .= " AND b.fournisseur_id = ".$fournisseur;
+		}
+		
+		$reqFacture = "SELECT 1 as coef, s.libelle, b.qualite, b.metrage, b.piece, b.montant FROM commande b INNER JOIN saison s ON b.saison_id = s.id WHERE b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
+		$reqCredit = "SELECT -1 as coef, s.libelle, b.qualite, b.metrage, b.piece, b.montant FROM bon b INNER JOIN saison s ON b.saison_id = s.id WHERE b.type = 'Credit' AND b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
+		
+		$result = array_merge(Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc($reqFacture), Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc($reqCredit));
+
+		return $result;
 		
 	}
 	

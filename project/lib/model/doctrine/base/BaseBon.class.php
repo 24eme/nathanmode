@@ -24,6 +24,7 @@
  * @property double $montant
  * @property double $montant_total
  * @property string $metrage
+ * @property string $piece
  * @property string $qualite
  * @property string $fichier
  * @property string $statut
@@ -59,6 +60,7 @@
  * @method double      getMontant()               Returns the current record's "montant" value
  * @method double      getMontantTotal()          Returns the current record's "montant_total" value
  * @method string      getMetrage()               Returns the current record's "metrage" value
+ * @method string      getPiece()                 Returns the current record's "piece" value
  * @method string      getQualite()               Returns the current record's "qualite" value
  * @method string      getFichier()               Returns the current record's "fichier" value
  * @method string      getStatut()                Returns the current record's "statut" value
@@ -93,6 +95,7 @@
  * @method Bon         setMontant()               Sets the current record's "montant" value
  * @method Bon         setMontantTotal()          Sets the current record's "montant_total" value
  * @method Bon         setMetrage()               Sets the current record's "metrage" value
+ * @method Bon         setPiece()                 Sets the current record's "piece" value
  * @method Bon         setQualite()               Sets the current record's "qualite" value
  * @method Bon         setFichier()               Sets the current record's "fichier" value
  * @method Bon         setStatut()                Sets the current record's "statut" value
@@ -182,6 +185,10 @@ abstract class BaseBon extends sfDoctrineRecord
              'type' => 'double',
              ));
         $this->hasColumn('metrage', 'string', 128, array(
+             'type' => 'string',
+             'length' => 128,
+             ));
+        $this->hasColumn('piece', 'string', 128, array(
              'type' => 'string',
              'length' => 128,
              ));

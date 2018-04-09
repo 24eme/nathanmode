@@ -146,6 +146,15 @@ client:
 activite:
   url:   /commercial-activity
   param: { module: activite, action: index }
+modalClient:
+  url:   /commercial-activity/modal-client
+  param: { module: activite, action: clientContentModal }
+modalFournisseur:
+  url:   /commercial-activity/modal-fournisseur
+  param: { module: activite, action: fournisseurContentModal }
+activiteRapport:
+  url:   /commercial-activity/rapport
+  param: { module: activite, action: rapport }
 activiteclient:
   url:   /commercial-activity/client
   param: { module: activite, action: client }

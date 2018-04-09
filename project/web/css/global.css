@@ -1008,3 +1008,96 @@ tbody tr.trHover:hover{
 td.sf_admin_list_td_date_retard{
 	color:#F10004 !important;	
 }
+
+dl, ol, ul {
+    margin-bottom: 0;
+
+}
+#containerCA {
+	margin-bottom: 20px;	
+}
+#containerCA .breadcrumb {
+	font-size: .9rem;
+	margin-bottom: 0px;
+}
+#containerCA div.list-group-item {
+	display: flex;
+	font-size: 1rem;
+	padding: 8px 5px;
+}
+#containerCA div.list-group-item div {
+	padding: 0;
+}
+#containerCA h2,
+#containerCA h3,
+#containerCA h4,
+#containerCA h5, 
+#containerCA h6 {
+	margin-bottom: 0;
+}
+#containerCA h5 {
+	font-size: 1rem;	
+}
+
+#containerCA .p-3 {
+	padding-left: 0px !important;
+}
+
+#containerCA .btn-group a {
+	padding-top: 4px;
+	padding-bottom: 10px;
+}
+
+#containerCA .oi {
+	top: -1px;
+}
+#containerCards {
+	padding: 1rem 6rem;
+}
+.modalContainerCards, 
+.modal form {
+	padding: 1rem 1rem;
+}
+.modal-body h5 {
+	padding: 0 1rem;
+}
+#containerCards a,
+.modalContainerCards a {
+	border: none;
+}
+#containerCards .card-img-overlay {
+	font-size: 2.25rem;
+	padding-top: 44px;
+	font-style: italic;
+	text-shadow: 2px 0 0 #343a40, -2px 0 0 #343a40, 0 2px 0 #343a40, 0 -2px 0 #343a40, 1px 1px #343a40, -1px -1px 0 #343a40, 1px -1px 0 #343a40, -1px 1px 0 #343a40;
+}
+.modalContainerCards .card-img-overlay {
+	font-size: 1.05rem;
+	font-style: italic;
+	padding-top: 50px;
+	text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+}
+
+#containerCA small.font-italic {
+	font-size: 92%;
+}
+#containerCA h5 .oi {
+	top: 1px;
+}
+#detailsTabs li {
+	max-width: 33.333333%
+}
+#detailsTabs li a, 
+#detailsTabs li a:link, 
+#detailsTabs li a:visited {
+    text-decoration: none;
+    color: #343a40;
+    padding: .75rem 1.25rem;
+
+}
+#detailsTabsContent {
+	margin-top: 30px;
+}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+	font-weight: bold;
+}

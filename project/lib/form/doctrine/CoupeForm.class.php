@@ -33,7 +33,17 @@ class CoupeForm extends BaseCoupeForm
       $this->setValidator('livre_le', new sfValidatorDate(array('date_format' => '~(?P<day>\d{2})/(?P<month>\d{2})/(?P<year>\d{4})~', 'required' => false)));
 
       $this->setValidator('fichier_delete', new sfValidatorPass());	  
+      $this->mergePostValidator(new sfValidatorCallback(array('callback' => array($this, 'fctValidatorCallback'))));
   }
+    
+    public function fctValidatorCallback($validator, $values, $arguments)
+    {
+    	if ($values['metrage'] && $values['piece'])
+    	{
+    		throw new sfValidatorErrorSchema($validator, array('piece' => new sfValidatorError($validator, "Métrage ou pièce")));
+    	}
+    	return $values;
+    }
 
 
     public function getPaiements() {

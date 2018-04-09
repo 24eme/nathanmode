@@ -17,83 +17,80 @@ class activiteActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-    $this->filters = new ActiviteFormFilter();
-    
-    $from = new DateTime(date('Y').'-01-01');
-    $this->to = $to = new DateTime(date('Y-m-d'));
-    $toAnnuel = new DateTime(date('Y-m-d'));
-    
-    if ($request->isMethod('post')) {
-    	$this->filters->bind($request->getParameter($this->filters->getName()));
-	    if ($this->filters->isValid()) {
-	    	$values = $this->filters->getValues();
-	    	$fromValue = explode('/', $values['from']);
-	    	$toValue = explode('/', $values['to']);
-	  		$from->setDate($fromValue[2], $fromValue[1], $fromValue[0]);
-	  		$to->setDate($toValue[2], $toValue[1], $toValue[0]);
-    		$toAnnuel->setDate($toValue[2], $toValue[1], $toValue[0]);
-	  	}
-    }
-    
-    $this->toAnnuel = $toAnnuel->format('Y');
-    
-    $this->linkfrom = $from->format('Y-m-d');
-    $this->linkto = $to->format('Y-m-d');
-    
-    $activitePeriode = new Activite($from->format('Y-m-d'), $to->format('Y-m-d'));
-    $from->modify('-1 year');
-    $to->modify('-1 year');
-    $activitePeriode1 = new Activite($from->format('Y-m-d'), $to->format('Y-m-d'));
-    $from->modify('-1 year');
-    $to->modify('-1 year');
-    $activitePeriode2 = new Activite($from->format('Y-m-d'), $to->format('Y-m-d'));
-    
-    $this->activitePeriode = $activitePeriode->getMontant();
-    $this->activitePeriode1 = $activitePeriode1->getMontant();
-    $this->activitePeriode2 = $activitePeriode2->getMontant();
-    
-    $this->activitePeriodeDoll = $activitePeriode->getMontant(2);
-    $this->activitePeriode1Doll = $activitePeriode1->getMontant(2);
-    $this->activitePeriode2Doll = $activitePeriode2->getMontant(2);
-    
-    $this->activitePeriodeCom = $activitePeriode->getCom();
-    $this->activitePeriode1Com = $activitePeriode1->getCom();
-    $this->activitePeriode2Com = $activitePeriode2->getCom();
-    
-    $this->activitePeriodeDollCom = $activitePeriode->getCom(2);
-    $this->activitePeriode1DollCom = $activitePeriode1->getCom(2);
-    $this->activitePeriode2DollCom = $activitePeriode2->getCom(2);
-    
-    $this->activitePeriodeMts = $activitePeriode->getMts();
-    $this->activitePeriode1Mts = $activitePeriode1->getMts();
-    $this->activitePeriode2Mts = $activitePeriode2->getMts();
-    
-    $this->activitePeriodeDollMts = $activitePeriode->getMts(2);
-    $this->activitePeriode1DollMts = $activitePeriode1->getMts(2);
-    $this->activitePeriode2DollMts = $activitePeriode2->getMts(2);
-    
-    $activiteAnnuel = new Activite($toAnnuel->format('Y').'-01-01', $toAnnuel->format('Y-m-d'));
-    $toAnnuel->modify('-1 year');
-    $activiteAnnuel1 = new Activite($toAnnuel->format('Y').'-01-01', $toAnnuel->format('Y').'-12-31');
-    $toAnnuel->modify('-1 year');
-    $activiteAnnuel2 = new Activite($toAnnuel->format('Y').'-01-01', $toAnnuel->format('Y').'-12-31');
-    
-    $this->activiteAnnuel = $activiteAnnuel->getMontant();
-    $this->activiteAnnuel1 = $activiteAnnuel1->getMontant();
-    $this->activiteAnnuel2 = $activiteAnnuel2->getMontant();
-    
-    $this->activiteAnnuelDoll = $activiteAnnuel->getMontant(2);
-    $this->activiteAnnuel1Doll = $activiteAnnuel1->getMontant(2);
-    $this->activiteAnnuel2Doll = $activiteAnnuel2->getMontant(2);
-    
-    $this->activiteAnnuelCom = $activiteAnnuel->getCom();
-    $this->activiteAnnuel1Com = $activiteAnnuel1->getCom();
-    $this->activiteAnnuel2Com = $activiteAnnuel2->getCom();
-    
-    $this->activiteAnnuelDollCom = $activiteAnnuel->getCom(2);
-    $this->activiteAnnuel1DollCom = $activiteAnnuel1->getCom(2);
-    $this->activiteAnnuel2DollCom = $activiteAnnuel2->getCom(2);
+  	$this->parameters = array('ofrom' => date('Y').'-01-01', 'oto' => date('Y-m-d'), 'from' => date('Y').'-01-01', 'to' => date('Y-m-d'));
   }
+  
+  
+  
+  public function executeRapport(sfWebRequest $request)
+  {
+
+  	$from = new DateTime(($request->getParameter('from'))? $request->getParameter('from') : date('Y').'-01-01');
+  	$to = new DateTime(($request->getParameter('to'))? $request->getParameter('to') : date('Y-m-d'));
+  	$this->from = clone $from;
+  	$this->to = clone $to;
+  	$this->devise = $request->getParameter('devise', 1);
+  	$this->client = ($cId = $request->getParameter('client'))? ClientTable::getInstance()->find($cId) : null;
+  	$this->fournisseur = ($fId = $request->getParameter('fournisseur'))? FournisseurTable::getInstance()->find($fId) : null;
+  	$this->clientId = null;
+  	$this->fournisseurId = null;
+  	
+  	$this->parameters = array('from' => $this->from->format('Y-m-d'), 'to' => $this->to->format('Y-m-d'), 'devise' => $this->device);
+  	if ($this->client) {
+  		$this->clientId = $this->client->getId();
+  		$this->parameters = array_merge($this->parameters, array('client' => $this->clientId));
+  	}
+  	if ($this->fournisseur) {
+  		$this->fournisseurId = $this->fournisseur->getId();
+  		$this->parameters = array_merge($this->parameters, array('fournisseur' => $this->fournisseurId));
+  	}
+  	
+  	$this->activitePeriode = new Activite($from->format('Y-m-d'), $to->format('Y-m-d'));
+  	$from->modify('-1 year');
+  	$to->modify('-1 year');
+  	$this->activitePeriode1 = new Activite($from->format('Y-m-d'), $to->format('Y-m-d'));
+  	$from->modify('-1 year');
+  	$to->modify('-1 year');
+  	$this->activitePeriode2 = new Activite($from->format('Y-m-d'), $to->format('Y-m-d'));
+  	
+  	$this->activiteAnnuel = new Activite($this->from->format('Y').'-01-01', $this->from->format('Y').'-12-31');
+  	$this->activiteAnnuel1 = new Activite(($this->from->format('Y')-1).'-01-01', ($this->from->format('Y')-1).'-12-31');
+  	$this->activiteAnnuel2 = new Activite(($this->from->format('Y')-2).'-01-01', ($this->from->format('Y')-2).'-12-31');
+  	
+  	$this->detailsLink = null;
+  	if ($this->client && !$this->fournisseur) {
+  		$this->detailsLink = 'fournisseur';
+  	}
+  	if (!$this->client && $this->fournisseur) {
+  		$this->detailsLink = 'client';
+  	}
+  }
+  
+  
+  
+  public function executeClientContentModal(sfWebRequest $request)
+  {
+  	$this->forward404Unless($request->isXmlHttpRequest());
+  	$this->parameters = $request->getGetParameter('parameters', array());
+  	$this->fournisseur = (isset($this->parameters['fournisseur']) && !empty($this->parameters['fournisseur']))? FournisseurTable::getInstance()->find($this->parameters['fournisseur']) : null;
+  	$this->items = ClientTable::getInstance()->findFavorites($this->parameters);
+  	$this->itemsAll = ClientTable::getInstance()->findByParameters($this->parameters);
+  	$this->type = 'client';
+  	$this->setTemplate('contentModal');
+  }
+  
+  public function executeFournisseurContentModal(sfWebRequest $request)
+  {
+  	$this->forward404Unless($request->isXmlHttpRequest());
+  	$this->parameters = $request->getGetParameter('parameters', array());
+  	$this->client = (isset($this->parameters['client']) && !empty($this->parameters['client']))? ClientTable::getInstance()->find($this->parameters['client']) : null;
+  	$this->items = FournisseurTable::getInstance()->findFavorites($this->parameters);
+  	$this->itemsAll = FournisseurTable::getInstance()->findByParameters($this->parameters);
+  	$this->type = 'fournisseur';
+  	$this->setTemplate('contentModal');
+  }
+  
+  
   
   public function executeClient(sfWebRequest $request)
   {

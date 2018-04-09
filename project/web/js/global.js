@@ -2,6 +2,35 @@ $(document).ready(function() {
     $.initTemplateLigne();
     $.collectionDependentSelect();
     $.coupeDependentSelect();
+    
+    $('body').on('click', '[data-toggle="modal"]', function(){
+    	var url = $(this).attr('data-url');
+    	var target = $(this).attr('data-target');
+      	$(target+' .modal-content').load(url,function(result){
+      		$('#modal_filters_client_id').sortSelect().chosen({
+      	    	placeholder_text_single: "-",
+      			allow_single_deselect:true,
+      	   	 	width: "100%"
+      	  	});
+      		$('#modal_filters_fournisseur_id').sortSelect().chosen({
+      	    	placeholder_text_single: "-",
+      			allow_single_deselect:true,
+      	   	 	width: "100%"
+      	  	});
+    	    $(target).modal({show:true});
+    	});
+    });
+    
+    $('body').on('click', '#detailsTabs a', function(event){
+    	$("#detailsTabs a").each(function() {
+    		$(this).removeClass('active');
+    	});
+		$(this).addClass('active');
+    	$("#detailsTabsContent div").each(function() {
+    		$(this).removeClass('show active');
+    	});
+    	$($(this).attr('href')).addClass('show active');
+    });
 	
 	// COUPE CHOSEN
 	$('#coupe_saison_id').sortSelect().chosen({width: "90%"});

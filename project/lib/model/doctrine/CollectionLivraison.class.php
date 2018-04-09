@@ -87,7 +87,14 @@ class CollectionLivraison extends BaseCollectionLivraison
     		$facture->setStatut(StatutsFacture::KEY_NON_PAYEE);
     	}
     }
-    $montant = $this->getMetrage() * $this->getPrix();
+  
+    $facture->setMetrage($this->getMetrage());
+    $facture->setPiece($this->getPiece());
+    if ($this->getPiece()) {
+    	$montant = $this->getPiece() * $this->getPrix();
+    } else {
+    	$montant = $this->getMetrage() * $this->getPrix();
+    }
     $facture->setMontantTotal($montant);
     if ($escompte = $this->getEscompte()) {
     	$facture->setEscompte($escompte);
@@ -102,7 +109,6 @@ class CollectionLivraison extends BaseCollectionLivraison
     	}
     }
     $facture->setMontant($montant);
-    $facture->setMetrage($this->getMetrage());
     $facture->setQualite($this->getCollection()->getQualite());
     $facture->setFichier($this->getFichier());
     if ($this->isNew()) {
@@ -115,7 +121,11 @@ class CollectionLivraison extends BaseCollectionLivraison
     
     if ($this->getCollection()->getDeviseFournisseur() && $this->getCollection()->getDeviseFournisseur()->getSymbole() == Devise::POURCENTAGE) {
     	try {
-    		$facture->setTotalFournisseur($this->getMetrage() * $this->getPrix() * $facture->getPrixFournisseur() / 100);
+    		if ($this->getPiece()) {
+    			$facture->setTotalFournisseur($this->getPiece() * $this->getPrix() * $facture->getPrixFournisseur() / 100);
+    		} else {
+    			$facture->setTotalFournisseur($this->getMetrage() * $this->getPrix() * $facture->getPrixFournisseur() / 100);
+    		}
     	} catch (Exception $e) {
     		$facture->setTotalFournisseur(0);
     	}
@@ -125,7 +135,12 @@ class CollectionLivraison extends BaseCollectionLivraison
     
     if ($this->getCollection()->getDeviseCommercial() && $this->getCollection()->getDeviseCommercial()->getSymbole() == Devise::POURCENTAGE) {
     	try {
-    		$facture->setTotalCommercial($this->getMetrage() * $this->getPrix() * $facture->getPrixCommercial() / 100);
+    		if ($this->getPiece()) {
+    			$facture->setTotalCommercial($this->getPiece() * $this->getPrix() * $facture->getPrixCommercial() / 100);
+    		} else {
+    			$facture->setTotalCommercial($this->getMetrage() * $this->getPrix() * $facture->getPrixCommercial() / 100);
+    		}
+    		
     	} catch (Exception $e) {
     		$facture->setTotalCommercial(0);
     	}

@@ -16,4 +16,50 @@ class ClientTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Client');
     }
+    
+    public function findByParameters($parameters)
+    {
+    	$fournisseur = (isset($parameters['fournisseur']) && !empty($parameters['fournisseur']))? $parameters['fournisseur'] : null;
+    	$from = (isset($parameters['from']) && !empty($parameters['from']))? $parameters['from'] : null;
+    	$to = (isset($parameters['to']) && !empty($parameters['to']))? $parameters['to'] : null;
+    	if ($fournisseur) {
+    		$ids = $this->getIdsByFournisseur($fournisseur, $from, $to);
+    		$query = Doctrine_Query::create()->from('Client c')->whereIn('c.id', ($ids)? $ids : array(0));
+        	return $query->execute();
+    	} else {
+    		return $this->findAll();
+    	}
+    }
+    
+    public function findFavorites($parameters)
+    {
+    	$fournisseur = (isset($parameters['fournisseur']) && !empty($parameters['fournisseur']))? $parameters['fournisseur'] : null;
+    	$from = (isset($parameters['from']) && !empty($parameters['from']))? $parameters['from'] : null;
+    	$to = (isset($parameters['to']) && !empty($parameters['to']))? $parameters['to'] : null;
+    	
+    	if ($fournisseur) {
+    		$ids = $this->getIdsByFournisseur($fournisseur, $from, $to, 9);
+    		$query = Doctrine_Query::create()->from('Client c')->whereIn('c.id', ($ids)? $ids : array(0));
+    	} else {
+    		$query = Doctrine_Query::create()->from('Client c')->whereIn('c.id', array(10,4,75,22,1,3,63,355,13));
+    	}
+        return $query->execute();
+    }
+    
+    protected function getIdsByFournisseur($fournisseur, $from, $to, $limit = null) {
+    	$where = '';
+    	if ($from && $to) {
+    		$where .= " AND b.date <= '".$to."' AND b.date >= '".$from."'";
+    	}
+    	$req = "SELECT DISTINCT client_id FROM commande b WHERE b.fournisseur_id = ".$fournisseur." AND b.montant > 0".$where." ORDER BY b.montant DESC";
+    	if ($limit) {
+    		$req .= " LIMIT $limit";
+    	}
+    	$result = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc($req);
+    	$ids = array();
+    	foreach ($result as $item) {
+    		$ids[] = $item['client_id'];
+    	}
+    	return $ids;
+    }
 }

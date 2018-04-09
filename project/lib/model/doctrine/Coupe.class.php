@@ -97,6 +97,7 @@ class Coupe extends BaseCoupe
     $facture->setMontant($this->getMontantFacture());
     $facture->setMontantTotal($this->getMontantFacture());
     $facture->setMetrage($this->getMetrage());
+    $facture->setPiece($this->getPiece());
     $facture->setQualite($this->getTissu());
     $facture->setFichier($this->getFichier());
     if ($this->isNew())
@@ -150,6 +151,7 @@ class Coupe extends BaseCoupe
     $commande->setDate($this->getDateCommande());
     $commande->setMontant($this->getMontantFacture());
     $commande->setMetrage($this->getMetrage());
+    $commande->setPiece($this->getPiece());
     $commande->setQualite($this->getTissu());
     $commande->setColori($this->getColori());    
     if ($this->getDeviseFournisseur() == Devise::POURCENTAGE) {

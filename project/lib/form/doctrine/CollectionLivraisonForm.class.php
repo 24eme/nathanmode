@@ -15,6 +15,7 @@ class CollectionLivraisonForm extends BaseCollectionLivraisonForm
         $this->useFields(array('devise_id',
         					   'colori', 
                                'metrage',
+                               'piece',
           					   'prix',
           					   'escompte',
           					   'escompte_devise_id',
@@ -66,6 +67,25 @@ class CollectionLivraisonForm extends BaseCollectionLivraisonForm
           'packing_list' => 'Packing list',
         ));
         $this->widgetSchema->setHelp('date', '(jj/mm/aaaa)');
+        $this->mergePostValidator(new sfValidatorCallback(array('callback' => array($this, 'fctValidatorCallback'))));
+    }
+    
+    public function fctValidatorCallback($validator, $values, $arguments)
+    {
+    	if ($values['metrage'] && $values['piece'])
+    	{
+    		throw new sfValidatorErrorSchema($validator, array('piece' => new sfValidatorError($validator, "Métrage ou pièce")));
+    	}
+    	return $values;
+    }
+    
+
+    protected function doUpdateObject($values)
+    {
+    	if (!$values['escompte']) {
+    		$values['escompte'] = 0.00;
+    	}
+    	parent::doUpdateObject($values);
     }
 
     public function updateDefaultsFromObject() {

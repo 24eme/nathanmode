@@ -163,6 +163,9 @@ Coupe:
     metrage:
       type: string(128)
       default: NULL
+    piece:
+      type: string(128)
+      default: NULL
     date_livraison:
       type: date
       default: NULL
@@ -592,6 +595,9 @@ CollectionLivraison:
     metrage:
       type: string(128)
       default: NULL
+    piece:
+      type: string(128)
+      default: NULL
     prix:
       type: double
       default: NULL
@@ -693,6 +699,9 @@ Bon:
       type: double
       default: NULL
     metrage:
+      type: string(128)
+      default: NULL
+    piece:
       type: string(128)
       default: NULL
     qualite:
