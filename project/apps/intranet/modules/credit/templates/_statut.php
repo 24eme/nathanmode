@@ -1,1 +1,0 @@
-<?php echo ($credit->getStatut())? StatutsCredit::getLibelle($credit->getStatut()) : null; ?>

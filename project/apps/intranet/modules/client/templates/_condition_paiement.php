@@ -1,1 +1,0 @@
-<?php echo ($client->getConditionPaiement())? ConditionsPaiement::getLibelle($client->getConditionPaiement()) : null; ?>

@@ -1,1 +1,0 @@
-<?php echo ($bon->getStatut())? StatutsBon::getLibelle($bon->getStatut()) : null; ?>
