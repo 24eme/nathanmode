@@ -1,0 +1,29 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Credit
+    theme:                 nathanmode
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          credit
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:
+        date: { date_format: dd/MM/yyyy }
+      list:
+        sort: [date, desc]
+        batch_actions: {}
+        title: "Liste des notes de crédit"
+        display: [Fournisseur, Saison, numero, date, Client, montant, total_fournisseur, Commercial, total_commercial, _statut, _fichier]
+      filter:
+        display: [fournisseur_id, saison_id, numero, date, client_id, montant, total_fournisseur, commercial_id, total_commercial, statut, fichier]
+      form:    ~
+      edit:
+        title: "Modification de la note de crédit %%numero%%"
+      new:
+        title: "Nouvelle note de crédit"

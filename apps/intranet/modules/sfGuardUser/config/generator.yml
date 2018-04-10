@@ -1,0 +1,37 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           sfGuardUser
+    theme:                 nathanmode
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          sf_guard_user
+    with_doctrine_route:   true
+
+    config:
+      fields:
+        password_again: { label: "Password (again)" }
+        email_address: { label: "Email" }
+        last_name: { label: "Nom" }
+        first_name: { label: "Prénom" }
+
+      list:
+        batch_actions: {}
+        title:   "Liste des administrateurs"
+        display: [username, first_name, last_name, email_address]
+
+      filter:
+        display: [username, first_name, last_name, email_address]
+      form:
+        class: sfGuardUserAdminForm
+        display: [first_name, last_name, email_address, username, password, password_again]
+
+      edit:
+        title: Modification de l'administrateur %%username%%
+        display: [first_name, last_name, email_address, username, password, password_again]
+
+      new:
+        title: Nouvel administrateur
+        display: [first_name, last_name, email_address, username, password, password_again]

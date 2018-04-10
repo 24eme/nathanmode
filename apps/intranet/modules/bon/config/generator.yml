@@ -1,0 +1,31 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Bon
+    theme:                 nathanmode
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          bon
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:
+        date: { date_format: dd/MM/yyyy }
+        total_fournisseur: { label: "Commission société" }
+        total_commercial: { label: "Commission commercial" }
+      list:
+        sort: [date, desc]
+        batch_actions: {}
+        actions: {}
+        object_actions: { _edit: ~}
+        title: "Statistiques"
+        display: [Fournisseur, Saison, relation, numero, date, Client, Qualite, Metrage, montant, total_fournisseur, Commercial, total_commercial, _statut, _fichier]
+      filter:
+        display: [fournisseur_id, saison_id, relation, numero, date, client_id, qualite, metrage, montant, total_fournisseur, commercial_id, total_commercial, statut, fichier]
+      form:    ~
+      edit:    ~
+      new:     ~

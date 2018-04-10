@@ -1,0 +1,35 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Coupe
+    theme:                 nathanmode
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          coupe
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:
+        date_commande: { help: "(jj/mm/aaaa)", date_format: dd/MM/yyyy }
+        date_livraison: { help: "(jj/mm/aaaa)", date_format: dd/MM/yyyy }
+        retard_livraison: { help: "(jj/mm/aaaa)", date_format: dd/MM/yyyy }
+        livre_le: { help: "(jj/mm/aaaa)", date_format: dd/MM/yyyy, label: "Expédié le" }
+      list:
+        max_per_page: 50
+        batch_actions: {}
+        actions:
+          csv: { label: "CSV" }
+          _new: ~
+        title: "Liste des coupes"
+        display: [Saison, Fournisseur, Client, tissu, colori, metrage, piece, livre_le, _facture]
+      filter:
+        display: [saison_id, fournisseur_id, client_id, tissu, colori, metrage, piece, livre_le, fichier]
+      form: ~
+      edit:
+        title: "Modification de la coupe %%tissu%% %%colori%% %%metrage%%"
+      new:
+        title: "Nouvelle coupe"

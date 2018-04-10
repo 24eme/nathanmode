@@ -1,0 +1,882 @@
+Qualite:
+  columns:
+    libelle:
+      type: string(128)
+      notnull: true
+Client:
+  columns:
+    raison_sociale:
+      type: string(128)
+      notnull: true
+    telephone:
+      type: string(20)
+      default: NULL
+    adresse_livraison:
+      type: string(255)
+      default: NULL
+    code_postal_livraison:
+      type: string(5)
+      default: NULL
+    ville_livraison:
+      type: string(128)
+      default: NULL
+    adresse_facturation:
+      type: string(255)
+      default: NULL
+    code_postal_facturation:
+      type: string(5)
+      default: NULL
+    ville_facturation:
+      type: string(128)
+      default: NULL
+    condition_paiement:
+      type: string(128)
+      default: NULL
+Fournisseur:
+  columns:
+    devise_id:
+      type: integer
+      notnull: true
+    raison_sociale:
+      type: string(128)
+      notnull: true
+    prenom:
+      type: string(128)
+      default: NULL
+    telephone:
+      type: string(20)
+      default: NULL
+    adresse:
+      type: string(255)
+      default: NULL
+    code_postal:
+      type: string(5)
+      default: NULL
+    ville:
+      type: string(128)
+      default: NULL
+    commission:
+      type: double
+      default: NULL
+  relations:
+    Devise:
+      local: devise_id
+      foreign: id
+      foreignAlias: Fournisseurs
+      onDelete: CASCADE
+Commercial:
+  columns:
+    devise_id:
+      type: integer
+      notnull: true
+    nom:
+      type: string(128)
+      notnull: true
+    prenom:
+      type: string(128)
+      default: NULL
+    email:
+      type: string(255)
+      default: NULL
+    telephone:
+      type: string(20)
+      default: NULL
+    commission:
+      type: double
+      default: NULL
+  relations:
+    Devise:
+      local: devise_id
+      foreign: id
+      foreignAlias: Commerciaux
+      onDelete: CASCADE
+Saison:
+  columns:
+    libelle:
+      type: string(128)
+      notnull: true
+Devise:
+  columns:
+    libelle:
+      type: string(128)
+      notnull: true
+    symbole:
+      type: string(128)
+      notnull: true
+    is_pourcentage:
+      type: boolean
+      default: false
+
+Coupe:
+  columns:
+    saison_id:
+      type: integer
+      notnull: true
+    fournisseur_id:
+      type: integer
+      notnull: true
+    commercial_id:
+      type: integer
+      notnull: true
+    client_id:
+      type: integer
+      notnull: true
+    devise_id:
+      type: integer
+      notnull: true
+    fournisseur_devise_id:
+      type: integer
+      notnull: true
+    commercial_devise_id:
+      type: integer
+      notnull: true
+    commission_fournisseur:
+      type: double
+      default: NULL
+    commission_commercial:
+      type: double
+      default: NULL
+    facture_id:
+      type: integer
+      notnull: true
+    commande_id:
+      type: integer
+      notnull: true
+    paiement:
+      type: string(128)
+      default: NULL
+    montant_facture:
+      type: double
+      default: NULL
+    num_facture:
+      type: string(128)
+      default: NULL
+    date_commande:
+      type: date
+      default: NULL
+    tissu:
+      type: string(128)
+      default: NULL
+    colori:
+      type: string(128)
+      default: NULL
+    metrage:
+      type: string(128)
+      default: NULL
+    piece:
+      type: string(128)
+      default: NULL
+    date_livraison:
+      type: date
+      default: NULL
+    retard_livraison:
+      type: string(255)
+      default: NULL
+    livre_le:
+      type: date
+      default: NULL
+    fichier:
+      type: string(255)
+      default: NULL
+  relations:
+    Saison:
+      local: saison_id
+      foreign: id
+      foreignAlias: Coupes
+      onDelete: CASCADE
+    Fournisseur:
+      local: fournisseur_id
+      foreign: id
+      foreignAlias: Coupes
+      onDelete: CASCADE
+    Commercial:
+      local: commercial_id
+      foreign: id
+      foreignAlias: Coupes
+      onDelete: CASCADE
+    Client:
+      local: client_id
+      foreign: id
+      foreignAlias: Coupes
+      onDelete: CASCADE
+    Devise:
+      local: devise_id
+      foreign: id
+      foreignAlias: Coupes
+      onDelete: CASCADE
+    DeviseFournisseur:
+      class: Devise
+      local: fournisseur_devise_id
+      foreign: id
+      foreignAlias: Coupes
+      onDelete: CASCADE
+    DeviseCommercial:
+      class: Devise
+      local: commercial_devise_id
+      foreign: id
+      foreignAlias: Coupes
+      onDelete: CASCADE
+    Facture:
+      local: facture_id
+      foreign: id
+      foreignAlias: Coupes
+      onDelete: CASCADE
+    Commande:
+      local: commande_id
+      foreign: id
+      foreignAlias: Coupes
+      onDelete: CASCADE
+LabDip:
+  columns:
+    saison_id:
+      type: integer
+      notnull: true
+    fournisseur_id:
+      type: integer
+      notnull: true
+    client_id:
+      type: integer
+      notnull: true
+    article:
+      type: string(128)
+      default: NULL
+    colori:
+      type: string(128)
+      default: NULL
+    date_envoi:
+      type: date
+      default: NULL
+    statut:
+      type: string(128)
+      default: NULL
+  relations:
+    Saison:
+      local: saison_id
+      foreign: id
+      foreignAlias: LabDips
+      onDelete: CASCADE
+    Fournisseur:
+      local: fournisseur_id
+      foreign: id
+      foreignAlias: LabDips
+      onDelete: CASCADE
+    Client:
+      local: client_id
+      foreign: id
+      foreignAlias: LabDips
+      onDelete: CASCADE
+LabDipDetail:
+  columns:
+    lab_dip_id:
+      type: integer
+      notnull: true
+    date:
+      type: date
+      default: NULL
+    statut:
+      type: string(128)
+      default: NULL
+    reference:
+      type: string(128)
+      default: NULL
+  relations:
+    LabDip:
+      local: lab_dip_id
+      foreign: id
+      foreignAlias: LabDipDetails
+      onDelete: CASCADE
+PrixSpecial:
+  columns:
+    saison_id:
+      type: integer
+      notnull: true
+    fournisseur_id:
+      type: integer
+      notnull: true
+    client_id:
+      type: integer
+      notnull: true
+    article:
+      type: string(128)
+      default: NULL
+    prix_production:
+      type: double
+      default: NULL
+    date:
+      type: date
+      default: NULL
+  relations:
+    Saison:
+      local: saison_id
+      foreign: id
+      foreignAlias: PrixSpeciaux
+      onDelete: CASCADE
+    Fournisseur:
+      local: fournisseur_id
+      foreign: id
+      foreignAlias: PrixSpeciaux
+      onDelete: CASCADE
+    Client:
+      local: client_id
+      foreign: id
+      foreignAlias: PrixSpeciaux
+      onDelete: CASCADE
+PrixSpecialDetail:
+  columns:
+    prix_special_id:
+      type: integer
+      notnull: true
+    devise_id:
+      type: integer
+      notnull: true
+    prix:
+      type: double
+      default: NULL
+    quantite:
+      type: double
+      default: NULL
+  relations:
+    PrixSpecial:
+      local: prix_special_id
+      foreign: id
+      foreignAlias: PrixSpecialDetails
+      onDelete: CASCADE
+    Devise:
+      local: devise_id
+      foreign: id
+      foreignAlias: PrixSpecialDetails
+      onDelete: CASCADE
+Collection:
+  columns:
+    saison_id:
+      type: integer
+      notnull: true
+    fournisseur_id:
+      type: integer
+      notnull: true
+    commercial_id:
+      type: integer
+      notnull: true
+    client_id:
+      type: integer
+      notnull: true
+    devise_fournisseur_id:
+      type: integer
+      notnull: true
+    devise_commercial_id:
+      type: integer
+      notnull: true
+    paiement:
+      type: string(128)
+      default: NULL
+    num_commande:
+      type: string(128)
+      default: NULL
+    date_commande:
+      type: date
+      default: NULL
+    fichier:
+      type: string(255)
+      default: NULL
+    situation:
+      type: string(128)
+      default: NULL
+    prix_fournisseur:
+      type: double
+      default: NULL
+    prix_commercial:
+      type: double
+      default: NULL
+    qualite:
+      type: string(128)
+      default: NULL
+    ecru:
+      type: string(128)
+      default: NULL
+    observation_general:
+      type: text
+      default: NULL
+    observation_tirelle:
+      type: text
+      default: NULL
+    fiche_client:
+      type: string(255)
+      default: NULL
+    fiche_technique:
+      type: string(255)
+      default: NULL
+    observation_client:
+      type: text
+      default: NULL
+    fichier_confirmation:
+      type: string(255)
+      default: NULL
+    date_livraison:
+      type: date
+      default: NULL
+    adresse_livraison:
+      type: string(255)
+      default: NULL
+    reste_a_livrer:
+      type: string(128)
+      default: NULL
+    observation_livraison:
+      type: text
+      default: NULL
+    commande_soldee:
+      type: boolean
+      default: false
+    tm_date_expedition:
+      type: date
+      default: NULL
+    tm_refus_test:
+      type: string(128)
+      default: NULL
+    tm_validation:
+      type: string(128)
+      default: NULL
+    tm_date_expedition_coteco:
+      type: date
+      default: NULL
+    tm_metrage_coteco:
+      type: string(128)
+      default: NULL
+    tm_validation_coteco:
+      type: string(128)
+      default: NULL
+    tm_observation:
+      type: text
+      default: NULL
+    production:
+      type: boolean
+      default: false
+      notnull: true
+    date_retard:
+      type: date
+      default: NULL
+  relations:
+    Saison:
+      local: saison_id
+      foreign: id
+      foreignAlias: Collections
+      onDelete: CASCADE
+    Fournisseur:
+      local: fournisseur_id
+      foreign: id
+      foreignAlias: Collections
+      onDelete: CASCADE
+    Commercial:
+      local: commercial_id
+      foreign: id
+      foreignAlias: Collections
+      onDelete: CASCADE
+    Client:
+      local: client_id
+      foreign: id
+      foreignAlias: Collections
+      onDelete: CASCADE
+    DeviseFournisseur:
+      class: Devise
+      local: devise_fournisseur_id
+      foreign: id
+      foreignAlias: Collections
+      onDelete: CASCADE
+    DeviseCommercial:
+      class: Devise
+      local: devise_commercial_id
+      foreign: id
+      foreignAlias: Collections
+      onDelete: CASCADE
+CollectionDetail:
+  columns:
+    collection_id:
+      type: integer
+      notnull: true
+    devise_id:
+      type: integer
+      notnull: true
+    commande_id:
+      type: integer
+      notnull: true
+    colori:
+      type: string(128)
+      default: NULL
+    metrage:
+      type: string(128)
+      default: NULL
+    piece:
+      type: string(128)
+      default: NULL
+    prix:
+      type: double
+      default: NULL
+  relations:
+    Collection:
+      local: collection_id
+      foreign: id
+      foreignAlias: CollectionDetails
+      onDelete: CASCADE
+    Devise:
+      local: devise_id
+      foreign: id
+      foreignAlias: CollectionDetails
+      onDelete: CASCADE
+    Commande:
+      local: commande_id
+      foreign: id
+      foreignAlias: CollectionDetails
+      onDelete: CASCADE
+CollectionTirelle:
+  columns:
+    collection_id:
+      type: integer
+      notnull: true
+    date_expedition:
+      type: date
+      default: NULL
+    colori:
+      type: string(128)
+      default: NULL
+    metrage:
+      type: string(128)
+      default: NULL
+    bain:
+      type: string(128)
+      default: NULL
+    date_validation:
+      type: date
+      default: NULL
+    date_refusation:
+      type: date
+      default: NULL
+    date_retraitement:
+      type: date
+      default: NULL
+  relations:
+    Collection:
+      local: collection_id
+      foreign: id
+      foreignAlias: CollectionTirelles
+      onDelete: CASCADE
+CollectionRetard:
+  columns:
+    collection_id:
+      type: integer
+      notnull: true
+    date:
+      type: date
+      default: NULL
+    observation:
+      type: text
+      default: NULL
+  relations:
+    Collection:
+      local: collection_id
+      foreign: id
+      foreignAlias: CollectionRetards
+      onDelete: CASCADE
+CollectionLivraison:
+  columns:
+    collection_id:
+      type: integer
+      notnull: true
+    devise_id:
+      type: integer
+      notnull: true
+    escompte_devise_id:
+      type: integer
+      notnull: true
+    facture_id:
+      type: integer
+      notnull: true
+    colori:
+      type: string(128)
+      default: NULL   
+    metrage:
+      type: string(128)
+      default: NULL
+    piece:
+      type: string(128)
+      default: NULL
+    prix:
+      type: double
+      default: NULL
+    escompte:
+      type: double
+      default: NULL
+    adresse_livraison:
+      type: string(255)
+      default: NULL
+    date:
+      type: date
+      default: NULL
+    num_facture:
+      type: string(128)
+      default: NULL
+    fichier:
+      type: string(255)
+      default: NULL
+    packing_list:
+      type: string(255)
+      default: NULL
+  relations:
+    Collection:
+      local: collection_id
+      foreign: id
+      foreignAlias: CollectionLivraisons
+      onDelete: CASCADE
+    Devise:
+      class: Devise
+      local: devise_id
+      foreign: id
+      foreignAlias: CollectionLivraisons
+      onDelete: CASCADE
+    EscompteDevise:
+      class: Devise
+      local: escompte_devise_id
+      foreign: id
+      foreignAlias: CollectionLivraisons
+      onDelete: CASCADE
+    Facture:
+      local: facture_id
+      foreign: id
+      foreignAlias: CollectionLivraisons
+      onDelete: CASCADE
+Bon:
+  columns:
+    saison_id:
+      type: integer
+      notnull: true
+    fournisseur_id:
+      type: integer
+      notnull: true
+    commercial_id:
+      type: integer
+      notnull: true
+    client_id:
+      type: integer
+      notnull: true
+    devise_montant_id:
+      type: integer
+      notnull: true
+    devise_fournisseur_id:
+      type: integer
+      notnull: true
+    devise_commercial_id:
+      type: integer
+      notnull: true
+    devise_escompte_id:
+      type: integer
+      default: NULL
+    prix_fournisseur:
+      type: double
+      default: NULL
+    prix_commercial:
+      type: double
+      default: NULL
+    total_fournisseur:
+      type: double
+      default: NULL
+    total_commercial:
+      type: double
+      default: NULL
+    numero:
+      type: string(128)
+      default: NULL
+    date:
+      type: date
+      default: NULL
+    echeance:
+      type: date
+      default: NULL
+    escompte:
+      type: double
+      default: NULL
+    montant:
+      type: double
+      default: NULL
+    montant_total:
+      type: double
+      default: NULL
+    metrage:
+      type: string(128)
+      default: NULL
+    piece:
+      type: string(128)
+      default: NULL
+    qualite:
+      type: string(128)
+      default: NULL
+    fichier:
+      type: string(255)
+      default: NULL
+    statut:
+      type: string(128)
+      default: NULL
+    actif:
+      type: boolean
+      default: true
+  relations:
+    Saison:
+      local: saison_id
+      foreign: id
+      foreignAlias: Bons
+      onDelete: CASCADE
+    Fournisseur:
+      local: fournisseur_id
+      foreign: id
+      foreignAlias: Bons
+      onDelete: CASCADE
+    Commercial:
+      local: commercial_id
+      foreign: id
+      foreignAlias: Bons
+      onDelete: CASCADE
+    Client:
+      local: client_id
+      foreign: id
+      foreignAlias: Bons
+      onDelete: CASCADE
+    DeviseEscompte:
+      class: Devise
+      local: devise_escompte_id
+      foreign: id
+      foreignAlias: Bons
+      onDelete: CASCADE
+    DeviseMontant:
+      class: Devise
+      local: devise_montant_id
+      foreign: id
+      foreignAlias: Bons
+      onDelete: CASCADE
+    DeviseFournisseur:
+      class: Devise
+      local: devise_fournisseur_id
+      foreign: id
+      foreignAlias: Bons
+      onDelete: CASCADE
+    DeviseCommercial:
+      class: Devise
+      local: devise_commercial_id
+      foreign: id
+      foreignAlias: Bons
+      onDelete: CASCADE
+
+Facture:
+  inheritance:
+    type:             column_aggregation
+    extends:          Bon
+  columns:
+    relation:
+      type:           string(50)
+      default: NULL
+Credit:
+  inheritance:
+    type:             column_aggregation
+    extends:          Bon
+  columns:
+    date_debit:
+      type: date
+      default: NULL
+
+Commande:
+  columns:
+    saison_id:
+      type: integer
+      notnull: true
+    fournisseur_id:
+      type: integer
+      notnull: true
+    commercial_id:
+      type: integer
+      notnull: true
+    client_id:
+      type: integer
+      notnull: true
+    devise_montant_id:
+      type: integer
+      notnull: true
+    devise_fournisseur_id:
+      type: integer
+      notnull: true
+    devise_commercial_id:
+      type: integer
+      notnull: true
+    prix_fournisseur:
+      type: double
+      default: NULL
+    prix_commercial:
+      type: double
+      default: NULL
+    total_fournisseur:
+      type: double
+      default: NULL
+    total_commercial:
+      type: double
+      default: NULL
+    numero:
+      type: string(128)
+      default: NULL
+    date:
+      type: date
+      default: NULL
+    montant:
+      type: double
+      default: NULL
+    colori:
+      type: string(128)
+      default: NULL
+    metrage:
+      type: string(128)
+      default: NULL
+    piece:
+      type: string(128)
+      default: NULL
+    qualite:
+      type: string(128)
+      default: NULL
+    situation:
+      type: string(128)
+      default: NULL
+    relation:
+      type: string(50)
+      default: NULL
+  relations:
+    Saison:
+      local: saison_id
+      foreign: id
+      foreignAlias: Commandes
+      onDelete: CASCADE
+    Fournisseur:
+      local: fournisseur_id
+      foreign: id
+      foreignAlias: Commandes
+      onDelete: CASCADE
+    Commercial:
+      local: commercial_id
+      foreign: id
+      foreignAlias: Commandes
+      onDelete: CASCADE
+    Client:
+      local: client_id
+      foreign: id
+      foreignAlias: Commandes
+      onDelete: CASCADE
+    DeviseMontant:
+      class: Devise
+      local: devise_montant_id
+      foreign: id
+      foreignAlias: Commandes
+      onDelete: CASCADE
+    DeviseFournisseur:
+      class: Devise
+      local: devise_fournisseur_id
+      foreign: id
+      foreignAlias: Commandes
+      onDelete: CASCADE
+    DeviseCommercial:
+      class: Devise
+      local: devise_commercial_id
+      foreign: id
+      foreignAlias: Commandes
+      onDelete: CASCADE

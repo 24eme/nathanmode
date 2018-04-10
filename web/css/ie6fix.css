@@ -1,0 +1,85 @@
+
+/*** TRANSPARENCY FOR PNG-24 ON IE6 ***/
+
+* html img.png{
+	position: relative;
+	behavior: expression((this.runtimeStyle.behavior="none")&&(this.pngSet?this.pngSet=true:(this.nodeName == "IMG" && this.src.toLowerCase().indexOf('.png')>-1?(this.runtimeStyle.backgroundImage = "none",
+		this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.src + "', sizingMethod='image')",
+		this.src = "/img/blank.gif"):(this.origBg = this.origBg? this.origBg :this.currentStyle.backgroundImage.toString().replace('url("','').replace('")',''),
+		this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.origBg + "', sizingMethod='image')",
+		this.runtimeStyle.backgroundImage = "none")),this.pngSet=true)
+	);
+}
+
+input,
+label{
+	position:relative !important;
+	z-index:1;
+}
+
+
+
+/*** SCRIXEL CLEANING THICKBOX FOR IE6 ***/
+
+.TB_overlayBG {
+	background-color:#000;
+	filter:alpha(opacity=75);
+	opacity: 0.75;
+}
+
+* html #TB_overlay {
+	position: absolute;
+	height: expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px');
+}
+
+* html #TB_window {
+	position: absolute;
+	margin-top: expression(0 - parseInt(this.offsetHeight / 2) + (TBWindowMargin = document.documentElement && document.documentElement.scrollTop || document.body.scrollTop) + 'px');
+}
+
+* html #TB_load {
+	position: absolute;
+	margin-top: expression(0 - parseInt(this.offsetHeight / 2) + (TBWindowMargin = document.documentElement && document.documentElement.scrollTop || document.body.scrollTop) + 'px');
+}
+
+* html #TB_HideSelect {
+	position: absolute;
+	height: expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px');
+}
+
+#TB_HideSelect{
+	filter:alpha(opacity=0);
+}
+
+#nav a,
+#nav a:link,
+#nav a:visited{
+	color:#FFFFFF;
+	text-transform:uppercase;
+	cursor:pointer;
+	display:inline-block;
+	float:left;
+	font-size:11px;
+	height:32px;
+	line-height:32px;
+	margin:0 0 0 0;
+	padding:0 0 0 15px;
+	text-decoration:none;
+}
+
+#nav a:hover{
+	background:url('/img/bg/green-nav-left.gif') no-repeat left;
+}
+
+#nav a span,
+#nav a:link span,
+#nav a:visited span{
+	cursor:pointer;
+	display:inline-block;
+	height:32px;
+	padding:0 15px 0 0;
+}
+
+#nav a:hover span{
+	background:url('/img/bg/green-nav-right.gif') no-repeat right;
+}
