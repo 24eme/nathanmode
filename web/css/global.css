@@ -1104,3 +1104,45 @@ dl, ol, ul {
 .card-deck .card {
 	max-width: 29.6%;
 }
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);	
+    font-size: 2rem;
+	font-style: italic;
+	text-shadow: 2px 0 0 #343a40, -2px 0 0 #343a40, 0 2px 0 #343a40, 0 -2px 0 #343a40, 1px 1px #343a40, -1px -1px 0 #343a40, 1px -1px 0 #343a40, -1px 1px 0 #343a40;
+}
+.modal-body li a, 
+.modal-body li a:link, 
+.modal-body li a:visited {
+    text-decoration: none;
+    color: #fff;
+}
+.modal-body li {
+	list-style-type: none;
+	margin: 10px 0;
+	text-align:center;
+}
+
+.modal-body form {
+	padding: 0px;
+}
+
+.modal-body form .chosen-container-single .chosen-single {
+	border-radius: 0px;
+}
+.modal-body  form .chosen-container-single .chosen-single div b {
+	background: none;	
+}
+.modal-body form .input-group-append {
+    height: 26px;
+}
+.modal-body form .btn {
+	font-size: 0.85rem;
+}
+
+.modal-body form .chosen-container {
+	width: 90% !important;
+}

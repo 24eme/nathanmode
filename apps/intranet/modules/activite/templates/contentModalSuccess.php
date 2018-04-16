@@ -19,46 +19,35 @@
 
 <div class="modal-body">
 	<?php if (count($items) > 0): ?>
-      	<div class="modalContainerCards">
-			<div class="card-deck">
-				<?php $i=0; foreach ($items as $item): if ($i<9) $i++; else $i=1; ?>
-			<a href="<?php echo url_for('activiteRapport', array_merge($parameters->getRawValue(), array(strtolower($type) => $item->getId()), array('from' => $parameters['ofrom'], 'to' => $parameters['oto']))) ?>" class="card bg-dark text-white text-center">
-			  <img class="card-img" style="height: 120px; width: 100%; display: block;" src="/images/bg/<?php echo $i ?>.jpg" alt="<?php echo $client ?>">
-			  <span class="card-img-overlay text-dark">
-			    <strong><?php echo $item ?></strong>
-			  </span>
-			</a>
-			<?php if ($i%3 == 0): ?>
-			</div>
-			</div>
-			<div class="modalContainerCards">
-			<div class="card-deck">
-			<?php endif; ?>
-      			<?php endforeach; ?>
-			</div>
-		</div>
-      	<?php if (count($itemsAll) > count($items)): ?>
-      	<h5 class="text-dark">Autre <?php echo $type ?></h5>
-      	
-      	<form action="<?php echo url_for('activiteRapport', array_merge($parameters->getRawValue(), array('from' => $parameters['ofrom'], 'to' => $parameters['oto'])))?>" method="get">
-	  <div class="form-row">
-	  	<?php foreach ($parameters as $k => $value): if ($k == strtolower($type)) continue; ?>
-	  	<input type="hidden" name="<?php echo $k ?>" value="<?php echo $value ?>" />
-	  	<?php endforeach;?>
-	  	<div class="col-sm-8">
+	
+			<form action="<?php echo url_for('activiteRapport', array_merge($parameters->getRawValue(), array('from' => $parameters['ofrom'], 'to' => $parameters['oto'])))?>" method="get">
+			  	<?php foreach ($parameters as $k => $value): if ($k == strtolower($type)) continue; ?>
+			  	<input type="hidden" name="<?php echo $k ?>" value="<?php echo $value ?>" />
+			  	<?php endforeach;?>
+				<div class="input-group mb-3">
+				
+				    
 			    <select id="modal_filters_<?php echo strtolower($type) ?>_id" class="form-control" name="<?php echo strtolower($type) ?>">
 			        <option value="" selected="selected"></option>
 			        <?php foreach ($itemsAll as $itemAll): ?>
 			        <option value="<?php echo $itemAll->getId() ?>" ><?php echo $itemAll ?></option>
 			        <?php endforeach; ?>
 			    </select>
-	  </div>
-	  <div class="col-sm-3">
-	  <button type="submit" class="btn btn-secondary btn-sm">Valider</button>
-	  </div>
-	  </div>
-	</form>
-		<?php endif; ?>
+				    
+				  <div class="input-group-append">
+				    <button type="submit" class="btn btn-info"><span class="oi oi-magnifying-glass"></span></button>
+				  </div>
+				</div>
+			</form>
+	
+			<ul>
+			<?php $i=0; foreach ($items as $item): if ($i<9) $i++; else $i=1; ?>
+			<li><a href="<?php echo url_for('activiteRapport', array_merge($parameters->getRawValue(), array(strtolower($type) => $item->getId()), array('from' => $parameters['ofrom'], 'to' => $parameters['oto']))) ?>" class="btn btn-info">
+			    <strong><?php echo $item ?></strong>
+			</a></li>
+      		<?php endforeach; ?>
+			</ul>
+			
 		<?php else: ?>
 		<p class="font-italic text-dark text-center">Aucun <?php echo $type ?> pour cette configuration</p>
 		<?php endif; ?>

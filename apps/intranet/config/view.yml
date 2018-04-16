@@ -14,7 +14,7 @@ default:
 
   stylesheets:
    - reset.css: { media: all }
-   - global.css?20180410: { media: all }
+   - global.css?20180416: { media: all }
    - chosen.css: { media: all }
    - admin.css: { media: all }
    - jquery-ui.min.css: { media: all }
