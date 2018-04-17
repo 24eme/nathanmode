@@ -1146,3 +1146,13 @@ dl, ol, ul {
 .modal-body form .chosen-container {
 	width: 90% !important;
 }
+
+.btn-info, .bg-info, .border-info {
+    background-color: #000080 !important;
+    border-color: #000080 !important;
+}
+
+.btn-info:hover {
+    background-color: rgba(0,0,128,0.6);
+    border-color: rgba(0,0,128,0.6);
+}
