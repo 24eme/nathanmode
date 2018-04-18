@@ -18,6 +18,7 @@ default:
    - chosen.css: { media: all }
    - admin.css: { media: all }
    - jquery-ui.min.css: { media: all }
+   - globalprint.css: { media: print }
    #- iefix.css : { media: all, condition: IE}
 
   javascripts:    [jquery-1.7.2.min.js, jquery-ui.min.js, jquery.plugins.min.js, datepicker-fr.js, global.js?20180417, chosen.jquery.min.js]

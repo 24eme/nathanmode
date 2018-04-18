@@ -1,0 +1,5 @@
+.tab-content > .tab-pane {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
