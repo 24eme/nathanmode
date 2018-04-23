@@ -155,6 +155,9 @@ modalFournisseur:
 activiteRapport:
   url:   /commercial-activity/rapport
   param: { module: activite, action: rapport }
+activiteRapports:
+  url:   /commercial-activity/rapports
+  param: { module: activite, action: rapports }
 activiteclient:
   url:   /commercial-activity/client
   param: { module: activite, action: client }

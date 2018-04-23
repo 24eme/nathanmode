@@ -8,19 +8,12 @@
 		<?php if ($client && !$fournisseur): ?>
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item text-dark">Client : <strong><?php echo $client->getRaisonSociale() ?></strong></li>
+			<li class="breadcrumb-item text-dark">Tous les fournisseurs</li>
 		</ol>
 		<?php elseif (!$client && $fournisseur): ?>
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item text-dark">Fournisseur : <strong><?php echo $fournisseur->getRaisonSociale() ?></strong></li>
-		</ol>
-		<?php elseif ($client && $fournisseur): ?>
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item text-dark">Client : <strong><?php echo $client->getRaisonSociale() ?></strong></li>
-			<li class="breadcrumb-item text-dark">Fournisseur : <strong><?php echo $fournisseur->getRaisonSociale() ?></strong></li>
-		</ol>
-		<?php else: ?>
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item text-dark">NathanMode : <strong>Chiffres globaux</strong></li>
+			<li class="breadcrumb-item text-dark">Tous les clients</li>
 		</ol>
 		<?php endif; ?>
 	</nav>
@@ -28,15 +21,15 @@
 	</div>
 	<div class="col-sm-1">
 		<div class="btn-group float-right p-2">
-				<a href="<?php echo url_for('activiteRapport', array_merge($parameters->getRawValue(), array('devise' => 1))) ?>" class="btn btn-sm <?php if($devise==1): ?>btn-warning text-white<?php else: ?>btn-light<?php endif; ?>" role="button" aria-pressed="true"><span class="oi oi-euro" title="euro" aria-hidden="true"></span></a>
-				<a href="<?php echo url_for('activiteRapport', array_merge($parameters->getRawValue(), array('devise' => 2))) ?>" class="btn btn-sm <?php if($devise==2): ?>btn-warning text-white<?php else: ?>btn-light<?php endif; ?>" role="button" aria-pressed="true"><span class="oi oi-dollar" title="dollar" aria-hidden="true"></span></a>
+				<a href="<?php echo url_for('activiteRapports', array_merge($parameters->getRawValue(), array('devise' => 1))) ?>" class="btn btn-sm <?php if($devise==1): ?>btn-warning text-white<?php else: ?>btn-light<?php endif; ?>" role="button" aria-pressed="true"><span class="oi oi-euro" title="euro" aria-hidden="true"></span></a>
+				<a href="<?php echo url_for('activiteRapports', array_merge($parameters->getRawValue(), array('devise' => 2))) ?>" class="btn btn-sm <?php if($devise==2): ?>btn-warning text-white<?php else: ?>btn-light<?php endif; ?>" role="button" aria-pressed="true"><span class="oi oi-dollar" title="dollar" aria-hidden="true"></span></a>
 			</div>
 	</div>
 
 </div>
 
 
-	<form method="get" action="<?php echo url_for('activiteRapport', $parameters->getRawValue()) ?>">	
+	<form method="get" action="<?php echo url_for('activiteRapports', $parameters->getRawValue()) ?>">	
 		<?php foreach ($parameters as $key => $value): ?>
 		<?php if (!in_array($key, array('from', 'to')) && $value): ?>
 		<input type="hidden" name="<?php echo $key?>" value="<?php echo $value ?>" />
@@ -54,7 +47,21 @@
 		</div>
 	</form>
 	
-
+	
+	<?php 
+		foreach ($items as $item): 
+		
+		if ($client) {
+			$clientId = $client->getId();
+			$fournisseurId = $item->getId();
+		} else {
+			$clientId = $item->getId();
+			$fournisseurId = $fournisseur->getId();
+		}
+	?>
+	
+	<div class="p-3 mb-2 bg-info text-white text-center rounded" style="margin-top: 24px; font-size: 1.25rem; padding: 0.5rem !important; "><strong><?php echo $item ?></strong></div>
+	
 	<!-- PERIODE -->
 	<div class="p-3 text-dark">
 		<h4>Rapport périodique</h4>
@@ -218,149 +225,9 @@
 			</div>
 		</div>
 	</div>
-	<?php if ($client && $fournisseur): ?>
+
 	
-	<div class="p-3 text-dark"><h4>Détails</h4></div>
-	
-	
-	<ul class="nav nav-tabs row" id="detailsTabs" role="tablist">
-  		<li class="nav-item col-sm-4">
-    		<h5><a class="nav-link active" id="home-tab" data-toggle="tab" href="#current" role="tab" aria-controls="currentTab" aria-selected="true">du <?php echo $from->format('d/m/Y') ?> au <?php echo $to->format('d/m/Y') ?></a></h5>
-  		</li>
-	  	<li class="nav-item col-sm-4">
-	    	<h5><a class="nav-link" id="profile-tab" data-toggle="tab" href="#n1Tab" role="tab" aria-controls="n1Tab" aria-selected="false">Période <?php echo $from->format('Y')-1 ?></a></h5>
-	  	</li>
-	  	<li class="nav-item col-sm-4">
-	    	<h5><a class="nav-link" id="contact-tab" data-toggle="tab" href="#n2Tab" role="tab" aria-controls="n2Tab" aria-selected="false">Période <?php echo $from->format('Y')-2 ?></a></h5>
-	  	</li>
-	</ul>
-	
-	
-	<div class="tab-content" id="detailsTabsContent">
-	  	<div class="tab-pane fade show active" id="current" role="tabpanel" aria-labelledby="current-tab">
-	  	
-		  	<table class="table table-striped table-bordered table-hover text-dark">
-		  		<thead>
-		    		<tr>
-		      			<th scope="col">Saison</th>
-		      			<th scope="col">Qualité</th>
-		      			<th scope="col">Métrage</th>
-		      			<th scope="col">Pièce</th>
-		      			<th scope="col">Prix</th>
-		    		</tr>
-		  		</thead>
-		  		<tbody>
-		  			<?php 
-		  			$totMetrage = 0;
-		  			$totPiece = 0;
-		  			$totMontant = 0;
-		  			foreach ($activitePeriode->getDetails($devise, $client->getId(), $fournisseur->getId()) as $detail): 
-		  			$totMetrage += (is_numeric($detail['metrage']))? $detail['metrage'] *  $detail['coef'] : 0;
-		  			$totPiece += (is_numeric($detail['piece']))? $detail['piece'] *  $detail['coef'] : 0;
-		  			$totMontant += (is_numeric($detail['montant']))? $detail['montant'] *  $detail['coef'] : 0;
-		  			?>
-		  				<tr<?php if ($detail['coef'] < 0): ?> class="table-danger"<?php endif; ?>>
-		  					<td><?php echo $detail['libelle'] ?></td>
-		  					<td><?php echo $detail['qualite'] ?></td>
-		  					<td class="text-right"><?php if ($detail['coef'] < 0): ?>-&nbsp;<?php endif; ?><?php echo number_format($detail['metrage'], 0, ',', ' ') ?></td>
-		  					<td class="text-right"><?php if ($detail['coef'] < 0): ?>-&nbsp;<?php endif; ?><?php echo number_format($detail['piece'], 0, ',', ' ') ?></td>
-		  					<td class="text-right"><?php if ($detail['coef'] < 0): ?>-&nbsp;<?php endif; ?><?php echo number_format($detail['montant'], 2, ',', ' ') ?></td>
-		  				</tr>
-		  			<?php endforeach;?>
-		  				<tr>
-		  					<td colspan="2" class="text-right"><strong>Total</strong></td>
-		  					<td class="text-right"><strong><?php echo number_format($totMetrage, 0, ',', ' ') ?></strong></td>
-		  					<td class="text-right"><strong><?php echo number_format($totPiece, 0, ',', ' ') ?></strong></td>
-		  					<td class="text-right"><strong><?php echo number_format($totMontant, 2, ',', ' ') ?></strong></td>
-		  				</tr>
-		  		</tbody>
-		  	</table>
-	  	
-	  	</div>
-	  	<div class="tab-pane fade" id="n1Tab" role="n1Tab" aria-labelledby="n1-tab">
-	  	
-		  	<table class="table table-striped table-bordered table-hover text-dark">
-		  		<thead>
-		    		<tr>
-		      			<th scope="col">Saison</th>
-		      			<th scope="col">Qualité</th>
-		      			<th scope="col">Métrage</th>
-		      			<th scope="col">Pièce</th>
-		      			<th scope="col">Prix</th>
-		    		</tr>
-		  		</thead>
-		  		<tbody>
-		  			<?php 
-		  			$totMetrage = 0;
-		  			$totPiece = 0;
-		  			$totMontant = 0;
-		  			foreach ($activitePeriode1->getDetails($devise, $client->getId(), $fournisseur->getId()) as $detail): 
-		  			$totMetrage += (is_numeric($detail['metrage']))? $detail['metrage'] *  $detail['coef'] : 0;
-		  			$totPiece += (is_numeric($detail['piece']))? $detail['piece'] *  $detail['coef'] : 0;
-		  			$totMontant += (is_numeric($detail['montant']))? $detail['montant'] *  $detail['coef'] : 0;
-		  			?>
-		  				<tr<?php if ($detail['coef'] < 0): ?> class="table-danger"<?php endif; ?>>
-		  					<td><?php echo $detail['libelle'] ?></td>
-		  					<td><?php echo $detail['qualite'] ?></td>
-		  					<td class="text-right"><?php if ($detail['coef'] < 0): ?>-&nbsp;<?php endif; ?><?php echo number_format($detail['metrage'], 0, ',', ' ') ?></td>
-		  					<td class="text-right"><?php if ($detail['coef'] < 0): ?>-&nbsp;<?php endif; ?><?php echo number_format($detail['piece'], 0, ',', ' ') ?></td>
-		  					<td class="text-right"><?php if ($detail['coef'] < 0): ?>-&nbsp;<?php endif; ?><?php echo number_format($detail['montant'], 2, ',', ' ') ?></td>
-		  				</tr>
-		  			<?php endforeach;?>
-		  				<tr>
-		  					<td colspan="2" class="text-right"><strong>Total</strong></td>
-		  					<td class="text-right"><strong><?php echo number_format($totMetrage, 0, ',', ' ') ?></strong></td>
-		  					<td class="text-right"><strong><?php echo number_format($totPiece, 0, ',', ' ') ?></strong></td>
-		  					<td class="text-right"><strong><?php echo number_format($totMontant, 2, ',', ' ') ?></strong></td>
-		  				</tr>
-		  		</tbody>
-		  	</table>
-	  	
-	  	</div>
-	  	<div class="tab-pane fade" id="n2Tab" role="n2Tab" aria-labelledby="n2-tab">
-	  	
-		  	<table class="table table-striped table-bordered table-hover text-dark">
-		  		<thead>
-		    		<tr>
-		      			<th scope="col">Saison</th>
-		      			<th scope="col">Qualité</th>
-		      			<th scope="col">Métrage</th>
-		      			<th scope="col">Pièce</th>
-		      			<th scope="col">Prix</th>
-		    		</tr>
-		  		</thead>
-		  		<tbody>
-		  			<?php 
-		  			$totMetrage = 0;
-		  			$totPiece = 0;
-		  			$totMontant = 0;
-		  			foreach ($activitePeriode2->getDetails($devise, $client->getId(), $fournisseur->getId()) as $detail): 
-		  			$totMetrage += (is_numeric($detail['metrage']))? $detail['metrage'] *  $detail['coef'] : 0;
-		  			$totPiece += (is_numeric($detail['piece']))? $detail['piece'] *  $detail['coef'] : 0;
-		  			$totMontant += (is_numeric($detail['montant']))? $detail['montant'] *  $detail['coef'] : 0;
-		  			?>
-		  				<tr<?php if ($detail['coef'] < 0): ?> class="table-danger"<?php endif; ?>>
-		  					<td><?php echo $detail['libelle'] ?></td>
-		  					<td><?php echo $detail['qualite'] ?></td>
-		  					<td class="text-right"><?php if ($detail['coef'] < 0): ?>-&nbsp;<?php endif; ?><?php echo number_format($detail['metrage'], 0, ',', ' ') ?></td>
-		  					<td class="text-right"><?php if ($detail['coef'] < 0): ?>-&nbsp;<?php endif; ?><?php echo number_format($detail['piece'], 0, ',', ' ') ?></td>
-		  					<td class="text-right"><?php if ($detail['coef'] < 0): ?>-&nbsp;<?php endif; ?><?php echo number_format($detail['montant'], 2, ',', ' ') ?></td>
-		  				</tr>
-		  			<?php endforeach;?>
-		  				<tr>
-		  					<td colspan="2" class="text-right"><strong>Total</strong></td>
-		  					<td class="text-right"><strong><?php echo number_format($totMetrage, 0, ',', ' ') ?></strong></td>
-		  					<td class="text-right"><strong><?php echo number_format($totPiece, 0, ',', ' ') ?></strong></td>
-		  					<td class="text-right"><strong><?php echo number_format($totMontant, 2, ',', ' ') ?></strong></td>
-		  				</tr>
-		  		</tbody>
-		  	</table>
-	  	
-	  	</div>
-	</div>
-	
-	
-	<?php else: ?>
+
 	<!-- ANNEE -->
 	<div class="p-3 text-dark"><h4>Rapport annuel</h4></div>
 	<div class="row">
@@ -522,10 +389,8 @@
 			</div>
 		</div>
 	</div>
-	<?php endif; ?>
-	<?php include_partial('activite/clientModal'); ?>
-	<?php include_partial('activite/fournisseurModal'); ?>
 	
+	<?php endforeach; ?>
 </div>
 <script type="text/javascript">
  $(function() {

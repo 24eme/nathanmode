@@ -46,6 +46,11 @@
 			    <strong><?php echo $item ?></strong>
 			</a></li>
       		<?php endforeach; ?>
+      		<?php if ((isset($client) && !empty($client)) || (isset($fournisseur) && !empty($fournisseur))): ?>
+      		<li><a href="<?php echo url_for('activiteRapports', array_merge($parameters->getRawValue(), array('from' => $parameters['ofrom'], 'to' => $parameters['oto']))) ?>" class="btn btn-info">
+			    <strong>TOUS LES <?php echo strtoupper($type) ?>S</strong>
+			</a></li>
+			<?php endif; ?>
 			</ul>
 			
 		<?php else: ?>
