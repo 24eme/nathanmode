@@ -22,8 +22,9 @@ class FournisseurTable extends Doctrine_Table
     	$client = (isset($parameters['client']) && !empty($parameters['client']))? $parameters['client'] : null;
     	$from = (isset($parameters['from']) && !empty($parameters['from']))? $parameters['from'] : null;
     	$to = (isset($parameters['to']) && !empty($parameters['to']))? $parameters['to'] : null;
+    	$saison = (isset($parameters['saison']) && !empty($parameters['saison']))? $parameters['saison'] : null;
     	if ($client) {
-    		$ids = $this->getIdsByClient($client, $from, $to);
+    		$ids = $this->getIdsByClient($client, $from, $to, $saison);
     		$query = Doctrine_Query::create()->from('Fournisseur f')->whereIn('f.id', ($ids)? $ids : array(0));
         	return $query->execute();
     	} else {
@@ -36,9 +37,10 @@ class FournisseurTable extends Doctrine_Table
     	$client = (isset($parameters['client']) && !empty($parameters['client']))? $parameters['client'] : null;
     	$from = (isset($parameters['from']) && !empty($parameters['from']))? $parameters['from'] : null;
     	$to = (isset($parameters['to']) && !empty($parameters['to']))? $parameters['to'] : null;
+    	$saison = (isset($parameters['saison']) && !empty($parameters['saison']))? $parameters['saison'] : null;
     	
     	if ($client) {
-    		$ids = $this->getIdsByClient($client, $from, $to, 9);
+    		$ids = $this->getIdsByClient($client, $from, $to, $saison, 9);
     		$query = Doctrine_Query::create()->from('Fournisseur f')->whereIn('f.id', ($ids)? $ids : array(0));
     	} else {
     		$query = Doctrine_Query::create()->from('Fournisseur f')->whereIn('f.id', array(1,2,9,52,8,23,41,53,44));
@@ -46,11 +48,14 @@ class FournisseurTable extends Doctrine_Table
         return $query->execute();
     }
     
-    protected function getIdsByClient($client, $from, $to, $limit = null) {
+    protected function getIdsByClient($client, $from, $to, $saison, $limit = null) {
     	$where = '';
     	if ($from && $to) {
     		$where .= " AND b.date <= '".$to."' AND b.date >= '".$from."'";
     	}
+		if ($saison) {
+			$where .= " AND b.saison_id = ".$saison;
+		}
     	$req = "SELECT DISTINCT fournisseur_id FROM commande b WHERE b.client_id = ".$client." AND b.montant > 0".$where." ORDER BY b.montant DESC";
     	if ($limit) {
     		$req .= " LIMIT $limit";

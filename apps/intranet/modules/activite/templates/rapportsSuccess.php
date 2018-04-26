@@ -38,7 +38,14 @@
 		<div class="activity_date activity_content">
 			<span class="activity_title"></span>
 			<div class="activity_date_input">
-				Période du&nbsp;
+				Saison&nbsp;
+				<select id="activite_filters_saison_id" name="saison">
+					<option value=""<?php if (!$saison): ?> selected="selected"<?php endif; ?>></option>
+					<?php foreach (SaisonTable::getInstance()->findAll() as $s): ?>
+					<option value="<?php echo $s->getId() ?>"<?php if ($s->getId() == $saison): ?> selected="selected"<?php endif; ?>><?php echo $s ?></option>
+					<?php endforeach; ?>
+				</select>
+				&nbsp;Période du&nbsp;
 				<input type="text" class="dp" name="from" value="<?php echo $from->format('d/m/Y') ?>" />
 				&nbsp;au&nbsp;
 				<input type="text" class="dp" name="to" value="<?php echo $to->format('d/m/Y') ?>" />
@@ -47,6 +54,347 @@
 		</div>
 	</form>
 	
+	<div class="p-3 mb-2 bg-info text-white text-center rounded" style="margin-top: 24px; font-size: 1.25rem; padding: 0.5rem !important; "><strong><?php if ($client) echo $client; else echo $fournisseur; ?></strong></div>
+	<?php 
+	if ($client) {
+			$clientId = $client->getId();
+			$fournisseurId = null;
+		} else {
+			$clientId = null;
+			$fournisseurId = $fournisseur->getId();
+		}
+	?>
+	<!-- PERIODE -->
+	<div class="p-3 text-dark">
+		<h4>Rapport périodique global</h4>
+	</div>
+	<div class="row">
+		<div class="col-sm-4">
+			<div class="card border-info">
+				<div class="card-header bg-info text-white"><h5>du <?php echo $from->format('d/m/Y') ?> au <?php echo $to->format('d/m/Y') ?><?php if($detailsLink): ?><a href="#" class="float-right" data-toggle="modal" data-target="#<?php echo $detailsLink ?>Modal" data-url="<?php echo url_for('modal'.ucfirst($detailsLink), array('parameters' => array_merge($parameters->getRawValue(), array('from' => $from->format('Y-m-d'), 'to' => $to->format('Y-m-d'), 'ofrom' => $from->format('Y-m-d'), 'oto' => $to->format('Y-m-d'))))) ?>"><span class="oi oi-zoom-in text-white" title="details" aria-hidden="true"></span></a><?php endif; ?></h5></div>
+				<div class="list-group list-group-flush">
+					<div class="list-group-item">
+						<div class="col-3 text-dark">CA <span class="text-warning"><?php echo ($devise == 2)? '<small class="oi oi-dollar" title="dollar" aria-hidden="true"></small>' : '<small class="oi oi-euro" title="euro" aria-hidden="true"></small>'; ?></span></div>
+						<div class="col-9 text-right text-dark"><?php echo number_format($activitePeriode->getMontant($devise, $clientId, $fournisseurId), 2, ',', ' ') ?></div>
+					</div>
+					<div class="list-group-item">
+						<div class="col-3 text-dark">COM <span class="text-warning"><?php echo ($devise == 2)? '<small class="oi oi-dollar" title="dollar" aria-hidden="true"></small>' : '<small class="oi oi-euro" title="euro" aria-hidden="true"></small>'; ?></span></div>
+						<div class="col-9 text-right text-dark"><?php echo number_format($activitePeriode->getCom($devise, $clientId, $fournisseurId), 2, ',', ' ') ?></div>
+					</div>
+					<div class="list-group-item">
+						<div class="col-3 text-dark">MTS <small class="text-muted">mts</small></div>
+						<div class="col-9 text-right text-dark"><?php echo number_format($activitePeriode->getMts($devise, $clientId, $fournisseurId), 2, ',', ' ') ?></div>
+					</div>
+					<div class="list-group-item">
+						<div class="col-3 text-dark">PF <small class="text-muted">pcs</small></div>
+						<div class="col-9 text-right text-dark"><?php echo number_format($activitePeriode->getPcs($devise, $clientId, $fournisseurId), 2, ',', ' ') ?></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="card border-secondary">
+				<div class="card-header bg-secondary text-white"><h5>Période <?php echo $from->format('Y')-1 ?><?php if($detailsLink): ?><a href="#" class="float-right" data-toggle="modal" data-target="#<?php echo $detailsLink ?>Modal" data-url="<?php echo url_for('modal'.ucfirst($detailsLink), array('parameters' => array_merge($parameters->getRawValue(), array('from' => ($from->format('Y')-1).'-'.$from->format('m').'-'.$from->format('d'), 'to' => ($to->format('Y')-1).'-'.$to->format('m').'-'.$to->format('d'), 'ofrom' => $from->format('Y-m-d'), 'oto' => $to->format('Y-m-d'))))) ?>"><span class="oi oi-zoom-in text-white" title="details" aria-hidden="true"></span></a><?php endif; ?></h5></div>
+				<div class="list-group list-group-flush">
+					<div class="list-group-item">
+						<div class="col-3 text-dark">CA <span class="text-warning"><?php echo ($devise == 2)? '<small class="oi oi-dollar" title="dollar" aria-hidden="true"></small>' : '<small class="oi oi-euro" title="euro" aria-hidden="true"></small>'; ?></span></div>
+						<div class="col-3">
+							<?php 
+								if ($activitePeriode->getMontant($devise, $clientId, $fournisseurId) > 0 && $activitePeriode1->getMontant($devise, $clientId, $fournisseurId) > 0): 
+									$diff = $activitePeriode->getMontant($devise, $clientId, $fournisseurId) / $activitePeriode1->getMontant($devise, $clientId, $fournisseurId);
+									if ($diff > 1):
+							?>
+								<small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+							<?php else: ?>
+								<small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+							<?php endif; endif; ?>
+						</div>
+						<div class="col-6 text-right text-dark"><?php echo number_format($activitePeriode1->getMontant($devise, $clientId, $fournisseurId), 2, ',', ' ') ?></div>
+					</div>
+					<div class="list-group-item">
+						<div class="col-3 text-dark">COM <span class="text-warning"><?php echo ($devise == 2)? '<small class="oi oi-dollar" title="dollar" aria-hidden="true"></small>' : '<small class="oi oi-euro" title="euro" aria-hidden="true"></small>'; ?></span></div>
+						<div class="col-3">
+							<?php 
+								if ($activitePeriode->getCom($devise, $clientId, $fournisseurId) > 0 && $activitePeriode1->getCom($devise, $clientId, $fournisseurId) > 0): 
+									$diff = $activitePeriode->getCom($devise, $clientId, $fournisseurId) / $activitePeriode1->getCom($devise, $clientId, $fournisseurId);
+									if ($diff > 1):
+							?>
+								<small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+							<?php else: ?>
+								<small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+							<?php endif; endif; ?>
+						</div>
+						<div class="col-6 text-right text-dark"><?php echo number_format($activitePeriode1->getCom($devise, $clientId, $fournisseurId), 2, ',', ' ') ?></div>
+					</div>
+					<div class="list-group-item">
+						<div class="col-3 text-dark">MTS <small class="text-muted">mts</small></div>
+						<div class="col-3">
+							<?php 
+								if ($activitePeriode->getMts($devise, $clientId, $fournisseurId) > 0 && $activitePeriode1->getMts($devise, $clientId, $fournisseurId) > 0): 
+									$diff = $activitePeriode->getMts($devise, $clientId, $fournisseurId) / $activitePeriode1->getMts($devise, $clientId, $fournisseurId);
+									if ($diff > 1):
+							?>
+								<small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+							<?php else: ?>
+								<small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+							<?php endif; endif; ?>
+						</div>
+						<div class="col-6 text-right text-dark"><?php echo number_format($activitePeriode1->getMts($devise, $clientId, $fournisseurId), 2, ',', ' ') ?></div>
+					</div>
+					<div class="list-group-item">
+						<div class="col-3 text-dark">PF <small class="text-muted">pcs</small></div>
+						<div class="col-3">
+							<?php 
+								if ($activitePeriode->getPcs($devise, $clientId, $fournisseurId) > 0 && $activitePeriode1->getPcs($devise, $clientId, $fournisseurId) > 0): 
+									$diff = $activitePeriode->getPcs($devise, $clientId, $fournisseurId) / $activitePeriode1->getPcs($devise, $clientId, $fournisseurId);
+									if ($diff > 1):
+							?>
+								<small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+							<?php else: ?>
+								<small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+							<?php endif; endif; ?>
+						</div>
+						<div class="col-6 text-right text-dark"><?php echo number_format($activitePeriode1->getPcs($devise, $clientId, $fournisseurId), 2, ',', ' ') ?></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="card border-secondary">
+				<div class="card-header bg-secondary text-white"><h5>Période <?php echo $from->format('Y')-2 ?><?php if($detailsLink): ?><a href="#" class="float-right" data-toggle="modal" data-target="#<?php echo $detailsLink ?>Modal" data-url="<?php echo url_for('modal'.ucfirst($detailsLink), array('parameters' => array_merge($parameters->getRawValue(), array('from' => ($from->format('Y')-2).'-'.$from->format('m').'-'.$from->format('d'), 'to' => ($to->format('Y')-2).'-'.$to->format('m').'-'.$to->format('d'), 'ofrom' => $from->format('Y-m-d'), 'oto' => $to->format('Y-m-d'))))) ?>"><span class="oi oi-zoom-in text-white" title="details" aria-hidden="true"></span></a><?php endif; ?></h5></div>
+				<div class="list-group list-group-flush">
+					<div class="list-group-item">
+						<div class="col-3 text-dark">CA <span class="text-warning"><?php echo ($devise == 2)? '<small class="oi oi-dollar" title="dollar" aria-hidden="true"></small>' : '<small class="oi oi-euro" title="euro" aria-hidden="true"></small>'; ?></span></div>
+						<div class="col-3">
+							<?php 
+								if ($activitePeriode->getMontant($devise, $clientId, $fournisseurId) > 0 && $activitePeriode2->getMontant($devise, $clientId, $fournisseurId) > 0): 
+									$diff = $activitePeriode->getMontant($devise, $clientId, $fournisseurId) / $activitePeriode2->getMontant($devise, $clientId, $fournisseurId);
+									if ($diff > 1):
+							?>
+								<small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+							<?php else: ?>
+								<small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+							<?php endif; endif; ?>
+						</div>
+						<div class="col-6 text-right text-dark"><?php echo number_format($activitePeriode2->getMontant($devise, $clientId, $fournisseurId), 2, ',', ' ') ?></div>
+					</div>
+					<div class="list-group-item">
+						<div class="col-3 text-dark">COM <span class="text-warning"><?php echo ($devise == 2)? '<small class="oi oi-dollar" title="dollar" aria-hidden="true"></small>' : '<small class="oi oi-euro" title="euro" aria-hidden="true"></small>'; ?></span></div>
+						<div class="col-3">
+							<?php 
+								if ($activitePeriode->getCom($devise, $clientId, $fournisseurId) > 0 && $activitePeriode2->getCom($devise, $clientId, $fournisseurId) > 0): 
+									$diff = $activitePeriode->getCom($devise, $clientId, $fournisseurId) / $activitePeriode2->getCom($devise, $clientId, $fournisseurId);
+									if ($diff > 1):
+							?>
+								<small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+							<?php else: ?>
+								<small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+							<?php endif; endif; ?>
+						</div>
+						<div class="col-6 text-right text-dark"><?php echo number_format($activitePeriode2->getCom($devise, $clientId, $fournisseurId), 2, ',', ' ') ?></div>
+					</div>
+					<div class="list-group-item">
+						<div class="col-3 text-dark">MTS <small class="text-muted">mts</small></div>
+						<div class="col-3">
+							<?php 
+								if ($activitePeriode->getMts($devise, $clientId, $fournisseurId) > 0 && $activitePeriode2->getMts($devise, $clientId, $fournisseurId) > 0): 
+									$diff = $activitePeriode->getMts($devise, $clientId, $fournisseurId) / $activitePeriode2->getMts($devise, $clientId, $fournisseurId);
+									if ($diff > 1):
+							?>
+								<small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+							<?php else: ?>
+								<small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+							<?php endif; endif; ?>
+						</div>
+						<div class="col-6 text-right text-dark"><?php echo number_format($activitePeriode2->getMts($devise, $clientId, $fournisseurId), 2, ',', ' ') ?></div>
+					</div>
+					<div class="list-group-item">
+						<div class="col-3 text-dark">PF <small class="text-muted">pcs</small></div>
+						<div class="col-3">
+							<?php 
+								if ($activitePeriode->getPcs($devise, $clientId, $fournisseurId) > 0 && $activitePeriode2->getPcs($devise, $clientId, $fournisseurId) > 0): 
+									$diff = $activitePeriode->getPcs($devise, $clientId, $fournisseurId) / $activitePeriode2->getPcs($devise, $clientId, $fournisseurId);
+									if ($diff > 1):
+							?>
+								<small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+							<?php else: ?>
+								<small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+							<?php endif; endif; ?>
+						</div>
+						<div class="col-6 text-right text-dark"><?php echo number_format($activitePeriode2->getPcs($devise, $clientId, $fournisseurId), 2, ',', ' ') ?></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+	<!-- ANNEE -->
+	<div class="p-3 text-dark"><h4>Rapport annuel global</h4></div>
+	<div class="row">
+		<div class="col-sm-4">
+			<div class="card border-info">
+				<div class="card-header bg-info text-white"><h5><?php echo $from->format('Y') ?></h5></div>
+				<div class="list-group list-group-flush">
+					<div class="list-group-item">
+						<div class="col-3 text-dark">CA <span class="text-warning"><?php echo ($devise == 2)? '<small class="oi oi-dollar" title="dollar" aria-hidden="true"></small>' : '<small class="oi oi-euro" title="euro" aria-hidden="true"></small>'; ?></span></div>
+						<div class="col-9 text-right text-dark"><?php echo number_format($activiteAnnuel->getMontant($devise, $clientId, $fournisseurId), 2, ',', ' ') ?></div>
+					</div>
+					<div class="list-group-item">
+						<div class="col-3 text-dark">COM <span class="text-warning"><?php echo ($devise == 2)? '<small class="oi oi-dollar" title="dollar" aria-hidden="true"></small>' : '<small class="oi oi-euro" title="euro" aria-hidden="true"></small>'; ?></span></div>
+						<div class="col-9 text-right text-dark"><?php echo number_format($activiteAnnuel->getCom($devise, $clientId, $fournisseurId), 2, ',', ' ') ?></div>
+					</div>
+					<div class="list-group-item">
+						<div class="col-3 text-dark">MTS <small class="text-muted">mts</small></div>
+						<div class="col-9 text-right text-dark"><?php echo number_format($activiteAnnuel->getMts($devise, $clientId, $fournisseurId), 2, ',', ' ') ?></div>
+					</div>
+					<div class="list-group-item">
+						<div class="col-3 text-dark">PF <small class="text-muted">pcs</small></div>
+						<div class="col-9 text-right text-dark"><?php echo number_format($activiteAnnuel->getPcs($devise, $clientId, $fournisseurId), 2, ',', ' ') ?></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="card border-secondary">
+				<div class="card-header bg-secondary text-white"><h5>Année <?php echo $from->format('Y')-1 ?></h5></div>
+				<div class="list-group list-group-flush">
+					<div class="list-group-item">
+						<div class="col-3 text-dark">CA <span class="text-warning"><?php echo ($devise == 2)? '<small class="oi oi-dollar" title="dollar" aria-hidden="true"></small>' : '<small class="oi oi-euro" title="euro" aria-hidden="true"></small>'; ?></span></div>
+						<div class="col-3">
+							<?php 
+								if ($activiteAnnuel->getMontant($devise, $clientId, $fournisseurId) > 0 && $activiteAnnuel1->getMontant($devise, $clientId, $fournisseurId) > 0): 
+									$diff = $activiteAnnuel->getMontant($devise, $clientId, $fournisseurId) / $activiteAnnuel1->getMontant($devise, $clientId, $fournisseurId);
+									if ($diff > 1):
+							?>
+								<small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+							<?php else: ?>
+								<small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+							<?php endif; endif; ?>
+						</div>
+						<div class="col-6 text-right text-dark"><?php echo number_format($activiteAnnuel1->getMontant($devise, $clientId, $fournisseurId), 2, ',', ' ') ?></div>
+					</div>
+					<div class="list-group-item">
+						<div class="col-3 text-dark">COM <span class="text-warning"><?php echo ($devise == 2)? '<small class="oi oi-dollar" title="dollar" aria-hidden="true"></small>' : '<small class="oi oi-euro" title="euro" aria-hidden="true"></small>'; ?></span></div>
+						<div class="col-3">
+							<?php 
+								if ($activiteAnnuel->getCom($devise, $clientId, $fournisseurId) > 0 && $activiteAnnuel1->getCom($devise, $clientId, $fournisseurId) > 0): 
+									$diff = $activiteAnnuel->getCom($devise, $clientId, $fournisseurId) / $activiteAnnuel1->getCom($devise, $clientId, $fournisseurId);
+									if ($diff > 1):
+							?>
+								<small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+							<?php else: ?>
+								<small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+							<?php endif; endif; ?>
+						</div>
+						<div class="col-6 text-right text-dark"><?php echo number_format($activiteAnnuel1->getCom($devise, $clientId, $fournisseurId), 2, ',', ' ') ?></div>
+					</div>
+					<div class="list-group-item">
+						<div class="col-3 text-dark">MTS <small class="text-muted">mts</small></div>
+						<div class="col-3">
+							<?php 
+								if ($activiteAnnuel->getMts($devise, $clientId, $fournisseurId) > 0 && $activiteAnnuel1->getMts($devise, $clientId, $fournisseurId) > 0): 
+									$diff = $activiteAnnuel->getMts($devise, $clientId, $fournisseurId) / $activiteAnnuel1->getMts($devise, $clientId, $fournisseurId);
+									if ($diff > 1):
+							?>
+								<small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+							<?php else: ?>
+								<small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+							<?php endif; endif; ?>
+						</div>
+						<div class="col-6 text-right text-dark"><?php echo number_format($activiteAnnuel1->getMts($devise, $clientId, $fournisseurId), 2, ',', ' ') ?></div>
+					</div>
+					<div class="list-group-item">
+						<div class="col-3 text-dark">PF <small class="text-muted">pcs</small></div>
+						<div class="col-3">
+							<?php 
+								if ($activiteAnnuel->getPcs($devise, $clientId, $fournisseurId) > 0 && $activiteAnnuel1->getPcs($devise, $clientId, $fournisseurId) > 0): 
+									$diff = $activiteAnnuel->getPcs($devise, $clientId, $fournisseurId) / $activiteAnnuel1->getPcs($devise, $clientId, $fournisseurId);
+									if ($diff > 1):
+							?>
+								<small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+							<?php else: ?>
+								<small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+							<?php endif; endif; ?>
+						</div>
+						<div class="col-6 text-right text-dark"><?php echo number_format($activiteAnnuel1->getPcs($devise, $clientId, $fournisseurId), 2, ',', ' ') ?></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="card border-secondary">
+				<div class="card-header bg-secondary text-white"><h5>Année <?php echo $from->format('Y')-2 ?></h5></div>
+				<div class="list-group list-group-flush">
+					<div class="list-group-item">
+						<div class="col-3 text-dark">CA <span class="text-warning"><?php echo ($devise == 2)? '<small class="oi oi-dollar" title="dollar" aria-hidden="true"></small>' : '<small class="oi oi-euro" title="euro" aria-hidden="true"></small>'; ?></span></div>
+						<div class="col-3">
+							<?php 
+								if ($activiteAnnuel->getMontant($devise, $clientId, $fournisseurId) > 0 && $activiteAnnuel2->getMontant($devise, $clientId, $fournisseurId) > 0): 
+									$diff = $activiteAnnuel->getMontant($devise, $clientId, $fournisseurId) / $activiteAnnuel2->getMontant($devise, $clientId, $fournisseurId);
+									if ($diff > 1):
+							?>
+								<small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+							<?php else: ?>
+								<small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+							<?php endif; endif; ?>
+						</div>
+						<div class="col-6 text-right text-dark"><?php echo number_format($activiteAnnuel2->getMontant($devise, $clientId, $fournisseurId), 2, ',', ' ') ?></div>
+					</div>
+					<div class="list-group-item">
+						<div class="col-3 text-dark">COM <span class="text-warning"><?php echo ($devise == 2)? '<small class="oi oi-dollar" title="dollar" aria-hidden="true"></small>' : '<small class="oi oi-euro" title="euro" aria-hidden="true"></small>'; ?></span></div>
+						<div class="col-3">
+							<?php 
+								if ($activiteAnnuel->getCom($devise, $clientId, $fournisseurId) > 0 && $activiteAnnuel2->getCom($devise, $clientId, $fournisseurId) > 0): 
+									$diff = $activiteAnnuel->getCom($devise, $clientId, $fournisseurId) / $activiteAnnuel2->getCom($devise, $clientId, $fournisseurId);
+									if ($diff > 1):
+							?>
+								<small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+							<?php else: ?>
+								<small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+							<?php endif; endif; ?>
+						</div>
+						<div class="col-6 text-right text-dark"><?php echo number_format($activiteAnnuel2->getCom($devise, $clientId, $fournisseurId), 2, ',', ' ') ?></div>
+					</div>
+					<div class="list-group-item">
+						<div class="col-3 text-dark">MTS <small class="text-muted">mts</small></div>
+						<div class="col-3">
+							<?php 
+								if ($activiteAnnuel->getMts($devise, $clientId, $fournisseurId) > 0 && $activiteAnnuel2->getMts($devise, $clientId, $fournisseurId) > 0): 
+									$diff = $activiteAnnuel->getMts($devise, $clientId, $fournisseurId) / $activiteAnnuel2->getMts($devise, $clientId, $fournisseurId);
+									if ($diff > 1):
+							?>
+								<small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+							<?php else: ?>
+								<small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+							<?php endif; endif; ?>
+						</div>
+						<div class="col-6 text-right text-dark"><?php echo number_format($activiteAnnuel2->getMts($devise, $clientId, $fournisseurId), 2, ',', ' ') ?></div>
+					</div>
+					<div class="list-group-item">
+						<div class="col-3 text-dark">PF <small class="text-muted">pcs</small></div>
+						<div class="col-3">
+							<?php 
+								if ($activiteAnnuel->getPcs($devise, $clientId, $fournisseurId) > 0 && $activiteAnnuel2->getPcs($devise, $clientId, $fournisseurId) > 0): 
+									$diff = $activiteAnnuel->getPcs($devise, $clientId, $fournisseurId) / $activiteAnnuel2->getPcs($devise, $clientId, $fournisseurId);
+									if ($diff > 1):
+							?>
+								<small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+							<?php else: ?>
+								<small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+							<?php endif; endif; ?>
+						</div>
+						<div class="col-6 text-right text-dark"><?php echo number_format($activiteAnnuel2->getPcs($devise, $clientId, $fournisseurId), 2, ',', ' ') ?></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class="p-3 text-dark text-center" style="margin-top: 24px">
+		<h4>---------- Détail par <?php if($client): ?>fournisseur<?php else: ?>client<?php endif; ?> ----------</h4>
+	</div>
 	
 	<?php 
 		foreach ($items as $item): 

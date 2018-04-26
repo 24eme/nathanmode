@@ -54,6 +54,12 @@ $(document).ready(function() {
 		allow_single_deselect:true,
    	 	width: "100%"
   	});
+	$('#activite_filters_saison_id').sortSelect().chosen({
+    	placeholder_text_single: "-",
+		allow_single_deselect:true,
+   	 	width: "100%"
+  	});
+	
 	
 	// COLLECTION & PRODUCTION CHOSEN
 	$('#collection_saison_id').sortSelect().chosen({width: "90%"});

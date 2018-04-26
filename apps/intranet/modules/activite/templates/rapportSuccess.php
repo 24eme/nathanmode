@@ -38,14 +38,21 @@
 
 	<form method="get" action="<?php echo url_for('activiteRapport', $parameters->getRawValue()) ?>">	
 		<?php foreach ($parameters as $key => $value): ?>
-		<?php if (!in_array($key, array('from', 'to')) && $value): ?>
+		<?php if (!in_array($key, array('from', 'to', 'saison')) && $value): ?>
 		<input type="hidden" name="<?php echo $key?>" value="<?php echo $value ?>" />
 		<?php endif; ?>
 		<?php endforeach; ?>	
 		<div class="activity_date activity_content">
 			<span class="activity_title"></span>
 			<div class="activity_date_input">
-				Période du&nbsp;
+				Saison&nbsp;
+				<select id="activite_filters_saison_id" name="saison">
+					<option value=""<?php if (!$saison): ?> selected="selected"<?php endif; ?>></option>
+					<?php foreach (SaisonTable::getInstance()->findAll() as $s): ?>
+					<option value="<?php echo $s->getId() ?>"<?php if ($s->getId() == $saison): ?> selected="selected"<?php endif; ?>><?php echo $s ?></option>
+					<?php endforeach; ?>
+				</select>
+				&nbsp;Période du&nbsp;
 				<input type="text" class="dp" name="from" value="<?php echo $from->format('d/m/Y') ?>" />
 				&nbsp;au&nbsp;
 				<input type="text" class="dp" name="to" value="<?php echo $to->format('d/m/Y') ?>" />

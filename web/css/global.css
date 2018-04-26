@@ -982,7 +982,6 @@ tbody tr.trHover:hover{
 
 .activity_date input{
 	font-size: 15px;
-	padding: 3px;
 }
 
 .activity_date_bt{
@@ -1155,4 +1154,7 @@ dl, ol, ul {
 .btn-info:hover {
     background-color: rgba(0,0,128,0.6);
     border-color: rgba(0,0,128,0.6);
+}
+#activite_filters_saison_id_chosen {
+	width: 10rem !important;
 }
