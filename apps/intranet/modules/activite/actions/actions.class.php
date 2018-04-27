@@ -57,15 +57,14 @@ class activiteActions extends sfActions
   	$this->activitePeriode = new Activite($from->format('Y-m-d'), $to->format('Y-m-d'), $this->saison);
   	$from->modify('-1 year');
   	$to->modify('-1 year');
-  	$this->activitePeriode1 = new Activite($from->format('Y-m-d'), $to->format('Y-m-d'), $this->saison);
+  	$this->activitePeriode1 = new Activite($from->format('Y-m-d'), $to->format('Y-m-d'), ($this->saison)? $this->saison - 2 : null);
   	$from->modify('-1 year');
   	$to->modify('-1 year');
-  	$this->activitePeriode2 = new Activite($from->format('Y-m-d'), $to->format('Y-m-d'), $this->saison);
-  	
+  	$this->activitePeriode2 = new Activite($from->format('Y-m-d'), $to->format('Y-m-d'), ($this->saison)? $this->saison - 4 : null);
   	$this->activiteAnnuel = new Activite($this->from->format('Y').'-01-01', $this->from->format('Y').'-12-31', $this->saison);
-  	$this->activiteAnnuel1 = new Activite(($this->from->format('Y')-1).'-01-01', ($this->from->format('Y')-1).'-12-31', $this->saison);
-  	$this->activiteAnnuel2 = new Activite(($this->from->format('Y')-2).'-01-01', ($this->from->format('Y')-2).'-12-31', $this->saison);
-  	
+  	$this->activiteAnnuel1 = new Activite(($this->from->format('Y')-1).'-01-01', ($this->from->format('Y')-1).'-12-31', ($this->saison)? $this->saison - 2 : null);
+  	$this->activiteAnnuel2 = new Activite(($this->from->format('Y')-2).'-01-01', ($this->from->format('Y')-2).'-12-31', ($this->saison)? $this->saison - 4 : null);
+
   	$this->detailsLink = null;
   	if ($this->client && !$this->fournisseur) {
   		$this->detailsLink = 'fournisseur';
@@ -110,14 +109,14 @@ class activiteActions extends sfActions
   	$this->activitePeriode = new Activite($from->format('Y-m-d'), $to->format('Y-m-d'), $this->saison);
   	$from->modify('-1 year');
   	$to->modify('-1 year');
-  	$this->activitePeriode1 = new Activite($from->format('Y-m-d'), $to->format('Y-m-d'), $this->saison);
+  	$this->activitePeriode1 = new Activite($from->format('Y-m-d'), $to->format('Y-m-d'), ($this->saison)? $this->saison - 2 : null);
   	$from->modify('-1 year');
   	$to->modify('-1 year');
-  	$this->activitePeriode2 = new Activite($from->format('Y-m-d'), $to->format('Y-m-d'), $this->saison);
+  	$this->activitePeriode2 = new Activite($from->format('Y-m-d'), $to->format('Y-m-d'), ($this->saison)? $this->saison - 4 : null);
   	
   	$this->activiteAnnuel = new Activite($this->from->format('Y').'-01-01', $this->from->format('Y').'-12-31', $this->saison);
-  	$this->activiteAnnuel1 = new Activite(($this->from->format('Y')-1).'-01-01', ($this->from->format('Y')-1).'-12-31', $this->saison);
-  	$this->activiteAnnuel2 = new Activite(($this->from->format('Y')-2).'-01-01', ($this->from->format('Y')-2).'-12-31', $this->saison);
+  	$this->activiteAnnuel1 = new Activite(($this->from->format('Y')-1).'-01-01', ($this->from->format('Y')-1).'-12-31', ($this->saison)? $this->saison - 2 : null);
+  	$this->activiteAnnuel2 = new Activite(($this->from->format('Y')-2).'-01-01', ($this->from->format('Y')-2).'-12-31', ($this->saison)? $this->saison - 4 : null);
   	
   	$this->detailsLink = null;
   }
