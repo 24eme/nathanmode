@@ -3,6 +3,8 @@
 
 # default_values
 all:
+  commerciaux:
+    liste:
   situations:
     liste:
       ATT_CONFIRMATION:   "Att confirmation"

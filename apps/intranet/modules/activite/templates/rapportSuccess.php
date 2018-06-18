@@ -52,6 +52,17 @@
 					<option value="<?php echo $s->getId() ?>"<?php if ($s->getId() == $saison): ?> selected="selected"<?php endif; ?>><?php echo $s ?></option>
 					<?php endforeach; ?>
 				</select>
+				Commercial&nbsp;
+				<?php if (!$comFiltered): ?>
+				<select id="activite_filters_commercial_id" name="commercial">
+					<option value=""<?php if (!$commercial): ?> selected="selected"<?php endif; ?>></option>
+					<?php foreach (CommercialTable::getInstance()->findAll() as $c): ?>
+					<option value="<?php echo $c->getId() ?>"<?php if ($c->getId() == $commercial): ?> selected="selected"<?php endif; ?>><?php echo $c ?></option>
+					<?php endforeach; ?>
+				</select>
+				<?php else: ?>
+				<span style="font-weight: normal"><?php echo $comFiltered ?></span>
+				<?php endif; ?>
 				&nbsp;Période du&nbsp;
 				<input type="text" class="dp" name="from" value="<?php echo $from->format('d/m/Y') ?>" />
 				&nbsp;au&nbsp;

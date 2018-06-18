@@ -5,12 +5,14 @@ class Activite
 	public $from;
 	public $to;
 	public $saison;
+	public $commercial;
 	
-	public function __construct($from, $to, $saison)
+	public function __construct($from, $to, $saison, $commercial)
 	{
 		$this->from = $from;
 		$this->to = $to;
 		$this->saison = $saison;
+		$this->commercial = $commercial;
 	}
 	
 	public function getMontant($devise = 1, $client = null, $fournisseur = null)
@@ -24,6 +26,9 @@ class Activite
 		}
 		if ($this->saison) {
 			$where .= " AND b.saison_id = ".$this->saison;
+		}
+		if ($this->commercial) {
+			$where .= " AND b.commercial_id = ".$this->commercial;
 		}
 		
 		$reqFacture = "SELECT SUM(b.montant) as montant FROM commande b WHERE b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
@@ -48,6 +53,9 @@ class Activite
 		if ($this->saison) {
 			$where .= " AND b.saison_id = ".$this->saison;
 		}
+		if ($this->commercial) {
+			$where .= " AND b.commercial_id = ".$this->commercial;
+		}
 		
 		$reqFacture = "SELECT SUM(b.total_fournisseur) as montant FROM commande b WHERE b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
 		$reqCredit = "SELECT SUM(b.total_fournisseur) as montant FROM bon b WHERE b.type = 'Credit' AND b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
@@ -70,6 +78,9 @@ class Activite
 		}
 		if ($this->saison) {
 			$where .= " AND b.saison_id = ".$this->saison;
+		}
+		if ($this->commercial) {
+			$where .= " AND b.commercial_id = ".$this->commercial;
 		}
 		
 		$reqFacture = "SELECT SUM(b.metrage) as montant FROM commande b WHERE b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
@@ -94,6 +105,9 @@ class Activite
 		if ($this->saison) {
 			$where .= " AND b.saison_id = ".$this->saison;
 		}
+		if ($this->commercial) {
+			$where .= " AND b.commercial_id = ".$this->commercial;
+		}
 		
 		$reqFacture = "SELECT SUM(b.piece) as montant FROM commande b WHERE b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
 		$reqCredit = "SELECT SUM(b.piece) as montant FROM bon b WHERE b.type = 'Credit' AND b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
@@ -117,6 +131,9 @@ class Activite
 		}
 		if ($this->saison) {
 			$where .= " AND b.saison_id = ".$this->saison;
+		}
+		if ($this->commercial) {
+			$where .= " AND b.commercial_id = ".$this->commercial;
 		}
 		
 		$reqFacture = "SELECT 1 as coef, s.libelle, b.qualite, b.metrage, b.piece, b.montant FROM commande b INNER JOIN saison s ON b.saison_id = s.id WHERE b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;

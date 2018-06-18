@@ -981,7 +981,11 @@ tbody tr.trHover:hover{
 }
 
 .activity_date input{
-	font-size: 15px;
+	font-size: 14px;
+}
+.hasDatepicker {
+	width: 100px !important;
+	text-align: center;
 }
 
 .activity_date_bt{
@@ -1156,5 +1160,8 @@ dl, ol, ul {
     border-color: rgba(0,0,128,0.6);
 }
 #activite_filters_saison_id_chosen {
-	width: 10rem !important;
+	width: 8rem !important;
+}
+#activite_filters_commercial_id_chosen {
+	width: 12rem !important;
 }

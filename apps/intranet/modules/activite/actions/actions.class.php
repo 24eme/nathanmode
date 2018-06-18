@@ -17,22 +17,35 @@ class activiteActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-  	$this->parameters = array('ofrom' => date('Y').'-01-01', 'oto' => date('Y-m-d'), 'from' => date('Y').'-01-01', 'to' => date('Y-m-d'));
+	$commerciaux = sfConfig::get('app_commerciaux_liste', array());
+	$this->comFiltered = (in_array($this->getUser()->getUsername(), array_keys($commerciaux)))? CommercialTable::getInstance()->find($commerciaux[$this->getUser()->getUsername()]) : null;
+
+	if ($this->comFiltered) {
+		$this->commercial = $this->comFiltered->getId();
+	}
+	
+  	$this->parameters = array('ofrom' => date('Y').'-01-01', 'oto' => date('Y-m-d'), 'from' => date('Y').'-01-01', 'to' => date('Y-m-d'), 'commercial' => $this->commercial);
   }
   
   
   
   public function executeRapport(sfWebRequest $request)
   {
-
-  	$from = ($request->getParameter('from'))? $request->getParameter('from') : date('Y').'-01-01';
+	$commerciaux = sfConfig::get('app_commerciaux_liste', array());
+	$this->comFiltered = (in_array($this->getUser()->getUsername(), array_keys($commerciaux)))? CommercialTable::getInstance()->find($commerciaux[$this->getUser()->getUsername()]) : null;
+  	
+	$from = ($request->getParameter('from'))? $request->getParameter('from') : date('Y').'-01-01';
   	$to = ($request->getParameter('to'))? $request->getParameter('to') : date('Y-m-d');
   	$this->saison = ($request->getParameter('saison'))? $request->getParameter('saison') : null;
+  	$this->commercial = ($request->getParameter('commercial'))? $request->getParameter('commercial') : null;
   	if (preg_match('/^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/', $from, $m)) {
   		$from = $m[3].'-'.$m[2].'-'.$m[1];
   	}
   	if (preg_match('/^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/', $to, $m)) {
   		$to = $m[3].'-'.$m[2].'-'.$m[1];
+  	}
+  	if ($this->comFiltered) {
+  		$this->commercial = $this->comFiltered->getId();
   	}
   	$from = new DateTime($from);
   	$to = new DateTime($to);
@@ -44,7 +57,7 @@ class activiteActions extends sfActions
   	$this->clientId = null;
   	$this->fournisseurId = null;
   	
-  	$this->parameters = array('from' => $this->from->format('Y-m-d'), 'to' => $this->to->format('Y-m-d'), 'devise' => $this->device, 'saison' => $this->saison);
+  	$this->parameters = array('from' => $this->from->format('Y-m-d'), 'to' => $this->to->format('Y-m-d'), 'devise' => $this->device, 'saison' => $this->saison, 'commercial' => $this->commercial);
   	if ($this->client) {
   		$this->clientId = $this->client->getId();
   		$this->parameters = array_merge($this->parameters, array('client' => $this->clientId));
@@ -54,16 +67,16 @@ class activiteActions extends sfActions
   		$this->parameters = array_merge($this->parameters, array('fournisseur' => $this->fournisseurId));
   	}
   	
-  	$this->activitePeriode = new Activite($from->format('Y-m-d'), $to->format('Y-m-d'), $this->saison);
+  	$this->activitePeriode = new Activite($from->format('Y-m-d'), $to->format('Y-m-d'), $this->saison, $this->commercial);
   	$from->modify('-1 year');
   	$to->modify('-1 year');
-  	$this->activitePeriode1 = new Activite($from->format('Y-m-d'), $to->format('Y-m-d'), ($this->saison)? $this->saison - 2 : null);
+  	$this->activitePeriode1 = new Activite($from->format('Y-m-d'), $to->format('Y-m-d'), ($this->saison)? $this->saison - 2 : null, $this->commercial);
   	$from->modify('-1 year');
   	$to->modify('-1 year');
-  	$this->activitePeriode2 = new Activite($from->format('Y-m-d'), $to->format('Y-m-d'), ($this->saison)? $this->saison - 4 : null);
-  	$this->activiteAnnuel = new Activite($this->from->format('Y').'-01-01', $this->from->format('Y').'-12-31', $this->saison);
-  	$this->activiteAnnuel1 = new Activite(($this->from->format('Y')-1).'-01-01', ($this->from->format('Y')-1).'-12-31', ($this->saison)? $this->saison - 2 : null);
-  	$this->activiteAnnuel2 = new Activite(($this->from->format('Y')-2).'-01-01', ($this->from->format('Y')-2).'-12-31', ($this->saison)? $this->saison - 4 : null);
+  	$this->activitePeriode2 = new Activite($from->format('Y-m-d'), $to->format('Y-m-d'), ($this->saison)? $this->saison - 4 : null, $this->commercial);
+  	$this->activiteAnnuel = new Activite($this->from->format('Y').'-01-01', $this->from->format('Y').'-12-31', $this->saison, $this->commercial);
+  	$this->activiteAnnuel1 = new Activite(($this->from->format('Y')-1).'-01-01', ($this->from->format('Y')-1).'-12-31', ($this->saison)? $this->saison - 2 : null, $this->commercial);
+  	$this->activiteAnnuel2 = new Activite(($this->from->format('Y')-2).'-01-01', ($this->from->format('Y')-2).'-12-31', ($this->saison)? $this->saison - 4 : null, $this->commercial);
 
   	$this->detailsLink = null;
   	if ($this->client && !$this->fournisseur) {
@@ -77,15 +90,21 @@ class activiteActions extends sfActions
   
   public function executeRapports(sfWebRequest $request)
   {
+	$commerciaux = sfConfig::get('app_commerciaux_liste', array());
+	$this->comFiltered = (in_array($this->getUser()->getUsername(), array_keys($commerciaux)))? CommercialTable::getInstance()->find($commerciaux[$this->getUser()->getUsername()]) : null;
 
   	$from = ($request->getParameter('from'))? $request->getParameter('from') : date('Y').'-01-01';
   	$to = ($request->getParameter('to'))? $request->getParameter('to') : date('Y-m-d');
   	$this->saison = ($request->getParameter('saison'))? $request->getParameter('saison') : null;
+  	$this->commercial = ($request->getParameter('commercial'))? $request->getParameter('commercial') : null;
   	if (preg_match('/^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/', $from, $m)) {
   		$from = $m[3].'-'.$m[2].'-'.$m[1];
   	}
   	if (preg_match('/^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/', $to, $m)) {
   		$to = $m[3].'-'.$m[2].'-'.$m[1];
+  	}
+  	if ($this->comFiltered) {
+  		$this->commercial = $this->comFiltered->getId();
   	}
   	$from = new DateTime($from);
   	$to = new DateTime($to);
@@ -96,9 +115,9 @@ class activiteActions extends sfActions
   	$this->client = ($cId = $request->getParameter('client'))? ClientTable::getInstance()->find($cId) : null;
   	$this->fournisseur = ($fId = $request->getParameter('fournisseur'))? FournisseurTable::getInstance()->find($fId) : null;
   	
-  	$this->items = (!$this->client)? ClientTable::getInstance()->findByParameters(array('fournisseur' => $this->fournisseur->getId(), 'saison' => $this->saison, 'from' => $this->from->format('Y-m-d'), 'to' => $this->to->format('Y-m-d'))) : FournisseurTable::getInstance()->findByParameters(array('client' => $this->client->getId(), 'saison' => $this->saison, 'from' => $this->from->format('Y-m-d'), 'to' => $this->to->format('Y-m-d')));
+  	$this->items = (!$this->client)? ClientTable::getInstance()->findByParameters(array('fournisseur' => $this->fournisseur->getId(), 'saison' => $this->saison, 'commercial' => $this->commercial, 'from' => $this->from->format('Y-m-d'), 'to' => $this->to->format('Y-m-d'))) : FournisseurTable::getInstance()->findByParameters(array('client' => $this->client->getId(), 'saison' => $this->saison, 'commercial' => $this->commercial, 'from' => $this->from->format('Y-m-d'), 'to' => $this->to->format('Y-m-d')));
   	
-  	$this->parameters = array('from' => $this->from->format('Y-m-d'), 'to' => $this->to->format('Y-m-d'), 'devise' => $this->device, 'saison' => $this->saison);
+  	$this->parameters = array('from' => $this->from->format('Y-m-d'), 'to' => $this->to->format('Y-m-d'), 'devise' => $this->device, 'saison' => $this->saison, 'commercial' => $this->commercial);
   	if ($this->client) {
   		$this->parameters = array_merge($this->parameters, array('client' => $this->client->getId()));
   	}
@@ -106,17 +125,17 @@ class activiteActions extends sfActions
   		$this->parameters = array_merge($this->parameters, array('fournisseur' => $this->fournisseur->getId()));
   	}
   	
-  	$this->activitePeriode = new Activite($from->format('Y-m-d'), $to->format('Y-m-d'), $this->saison);
+  	$this->activitePeriode = new Activite($from->format('Y-m-d'), $to->format('Y-m-d'), $this->saison, $this->commercial);
   	$from->modify('-1 year');
   	$to->modify('-1 year');
-  	$this->activitePeriode1 = new Activite($from->format('Y-m-d'), $to->format('Y-m-d'), ($this->saison)? $this->saison - 2 : null);
+  	$this->activitePeriode1 = new Activite($from->format('Y-m-d'), $to->format('Y-m-d'), ($this->saison)? $this->saison - 2 : null, $this->commercial);
   	$from->modify('-1 year');
   	$to->modify('-1 year');
-  	$this->activitePeriode2 = new Activite($from->format('Y-m-d'), $to->format('Y-m-d'), ($this->saison)? $this->saison - 4 : null);
+  	$this->activitePeriode2 = new Activite($from->format('Y-m-d'), $to->format('Y-m-d'), ($this->saison)? $this->saison - 4 : null, $this->commercial);
   	
-  	$this->activiteAnnuel = new Activite($this->from->format('Y').'-01-01', $this->from->format('Y').'-12-31', $this->saison);
-  	$this->activiteAnnuel1 = new Activite(($this->from->format('Y')-1).'-01-01', ($this->from->format('Y')-1).'-12-31', ($this->saison)? $this->saison - 2 : null);
-  	$this->activiteAnnuel2 = new Activite(($this->from->format('Y')-2).'-01-01', ($this->from->format('Y')-2).'-12-31', ($this->saison)? $this->saison - 4 : null);
+  	$this->activiteAnnuel = new Activite($this->from->format('Y').'-01-01', $this->from->format('Y').'-12-31', $this->saison, $this->commercial);
+  	$this->activiteAnnuel1 = new Activite(($this->from->format('Y')-1).'-01-01', ($this->from->format('Y')-1).'-12-31', ($this->saison)? $this->saison - 2 : null, $this->commercial);
+  	$this->activiteAnnuel2 = new Activite(($this->from->format('Y')-2).'-01-01', ($this->from->format('Y')-2).'-12-31', ($this->saison)? $this->saison - 4 : null, $this->commercial);
   	
   	$this->detailsLink = null;
   }
