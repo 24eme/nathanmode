@@ -1,5 +1,4 @@
 <?php use_helper('I18N', 'Date') ?>
-<?php include_partial('collection/assets') ?>
 
 <div class="factor <?php echo strtolower($collection->getSituation()) ?>">
 <?php echo form_tag_for($form, '@collection') ?>

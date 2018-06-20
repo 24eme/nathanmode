@@ -1,5 +1,4 @@
 <?php use_helper('I18N', 'Date') ?>
-<?php include_partial('production/assets') ?>
 
 <?php echo form_tag_for($form, '@collection_production') ?>
     <div class="productName">

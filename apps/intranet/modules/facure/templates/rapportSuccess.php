@@ -1,5 +1,4 @@
 <?php use_helper('I18N', 'Date') ?>
-<?php include_partial('facure/assets') ?>
 <?php use_stylesheet('print.css', '', array('media' => 'print')) ?>
 
 	<script>

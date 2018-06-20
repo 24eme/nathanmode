@@ -1,5 +1,4 @@
 <?php use_helper('I18N', 'Date') ?>
-<?php include_partial('commande/assets') ?>
 <?php use_stylesheet('print.css', '', array('media' => 'print')) ?>
 <?php if ($print): ?>
 <?php use_stylesheet('print.css?htmlmode') ?>

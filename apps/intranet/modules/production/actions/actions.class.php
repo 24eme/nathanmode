@@ -67,7 +67,7 @@ protected function buildQuerySoldees()
     	foreach($headers as $field) {
     		try{
     			$line[$field] = $item->$field;	
-    		} catch (sfException $e) {
+    		} catch (Exception $e) {
     			$line[$field] = null;
     		}
     	}
