@@ -85,6 +85,7 @@ protected function buildQuerySoldees()
     foreach ($items as $item) {
     	$line = array();
     	foreach($headers as $field) {
+    		$field = str_replace('_', '', $field);
     		try{
     			$line[$field] = $item->$field;	
     		} catch (Exception $e) {
