@@ -280,9 +280,9 @@
 		  				<tr<?php if ($detail['coef'] < 0): ?> class="table-danger"<?php endif; ?>>
 		  					<td><?php echo $detail['libelle'] ?></td>
 		  					<td><?php echo $detail['qualite'] ?></td>
-		  					<td class="text-right"><?php if ($detail['coef'] < 0): ?>-&nbsp;<?php endif; ?><?php echo number_format($detail['metrage'], 0, ',', ' ') ?></td>
-		  					<td class="text-right"><?php if ($detail['coef'] < 0): ?>-&nbsp;<?php endif; ?><?php echo number_format($detail['piece'], 0, ',', ' ') ?></td>
-		  					<td class="text-right"><?php if ($detail['coef'] < 0): ?>-&nbsp;<?php endif; ?><?php echo number_format($detail['montant'], 2, ',', ' ') ?></td>
+		  					<td class="text-right"><?php if ($detail['coef'] < 0): ?>-&nbsp;<?php endif; ?><?php echo number_format($detail['metrage'] * 1, 0, ',', ' ') ?></td>
+		  					<td class="text-right"><?php if ($detail['coef'] < 0): ?>-&nbsp;<?php endif; ?><?php echo number_format($detail['piece'] * 1, 0, ',', ' ') ?></td>
+		  					<td class="text-right"><?php if ($detail['coef'] < 0): ?>-&nbsp;<?php endif; ?><?php echo number_format($detail['montant'] * 1, 2, ',', ' ') ?></td>
 		  				</tr>
 		  			<?php endforeach;?>
 		  				<tr>
@@ -320,9 +320,9 @@
 		  				<tr<?php if ($detail['coef'] < 0): ?> class="table-danger"<?php endif; ?>>
 		  					<td><?php echo $detail['libelle'] ?></td>
 		  					<td><?php echo $detail['qualite'] ?></td>
-		  					<td class="text-right"><?php if ($detail['coef'] < 0): ?>-&nbsp;<?php endif; ?><?php echo number_format($detail['metrage'], 0, ',', ' ') ?></td>
-		  					<td class="text-right"><?php if ($detail['coef'] < 0): ?>-&nbsp;<?php endif; ?><?php echo number_format($detail['piece'], 0, ',', ' ') ?></td>
-		  					<td class="text-right"><?php if ($detail['coef'] < 0): ?>-&nbsp;<?php endif; ?><?php echo number_format($detail['montant'], 2, ',', ' ') ?></td>
+		  					<td class="text-right"><?php if ($detail['coef'] < 0): ?>-&nbsp;<?php endif; ?><?php echo number_format($detail['metrage'] * 1, 0, ',', ' ') ?></td>
+		  					<td class="text-right"><?php if ($detail['coef'] < 0): ?>-&nbsp;<?php endif; ?><?php echo number_format($detail['piece'] * 1, 0, ',', ' ') ?></td>
+		  					<td class="text-right"><?php if ($detail['coef'] < 0): ?>-&nbsp;<?php endif; ?><?php echo number_format($detail['montant'] * 1, 2, ',', ' ') ?></td>
 		  				</tr>
 		  			<?php endforeach;?>
 		  				<tr>
@@ -360,9 +360,9 @@
 		  				<tr<?php if ($detail['coef'] < 0): ?> class="table-danger"<?php endif; ?>>
 		  					<td><?php echo $detail['libelle'] ?></td>
 		  					<td><?php echo $detail['qualite'] ?></td>
-		  					<td class="text-right"><?php if ($detail['coef'] < 0): ?>-&nbsp;<?php endif; ?><?php echo number_format($detail['metrage'], 0, ',', ' ') ?></td>
-		  					<td class="text-right"><?php if ($detail['coef'] < 0): ?>-&nbsp;<?php endif; ?><?php echo number_format($detail['piece'], 0, ',', ' ') ?></td>
-		  					<td class="text-right"><?php if ($detail['coef'] < 0): ?>-&nbsp;<?php endif; ?><?php echo number_format($detail['montant'], 2, ',', ' ') ?></td>
+		  					<td class="text-right"><?php if ($detail['coef'] < 0): ?>-&nbsp;<?php endif; ?><?php echo number_format($detail['metrage'] * 1, 0, ',', ' ') ?></td>
+		  					<td class="text-right"><?php if ($detail['coef'] < 0): ?>-&nbsp;<?php endif; ?><?php echo number_format($detail['piece'] * 1, 0, ',', ' ') ?></td>
+		  					<td class="text-right"><?php if ($detail['coef'] < 0): ?>-&nbsp;<?php endif; ?><?php echo number_format($detail['montant'] * 1, 2, ',', ' ') ?></td>
 		  				</tr>
 		  			<?php endforeach;?>
 		  				<tr>

@@ -136,8 +136,8 @@ class Activite
 			$where .= " AND b.commercial_id = ".$this->commercial;
 		}
 		
-		$reqFacture = "SELECT 1 as coef, s.libelle, b.qualite, b.metrage, b.piece, b.montant FROM commande b INNER JOIN saison s ON b.saison_id = s.id WHERE b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
-		$reqCredit = "SELECT -1 as coef, s.libelle, b.qualite, b.metrage, b.piece, b.montant FROM bon b INNER JOIN saison s ON b.saison_id = s.id WHERE b.type = 'Credit' AND b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
+		$reqFacture = "SELECT 1 as coef, s.libelle, b.qualite, sum(b.metrage) as metrage, sum(b.piece) as piece, sum(b.montant) as montant FROM commande b INNER JOIN saison s ON b.saison_id = s.id WHERE b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where." GROUP BY s.libelle, b.qualite";
+		$reqCredit = "SELECT -1 as coef, s.libelle, b.qualite, sum(b.metrage) as metrage, sum(b.piece) as piece, sum(b.montant) as montant FROM bon b INNER JOIN saison s ON b.saison_id = s.id WHERE b.type = 'Credit' AND b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where." GROUP BY s.libelle, b.qualite";
 		
 		$result = array_merge(Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc($reqFacture), Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc($reqCredit));
 
