@@ -12,7 +12,7 @@ class Activite
 		$this->from = $from;
 		$this->to = $to;
 		$this->saison = $saison;
-		$this->commercial = $commercial;
+		$this->commercial = null;//$commercial;
 	}
 	
 	public function getMontant($devise = 1, $client = null, $fournisseur = null)
