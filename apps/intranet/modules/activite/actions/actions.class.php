@@ -18,7 +18,7 @@ class activiteActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
 	$commerciaux = sfConfig::get('app_commerciaux_liste', array());
-	$this->comFiltered = (in_array($this->getUser()->getUsername(), array_keys($commerciaux)))? CommercialTable::getInstance()->find($commerciaux[$this->getUser()->getUsername()]) : null;
+	$this->comFiltered = null; //(in_array($this->getUser()->getUsername(), array_keys($commerciaux)))? CommercialTable::getInstance()->find($commerciaux[$this->getUser()->getUsername()]) : null;
 
 	if ($this->comFiltered) {
 		$this->commercial = $this->comFiltered->getId();
@@ -32,7 +32,7 @@ class activiteActions extends sfActions
   public function executeRapport(sfWebRequest $request)
   {
 	$commerciaux = sfConfig::get('app_commerciaux_liste', array());
-	$this->comFiltered = (in_array($this->getUser()->getUsername(), array_keys($commerciaux)))? CommercialTable::getInstance()->find($commerciaux[$this->getUser()->getUsername()]) : null;
+	$this->comFiltered = null; //(in_array($this->getUser()->getUsername(), array_keys($commerciaux)))? CommercialTable::getInstance()->find($commerciaux[$this->getUser()->getUsername()]) : null;
   	
 	$from = ($request->getParameter('from'))? $request->getParameter('from') : date('Y').'-01-01';
   	$to = ($request->getParameter('to'))? $request->getParameter('to') : date('Y-m-d');
@@ -91,7 +91,7 @@ class activiteActions extends sfActions
   public function executeRapports(sfWebRequest $request)
   {
 	$commerciaux = sfConfig::get('app_commerciaux_liste', array());
-	$this->comFiltered = (in_array($this->getUser()->getUsername(), array_keys($commerciaux)))? CommercialTable::getInstance()->find($commerciaux[$this->getUser()->getUsername()]) : null;
+	$this->comFiltered = null; //(in_array($this->getUser()->getUsername(), array_keys($commerciaux)))? CommercialTable::getInstance()->find($commerciaux[$this->getUser()->getUsername()]) : null;
 
   	$from = ($request->getParameter('from'))? $request->getParameter('from') : date('Y').'-01-01';
   	$to = ($request->getParameter('to'))? $request->getParameter('to') : date('Y-m-d');
