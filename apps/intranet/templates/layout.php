@@ -49,7 +49,7 @@
             	<div class="account">Connexion</div>
                 <div class="navigation">
                 	<div class="logo">
-                		<a href="<?php echo url_for('@sf_guard_signin') ?>"><img width="290" height="35" alt="" src="/images/nathanmode.png" /></a>
+                		<a href="<?php echo url_for('@sf_guard_signin') ?>"><img width="290" alt="" src="/images/nathanmode.png" /></a>
                 	</div>
             	</div>
             </div>
