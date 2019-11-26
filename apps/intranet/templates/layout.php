@@ -29,7 +29,7 @@
                 </div>
                 <div class="navigation">
                 	<div class="logo">
-                		<a href="<?php echo url_for('@homepage') ?>"><img width="290" height="35" alt="" src="/images/nathanmode.png" /></a>
+                		<a href="<?php echo url_for('@homepage') ?>"><img width="290" alt="" src="/images/nathanmode.png" /></a>
                 	</div>  
                     <div class="setNav">
                         <a class="coupe<?php if (sfContext::getInstance()->getModuleName() == 'coupe'): ?> active<?php endif; ?>" href="<?php echo url_for('@coupe') ?>">&nbsp;</a>

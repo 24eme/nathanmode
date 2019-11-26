@@ -197,11 +197,6 @@ a:hover.logOut{
 	padding:15px 0 0 0;
 }
 
-.navigation .logo img{
-	width:180px;
-	height:22px;
-}
-
 .navigation .setNav{
 	float:right;
 	width:1010px;
@@ -1160,6 +1155,9 @@ dl, ol, ul {
     border-color: rgba(0,0,128,0.6);
 }
 #activite_filters_saison_id_chosen {
+	width: 8rem !important;
+}
+#activite_filters_produit_chosen {
 	width: 8rem !important;
 }
 #activite_filters_commercial_id_chosen {

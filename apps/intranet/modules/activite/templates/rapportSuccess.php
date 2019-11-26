@@ -63,6 +63,12 @@
 				<?php else: ?>
 				<span style="font-weight: normal"><?php echo $comFiltered ?></span>
 				<?php endif; ?>
+				Produit&nbsp;
+				<select id="activite_filters_produit" name="produit">
+					<option value=""<?php if (!$produit): ?> selected="selected"<?php endif; ?>>Tout</option>
+					<option value="mts"<?php if ($produit == 'mts'): ?> selected="selected"<?php endif; ?>>MTS</option>
+					<option value="pcs"<?php if ($produit == 'pcs'): ?> selected="selected"<?php endif; ?>>PCS</option>
+				</select>
 				&nbsp;Période du&nbsp;
 				<input type="text" class="dp" name="from" value="<?php echo $from->format('d/m/Y') ?>" />
 				&nbsp;au&nbsp;
