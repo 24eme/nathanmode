@@ -152,6 +152,9 @@ modalClient:
 modalFournisseur:
   url:   /commercial-activity/modal-fournisseur
   param: { module: activite, action: fournisseurContentModal }
+modalCommercial:
+  url:   /commercial-activity/modal-commercial
+  param: { module: activite, action: commercialContentModal }
 activiteRapport:
   url:   /commercial-activity/rapport
   param: { module: activite, action: rapport }

@@ -165,9 +165,20 @@ class activiteActions extends sfActions
   	$this->type = 'fournisseur';
   	$this->setTemplate('contentModal');
   }
-  
-  
-  
+
+  public function executeCommercialContentModal(sfWebRequest $request)
+  {
+  	$this->forward404Unless($request->isXmlHttpRequest());
+  	$this->parameters = $request->getGetParameter('parameters', array());
+  	$this->client = (isset($this->parameters['client']) && !empty($this->parameters['client']))? ClientTable::getInstance()->find($this->parameters['client']) : null;
+  	$this->items = CommercialTable::getInstance()->findFavorites($this->parameters);
+  	$this->itemsAll = CommercialTable::getInstance()->findByParameters($this->parameters);
+  	$this->type = 'commercial';
+  	$this->setTemplate('contentModal');
+  }
+
+
+
   public function executeClient(sfWebRequest $request)
   {
   	$from = new DateTime($request->getGetParameter('from'));

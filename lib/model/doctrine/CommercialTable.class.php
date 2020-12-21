@@ -16,4 +16,16 @@ class CommercialTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Commercial');
     }
+
+    public function findByParameters($parameters)
+    {
+
+        return $this->findAll();
+    }
+
+    public function findFavorites($parameters)
+    {
+        
+        return $this->findAll();
+    }
 }
