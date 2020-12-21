@@ -1,32 +1,23 @@
 <div id="containerCA" class="container">
 
 <div class="row">
-	
+
 	<div class="col-sm-11">
 
 	<nav aria-label="breadcrumb">
-		<?php if ($client && !$fournisseur): ?>
 		<ol class="breadcrumb">
+			<?php if ($commercial): ?>
+					<li class="breadcrumb-item text-dark">Commercial : <strong><?php echo $commercial ?></strong></li>
+			<?php endif; ?>
+			<?php if ($client): ?>
 			<li class="breadcrumb-item text-dark">Client : <strong><?php echo $client->getRaisonSociale() ?></strong></li>
-		</ol>
-		<?php elseif (!$client && $fournisseur): ?>
-		<ol class="breadcrumb">
+			<?php endif; ?>
+			<?php if ($fournisseur): ?>
 			<li class="breadcrumb-item text-dark">Fournisseur : <strong><?php echo $fournisseur->getRaisonSociale() ?></strong></li>
-		</ol>
-		<?php elseif ($client && $fournisseur): ?>
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item text-dark">Client : <strong><?php echo $client->getRaisonSociale() ?></strong></li>
-			<li class="breadcrumb-item text-dark">Fournisseur : <strong><?php echo $fournisseur->getRaisonSociale() ?></strong></li>
-		</ol>
-		<?php elseif ($commercial): ?>
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item text-dark">Commercial : <strong><?php echo $commercial ?></strong></li>
-			</ol>
-		<?php else: ?>
-		<ol class="breadcrumb">
+			<?php endif; ?>
+			<?php if (!$commercial && !$client && !$fournisseur): ?>
 			<li class="breadcrumb-item text-dark">NathanMode : <strong>Chiffres globaux</strong></li>
-		</ol>
-		<?php endif; ?>
+			<?php endif; ?>
 	</nav>
 
 	</div>

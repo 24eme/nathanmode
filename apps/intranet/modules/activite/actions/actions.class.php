@@ -87,9 +87,12 @@ class activiteActions extends sfActions
   	if (!$this->client && $this->fournisseur) {
   		$this->detailsLink = 'client';
   	}
+    if ($this->commercial && !$this->client) {
+  		$this->detailsLink = 'client';
+  	}
   }
-  
-  
+
+
   public function executeRapports(sfWebRequest $request)
   {
 	$commerciaux = sfConfig::get('app_commerciaux_liste', array());
