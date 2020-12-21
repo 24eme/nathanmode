@@ -18,13 +18,17 @@
 			<li class="breadcrumb-item text-dark">Client : <strong><?php echo $client->getRaisonSociale() ?></strong></li>
 			<li class="breadcrumb-item text-dark">Fournisseur : <strong><?php echo $fournisseur->getRaisonSociale() ?></strong></li>
 		</ol>
+		<?php elseif ($commercial): ?>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item text-dark">Commercial : <strong><?php echo $commercial ?></strong></li>
+			</ol>
 		<?php else: ?>
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item text-dark">NathanMode : <strong>Chiffres globaux</strong></li>
 		</ol>
 		<?php endif; ?>
 	</nav>
-	
+
 	</div>
 	<div class="col-sm-1">
 		<div class="btn-group float-right p-2">
@@ -55,9 +59,9 @@
 				Commercial&nbsp;
 				<?php if (!$comFiltered): ?>
 				<select id="activite_filters_commercial_id" name="commercial">
-					<option value=""<?php if (!$commercial): ?> selected="selected"<?php endif; ?>></option>
+					<option value=""<?php if (!$commercialId): ?> selected="selected"<?php endif; ?>></option>
 					<?php foreach (CommercialTable::getInstance()->findAll() as $c): ?>
-					<option value="<?php echo $c->getId() ?>"<?php if ($c->getId() == $commercial): ?> selected="selected"<?php endif; ?>><?php echo $c ?></option>
+					<option value="<?php echo $c->getId() ?>"<?php if ($c->getId() == $commercialId): ?> selected="selected"<?php endif; ?>><?php echo $c ?></option>
 					<?php endforeach; ?>
 				</select>
 				<?php else: ?>
