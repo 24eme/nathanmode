@@ -87,7 +87,7 @@ class activiteActions extends sfActions
   	if (!$this->client && $this->fournisseur) {
   		$this->detailsLink = 'client';
   	}
-    if ($this->commercial && !$this->client) {
+    if ($this->commercial && !$this->client && !$this->fournisseur) {
   		$this->detailsLink = 'client';
   	}
   }

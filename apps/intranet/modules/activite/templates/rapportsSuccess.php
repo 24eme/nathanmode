@@ -33,8 +33,8 @@
 			$fournisseurId = $fournisseur->getId();
 		}
 	?>
-	
-	<div class="p-3 mb-2 bg-info text-white text-center rounded" style="margin-top: 24px; font-size: 1.25rem; padding: 0.5rem !important; "><strong><?php if ($client) echo $client; else echo $fournisseur; ?> / <?php echo $item ?></strong></div>
+
+	<div class="p-3 mb-2 bg-info text-white text-center rounded" style="margin-top: 24px; font-size: 1.25rem; padding: 0.5rem !important; "><strong><?php if ($client): ?><?php echo $client ?><?php elseif($fournisseur): ?><?php echo $fournisseur ?><?php elseif($commercial): ?><?php echo $commercial; ?><?php endif; ?> / <?php echo $item ?></strong></div>
 
 	<?php include_partial('activite/rapportPeriodique', array('from' => $from, 'to' => $to, 'detailsLink' => $detailsLink, 'activites' => $activitePeriode, 'devise' => $devise, 'clientId' => $clientId, 'fournisseurId' => $fournisseurId, 'activites1' => $activitePeriode1, 'activites2' => $activitePeriode2, 'parameters' => $parameters, 'titre' => 'Rapport périodique')); ?>
 
