@@ -17,10 +17,15 @@ $(document).ready(function() {
       			allow_single_deselect:true,
       	   	 	width: "100%"
       	  	});
+            $('#modal_filters_commercial_id').sortSelect().chosen({
+      	    	placeholder_text_single: "-",
+      			allow_single_deselect:true,
+      	   	 	width: "100%"
+      	  	});
     	    $(target).modal({show:true});
     	});
     });
-    
+
     $('body').on('click', '#detailsTabs a', function(event){
     	$("#detailsTabs a").each(function() {
     		$(this).removeClass('active');
