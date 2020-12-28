@@ -1,35 +1,8 @@
 <div id="containerCA" class="container">
 
-<div class="row">
-	
-	<div class="col-sm-11">
+<?php include_partial('activite/breadcrumb', array('commercial' => $commercial, 'client' => $client, 'fournisseur' => $fournisseur, 'parameters' => $parameters, 'devise' => $devise, 'tous' => true)); ?>
 
-	<nav aria-label="breadcrumb">
-		<?php if ($client && !$fournisseur): ?>
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item text-dark">Client : <strong><?php echo $client->getRaisonSociale() ?></strong></li>
-			<li class="breadcrumb-item text-dark">Tous les fournisseurs</li>
-		</ol>
-		<?php elseif (!$client && $fournisseur): ?>
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item text-dark">Fournisseur : <strong><?php echo $fournisseur->getRaisonSociale() ?></strong></li>
-			<li class="breadcrumb-item text-dark">Tous les clients</li>
-		</ol>
-		<?php endif; ?>
-	</nav>
-	
-	</div>
-	<div class="col-sm-1">
-		<div class="btn-group float-right p-2">
-				<a href="<?php echo url_for('activiteRapports', array_merge($parameters->getRawValue(), array('devise' => 1))) ?>" class="btn btn-sm <?php if($devise==1): ?>btn-warning text-white<?php else: ?>btn-light<?php endif; ?>" role="button" aria-pressed="true"><span class="oi oi-euro" title="euro" aria-hidden="true"></span></a>
-				<a href="<?php echo url_for('activiteRapports', array_merge($parameters->getRawValue(), array('devise' => 2))) ?>" class="btn btn-sm <?php if($devise==2): ?>btn-warning text-white<?php else: ?>btn-light<?php endif; ?>" role="button" aria-pressed="true"><span class="oi oi-dollar" title="dollar" aria-hidden="true"></span></a>
-			</div>
-	</div>
-
-</div>
-
-
-	<form method="get" action="<?php echo url_for('activiteRapports', $parameters->getRawValue()) ?>">	
+	<form method="get" action="<?php echo url_for('activiteRapports', $parameters->getRawValue()) ?>">
 		<?php foreach ($parameters as $key => $value): ?>
 		<?php if (!in_array($key, array('from', 'to')) && $value): ?>
 		<input type="hidden" name="<?php echo $key?>" value="<?php echo $value ?>" />
