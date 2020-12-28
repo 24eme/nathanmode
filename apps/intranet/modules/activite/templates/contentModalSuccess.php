@@ -46,8 +46,8 @@
 			    <strong><?php echo $item ?></strong>
 			</a></li>
       		<?php endforeach; ?>
-      		<?php if ((isset($client) && !empty($client)) || (isset($fournisseur) && !empty($fournisseur))): ?>
-      		<li><a href="<?php echo url_for('activiteRapports', array_merge($parameters->getRawValue(), array('from' => $parameters['ofrom'], 'to' => $parameters['oto']))) ?>" class="btn btn-info">
+			<?php if(isset($client) || isset($fournisseur) || isset($commercial)): ?>
+      		<li><a href="<?php echo url_for('activiteRapports', array_merge($parameters->getRawValue(), array('from' => $parameters['ofrom'], 'to' => $parameters['oto'], 'type' => $type))) ?>" class="btn btn-info">
 			    <strong>TOUS LES <?php echo strtoupper($type) ?>S</strong>
 			</a></li>
 			<?php endif; ?>
@@ -55,5 +55,11 @@
 			
 		<?php else: ?>
 		<p class="font-italic text-dark text-center">Aucun <?php echo $type ?> pour cette configuration</p>
+		<?php endif; ?>
+
+		<p class="text-center">
+		<?php if(!isset($client) && !isset($fournisseur) && isset($commercial)): ?>
+			<a href="#" class="btn btn-link" style="text-decoration: none;" data-dismiss="modal" data-toggle="modal" data-target="#<?php echo ($type == "fournisseur") ? "client" : "fournisseur" ?>Modal" data-url="<?php echo url_for('modal'.(($type == "fournisseur") ? "Client" : "Fournisseur"), array('parameters' => array_merge($parameters->getRawValue(), array('from' => $parameters['from'], 'to' => $parameters['to'], 'ofrom' => $parameters['ofrom'], 'oto' => $parameters['oto'])))) ?>"><span class="oi oi-transfer" title="details" aria-hidden="true"></span> PAR <?php echo (($type == "fournisseur") ? "CLIENTS" : "FOURNISSEURS") ?></a>
+		</p>
 		<?php endif; ?>
 </div>

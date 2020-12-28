@@ -103,6 +103,7 @@ class activiteActions extends sfActions
   	$this->saison = ($request->getParameter('saison'))? $request->getParameter('saison') : null;
   	$this->commercialId = ($request->getParameter('commercial'))? $request->getParameter('commercial') : null;
   	$this->produit = ($request->getParameter('produit'))? $request->getParameter('produit') : null;
+    $this->type = $request->getParameter('type');
   	if (preg_match('/^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/', $from, $m)) {
   		$from = $m[3].'-'.$m[2].'-'.$m[1];
   	}
@@ -122,7 +123,17 @@ class activiteActions extends sfActions
   	$this->fournisseur = ($fId = $request->getParameter('fournisseur'))? FournisseurTable::getInstance()->find($fId) : null;
     $this->commercial = ($this->commercialId)? CommercialTable::getInstance()->find($this->commercialId) : null;
 
-  	$this->items = (!$this->client)? ClientTable::getInstance()->findByParameters(array('fournisseur' => $fId, 'saison' => $this->saison, 'commercial' => $this->commercialId, 'from' => $this->from->format('Y-m-d'), 'to' => $this->to->format('Y-m-d'))) : FournisseurTable::getInstance()->findByParameters(array('client' => $this->client->getId(), 'saison' => $this->saison, 'commercial' => $this->commercialId, 'from' => $this->from->format('Y-m-d'), 'to' => $this->to->format('Y-m-d')));
+    if($this->commercial && !$this->client && !$this->fournisseur && $request->getParameter('type') == 'fournisseur') {
+        $this->items = FournisseurTable::getInstance()->findByParameters(array('saison' => $this->saison, 'commercial' => $this->commercialId, 'from' => $this->from->format('Y-m-d'), 'to' => $this->to->format('Y-m-d')));
+    } elseif($this->commercial && !$this->client && !$this->fournisseur && $request->getParameter('type') == 'client') {
+        $this->items = ClientTable::getInstance()->findByParameters(array('saison' => $this->saison, 'commercial' => $this->commercialId, 'from' => $this->from->format('Y-m-d'), 'to' => $this->to->format('Y-m-d')));
+    } elseif($this->fournisseur) {
+        $this->items = ClientTable::getInstance()->findByParameters(array('fournisseur' => $fId, 'saison' => $this->saison, 'commercial' => $this->commercialId, 'from' => $this->from->format('Y-m-d'), 'to' => $this->to->format('Y-m-d')));
+    } elseif($this->client) {
+        $this->items = FournisseurTable::getInstance()->findByParameters(array('client' => $this->client->getId(), 'saison' => $this->saison, 'commercial' => $this->commercialId, 'from' => $this->from->format('Y-m-d'), 'to' => $this->to->format('Y-m-d')));
+    } else {
+        $this->items = ClientTable::getInstance()->findByParameters(array('saison' => $this->saison, 'commercial' => $this->commercialId, 'from' => $this->from->format('Y-m-d'), 'to' => $this->to->format('Y-m-d')));
+    }
 
   	$this->parameters = array('from' => $this->from->format('Y-m-d'), 'to' => $this->to->format('Y-m-d'), 'devise' => $this->device, 'saison' => $this->saison, 'commercial' => $this->commercialId, 'produit' => $this->produit);
   	if ($this->client) {
@@ -131,6 +142,10 @@ class activiteActions extends sfActions
   	if ($this->fournisseur) {
   		$this->parameters = array_merge($this->parameters, array('fournisseur' => $this->fournisseur->getId()));
   	}
+
+    if($this->type) {
+        $this->parameters = array_merge($this->parameters, array('type' => $this->type));
+    }
 
   	$this->activitePeriode = new Activite($from->format('Y-m-d'), $to->format('Y-m-d'), $this->saison, $this->commercialId, $this->produit);
   	$from->modify('-1 year');
@@ -154,6 +169,7 @@ class activiteActions extends sfActions
   	$this->forward404Unless($request->isXmlHttpRequest());
   	$this->parameters = $request->getGetParameter('parameters', array());
   	$this->fournisseur = (isset($this->parameters['fournisseur']) && !empty($this->parameters['fournisseur']))? FournisseurTable::getInstance()->find($this->parameters['fournisseur']) : null;
+  	$this->commercial = (isset($this->parameters['commercial']) && !empty($this->parameters['commercial']))? CommercialTable::getInstance()->find($this->parameters['commercial']) : null;
   	$this->items = ClientTable::getInstance()->findFavorites($this->parameters);
   	$this->itemsAll = ClientTable::getInstance()->findByParameters($this->parameters);
   	$this->type = 'client';
@@ -165,6 +181,7 @@ class activiteActions extends sfActions
   	$this->forward404Unless($request->isXmlHttpRequest());
   	$this->parameters = $request->getGetParameter('parameters', array());
   	$this->client = (isset($this->parameters['client']) && !empty($this->parameters['client']))? ClientTable::getInstance()->find($this->parameters['client']) : null;
+    $this->commercial = (isset($this->parameters['commercial']) && !empty($this->parameters['commercial']))? CommercialTable::getInstance()->find($this->parameters['commercial']) : null;
   	$this->items = FournisseurTable::getInstance()->findFavorites($this->parameters);
   	$this->itemsAll = FournisseurTable::getInstance()->findByParameters($this->parameters);
   	$this->type = 'fournisseur';

@@ -19,8 +19,11 @@
             <?php if($fournisseur && !$client && isset($tous)): ?>
             <li class="breadcrumb-item text-dark">Tous les clients</li>
             <?php endif; ?>
-			<?php if(!$fournisseur && !$client && isset($tous)): ?>
+			<?php if(!$fournisseur && !$client && isset($tous) && isset($type) & $type == 'client'): ?>
             <li class="breadcrumb-item text-dark">Tous les clients</li>
+            <?php endif; ?>
+			<?php if(!$fournisseur && !$client && isset($tous) && isset($type) && $type == 'fournisseur'): ?>
+            <li class="breadcrumb-item text-dark">Tous les fournisseurs</li>
             <?php endif; ?>
 			<?php if (!$commercial && !$client && !$fournisseur): ?>
 			<li class="breadcrumb-item text-dark">NathanMode : <strong>Chiffres globaux</strong></li>
