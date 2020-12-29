@@ -30,6 +30,9 @@
                 <option value=""<?php if (!$produit): ?> selected="selected"<?php endif; ?>>Tout</option>
                 <option value="mts"<?php if ($produit == 'mts'): ?> selected="selected"<?php endif; ?>>MTS</option>
                 <option value="pcs"<?php if ($produit == 'pcs'): ?> selected="selected"<?php endif; ?>>PCS</option>
+                <?php foreach(PieceCategories::getListe() as $pieceKey => $pieceLibelle): ?>
+                    <option value="pcs_<?php echo $pieceKey ?>"<?php if ($produit == 'pcs_'.$pieceKey): ?> selected="selected"<?php endif; ?>>PCS / <?php echo $pieceLibelle ?></option>
+                <?php endforeach; ?>
             </select>
             &nbsp;Période du&nbsp;
             <input type="text" class="dp" name="from" value="<?php echo $from->format('d/m/Y') ?>" />

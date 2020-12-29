@@ -38,7 +38,10 @@ class Activite
 		if ($this->produit == 'pcs') {
 			$where .= " AND b.piece IS NOT NULL AND b.piece != ''";
 		}
-		
+		if (preg_match("/^pcs_/", $this->produit)) {
+			$where .= " AND b.piece_categorie = '".str_replace("pcs_", "", $this->produit)."' AND b.piece IS NOT NULL AND b.piece != ''";
+		}
+
 		$reqFacture = "SELECT SUM(b.montant) as montant FROM commande b WHERE b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
 		$reqCredit = "SELECT SUM(b.montant) as montant FROM bon b WHERE b.type = 'Credit' AND b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
 		$req = "SELECT (".$reqFacture.") as facture, (".$reqCredit.") as credit, (SELECT ifnull(facture,0) - ifnull(credit,0)) as total";
@@ -70,7 +73,10 @@ class Activite
 		if ($this->produit == 'pcs') {
 			$where .= " AND b.piece IS NOT NULL AND b.piece != ''";
 		}
-		
+		if (preg_match("/^pcs_/", $this->produit)) {
+			$where .= " AND b.piece_categorie = '".str_replace("pcs_", "", $this->produit)."' AND b.piece IS NOT NULL AND b.piece != ''";
+		}
+
 		$reqFacture = "SELECT SUM(b.total_fournisseur) as montant FROM commande b WHERE b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
 		$reqCredit = "SELECT SUM(b.total_fournisseur) as montant FROM bon b WHERE b.type = 'Credit' AND b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
 		$req = "SELECT (".$reqFacture.") as facture, (".$reqCredit.") as credit, (SELECT ifnull(facture,0) - ifnull(credit,0)) as total";
@@ -102,7 +108,10 @@ class Activite
 		if ($this->produit == 'pcs') {
 			$where .= " AND b.piece IS NOT NULL AND b.piece != ''";
 		}
-		
+		if (preg_match("/^pcs_/", $this->produit)) {
+			$where .= " AND b.piece_categorie = '".str_replace("pcs_", "", $this->produit)."' AND b.piece IS NOT NULL AND b.piece != ''";
+		}
+
 		$reqFacture = "SELECT SUM(b.metrage) as montant FROM commande b WHERE b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
 		$reqCredit = "SELECT SUM(b.metrage) as montant FROM bon b WHERE b.type = 'Credit' AND b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
 		$req = "SELECT (".$reqFacture.") as facture, (".$reqCredit.") as credit, (SELECT ifnull(facture,0) - ifnull(credit,0)) as total";
@@ -134,7 +143,10 @@ class Activite
 		if ($this->produit == 'pcs') {
 			$where .= " AND b.piece IS NOT NULL AND b.piece != ''";
 		}
-		
+		if (preg_match("/^pcs_/", $this->produit)) {
+			$where .= " AND b.piece_categorie = '".str_replace("pcs_", "", $this->produit)."' AND b.piece IS NOT NULL AND b.piece != ''";
+		}
+
 		$reqFacture = "SELECT SUM(b.piece) as montant FROM commande b WHERE b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
 		$reqCredit = "SELECT SUM(b.piece) as montant FROM bon b WHERE b.type = 'Credit' AND b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
 		
@@ -167,7 +179,10 @@ class Activite
 		if ($this->produit == 'pcs') {
 			$where .= " AND b.piece IS NOT NULL AND b.piece != ''";
 		}
-		
+		if (preg_match("/^pcs_/", $this->produit)) {
+			$where .= " AND b.piece_categorie = '".str_replace("pcs_", "", $this->produit)."' AND b.piece IS NOT NULL AND b.piece != ''";
+		}
+
 		$reqFacture = "SELECT 1 as coef, s.libelle, b.qualite, sum(b.metrage) as metrage, sum(b.piece) as piece, sum(b.montant) as montant FROM commande b INNER JOIN saison s ON b.saison_id = s.id WHERE b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where." GROUP BY s.libelle, b.qualite";
 		$reqCredit = "SELECT -1 as coef, s.libelle, b.qualite, sum(b.metrage) as metrage, sum(b.piece) as piece, sum(b.montant) as montant FROM bon b INNER JOIN saison s ON b.saison_id = s.id WHERE b.type = 'Credit' AND b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where." GROUP BY s.libelle, b.qualite";
 		
