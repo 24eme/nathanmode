@@ -5,6 +5,7 @@
 all:
   commerciaux:
     liste:
+      Eliott: 10
   situations:
     liste:
       ATT_CONFIRMATION:   "Att confirmation"
