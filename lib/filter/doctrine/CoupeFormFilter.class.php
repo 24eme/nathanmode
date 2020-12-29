@@ -49,5 +49,19 @@ class CoupeFormFilter extends BaseCoupeFormFilter
   	$this->getWidget('livre_le')->setOption('with_empty', false);
   	$this->getWidget('fichier')->setOption('with_empty', false);
 
+    $this->setWidget('piece_categorie', new sfWidgetFormChoice(array('choices' => $this->getPieceCategories(), 'multiple' => false)));
+
   }
+
+  public function getPieceCategories() {
+    $list = PieceCategories::getListe();
+    $emptyValue = array('' => ' ');
+    $piece_categories = array_merge($emptyValue, $list);
+    return $piece_categories;
+  }
+
+  public function addPieceCategorieColumnQuery($query, $field, $values) {
+        $this->addEnumQuery($query, $field, $values);
+  }
+
 }

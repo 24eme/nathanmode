@@ -99,6 +99,13 @@
 			  <td class="help"><?php echo $help ?></td>
 			  <?php endif; ?>
 			</tr>
+            <tr>
+			  <td><?php echo $form['piece_categorie']->renderLabel() ?></td>
+			  <td><?php echo $form['piece_categorie']->render() ?><br /><?php echo $form['piece_categorie']->renderError() ?></td>
+			  <?php if ($help = $form['piece_categorie']->renderHelp()): ?>
+			  <td class="help"><?php echo $help ?></td>
+			  <?php endif; ?>
+			</tr>
   			<tr>
 			  <td><?php echo $form['piece']->renderLabel() ?></td>
 			  <td><?php echo $form['piece']->render() ?><br /><?php echo $form['piece']->renderError() ?></td>

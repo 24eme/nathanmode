@@ -32,7 +32,18 @@ class CoupeForm extends BaseCoupeForm
 
       $this->setValidator('livre_le', new sfValidatorDate(array('date_format' => '~(?P<day>\d{2})/(?P<month>\d{2})/(?P<year>\d{4})~', 'required' => false)));
 
-      $this->setValidator('fichier_delete', new sfValidatorPass());	  
+      $this->setValidator('fichier_delete', new sfValidatorPass());
+
+
+      $this->getWidget('piece')->setLabel("Produit Fini");
+      $this->setWidget('piece_categorie', new sfWidgetFormChoice(array('choices' => $this->getPieceCategories())));
+      $this->getWidget('piece_categorie')->setLabel("PF Type");
+      $this->setValidator('piece_categorie', new sfValidatorChoice(
+          array('choices' => array_keys($this->getPieceCategories()),
+                'required' => $this->getValidator('piece_categorie')->getOption('required'),
+              )
+          ));
+
       $this->mergePostValidator(new sfValidatorCallback(array('callback' => array($this, 'fctValidatorCallback'))));
   }
     
@@ -45,6 +56,10 @@ class CoupeForm extends BaseCoupeForm
     	return $values;
     }
 
+    public function getPieceCategories() {
+
+        return array_merge(array("" => ""), PieceCategories::getListe());
+    }
 
     public function getPaiements() {
 

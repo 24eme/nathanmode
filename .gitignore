@@ -3,7 +3,6 @@ web/intranet_dev.php
 cache/*
 log/*
 lib/vendor/*
-data/sql
 data/fixtures
 config/databases.yml
 *~

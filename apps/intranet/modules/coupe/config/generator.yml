@@ -18,6 +18,8 @@ generator:
         date_livraison: { help: "(jj/mm/aaaa)", date_format: dd/MM/yyyy }
         retard_livraison: { help: "(jj/mm/aaaa)", date_format: dd/MM/yyyy }
         livre_le: { help: "(jj/mm/aaaa)", date_format: dd/MM/yyyy, label: "Expédié le" }
+        piece_categorie: { label: "PF Type" }
+        piece: { label: "Produit Fini" }
       list:
         max_per_page: 50
         batch_actions: {}
@@ -25,9 +27,9 @@ generator:
           csv: { label: "CSV" }
           _new: ~
         title: "Liste des coupes"
-        display: [Saison, Fournisseur, Client, tissu, colori, metrage, piece, livre_le, _facture]
+        display: [Saison, Fournisseur, Client, tissu, colori, metrage, _piece_categorie, piece, livre_le, _facture]
       filter:
-        display: [saison_id, fournisseur_id, client_id, tissu, colori, metrage, piece, livre_le, fichier]
+        display: [saison_id, fournisseur_id, client_id, tissu, colori, metrage, piece_categorie, piece, livre_le, fichier]
       form: ~
       edit:
         title: "Modification de la coupe %%tissu%% %%colori%% %%metrage%%"

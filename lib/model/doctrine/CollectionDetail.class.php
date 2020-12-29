@@ -62,6 +62,7 @@ class CollectionDetail extends BaseCollectionDetail
     $commande->setDate($this->getCollection()->getDateCommande());
 	$commande->setColori($this->getColori());
     $commande->setMetrage($this->getMetrage());
+    $commande->setPieceCategorie($this->getPieceCategorie());
     $commande->setPiece($this->getPiece());
     if ($this->getPiece()) {
     	$commande->setMontant($this->getPiece() * $this->getPrix());

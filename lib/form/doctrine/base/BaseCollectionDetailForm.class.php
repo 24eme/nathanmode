@@ -15,25 +15,27 @@ abstract class BaseCollectionDetailForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'            => new sfWidgetFormInputHidden(),
-      'collection_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Collection'), 'add_empty' => false)),
-      'devise_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Devise'), 'add_empty' => false)),
-      'commande_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Commande'), 'add_empty' => false)),
-      'colori'        => new sfWidgetFormInputText(),
-      'metrage'       => new sfWidgetFormInputText(),
-      'piece'         => new sfWidgetFormInputText(),
-      'prix'          => new sfWidgetFormInputText(),
+      'id'              => new sfWidgetFormInputHidden(),
+      'collection_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Collection'), 'add_empty' => false)),
+      'devise_id'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Devise'), 'add_empty' => false)),
+      'commande_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Commande'), 'add_empty' => false)),
+      'colori'          => new sfWidgetFormInputText(),
+      'metrage'         => new sfWidgetFormInputText(),
+      'piece_categorie' => new sfWidgetFormInputText(),
+      'piece'           => new sfWidgetFormInputText(),
+      'prix'            => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
-      'id'            => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'collection_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Collection'))),
-      'devise_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Devise'))),
-      'commande_id'   => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Commande'))),
-      'colori'        => new sfValidatorString(array('max_length' => 128, 'required' => false)),
-      'metrage'       => new sfValidatorString(array('max_length' => 128, 'required' => false)),
-      'piece'         => new sfValidatorString(array('max_length' => 128, 'required' => false)),
-      'prix'          => new sfValidatorPass(array('required' => false)),
+      'id'              => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'collection_id'   => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Collection'))),
+      'devise_id'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Devise'))),
+      'commande_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Commande'))),
+      'colori'          => new sfValidatorString(array('max_length' => 128, 'required' => false)),
+      'metrage'         => new sfValidatorString(array('max_length' => 128, 'required' => false)),
+      'piece_categorie' => new sfValidatorString(array('max_length' => 128, 'required' => false)),
+      'piece'           => new sfValidatorString(array('max_length' => 128, 'required' => false)),
+      'prix'            => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('collection_detail[%s]');

@@ -80,3 +80,12 @@ all:
     liste:
       EN_ATTENTE: "En attente"
       DEDUITE: "Deduite"
+  piece_categories:
+    liste:
+      DOUBLE_FACE: "Double face"
+      MAILLE: "Maille"
+      DOUDOUNE: "Doudoune"
+      PARKAS: "Parkas"
+      ROBE: "Robe"
+      ACCESSOIRES: "Accessoires"
+      AUTRE: "Autre"

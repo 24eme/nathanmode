@@ -87,8 +87,9 @@ class CollectionLivraison extends BaseCollectionLivraison
     		$facture->setStatut(StatutsFacture::KEY_NON_PAYEE);
     	}
     }
-  
+
     $facture->setMetrage($this->getMetrage());
+    $facture->setPieceCategorie($this->getPieceCategorie());
     $facture->setPiece($this->getPiece());
     if ($this->getPiece()) {
     	$montant = $this->getPiece() * $this->getPrix();

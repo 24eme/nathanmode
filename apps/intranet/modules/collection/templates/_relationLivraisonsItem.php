@@ -16,6 +16,13 @@
             </td>
         </tr>
         <tr>
+            <td><?php echo $form['piece_categorie']->renderLabel() ?>&nbsp;:</td>
+            <td>
+                <?php echo $form['piece_categorie']->render() ?>
+                <?php echo $form['piece_categorie']->renderError() ?>
+            </td>
+        </tr>
+        <tr>
             <td><?php echo $form['piece']->renderLabel() ?>&nbsp;:</td>
             <td>
                 <?php echo $form['piece']->render() ?>

@@ -163,6 +163,9 @@ Coupe:
     metrage:
       type: string(128)
       default: NULL
+    piece_categorie:
+      type: string(128)
+      default: NULL
     piece:
       type: string(128)
       default: NULL
@@ -504,6 +507,9 @@ CollectionDetail:
     metrage:
       type: string(128)
       default: NULL
+    piece_categorie:
+      type: string(128)
+      default: NULL
     piece:
       type: string(128)
       default: NULL
@@ -591,8 +597,11 @@ CollectionLivraison:
       notnull: true
     colori:
       type: string(128)
-      default: NULL   
+      default: NULL
     metrage:
+      type: string(128)
+      default: NULL
+    piece_categorie:
       type: string(128)
       default: NULL
     piece:
@@ -699,6 +708,9 @@ Bon:
       type: double
       default: NULL
     metrage:
+      type: string(128)
+      default: NULL
+    piece_categorie:
       type: string(128)
       default: NULL
     piece:
@@ -827,6 +839,9 @@ Commande:
       type: string(128)
       default: NULL
     metrage:
+      type: string(128)
+      default: NULL
+    piece_categorie:
       type: string(128)
       default: NULL
     piece:

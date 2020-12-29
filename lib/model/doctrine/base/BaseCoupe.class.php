@@ -23,6 +23,7 @@
  * @property string $tissu
  * @property string $colori
  * @property string $metrage
+ * @property string $piece_categorie
  * @property string $piece
  * @property date $date_livraison
  * @property string $retard_livraison
@@ -56,6 +57,7 @@
  * @method string      getTissu()                  Returns the current record's "tissu" value
  * @method string      getColori()                 Returns the current record's "colori" value
  * @method string      getMetrage()                Returns the current record's "metrage" value
+ * @method string      getPieceCategorie()         Returns the current record's "piece_categorie" value
  * @method string      getPiece()                  Returns the current record's "piece" value
  * @method date        getDateLivraison()          Returns the current record's "date_livraison" value
  * @method string      getRetardLivraison()        Returns the current record's "retard_livraison" value
@@ -88,6 +90,7 @@
  * @method Coupe       setTissu()                  Sets the current record's "tissu" value
  * @method Coupe       setColori()                 Sets the current record's "colori" value
  * @method Coupe       setMetrage()                Sets the current record's "metrage" value
+ * @method Coupe       setPieceCategorie()         Sets the current record's "piece_categorie" value
  * @method Coupe       setPiece()                  Sets the current record's "piece" value
  * @method Coupe       setDateLivraison()          Sets the current record's "date_livraison" value
  * @method Coupe       setRetardLivraison()        Sets the current record's "retard_livraison" value
@@ -178,6 +181,10 @@ abstract class BaseCoupe extends sfDoctrineRecord
              'length' => 128,
              ));
         $this->hasColumn('metrage', 'string', 128, array(
+             'type' => 'string',
+             'length' => 128,
+             ));
+        $this->hasColumn('piece_categorie', 'string', 128, array(
              'type' => 'string',
              'length' => 128,
              ));
