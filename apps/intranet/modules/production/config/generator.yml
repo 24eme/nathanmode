@@ -19,7 +19,7 @@ generator:
         date_livraison: { date_format: dd/MM/yyyy }
         date_retard: {label: Retard, date_format: dd/MM/yyyy}
       list:
-        max_per_page: 50
+        max_per_page: 30
         table_method: queryProductions
         table_count_method: queryProductions
         batch_actions: {  }
