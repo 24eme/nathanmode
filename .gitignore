@@ -2,7 +2,6 @@ web/uploads/*
 web/intranet_dev.php
 cache/*
 log/*
-lib/vendor/*
 data/fixtures
 config/databases.yml
 *~
