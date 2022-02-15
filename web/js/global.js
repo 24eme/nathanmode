@@ -250,43 +250,46 @@ $(document).ready(function() {
     	placeholder_text_single: "-",
 		allow_single_deselect:true,
    	 	width: "100%"
-  	});	
+  	});
 	$('#bon_filters_statut').sortSelect().chosen({
     	placeholder_text_single: "-",
 		allow_single_deselect:true,
    	 	width: "100%"
-  	});	
-	
-	
+  	});
+
+
 	$('#commande_filters_fournisseur_id').sortSelect().chosen({
     	placeholder_text_single: "-",
 		allow_single_deselect:true,
    	 	width: "100%"
-  	});	
+  	});
 	$('#commande_filters_saison_id').sortSelect().chosen({
     	placeholder_text_single: "-",
 		allow_single_deselect:true,
    	 	width: "100%"
-  	});	
+  	});
 	$('#commande_filters_client_id').sortSelect().chosen({
     	placeholder_text_single: "-",
 		allow_single_deselect:true,
    	 	width: "100%"
-  	});	
+  	});
 	$('#commande_filters_commercial_id').sortSelect().chosen({
     	placeholder_text_single: "-",
 		allow_single_deselect:true,
    	 	width: "100%"
-  	});	
-	
-	
+  	});
+
+
 	$('#client_condition_paiement').sortSelect().chosen();
 	$('#client_filters_condition_paiement').sortSelect().chosen({
     	placeholder_text_single: "-",
 		allow_single_deselect:true,
    	 	width: "100%"
-  	});	
-	
+  	});
+
+  $('#fournisseur_devise_id').sortSelect().chosen();
+  $('#commercial_devise_id').sortSelect().chosen();
+
 	//$(':text').addClass('input');
 });
 
