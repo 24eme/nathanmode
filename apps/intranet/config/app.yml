@@ -27,6 +27,8 @@ all:
       SOLDEE:             "Soldée"
       ATTENTE_PAIEMENT:   "Attente paiement"
       ATTENTE_LIVRAISON:  "Attente adresse de livraison"
+      EXPE_ATT_FACTURE:   "Expédié & attente facture"
+      ON_TIME:            "On time"
   paiements:
     liste:
       VIREMENT_30_JOURS: "Virement 30 jours"
