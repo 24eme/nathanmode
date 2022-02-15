@@ -109,7 +109,19 @@ $(document).ready(function() {
 		allow_single_deselect:true,
    	 	width: "100%"
   	});
-	
+
+  $('#collection_client_id').on('change', function() {
+    const cId = this.value;
+    $.get("/intranet_dev.php/client/"+cId+"/getpaiement", function(infos) {
+      const json = JSON.parse(infos);
+      $('#collection_paiement').val(json.paiement);
+      $('#collection_paiement').trigger("chosen:updated");
+    });
+  });
+  if($('#collection_client_id').length > 0) {
+    $('#collection_client_id').trigger( "change" );
+  }
+
 	// NOTE DE CREDIT CHOSEN
 	$('#credit_saison_id').sortSelect().chosen({width: "90%"});
 	$('#credit_fournisseur_id').sortSelect().chosen({width: "90%"});
