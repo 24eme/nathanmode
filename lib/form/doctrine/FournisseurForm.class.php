@@ -13,4 +13,14 @@ class FournisseurForm extends BaseFournisseurForm
   public function configure()
   {
   }
+  
+  protected function updateDefaultsFromObject()
+  {
+    parent::updateDefaultsFromObject();
+    $defaults = $this->getDefaults();
+    if ($this->isNew()) {
+      $defaults['devise_id'] = 3;
+    }
+    $this->setDefaults($defaults);
+  }
 }
