@@ -110,6 +110,19 @@ $(document).ready(function() {
    	 	width: "100%"
   	});
 
+  $('#collection_fournisseur_id').on('change', function() {
+    const fId = this.value;
+    $.get("/intranet_dev.php/fournisseur/"+fId+"/getcommission", function(infos) {
+      const json = JSON.parse(infos);
+      $('#collection_prix_fournisseur').val(json.commission);
+      $('#collection_devise_fournisseur_id').val(json.devise_id);
+      $('#collection_devise_fournisseur_id').trigger("chosen:updated");
+    });
+  });
+  if($('#collection_fournisseur_id').length > 0) {
+    $('#collection_fournisseur_id').trigger( "change" );
+  }
+
   $('#collection_client_id').on('change', function() {
     const cId = this.value;
     $.get("/intranet_dev.php/client/"+cId+"/getpaiement", function(infos) {
