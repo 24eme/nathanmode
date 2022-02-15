@@ -83,7 +83,9 @@ $(document).ready(function() {
 	$('#collection_paiement').sortSelect().chosen({width: "90%"});
 	$('#collection_situation').sortSelect().chosen({width: "90%"});
 	$('#collection_qualite').sortSelect().chosen({width: "90%"});
-	
+  $('#collection_devise_fournisseur_id').sortSelect().chosen({width: "25%"});
+  $('#collection_devise_commercial_id').sortSelect().chosen({width: "25%"});
+
 	$('#collection_filters_saison_id').sortSelect().chosen({
     	placeholder_text_single: "-",
 		allow_single_deselect:true,
