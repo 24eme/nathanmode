@@ -1,8 +1,7 @@
 $(document).ready(function() {
     $.initTemplateLigne();
-    $.collectionDependentSelect();
     $.coupeDependentSelect();
-    
+
     $('body').on('click', '[data-toggle="modal"]', function(){
     	var url = $(this).attr('data-url');
     	var target = $(this).attr('data-target');
@@ -285,24 +284,10 @@ $.initTemplateLigne = function() {
         return false;
     });
 }
-
-$.collectionDependentSelect = function() {
-	if ($('#collection_client_id').length != 0) {
-	    $('#collection_client_id').live('change', function() {
-			$.collectionUpdateSelect();	
-	        return false;
-	    });
-	}
-}
-$.collectionUpdateSelect = function() {
-	var client_id = $('#collection_client_id').val();
-	var url = $('#dependent_select_url_template').html().replace('var---id---', client_id);
-	$.get(url, function(paiement) { $('#collection_paiement').val(paiement); });
-}
 $.coupeDependentSelect = function() {
 	if ($('#coupe_client_id').length != 0) {
 	    $('#coupe_client_id').live('change', function() {
-			$.coupeUpdateSelect();	
+			$.coupeUpdateSelect();
 	        return false;
 	    });
 	}

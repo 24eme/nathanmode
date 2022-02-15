@@ -13,11 +13,12 @@ require_once dirname(__FILE__).'/../lib/clientGeneratorHelper.class.php';
  */
 class clientActions extends autoClientActions
 {
-	
-	public function executePaiement(sfWebRequest $request)
-	{
-		$this->client = ClientTable::getInstance()->find($request->getParameter('id'));
-		echo $this->client->getConditionPaiement();
-		return sfView::NONE;
-	}
+
+  public function executeGetpaiement(sfWebRequest $request)
+  {
+    $this->forward404Unless($request->isXmlHttpRequest());
+    $client = $this->getRoute()->getObject();
+    echo '{"paiement":"'.$client->getConditionPaiement().'"}';
+    return sfView::NONE;
+  }
 }
