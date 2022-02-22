@@ -140,5 +140,32 @@ protected function buildQuerySoldees()
 
     $this->setTemplate('index');
   }
-    
+
+
+  public function executeGetbysaisonqualite(sfWebRequest $request)
+  {
+    $this->forward404Unless($request->isXmlHttpRequest());
+    $saisonId = $request->getGetParameter('saison');
+    $saison = SaisonTable::getInstance()->findOneBy('id', $saisonId);
+    $nextSaison = SaisonTable::getInstance()->findOneBy('id', $saisonId)->getNextSaison();
+    $clientId = $request->getGetParameter('client');
+    $qualite = $request->getGetParameter('qualite');
+    $this->forward404Unless(($saisonId && $qualite && $clientId));
+    $items = CollectionTable::getInstance()->getBySaisonQualiteNotClient($saisonId, $qualite, $clientId);
+    if ($nextSaison) {
+      $result = array_merge($items->getData(), CollectionTable::getInstance()->getBySaisonQualiteNotClient($nextSaison->getId(), $qualite, $clientId)->getData());
+      $items = $result;
+    }
+    $result = array();
+    foreach($items as $item) {
+      $isProduction = $item->getProduction();
+      $url = ($isProduction)? $this->generateUrl('collection_production_edit', $item) : $this->generateUrl('collection_edit', $item);
+      $libelle = ($isProduction)? '(production) ' : '(collection) ';
+      $libelle .= $item->getId().' - '.$item->getSaison()->getLibelle().' / '.$item->getClient()->getRaisonSociale();
+      $result[$url] = $libelle;
+    }
+    echo ($result)? json_encode($result): null;
+    return sfView::NONE;
+  }
+
 }
