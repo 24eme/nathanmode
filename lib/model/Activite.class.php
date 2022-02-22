@@ -115,14 +115,14 @@ class Activite
 		$reqFacture = "SELECT SUM(b.metrage) as montant FROM commande b WHERE b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
 		$reqCredit = "SELECT SUM(b.metrage) as montant FROM bon b WHERE b.type = 'Credit' AND b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
 		$req = "SELECT (".$reqFacture.") as facture, (".$reqCredit.") as credit, (SELECT ifnull(facture,0) - ifnull(credit,0)) as total";
-		
+
 		$result = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc($req);
 
 		return ($result[0]['total'])? $result[0]['total'] : 0;
-		
+
 	}
-	
-	public function getPcs($devise = 1, $client = null, $fournisseur = null)
+
+	private function getPcs($devise = 1, $client = null, $fournisseur = null, $accessoire = true)
 	{
 		$where = "";
 		if ($client) {
@@ -143,21 +143,33 @@ class Activite
 		if ($this->produit == 'pcs') {
 			$where .= " AND b.piece IS NOT NULL AND b.piece != ''";
 		}
-		if (preg_match("/^pcs_/", $this->produit)) {
-			$where .= " AND b.piece_categorie = '".str_replace("pcs_", "", $this->produit)."' AND b.piece IS NOT NULL AND b.piece != ''";
+		if ($accessoire) {
+			$where .= " AND b.piece_categorie = 'ACCESSOIRES'";
+		} else {
+			$where .= " AND (b.piece_categorie != 'ACCESSOIRES' OR b.piece_categorie IS NULL)";
 		}
 
 		$reqFacture = "SELECT SUM(b.piece) as montant FROM commande b WHERE b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
 		$reqCredit = "SELECT SUM(b.piece) as montant FROM bon b WHERE b.type = 'Credit' AND b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
-		
+
 		$req = "SELECT (".$reqFacture.") as facture, (".$reqCredit.") as credit, (SELECT ifnull(facture,0) - ifnull(credit,0)) as total";
-		
+
 		$result = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc($req);
 
 		return ($result[0]['total'])? $result[0]['total'] : 0;
-		
+
 	}
-	
+
+	public function getPcsAccessoires($devise = 1, $client = null, $fournisseur = null)
+	{
+		return $this->getPcs($devise = 1, $client = null, $fournisseur = null, true);
+	}
+
+	public function getPcsNonAccessoires($devise = 1, $client = null, $fournisseur = null)
+	{
+		return $this->getPcs($devise = 1, $client = null, $fournisseur = null, false);
+	}
+
 	public function getDetails($devise = 1, $client = null, $fournisseur = null)
 	{
 		$where = "";
