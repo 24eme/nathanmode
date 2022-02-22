@@ -1,5 +1,6 @@
 <div class="tableau">
     <div class="titre"><span>Infos générales</span></div>
+    <div id="alertBox" class="bg-danger" style="float:left;width:100%; margin-top: -10px;"></div>
     <div class="contentLeft">
         <table width="50%" border="0" cellpadding="0" cellspacing="0" class="tabloInfoGen">
             <tr>
