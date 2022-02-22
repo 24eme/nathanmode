@@ -40,10 +40,16 @@ class CollectionTable extends Doctrine_Table
         return $this->createQuery('c')
                    ->addWhere('c.production = ?', false);
     }
-    
 
-    
     public function getAll() {
         return $this->createQuery('c')->execute();
+    }
+
+    public function getBySaisonQualiteNotClient($saisonId, $qualite, $clientId) {
+      return $this->createQuery('c')
+                  ->addWhere('c.saison_id = ?', $saisonId)
+                  ->addWhere('c.qualite = ?', $qualite)
+                  ->addWhere('c.client_id != ?', $clientId)
+                  ->execute();
     }
 }
