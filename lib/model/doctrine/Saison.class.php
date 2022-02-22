@@ -18,4 +18,14 @@ class Saison extends BaseSaison
         return $this->libelle;
     }
 
+    public function getNextSaison() {
+      if (preg_match('/([0-9]{4})$/', $this->libelle, $m)) {
+      	return SaisonTable::getInstance()->findOneBy('libelle', 'ETE '.($m[1]+1));
+      }
+      if (preg_match('/([0-9]{2})$/', $this->libelle, $m)) {
+        return SaisonTable::getInstance()->findOneBy('libelle', 'HIVERS '.($m[1]).'/'.($m[1]+1));
+      }
+      return null;
+    }
+
 }
