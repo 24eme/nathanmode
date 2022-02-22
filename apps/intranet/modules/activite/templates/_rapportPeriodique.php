@@ -10,9 +10,12 @@
 <?php $com = $activites->getCom($devise, $clientId, $fournisseurId); ?>
 <?php $com1 = $activites1->getCom($devise, $clientId, $fournisseurId); ?>
 <?php $com2 = $activites2->getCom($devise, $clientId, $fournisseurId); ?>
-<?php $pcs = $activites->getPcs($devise, $clientId, $fournisseurId); ?>
-<?php $pcs1 = $activites1->getPcs($devise, $clientId, $fournisseurId); ?>
-<?php $pcs2 = $activites2->getPcs($devise, $clientId, $fournisseurId); ?>
+<?php $pcs = $activites->getPcsAccessoires($devise, $clientId, $fournisseurId); ?>
+<?php $pcs1 = $activites1->getPcsAccessoires($devise, $clientId, $fournisseurId); ?>
+<?php $pcs2 = $activites2->getPcsAccessoires($devise, $clientId, $fournisseurId); ?>
+<?php $pcsNA = $activites->getPcsNonAccessoires($devise, $clientId, $fournisseurId); ?>
+<?php $pcs1NA = $activites1->getPcsNonAccessoires($devise, $clientId, $fournisseurId); ?>
+<?php $pcs2NA = $activites2->getPcsNonAccessoires($devise, $clientId, $fournisseurId); ?>
 
 <div class="row">
     <div class="col-sm-4">
@@ -34,6 +37,10 @@
                 <div class="list-group-item">
                     <div class="col-3 text-dark">PF <small class="text-muted">pcs</small></div>
                     <div class="col-9 text-right text-dark"><?php echo number_format($pcs, 2, ',', ' ') ?></div>
+                </div>
+                <div class="list-group-item">
+                    <div class="col-3 text-dark">PF CN <small class="text-muted">pcs</small></div>
+                    <div class="col-9 text-right text-dark"><?php echo number_format($pcsNA, 2, ',', ' ') ?></div>
                 </div>
             </div>
         </div>
@@ -103,6 +110,21 @@
                     </div>
                     <div class="col-6 text-right text-dark"><?php echo number_format($pcs1, 2, ',', ' ') ?></div>
                 </div>
+                <div class="list-group-item">
+                    <div class="col-3 text-dark">PF CN <small class="text-muted">pcs</small></div>
+                    <div class="col-3">
+                        <?php
+                            if ($pcsNA > 0 && $pcs1NA > 0):
+                                $diff = $pcsNA / $pcs1NA;
+                                if ($diff > 1):
+                        ?>
+                            <small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+                        <?php else: ?>
+                            <small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+                        <?php endif; endif; ?>
+                    </div>
+                    <div class="col-6 text-right text-dark"><?php echo number_format($pcs1NA, 2, ',', ' ') ?></div>
+                </div>
             </div>
         </div>
     </div>
@@ -169,6 +191,21 @@
                         <?php endif; endif; ?>
                     </div>
                     <div class="col-6 text-right text-dark"><?php echo number_format($pcs2, 2, ',', ' ') ?></div>
+                </div>
+                <div class="list-group-item">
+                    <div class="col-3 text-dark">PF CN <small class="text-muted">pcs</small></div>
+                    <div class="col-3">
+                        <?php
+                            if ($pcsNA > 0 && $pcs2NA > 0):
+                                $diff = $pcsNA / $pcs2NA;
+                                if ($diff > 1):
+                        ?>
+                            <small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+                        <?php else: ?>
+                            <small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+                        <?php endif; endif; ?>
+                    </div>
+                    <div class="col-6 text-right text-dark"><?php echo number_format($pcs2NA, 2, ',', ' ') ?></div>
                 </div>
             </div>
         </div>
