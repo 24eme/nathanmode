@@ -19,6 +19,7 @@ abstract class BaseCommercialFormFilter extends BaseFormFilterDoctrine
       'email'      => new sfWidgetFormFilterInput(),
       'telephone'  => new sfWidgetFormFilterInput(),
       'commission' => new sfWidgetFormFilterInput(),
+      'is_super_commercial'   => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
     ));
 
     $this->setValidators(array(
@@ -28,6 +29,7 @@ abstract class BaseCommercialFormFilter extends BaseFormFilterDoctrine
       'email'      => new sfValidatorPass(array('required' => false)),
       'telephone'  => new sfValidatorPass(array('required' => false)),
       'commission' => new sfValidatorPass(array('required' => false)),
+      'is_super_commercial'   => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
     ));
 
     $this->widgetSchema->setNameFormat('commercial_filters[%s]');
@@ -54,6 +56,7 @@ abstract class BaseCommercialFormFilter extends BaseFormFilterDoctrine
       'email'      => 'Text',
       'telephone'  => 'Text',
       'commission' => 'Text',
+      'is_super_commercial'   => 'Boolean',
     );
   }
 }

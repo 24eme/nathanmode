@@ -13,18 +13,19 @@ generator:
 
     config:
       actions: ~
-      fields:  ~
+      fields:
+        is_super_commercial: {label: Super com?}
       list:
         batch_actions: {}
         actions:
           csv: { label: "CSV" }
           _new: ~
         title: "Liste des commerciaux"
-        display: [nom, prenom, email, telephone, commission, Devise]
+        display: [nom, prenom, email, telephone, commission, Devise, is_super_commercial]
       filter:
-        display: [nom, prenom, email, telephone, commission, devise_id]
+        display: [nom, prenom, email, telephone, commission, devise_id, is_super_commercial]
       form:
-        display: [nom, prenom, email, telephone, commission, devise_id]
+        display: [nom, prenom, email, telephone, commission, devise_id, is_super_commercial]
       edit:
         title: "Modification du commercial %%prenom%% %%nom%%"
       new:

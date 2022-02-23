@@ -22,6 +22,7 @@ abstract class BaseCommercialForm extends BaseFormDoctrine
       'email'      => new sfWidgetFormInputText(),
       'telephone'  => new sfWidgetFormInputText(),
       'commission' => new sfWidgetFormInputText(),
+      'is_super_commercial'   => new sfWidgetFormInputCheckbox(),
     ));
 
     $this->setValidators(array(
@@ -32,6 +33,7 @@ abstract class BaseCommercialForm extends BaseFormDoctrine
       'email'      => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'telephone'  => new sfValidatorString(array('max_length' => 20, 'required' => false)),
       'commission' => new sfValidatorPass(array('required' => false)),
+      'is_super_commercial'   => new sfValidatorBoolean(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('commercial[%s]');

@@ -74,6 +74,10 @@ abstract class BaseCommercial extends sfDoctrineRecord
         $this->hasColumn('commission', 'double', null, array(
              'type' => 'double',
              ));
+        $this->hasColumn('is_super_commercial', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => false,
+             ));
     }
 
     public function setUp()

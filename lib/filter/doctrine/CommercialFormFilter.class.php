@@ -16,5 +16,8 @@ class CommercialFormFilter extends BaseCommercialFormFilter
   	$this->getWidget('email')->setOption('with_empty', false);
   	$this->getWidget('telephone')->setOption('with_empty', false);
   	$this->getWidget('commission')->setOption('with_empty', false);
+
+  	$this->setWidget('is_super_commercial', new WidgetFormInputDisabled());
+  	$this->setValidator('is_super_commercial', new sfValidatorPass(array('required' => false)));
   }
 }
