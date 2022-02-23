@@ -16,6 +16,8 @@ class sfGuardUserAdminForm extends BasesfGuardUserAdminForm
   public function configure()
   {
   	parent::configure();
+    $this->setWidget('commercial_id', new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Commercial'), 'add_empty' => true)));
+    $this->setValidator('commercial_id', new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Commercial'))));
   }
   public function updateObject($values = null)
   {

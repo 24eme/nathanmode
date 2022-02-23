@@ -895,3 +895,14 @@ Commande:
       foreign: id
       foreignAlias: Commandes
       onDelete: CASCADE
+
+sfGuardUser:
+  columns:
+    commercial_id:
+      type: integer
+      default: NULL
+  relations:
+    Commercial:
+      local: commercial_id
+      foreign: id
+      foreignAlias: sfGuardUsers

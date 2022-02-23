@@ -20,18 +20,19 @@ generator:
       list:
         batch_actions: {}
         title:   "Liste des administrateurs"
-        display: [username, first_name, last_name, email_address]
+        display: [username, first_name, last_name, Commercial, email_address]
 
       filter:
-        display: [username, first_name, last_name, email_address]
+        display: [username, first_name, last_name, commercial_id, email_address]
+
       form:
         class: sfGuardUserAdminForm
-        display: [first_name, last_name, email_address, username, password, password_again]
+        display: [commercial_id, first_name, last_name, email_address, username, password, password_again]
 
       edit:
         title: Modification de l'administrateur %%username%%
-        display: [first_name, last_name, email_address, username, password, password_again]
+        display: [commercial_id, first_name, last_name, email_address, username, password, password_again]
 
       new:
         title: Nouvel administrateur
-        display: [first_name, last_name, email_address, username, password, password_again]
+        display: [commercial_id, first_name, last_name, email_address, username, password, password_again]

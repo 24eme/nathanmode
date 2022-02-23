@@ -12,5 +12,20 @@
  */
 class sfGuardUser extends PluginsfGuardUser
 {
-	
+	public function setTableDefinition()
+	{
+		parent::setTableDefinition();
+		$this->hasColumn('commercial_id', 'integer', null, array(
+				 'type' => 'integer'
+				 ));
+	}
+
+	public function setUp()
+	{
+			parent::setUp();
+ 			$this->hasOne('Commercial', array(
+			'local' => 'commercial_id',
+			'foreign' => 'id',
+			'onDelete' => 'SET NULL'));
+	}
 }

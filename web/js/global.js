@@ -85,6 +85,7 @@ $(document).ready(function() {
 	$('#collection_qualite').sortSelect().chosen({width: "90%"});
   $('#collection_devise_fournisseur_id').sortSelect().chosen({width: "25%"});
   $('#collection_devise_commercial_id').sortSelect().chosen({width: "25%"});
+  $('#sf_guard_user_commercial_id').sortSelect().chosen({allow_single_deselect:true,width: "90%"});
 
 	$('#collection_filters_saison_id').sortSelect().chosen({
     	placeholder_text_single: "-",
@@ -107,6 +108,11 @@ $(document).ready(function() {
    	 	width: "100%"
   	});
 	$('#collection_filters_qualite').sortSelect().chosen({
+    	placeholder_text_single: "-",
+		allow_single_deselect:true,
+   	 	width: "100%"
+  	});
+  $('#sf_guard_user_filters_commercial_id').sortSelect().chosen({
     	placeholder_text_single: "-",
 		allow_single_deselect:true,
    	 	width: "100%"
