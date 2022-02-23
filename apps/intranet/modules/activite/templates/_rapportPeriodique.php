@@ -26,10 +26,12 @@
                     <div class="col-3 text-dark">CA <span class="text-warning"><?php echo ($devise == 2)? '<small class="oi oi-dollar" title="dollar" aria-hidden="true"></small>' : '<small class="oi oi-euro" title="euro" aria-hidden="true"></small>'; ?></span></div>
                     <div class="col-9 text-right text-dark"><?php echo number_format($montant, 2, ',', ' ') ?></div>
                 </div>
+                <?php if ($comFiltered): ?>
                 <div class="list-group-item">
                     <div class="col-3 text-dark">COM <span class="text-warning"><?php echo ($devise == 2)? '<small class="oi oi-dollar" title="dollar" aria-hidden="true"></small>' : '<small class="oi oi-euro" title="euro" aria-hidden="true"></small>'; ?></span></div>
                     <div class="col-9 text-right text-dark"><?php echo number_format($com, 2, ',', ' ') ?></div>
                 </div>
+                <?php endif; ?>
                 <div class="list-group-item">
                     <div class="col-3 text-dark">MTS <small class="text-muted">mts</small></div>
                     <div class="col-9 text-right text-dark"><?php echo number_format($mvts, 2, ',', ' ') ?></div>
@@ -64,6 +66,7 @@
                     </div>
                     <div class="col-6 text-right text-dark"><?php echo number_format($montant1, 2, ',', ' ') ?></div>
                 </div>
+                <?php if ($comFiltered): ?>
                 <div class="list-group-item">
                     <div class="col-3 text-dark">COM <span class="text-warning"><?php echo ($devise == 2)? '<small class="oi oi-dollar" title="dollar" aria-hidden="true"></small>' : '<small class="oi oi-euro" title="euro" aria-hidden="true"></small>'; ?></span></div>
                     <div class="col-3">
@@ -80,6 +83,7 @@
                     </div>
                     <div class="col-6 text-right text-dark"><?php echo number_format($com1, 2, ',', ' ') ?></div>
                 </div>
+              <?php endif; ?>
                 <div class="list-group-item">
                     <div class="col-3 text-dark">MTS <small class="text-muted">mts</small></div>
                     <div class="col-3">
@@ -147,6 +151,7 @@
                     </div>
                     <div class="col-6 text-right text-dark"><?php echo number_format($montant2, 2, ',', ' ') ?></div>
                 </div>
+                <?php if ($comFiltered): ?>
                 <div class="list-group-item">
                     <div class="col-3 text-dark">COM <span class="text-warning"><?php echo ($devise == 2)? '<small class="oi oi-dollar" title="dollar" aria-hidden="true"></small>' : '<small class="oi oi-euro" title="euro" aria-hidden="true"></small>'; ?></span></div>
                     <div class="col-3">
@@ -162,6 +167,7 @@
                     </div>
                     <div class="col-6 text-right text-dark"><?php echo number_format($com2, 2, ',', ' ') ?></div>
                 </div>
+                <?php endif; ?>
                 <div class="list-group-item">
                     <div class="col-3 text-dark">MTS <small class="text-muted">mts</small></div>
                     <div class="col-3">

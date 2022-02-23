@@ -14,16 +14,14 @@
                 <option value="<?php echo $s->getId() ?>"<?php if ($s->getId() == $saison): ?> selected="selected"<?php endif; ?>><?php echo $s ?></option>
                 <?php endforeach; ?>
             </select>
+            <?php if (!$comFiltered||$comFiltered->is_super_commercial): ?>
             Commercial&nbsp;
-            <?php if (!$comFiltered): ?>
             <select id="activite_filters_commercial_id" name="commercial">
                 <option value=""<?php if (!$commercialId): ?> selected="selected"<?php endif; ?>></option>
                 <?php foreach (CommercialTable::getInstance()->findAll() as $c): ?>
                 <option value="<?php echo $c->getId() ?>"<?php if ($c->getId() == $commercialId): ?> selected="selected"<?php endif; ?>><?php echo $c ?></option>
                 <?php endforeach; ?>
             </select>
-            <?php else: ?>
-            <span style="font-weight: normal"><?php echo $comFiltered ?></span>
             <?php endif; ?>
             Produit&nbsp;
             <select id="activite_filters_produit" name="produit">

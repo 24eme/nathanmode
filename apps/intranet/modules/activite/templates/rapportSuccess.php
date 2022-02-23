@@ -1,10 +1,10 @@
 <div id="containerCA" class="container">
 
-	<?php include_partial('activite/breadcrumb', array('commercial' => $commercial, 'client' => $client, 'fournisseur' => $fournisseur, 'parameters' => $parameters, 'devise' => $devise )); ?>
+	<?php include_partial('activite/breadcrumb', array('commercial' => ($comFiltered)? $comFiltered : $commercial, 'client' => $client, 'fournisseur' => $fournisseur, 'parameters' => $parameters, 'devise' => $devise )); ?>
 
 	<?php include_partial('activite/filtersForm', array('parameters' => $parameters, 'saison' => $saison, 'commercialId' => $commercialId, 'comFiltered' => $comFiltered, 'produit' => $produit, 'from' => $from, 'to' => $to)); ?>
 
-	<?php include_partial('activite/rapportPeriodique', array('from' => $from, 'to' => $to, 'detailsLink' => $detailsLink, 'activites' => $activitePeriode, 'devise' => $devise, 'clientId' => $clientId, 'fournisseurId' => $fournisseurId, 'activites1' => $activitePeriode1, 'activites2' => $activitePeriode2, 'parameters' => $parameters, 'titre' => 'Rapport périodique')); ?>
+	<?php include_partial('activite/rapportPeriodique', array('comFiltered' => $comFiltered, 'from' => $from, 'to' => $to, 'detailsLink' => $detailsLink, 'activites' => $activitePeriode, 'devise' => $devise, 'clientId' => $clientId, 'fournisseurId' => $fournisseurId, 'activites1' => $activitePeriode1, 'activites2' => $activitePeriode2, 'parameters' => $parameters, 'titre' => 'Rapport périodique')); ?>
 
 	<?php if ($client && $fournisseur): ?>
 
@@ -143,19 +143,19 @@
 		  				</tr>
 		  		</tbody>
 		  	</table>
-	  	
+
 	  	</div>
 	</div>
-	
-	
+
+
 	<?php else: ?>
 
-	<?php include_partial('activite/rapportPeriodique', array('from' => $from, 'to' => $to, 'activites' => $activiteAnnuel, 'devise' => $devise, 'clientId' => $clientId, 'fournisseurId' => $fournisseurId, 'activites1' => $activiteAnnuel1, 'activites2' => $activiteAnnuel2, 'titre' => 'Rapport annuel', 'annuel' => true)); ?>
+	<?php include_partial('activite/rapportPeriodique', array('comFiltered' => $comFiltered, 'from' => $from, 'to' => $to, 'activites' => $activiteAnnuel, 'devise' => $devise, 'clientId' => $clientId, 'fournisseurId' => $fournisseurId, 'activites1' => $activiteAnnuel1, 'activites2' => $activiteAnnuel2, 'titre' => 'Rapport annuel', 'annuel' => true)); ?>
 
 	<?php endif; ?>
 	<?php include_partial('activite/clientModal'); ?>
 	<?php include_partial('activite/fournisseurModal'); ?>
-	
+
 </div>
 <script type="text/javascript">
  $(function() {

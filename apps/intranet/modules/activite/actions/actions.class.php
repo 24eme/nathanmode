@@ -10,6 +10,15 @@
  */
 class activiteActions extends sfActions
 {
+  public function preExecute()
+  {
+    $this->comFiltered = null;
+    $commercial = $this->getUser()->getCommercial();
+    if ($commercial && $commercial->getId()) {
+      $this->comFiltered = $commercial;
+    }
+
+  }
  /**
   * Executes index action
   *
@@ -17,24 +26,15 @@ class activiteActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-	$commerciaux = sfConfig::get('app_commerciaux_liste', array());
-	$this->comFiltered = null; //(in_array($this->getUser()->getUsername(), array_keys($commerciaux)))? CommercialTable::getInstance()->find($commerciaux[$this->getUser()->getUsername()]) : null;
-
-	if ($this->comFiltered) {
-		$this->commercial = $this->comFiltered->getId();
-	}
-	
+  	if ($this->comFiltered) {
+  		$this->commercial = $this->comFiltered->getId();
+  	}
   	$this->parameters = array('ofrom' => date('Y').'-01-01', 'oto' => date('Y-m-d'), 'from' => date('Y').'-01-01', 'to' => date('Y-m-d'), 'commercial' => $this->commercial);
   }
-  
-  
-  
+
   public function executeRapport(sfWebRequest $request)
   {
-	$commerciaux = sfConfig::get('app_commerciaux_liste', array());
-	$this->comFiltered = null; //(in_array($this->getUser()->getUsername(), array_keys($commerciaux)))? CommercialTable::getInstance()->find($commerciaux[$this->getUser()->getUsername()]) : null;
-  	
-	$from = ($request->getParameter('from'))? $request->getParameter('from') : date('Y').'-01-01';
+	  $from = ($request->getParameter('from'))? $request->getParameter('from') : date('Y').'-01-01';
   	$to = ($request->getParameter('to'))? $request->getParameter('to') : date('Y-m-d');
   	$this->saison = ($request->getParameter('saison'))? $request->getParameter('saison') : null;
   	$this->commercialId = ($request->getParameter('commercial'))? $request->getParameter('commercial') : null;
@@ -45,9 +45,9 @@ class activiteActions extends sfActions
   	if (preg_match('/^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/', $to, $m)) {
   		$to = $m[3].'-'.$m[2].'-'.$m[1];
   	}
-  	if ($this->comFiltered) {
-  		$this->commercialId = $this->comFiltered->getId();
-  	}
+    if ($this->comFiltered && !$this->comFiltered->is_super_commercial) {
+		    $this->commercialId = $this->comFiltered->getId();
+    }
   	$from = new DateTime($from);
   	$to = new DateTime($to);
   	$this->from = clone $from;
@@ -95,9 +95,6 @@ class activiteActions extends sfActions
 
   public function executeRapports(sfWebRequest $request)
   {
-	$commerciaux = sfConfig::get('app_commerciaux_liste', array());
-	$this->comFiltered = null; //(in_array($this->getUser()->getUsername(), array_keys($commerciaux)))? CommercialTable::getInstance()->find($commerciaux[$this->getUser()->getUsername()]) : null;
-
   	$from = ($request->getParameter('from'))? $request->getParameter('from') : date('Y').'-01-01';
   	$to = ($request->getParameter('to'))? $request->getParameter('to') : date('Y-m-d');
   	$this->saison = ($request->getParameter('saison'))? $request->getParameter('saison') : null;
@@ -110,9 +107,10 @@ class activiteActions extends sfActions
   	if (preg_match('/^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/', $to, $m)) {
   		$to = $m[3].'-'.$m[2].'-'.$m[1];
   	}
-  	if ($this->comFiltered) {
-  		$this->commercialId = $this->comFiltered->getId();
-  	}
+    if ($this->comFiltered && !$this->comFiltered->is_super_commercial) {
+		    $this->commercialId = $this->comFiltered->getId();
+
+    }
   	$from = new DateTime($from);
   	$to = new DateTime($to);
   	$this->from = clone $from;
