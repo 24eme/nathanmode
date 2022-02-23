@@ -13,7 +13,8 @@ generator:
 
     config:
       actions: ~
-      fields:  ~
+      fields:
+        emails: { help: "si plusieurs, séparer par des virgules" }
       list:
         batch_actions: {}
         actions:
@@ -24,7 +25,7 @@ generator:
       filter:
         display: [raison_sociale, prenom, telephone, commission, devise_id]
       form:
-        display: [raison_sociale, prenom, telephone, commission, devise_id]
+        display: [raison_sociale, prenom, telephone, commission, devise_id, emails]
       edit:
         title: "Modification du fournisseur %%raison_sociale%%"
       new:

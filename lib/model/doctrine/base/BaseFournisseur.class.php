@@ -94,6 +94,9 @@ abstract class BaseFournisseur extends sfDoctrineRecord
         $this->hasColumn('commission', 'double', null, array(
              'type' => 'double',
              ));
+        $this->hasColumn('emails', 'text', null, array(
+             'type' => 'text',
+             ));
     }
 
     public function setUp()

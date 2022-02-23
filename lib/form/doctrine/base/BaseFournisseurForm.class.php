@@ -24,6 +24,7 @@ abstract class BaseFournisseurForm extends BaseFormDoctrine
       'code_postal'    => new sfWidgetFormInputText(),
       'ville'          => new sfWidgetFormInputText(),
       'commission'     => new sfWidgetFormInputText(),
+      'emails'     => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
@@ -36,6 +37,7 @@ abstract class BaseFournisseurForm extends BaseFormDoctrine
       'code_postal'    => new sfValidatorString(array('max_length' => 5, 'required' => false)),
       'ville'          => new sfValidatorString(array('max_length' => 128, 'required' => false)),
       'commission'     => new sfValidatorPass(array('required' => false)),
+      'emails'          => new sfValidatorString(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('fournisseur[%s]');
