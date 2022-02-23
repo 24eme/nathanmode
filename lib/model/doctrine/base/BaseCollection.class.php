@@ -281,6 +281,9 @@ abstract class BaseCollection extends sfDoctrineRecord
         $this->hasColumn('date_retard', 'date', null, array(
              'type' => 'date',
              ));
+        $this->hasColumn('nb_relance', 'integer', null, array(
+             'type' => 'integer'
+             ));
     }
 
     public function setUp()
