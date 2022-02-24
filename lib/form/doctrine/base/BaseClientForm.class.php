@@ -25,6 +25,7 @@ abstract class BaseClientForm extends BaseFormDoctrine
       'code_postal_facturation' => new sfWidgetFormInputText(),
       'ville_facturation'       => new sfWidgetFormInputText(),
       'condition_paiement'      => new sfWidgetFormInputText(),
+      'emails'     => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
@@ -38,6 +39,7 @@ abstract class BaseClientForm extends BaseFormDoctrine
       'code_postal_facturation' => new sfValidatorString(array('max_length' => 5, 'required' => false)),
       'ville_facturation'       => new sfValidatorString(array('max_length' => 128, 'required' => false)),
       'condition_paiement'      => new sfValidatorString(array('max_length' => 128, 'required' => false)),
+      'emails'          => new sfValidatorString(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('client[%s]');

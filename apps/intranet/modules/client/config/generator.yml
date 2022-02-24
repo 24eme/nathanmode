@@ -19,6 +19,7 @@ generator:
         ville_livraison: { label: "Ville" }
         code_postal_facturation: { label: "Code postal" }
         ville_facturation: { label: "Ville" }
+        emails: { help: "si plusieurs, séparer par des virgules" }
       list:
         batch_actions: {}
         actions:

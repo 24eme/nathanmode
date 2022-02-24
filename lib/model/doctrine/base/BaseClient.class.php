@@ -99,6 +99,9 @@ abstract class BaseClient extends sfDoctrineRecord
              'type' => 'string',
              'length' => 128,
              ));
+        $this->hasColumn('emails', 'text', null, array(
+             'type' => 'text',
+             ));
     }
 
     public function setUp()
