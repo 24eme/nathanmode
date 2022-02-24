@@ -45,6 +45,15 @@ class CollectionTable extends Doctrine_Table
         return $this->createQuery('c')->execute();
     }
 
+    public function getNonLivres($isProduction, $nbJour, $nbRelance) {
+      return $this->createQuery('c')
+                  ->addWhere('(c.situation = \''.Situations::SITUATION_ATT_CONFIRMATION.'\' OR c.situation = \''.Situations::SITUATION_EN_COURS.'\' )')
+                  ->addWhere('c.date_livraison >= ?', date('Y-m-d', strtotime("+$nbJour day")))
+                  ->addWhere('c.nb_relance = ?', $nbRelance)
+                  ->addWhere('c.production = ?', $isProduction)
+                  ->execute();
+    }
+
     public function getBySaisonQualiteNotClient($saisonId, $qualite, $clientId) {
       return $this->createQuery('c')
                   ->addWhere('c.saison_id = ?', $saisonId)

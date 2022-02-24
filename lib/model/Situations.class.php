@@ -5,6 +5,8 @@ class Situations
 	const SITUATION_SOLDEE = 'SOLDEE';
 	const SITUATION_ECRU_DESIGNER = 'ECRU_DESIGNER';
 	const SITUATION_ECRU_A_DESIGNER = 'ECRU_A_DESIGNER';
+	const SITUATION_ATT_CONFIRMATION = 'ATT_CONFIRMATION';
+	const SITUATION_EN_COURS = 'EN_COURS';
 	protected static $_situations_historique = array(
 		"INSPECTION_COTECO" =>  "Inspection coteco",
 	);
