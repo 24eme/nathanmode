@@ -27,7 +27,7 @@ all:
     login_module:           sfGuardAuth
     login_action:           signin 
   .settings:
-    enabled_modules:        [default, sfGuardAuth, sfGuardUser, sfDependentSelectAuto, activite]
+    enabled_modules:        [default, sfGuardAuth, sfGuardUser, sfDependentSelectAuto, activite, Email]
     # Form security secret (CSRF protection)
     csrf_secret:            N@th@anM0de
 

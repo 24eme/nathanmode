@@ -1,0 +1,5 @@
+all:
+  email_plugin:
+    from_adresse: notifier@nathanmode-crm.com
+    from_name: "La Manufacture Agency"
+    replyto_cc_adresse: "celia@lamanufactureagency.com"
