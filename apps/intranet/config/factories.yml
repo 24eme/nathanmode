@@ -40,13 +40,12 @@ all:
     param:
       cache_key_use_vary_headers: true
       cache_key_use_host_name:    true
-user:
-  class: myUser
-  param:
-    timeout: 86400
+  user:
+    class: myUser
+    param:
+      timeout: 86400
 
-storage:
-  class: sfSessionStorage
-  param:
-    session_cookie_lifetime: 86400
-    session_cookie_httponly: true
+  storage:
+    class: sfSessionStorage
+    param:
+      session_name: nanthanmodecrm
