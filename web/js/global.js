@@ -35,14 +35,14 @@ $(document).ready(function() {
     	});
     	$($(this).attr('href')).addClass('show active');
     });
-	
+
 	// COUPE CHOSEN
 	$('#coupe_saison_id').sortSelect().chosen({width: "90%"});
 	$('#coupe_fournisseur_id').sortSelect().chosen({width: "90%"});
 	$('#coupe_client_id').sortSelect().chosen({width: "90%"});
 	$('#coupe_commercial_id').sortSelect().chosen({width: "90%"});
 	$('#coupe_paiement').sortSelect().chosen({width: "90%"});
-	
+
 	$('#coupe_filters_saison_id').sortSelect().chosen({
     	placeholder_text_single: "-",
 		allow_single_deselect:true,
@@ -73,8 +73,8 @@ $(document).ready(function() {
 		allow_single_deselect:true,
    	 	width: "100%"
   	});
-	
-	
+
+
 	// COLLECTION & PRODUCTION CHOSEN
 	$('#collection_saison_id').sortSelect().chosen({width: "90%"});
 	$('#collection_fournisseur_id').sortSelect().chosen({width: "90%"});
@@ -120,7 +120,7 @@ $(document).ready(function() {
 
   $('#collection_fournisseur_id').on('change', function() {
     const fId = this.value;
-    $.get("/intranet_dev.php/fournisseur/"+fId+"/getcommission", function(infos) {
+    $.get("/fournisseur/"+fId+"/getcommission", function(infos) {
       const json = JSON.parse(infos);
       $('#collection_prix_fournisseur').val(json.commission);
       $('#collection_devise_fournisseur_id').val(json.devise_id);
@@ -133,7 +133,7 @@ $(document).ready(function() {
 
   $('#collection_client_id').on('change', function() {
     const cId = this.value;
-    $.get("/intranet_dev.php/client/"+cId+"/getpaiement", function(infos) {
+    $.get("/client/"+cId+"/getpaiement", function(infos) {
       const json = JSON.parse(infos);
       $('#collection_paiement').val(json.paiement);
       $('#collection_paiement').trigger("chosen:updated");
@@ -151,7 +151,7 @@ $(document).ready(function() {
     const c = $('#collection_client_id').val();
     $('#alertBox').html('');
     if (q&&s&&c) {
-      $.get("/intranet_dev.php/collection/getbysaisonqualite", {qualite: q, saison: s, client: c}, function(infos) {
+      $.get("/collection/getbysaisonqualite", {qualite: q, saison: s, client: c}, function(infos) {
         if (infos) {
           const json = JSON.parse(infos);
           let html = '<div style="padding:5px 10px;">/!\ Qualité commandée par les clients suivants :</div><ul style="padding:0px 10px 10px 10px;" class="list-unstyled">';
@@ -190,49 +190,49 @@ $(document).ready(function() {
     	placeholder_text_single: "-",
 		allow_single_deselect:true,
    	 	width: "100%"
-  	});	
+  	});
 	$('#credit_filters_client_id').sortSelect().chosen({
     	placeholder_text_single: "-",
 		allow_single_deselect:true,
    	 	width: "100%"
-  	});	
+  	});
 	$('#credit_filters_commercial_id').sortSelect().chosen({
     	placeholder_text_single: "-",
 		allow_single_deselect:true,
    	 	width: "100%"
-  	});	
+  	});
 	$('#credit_filters_statut').sortSelect().chosen({
     	placeholder_text_single: "-",
 		allow_single_deselect:true,
    	 	width: "100%"
   	});
-	
+
 	// LAB DIP CHOSEN
 	$('#lab_dip_saison_id').sortSelect().chosen({width: "90%"});
 	$('#lab_dip_fournisseur_id').sortSelect().chosen({width: "90%"});
 	$('#lab_dip_client_id').sortSelect().chosen({width: "90%"});
 	$('#lab_dip_statut').sortSelect().chosen({width: "90%"});
-	
+
 	$('#lab_dip_filters_saison_id').sortSelect().chosen({
     	placeholder_text_single: "-",
 		allow_single_deselect:true,
    	 	width: "100%"
-  	});	
+  	});
 	$('#lab_dip_filters_fournisseur_id').sortSelect().chosen({
     	placeholder_text_single: "-",
 		allow_single_deselect:true,
    	 	width: "100%"
-  	});		
+  	});
 	$('#lab_dip_filters_client_id').sortSelect().chosen({
     	placeholder_text_single: "-",
 		allow_single_deselect:true,
    	 	width: "100%"
-  	});		
+  	});
 	$('#lab_dip_filters_statut').sortSelect().chosen({
     	placeholder_text_single: "-",
 		allow_single_deselect:true,
    	 	width: "100%"
-  	});	
+  	});
 
 
 
@@ -256,7 +256,7 @@ $(document).ready(function() {
     	placeholder_text_single: "-",
 		allow_single_deselect:true,
    	 	width: "100%"
-  	});	
+  	});
 
 
 	// CLIENTS CHOSEN
@@ -368,13 +368,13 @@ $.coupeUpdateSelect = function() {
 $.fn.sortSelect = function () {
 	var mylist = $(this);
 	var listitems = mylist.children('option').get();
-	
+
 	listitems.sort(function(a, b) {
 	   var compA = $(a).text().toUpperCase();
 	   var compB = $(b).text().toUpperCase();
 	   return (compA < compB) ? -1 : (compA > compB) ? 1 : 0;
 	})
-	
+
 	$.each(listitems, function(idx, itm) { mylist.append(itm); });
 	return $(this);
 }
