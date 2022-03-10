@@ -18,14 +18,35 @@ class Saison extends BaseSaison
         return $this->libelle;
     }
 
-    public function getNextSaison() {
+    public function getSaisonsForAlert() {
+      $libelles = array();
       if (preg_match('/([0-9]{4})$/', $this->libelle, $m)) {
-      	return SaisonTable::getInstance()->findOneBy('libelle', 'ETE '.($m[1]+1));
+        $current = $m[1];
+        $currentShort = substr($current, -2);
+        $libelles = array(
+          'ETE '.($current-2),
+          'HIVERS '.($currentShort-2).'/'.($currentShort-1),
+          'ETE '.($current-1),
+          'HIVERS '.($currentShort-1).'/'.$currentShort,
+          'ETE '.$current,
+          'HIVERS '.$currentShort.'/'.($currentShort+1),
+          'ETE '.($current+1),
+        );
       }
       if (preg_match('/([0-9]{2})$/', $this->libelle, $m)) {
-        return SaisonTable::getInstance()->findOneBy('libelle', 'HIVERS '.($m[1]).'/'.($m[1]+1));
+        $currentShort = $m[1];
+        $current = $currentShort+2000;
+        $libelles = array(
+          'HIVERS '.($currentShort-3).'/'.($currentShort-2),
+          'ETE '.($current-2),
+          'HIVERS '.($currentShort-2).'/'.($currentShort-1),
+          'ETE '.($current-1),
+          'HIVERS '.($currentShort-1).'/'.$currentShort,
+          'ETE '.$current,
+          'HIVERS '.$currentShort.'/'.($currentShort+1),
+        );
       }
-      return null;
+      return ($libelles)? SaisonTable::getInstance()->createQuery()->where('libelle IN (?)', implode(',', $libelles))->execute() : null;
     }
 
 }

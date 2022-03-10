@@ -147,14 +147,14 @@ protected function buildQuerySoldees()
     $this->forward404Unless($request->isXmlHttpRequest());
     $saisonId = $request->getGetParameter('saison');
     $saison = SaisonTable::getInstance()->findOneBy('id', $saisonId);
-    $nextSaison = SaisonTable::getInstance()->findOneBy('id', $saisonId)->getNextSaison();
+    $saisons = SaisonTable::getInstance()->findOneBy('id', $saisonId)->getSaisonsForAlert();
     $clientId = $request->getGetParameter('client');
     $qualite = $request->getGetParameter('qualite');
     $this->forward404Unless(($saisonId && $qualite && $clientId));
     $items = CollectionTable::getInstance()->getBySaisonQualiteNotClient($saisonId, $qualite, $clientId);
-    if ($nextSaison) {
-      $result = array_merge($items->getData(), CollectionTable::getInstance()->getBySaisonQualiteNotClient($nextSaison->getId(), $qualite, $clientId)->getData());
-      $items = $result;
+    foreach($saisons as $s) {
+        $result = array_merge($items->getData(), CollectionTable::getInstance()->getBySaisonQualiteNotClient($s->getId(), $qualite, $clientId)->getData());
+        $items = $result;
     }
     $result = array();
     foreach($items as $item) {
