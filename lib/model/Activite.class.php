@@ -146,7 +146,10 @@ class Activite
 		if ($accessoire) {
 			$where .= " AND b.piece_categorie = 'ACCESSOIRES'";
 		} else {
-			$where .= " AND (b.piece_categorie != 'ACCESSOIRES' OR b.piece_categorie IS NULL)";
+			$where .= " AND (b.piece_categorie != 'ACCESSOIRES' OR b.piece_categorie IS NULL OR b.piece_categorie = '')";
+		}
+		if (preg_match("/^pcs_/", $this->produit)) {
+			$where .= " AND b.piece_categorie = '".str_replace("pcs_", "", $this->produit)."' AND b.piece IS NOT NULL AND b.piece != ''";
 		}
 
 		$reqFacture = "SELECT SUM(b.piece) as montant FROM commande b WHERE b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
