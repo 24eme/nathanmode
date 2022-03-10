@@ -25,7 +25,7 @@ generator:
       filter:
         display: [nom, prenom, email, telephone, commission, devise_id, is_super_commercial]
       form:
-        display: [nom, prenom, email, telephone, commission, devise_id, is_super_commercial]
+        display: [nom, prenom, email, telephone, commission, devise_id]
       edit:
         title: "Modification du commercial %%prenom%% %%nom%%"
       new:
