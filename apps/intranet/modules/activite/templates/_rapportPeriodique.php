@@ -37,7 +37,7 @@
                     <div class="col-9 text-right text-dark"><?php echo number_format($mvts, 2, ',', ' ') ?></div>
                 </div>
                 <div class="list-group-item">
-                    <div class="col-3 text-dark">PF <small class="text-muted">pcs</small></div>
+                    <div class="col-3 text-dark">ACCES. <small class="text-muted">pcs</small></div>
                     <div class="col-9 text-right text-dark"><?php echo number_format($pcs, 2, ',', ' ') ?></div>
                 </div>
                 <div class="list-group-item">
@@ -100,7 +100,7 @@
                     <div class="col-6 text-right text-dark"><?php echo number_format($mvts1, 2, ',', ' ') ?></div>
                 </div>
                 <div class="list-group-item">
-                    <div class="col-3 text-dark">PF <small class="text-muted">pcs</small></div>
+                    <div class="col-3 text-dark">ACCES. <small class="text-muted">pcs</small></div>
                     <div class="col-3">
                         <?php
                             if ($pcs > 0 && $pcs1 > 0):
@@ -184,7 +184,7 @@
                     <div class="col-6 text-right text-dark"><?php echo number_format($mvts2, 2, ',', ' ') ?></div>
                 </div>
                 <div class="list-group-item">
-                    <div class="col-3 text-dark">PF <small class="text-muted">pcs</small></div>
+                    <div class="col-3 text-dark">ACCES. <small class="text-muted">pcs</small></div>
                     <div class="col-3">
                         <?php
                             if ($pcs > 0 && $pcs2 > 0):
