@@ -19,7 +19,7 @@ class Email
 
     public function firstProductionRelance($productions, $destinataires, $correspondants)
     {
-        $subject = 'REMINDER // BULK ORDERS TO COME';
+        $subject = 'Reminder // Bulk orders to come';
         $body = $this->getBodyFromPartial('first_production_relance', array('items' => $productions));
 				$message = Swift_Message::newInstance()
 								->setFrom(array(sfConfig::get('app_email_plugin_from_adresse') => sfConfig::get('app_email_plugin_from_name')))
@@ -34,7 +34,7 @@ class Email
 
     public function secondProductionRelance($productions, $destinataires, $correspondants)
     {
-        $subject = 'URGENT REMINDER // BULK ORDERS TO COME';
+        $subject = 'Urgent reminder // Bulk orders to come';
         $body = $this->getBodyFromPartial('second_production_relance', array('items' => $productions));
 				$message = Swift_Message::newInstance()
 								->setFrom(array(sfConfig::get('app_email_plugin_from_adresse') => sfConfig::get('app_email_plugin_from_name')))
@@ -49,7 +49,7 @@ class Email
 
     public function collectionRelance($collections, $destinataires, $correspondants)
     {
-        $subject = 'URGENT REMINDER // COLLECTIONS ORDER TO COME';
+        $subject = 'Urgent reminder // Collections order to come';
         $body = $this->getBodyFromPartial('collection_relance', array('items' => $collections));
 				$message = Swift_Message::newInstance()
 								->setFrom(array(sfConfig::get('app_email_plugin_from_adresse') => sfConfig::get('app_email_plugin_from_name')))
@@ -64,7 +64,7 @@ class Email
 
     public function logErreurRelance($log)
     {
-        $subject = 'NATHANMODE-CRM // LOG RELANCES';
+        $subject = 'Nathanmode-crm // log relances';
         $body = "<p>Certaines relances n'ont pas pu être remises pour les raisons suivantes :<br /><br />$log</p>";
 				$message = Swift_Message::newInstance()
 								->setFrom(array(sfConfig::get('app_email_plugin_from_adresse') => sfConfig::get('app_email_plugin_from_name')))
