@@ -165,12 +165,12 @@ class Activite
 
 	public function getPcsAccessoires($devise = 1, $client = null, $fournisseur = null)
 	{
-		return $this->getPcs($devise = 1, $client = null, $fournisseur = null, true);
+		return $this->getPcs($devise, $client, $fournisseur, true);
 	}
 
 	public function getPcsNonAccessoires($devise = 1, $client = null, $fournisseur = null)
 	{
-		return $this->getPcs($devise = 1, $client = null, $fournisseur = null, false);
+		return $this->getPcs($devise, $client, $fournisseur, false);
 	}
 
 	public function getDetails($devise = 1, $client = null, $fournisseur = null)
