@@ -2,6 +2,8 @@ $(document).ready(function() {
     $.initTemplateLigne();
     $.coupeDependentSelect();
 
+    var editUrlRegexp = /[0-9]+/g;
+
     $('body').on('click', '[data-toggle="modal"]', function(){
     	var url = $(this).attr('data-url');
     	var target = $(this).attr('data-target');
@@ -127,7 +129,7 @@ $(document).ready(function() {
       $('#collection_devise_fournisseur_id').trigger("chosen:updated");
     });
   });
-  if($('#collection_fournisseur_id').length > 0) {
+  if($('#collection_fournisseur_id').length > 0 && !editUrlRegexp.test($('form').attr('action'))) {
     $('#collection_fournisseur_id').trigger( "change" );
   }
 
@@ -139,7 +141,7 @@ $(document).ready(function() {
       $('#collection_paiement').trigger("chosen:updated");
     });
   });
-  if($('#collection_client_id').length > 0) {
+  if($('#collection_client_id').length > 0 && !editUrlRegexp.test($('form').attr('action'))) {
     $('#collection_client_id').trigger( "change" );
   }
 
