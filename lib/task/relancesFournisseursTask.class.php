@@ -71,7 +71,7 @@ EOF;
     private function getEmailCorrespondants($items) {
       $result = array();
       foreach($items as $item) {
-        $emails =  ($item->getClient()->emails)? explode(',', $item->getClient()->emails) : null;
+        $emails =  ($item->getClient()->emails)? explode(',', str_replace(" ", "", $item->getClient()->emails)) : null;
         if ($emails && !is_array($emails)) {
           $emails = array($emails);
         }
