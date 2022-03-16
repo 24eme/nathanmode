@@ -27,10 +27,10 @@ EOF;
         $contextInstance = sfContext::createInstance($this->configuration);
 
         $relancesTypes = array(
-          array("isproduction" => false, "nbjouravantretard" => 15, "nbrelance" => 0, "email" => "firstProductionRelance"),
-          array("isproduction" => false, "nbjouravantretard" => 7, "nbrelance" => 1, "email" => "secondProductionRelance"),
-          array("isproduction" => true, "nbjouravantretard" => 15, "nbrelance" => 0, "email" => "collectionRelance"),
-          array("isproduction" => true, "nbjouravantretard" => 7, "nbrelance" => 1, "email" => "collectionRelance"),
+          array("isproduction" => 1, "nbjouravantretard" => 15, "nbrelance" => 0, "email" => "firstProductionRelance"),
+          array("isproduction" => 1, "nbjouravantretard" => 7, "nbrelance" => 1, "email" => "secondProductionRelance"),
+          array("isproduction" => 0, "nbjouravantretard" => 15, "nbrelance" => 0, "email" => "collectionRelance"),
+          array("isproduction" => 0, "nbjouravantretard" => 7, "nbrelance" => 1, "email" => "collectionRelance"),
         );
         $log = '';
         foreach($relancesTypes as $relanceType) {
