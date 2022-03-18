@@ -26,7 +26,7 @@ class activiteActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-  	if ($this->comFiltered) {
+  	if ($this->comFiltered && !$this->comFiltered->is_super_commercial) {
   		$this->commercial = $this->comFiltered->getId();
   	}
   	$this->parameters = array('ofrom' => date('Y').'-01-01', 'oto' => date('Y-m-d'), 'from' => date('Y').'-01-01', 'to' => date('Y-m-d'), 'commercial' => $this->commercial);

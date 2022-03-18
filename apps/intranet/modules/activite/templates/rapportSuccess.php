@@ -1,6 +1,6 @@
 <div id="containerCA" class="container">
 
-	<?php include_partial('activite/breadcrumb', array('commercial' => ($comFiltered)? $comFiltered : $commercial, 'client' => $client, 'fournisseur' => $fournisseur, 'parameters' => $parameters, 'devise' => $devise )); ?>
+	<?php include_partial('activite/breadcrumb', array('commercial' => $commercial, 'client' => $client, 'fournisseur' => $fournisseur, 'parameters' => $parameters, 'devise' => $devise )); ?>
 
 	<?php include_partial('activite/filtersForm', array('parameters' => $parameters, 'saison' => $saison, 'commercialId' => $commercialId, 'comFiltered' => $comFiltered, 'produit' => $produit, 'from' => $from, 'to' => $to)); ?>
 
