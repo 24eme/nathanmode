@@ -24,7 +24,6 @@
 			<div class="centered text-white"><strong>Fournisseur</strong></div>
 		</a>
 	</div>
-	<?php if ($comFiltered && $comFiltered->is_super_commercial): ?>
 	<div class="col-3">
 		<a href="#" data-toggle="modal" data-target="#commercialModal" data-url="<?php echo url_for('modalCommercial', array('parameters' => $parameters->getRawValue())) ?>">
 			<img src="/images/bg/d.jpg" alt="" style="height: 140px; width: 100%; display: block;" class="rounded">
@@ -32,7 +31,6 @@
 		</a>
 	</div>
 </div>
-<?php endif; ?>
 
 <?php include_partial('activite/clientModal'); ?>
 <?php include_partial('activite/fournisseurModal'); ?>

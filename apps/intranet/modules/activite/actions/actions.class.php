@@ -26,9 +26,6 @@ class activiteActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-  	if ($this->comFiltered && !$this->comFiltered->is_super_commercial) {
-  		$this->commercial = $this->comFiltered->getId();
-  	}
   	$this->parameters = array('ofrom' => date('Y').'-01-01', 'oto' => date('Y-m-d'), 'from' => date('Y').'-01-01', 'to' => date('Y-m-d'), 'commercial' => $this->commercial);
   }
 
@@ -45,9 +42,6 @@ class activiteActions extends sfActions
   	if (preg_match('/^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/', $to, $m)) {
   		$to = $m[3].'-'.$m[2].'-'.$m[1];
   	}
-    if ($this->comFiltered && !$this->comFiltered->is_super_commercial) {
-		    $this->commercialId = $this->comFiltered->getId();
-    }
   	$from = new DateTime($from);
   	$to = new DateTime($to);
   	$this->from = clone $from;
@@ -107,10 +101,6 @@ class activiteActions extends sfActions
   	if (preg_match('/^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/', $to, $m)) {
   		$to = $m[3].'-'.$m[2].'-'.$m[1];
   	}
-    if ($this->comFiltered && !$this->comFiltered->is_super_commercial) {
-		    $this->commercialId = $this->comFiltered->getId();
-
-    }
   	$from = new DateTime($from);
   	$to = new DateTime($to);
   	$this->from = clone $from;
