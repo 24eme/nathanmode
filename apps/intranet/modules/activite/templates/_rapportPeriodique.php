@@ -26,7 +26,7 @@
                     <div class="col-3 text-dark">CA <span class="text-warning"><?php echo ($devise == 2)? '<small class="oi oi-dollar" title="dollar" aria-hidden="true"></small>' : '<small class="oi oi-euro" title="euro" aria-hidden="true"></small>'; ?></span></div>
                     <div class="col-9 text-right text-dark"><?php echo number_format($montant, 2, ',', ' ') ?></div>
                 </div>
-                <?php if ($comFiltered): ?>
+                <?php if ($comFiltered && $comFiltered->is_super_commercial): ?>
                 <div class="list-group-item">
                     <div class="col-3 text-dark">COM <span class="text-warning"><?php echo ($devise == 2)? '<small class="oi oi-dollar" title="dollar" aria-hidden="true"></small>' : '<small class="oi oi-euro" title="euro" aria-hidden="true"></small>'; ?></span></div>
                     <div class="col-9 text-right text-dark"><?php echo number_format($com, 2, ',', ' ') ?></div>
@@ -66,7 +66,7 @@
                     </div>
                     <div class="col-6 text-right text-dark"><?php echo number_format($montant1, 2, ',', ' ') ?></div>
                 </div>
-                <?php if ($comFiltered): ?>
+                <?php if ($comFiltered && $comFiltered->is_super_commercial): ?>
                 <div class="list-group-item">
                     <div class="col-3 text-dark">COM <span class="text-warning"><?php echo ($devise == 2)? '<small class="oi oi-dollar" title="dollar" aria-hidden="true"></small>' : '<small class="oi oi-euro" title="euro" aria-hidden="true"></small>'; ?></span></div>
                     <div class="col-3">
@@ -151,7 +151,7 @@
                     </div>
                     <div class="col-6 text-right text-dark"><?php echo number_format($montant2, 2, ',', ' ') ?></div>
                 </div>
-                <?php if ($comFiltered): ?>
+                <?php if ($comFiltered && $comFiltered->is_super_commercial): ?>
                 <div class="list-group-item">
                     <div class="col-3 text-dark">COM <span class="text-warning"><?php echo ($devise == 2)? '<small class="oi oi-dollar" title="dollar" aria-hidden="true"></small>' : '<small class="oi oi-euro" title="euro" aria-hidden="true"></small>'; ?></span></div>
                     <div class="col-3">
