@@ -15,4 +15,9 @@ class Facture extends BaseFacture
 	const TYPE_COUPE = 'Coupe';
 	const TYPE_COLLECTION = 'Collection';
 	const TYPE_PRODUCTION = 'Production';
+
+	public function isPayee($date) {
+		$this->date_debit = $date;
+		$this->statut = StatutsFacture::KEY_PAYEE;
+	}
 }
