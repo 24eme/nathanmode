@@ -1,13 +1,15 @@
 <div class="sf_admin_list">
-  	<form action="<?php echo url_for('facture_collection', array('action' => 'filter')) ?>" method="post">
     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableNm">
+      <form action="<?php echo url_for('facture_collection', array('action' => 'filter')) ?>" method="post">
       <thead>
         <tr>
+          <th id="sf_admin_list_batch_actions"><input id="sf_admin_list_batch_checkbox" type="checkbox" onclick="checkAll();" /></th>
           <?php include_partial('facure/list_th_tabular', array('sort' => $sort)) ?>
           <th id="sf_admin_list_th_actions"><?php echo __('Actions', array(), 'sf_admin') ?></th>
         </tr>
     	<?php if ($configuration->hasFilterForm()): ?>
         <tr class="first">
+          <td>&nbsp;</td>
         <?php foreach ($configuration->getFormFilterFields($form) as $name => $field): ?>
         <?php if ((isset($form[$name]) && $form[$name]->isHidden()) || (!isset($form[$name]) && $field->isReal())) continue ?>
           <?php include_partial('facure/filters_field', array(
@@ -28,9 +30,25 @@
         </tr>
         <?php endif; ?>
       </thead>
+      </form>
+      <form id="sf_admin_batch_actions_form" action="<?php echo url_for('facture_collection', array('action' => 'batch')) ?>" method="post">
       <tfoot>
         <tr>
-          <th colspan="13">
+          <th colspan="3">
+            <?php if ($listActions = $configuration->getValue('list.batch_actions')): ?>
+            <select name="batch_action" id="sf_admin_batch_actions_choice">
+              <?php foreach ((array) $listActions->getRawValue() as $action => $params): ?>
+              <?php echo '<option value="'.$action.'">'.$params['label'].'</option>' ?>
+              <?php endforeach; ?>
+            </select>
+            <?php $form = new BaseForm(); if ($form->isCSRFProtected()): ?>
+              <input type="hidden" name="<?php echo $form->getCSRFFieldName() ?>" value="<?php echo $form->getCSRFToken() ?>" />
+            <?php endif; ?>
+            <input type="hidden" name="date" value="" id="sf_admin_batch_actions_date" />
+            <input type="submit" value="<?php echo __('go', array(), 'sf_admin') ?>" />
+          <?php endif; ?>
+          </th>
+          <th colspan="11">
             <?php if ($pager->haveToPaginate()): ?>
               <?php include_partial('facure/pagination', array('pager' => $pager)) ?>
             <?php endif; ?>
