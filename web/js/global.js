@@ -329,6 +329,24 @@ $(document).ready(function() {
   $('#fournisseur_devise_id').sortSelect().chosen();
   $('#commercial_devise_id').sortSelect().chosen();
 
+  $('#sf_admin_batch_actions_form').submit(function( event ) {
+    var datasTab = $(this).serializeArray();
+    var datas = {};
+    $(datasTab).each(function(i, field){
+      datas[field.name] = field.value;
+    });
+    if (!datas.hasOwnProperty('date')||!datas['date']) {
+      $('#facturePayeeDateChoiceModal').modal({show:true});
+      event.preventDefault();
+    }
+  });
+  $('#sf_admin_batch_actions_complete_form').submit(function( event ) {
+      var date = $(this).find("input[type=date]").val();
+      $('#sf_admin_batch_actions_date').val(date);
+      $('#sf_admin_batch_actions_form').submit();
+      event.preventDefault();
+  });
+
 	//$(':text').addClass('input');
 });
 

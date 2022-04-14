@@ -64,14 +64,40 @@
       <tbody>
         <?php $j = 0; foreach ($pager->getResults() as $i => $facture): $j++; $odd = fmod(++$i, 2) ? 'odd' : 'even' ?>
           <tr class="sf_admin_row <?php echo strtolower($facture->getStatut()) ?> <?php echo ($j == $pager->getNbResults())? 'last' : null; ?>">
+            <?php include_partial('facure/list_td_batch_actions', array('facture' => $facture, 'helper' => $helper)) ?>
             <?php include_partial('facure/list_td_tabular', array('facture' => $facture)) ?>
             <?php include_partial('facure/list_td_actions', array('facture' => $facture, 'helper' => $helper)) ?>
           </tr>
         <?php endforeach; ?>
       </tbody>
   <?php endif; ?>
-    </table>
     </form>
+    </table>
+</div>
+<div class="modal fade" id="facturePayeeDateChoiceModal" tabindex="-1" role="dialog" aria-labelledby="facturePayeeDateChoiceModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      	  <h5 class="modal-title text-dark" id="facturePayeeDateChoiceModalTitle">Définir la date de paiement</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          	<span aria-hidden="true">×</span>
+          </button>
+      </div>
+      <div class="modal-body">
+        <form id="sf_admin_batch_actions_complete_form" action="" method="post">
+        <div class="input-group mb-3">
+          <input type="date" class="form-control" name="date" required="required" />
+          <div class="input-group-append">
+            <span class="input-group-text oi oi-calendar"></span>
+          </div>
+        </div>
+        <div class="col-6 mx-auto">
+          <button type="submit" class="btn btn-block btn-success" type="button">Valider</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 <script type="text/javascript">
 /* <![CDATA[ */
