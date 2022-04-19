@@ -103,7 +103,7 @@ class Collection extends BaseCollection
     			}
     		}
     	}
-      if ($this->getResteALivrer() > 0 && $hasFacture) {
+      if ($hasFacture && ($this->getResteALivrer() > 0 || round($montantCommande - $montantFacture,2) > 0)) {
       	$creditCommande = $this->updateCreditCommande(round($montantCommande - $montantFacture,2), $deviseId);
        	$creditCommande->save();
       } elseif (count($this->getCreditCommandes()) > 0) {
