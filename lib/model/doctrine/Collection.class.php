@@ -68,8 +68,15 @@ class Collection extends BaseCollection
     	}
 	$this->date_retard = $dateRetardMax;
         parent::save($conn);
+        $montantFacture = 0;
+        $montantCommande = 0;
+        $deviseId = null;
+        $hasFacture = false;
     	foreach ($this->getCollectionLivraisons() as $collectionLivraison) {
     		if ($facture = $collectionLivraison->getFacture()) {
+          $hasFacture = true;
+          $montantFacture += $facture->getMontant();
+          $deviseId = $facture->getDeviseMontantId();
 	    		if ($this->getProduction() && $facture->getRelation() != Facture::TYPE_PRODUCTION) {
 	    			$facture->setRelation(Facture::TYPE_PRODUCTION);
 	    			$facture->save();
@@ -81,6 +88,10 @@ class Collection extends BaseCollection
     	}
     	foreach ($this->getCollectionDetails() as $collectionDetail) {
     		if ($commande = $collectionDetail->getCommande()) {
+          $montantCommande += $commande->getMontant();
+          if (!$deviseId) {
+            $deviseId = $commande->getDeviseMontantId();
+          }
     			if ($this->getProduction() && $commande->getRelation() != Commande::TYPE_PRODUCTION) {
     				$commande->setRelation(Commande::TYPE_PRODUCTION);
     				$commande->setSituation($this->getSituation());
@@ -92,5 +103,79 @@ class Collection extends BaseCollection
     			}
     		}
     	}
+      if ($this->getResteALivrer() > 0 && $hasFacture) {
+      	$creditCommande = $this->updateCreditCommande(round($montantCommande - $montantFacture,2), $deviseId);
+       	$creditCommande->save();
+      } elseif (count($this->getCreditCommandes()) > 0) {
+        $cc = $this->getCreditCommandes()[0];
+        $cc->delete();
+      }
+    }
+
+    public function updateCreditCommande($montant, $deviseId)
+    {
+    	$creditCommande = (count($this->getCreditCommandes()) > 0)? $this->getCreditCommandes()[0] : new CreditCommande();
+      $creditCommande->type = Bon::TYPE_CREDIT_COMMANDE;
+    	if ($creditCommande->isNew()) {
+        $creditCommande->setActif(true);
+        $creditCommande->setCollectionId($this->getId());
+        $creditCommande->setCollection($this);
+    	}
+    	$creditCommande->setSaisonId($this->getSaisonId());
+      $creditCommande->setFournisseurId($this->getFournisseurId());
+      $creditCommande->setCommercialId($this->getCommercialId());
+      $creditCommande->setClientId($this->getClientId());
+      $creditCommande->setDeviseMontantId($deviseId);
+      $creditCommande->setDeviseFournisseurId($this->getDeviseFournisseurId());
+      $creditCommande->setDeviseCommercialId($this->getDeviseCommercialId());
+      if ($this->getPrixFournisseur() != "" || $this->getDeviseFournisseurId() != Devise::POURCENTAGE_ID)
+      	$creditCommande->setPrixFournisseur($this->getPrixFournisseur());
+      else {
+      	$creditCommande->setPrixFournisseur($this->getFournisseur()->getCommission());
+      	$creditCommande->setDeviseFournisseurId($this->getFournisseur()->getDeviseId());
+      }
+      if ($this->getPrixCommercial() != "" || $this->getDeviseCommercialId() != Devise::POURCENTAGE_ID)
+      	$creditCommande->setPrixCommercial($this->getPrixCommercial());
+      else {
+      	$creditCommande->setPrixCommercial($this->getCommercial()->getCommission());
+      	$creditCommande->setDeviseCommercialId($this->getCommercial()->getDeviseId());
+      }
+      $creditCommande->setNumero('Commande : '.$this->getNumCommande());
+      $creditCommande->setDate($this->getDateCommande());
+      $creditCommande->setStatut(StatutsFacture::KEY_NON_PAYEE);
+      $creditCommande->setMetrage($this->getResteALivrer());
+      if ($montant >= 0) {
+        $creditCommande->setMontantTotal($montant);
+        $creditCommande->setMontant(round($montant / $this->getResteALivrer(), 2));
+      } else {
+        $creditCommande->setMontantTotal(0);
+        $creditCommande->setMontant(0);
+      }
+      $creditCommande->setQualite($this->getQualite());
+      if ($this->getProduction())
+      	$creditCommande->setRelation(Facture::TYPE_PRODUCTION);
+      else
+      	$creditCommande->setRelation(Facture::TYPE_COLLECTION);
+
+      if ($this->getDeviseFournisseur() && $this->getDeviseFournisseur()->getSymbole() == Devise::POURCENTAGE) {
+      	try {
+      			$creditCommande->setTotalFournisseur($this->getMetrage() * $this->getPrix() * $creditCommande->getPrixFournisseur() / 100);
+      	} catch (Exception $e) {
+      		$creditCommande->setTotalFournisseur(0);
+      	}
+      } else {
+      	$creditCommande->setTotalFournisseur($this->getPrixFournisseur());
+      }
+
+      if ($this->getDeviseCommercial() && $this->getDeviseCommercial()->getSymbole() == Devise::POURCENTAGE) {
+      	try {
+      			$creditCommande->setTotalCommercial($this->getMetrage() * $this->getPrix() * $creditCommande->getPrixCommercial() / 100);
+      	} catch (Exception $e) {
+      		$creditCommande->setTotalCommercial(0);
+      	}
+      } else {
+      	$creditCommande->setTotalCommercial($this->getPrixCommercial());
+      }
+      return $creditCommande;
     }
 }
