@@ -790,6 +790,20 @@ Credit:
     date_debit:
       type: date
       default: NULL
+CreditCommande:
+  inheritance:
+    type:             column_aggregation
+    extends:          Bon
+  columns:
+    collection_id:
+      type: integer
+      default: NULL
+  relations:
+    Collection:
+      local: collection_id
+      foreign: id
+      foreignAlias: CollectionDetails
+      onDelete: CASCADE
 
 Commande:
   columns:
