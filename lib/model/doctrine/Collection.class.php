@@ -146,10 +146,8 @@ class Collection extends BaseCollection
       $creditCommande->setMetrage($this->getResteALivrer());
       if ($montant >= 0) {
         $creditCommande->setMontantTotal($montant);
-        $creditCommande->setMontant(round($montant / $this->getResteALivrer(), 2));
       } else {
         $creditCommande->setMontantTotal(0);
-        $creditCommande->setMontant(0);
       }
       $creditCommande->setQualite($this->getQualite());
       if ($this->getProduction())
