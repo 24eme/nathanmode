@@ -14,11 +14,14 @@ generator:
     config:
       actions: ~
       fields:
-        date_commande: { date_format: dd/MM/yyyy }
-        date_livraison: { date_format: dd/MM/yyyy }
-        ecrus: {label: Coloris}
-        date_retard: {label: Retard, date_format: dd/MM/yyyy}
-        nbrelance: {label: Relances}
+        cd_saison: {label: Saison}
+        cd_date_commande: {label: Date commande}
+        cd_num_commande: {label: Num commande}
+        cd_fournisseur: {label: Fournisseur}
+        cd_client: {label: Client}
+        cd_piece: {label: Pièce}
+        cd_prix: {label: Prix}
+        cd_situation: {label: Situation}
       list:
         max_per_page: 30
         table_method: queryProductionExcluded
