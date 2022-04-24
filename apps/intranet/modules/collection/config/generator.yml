@@ -1,7 +1,7 @@
 generator:
   class: sfDoctrineGenerator
   param:
-    model_class:           collection
+    model_class:           CollectionDetail
     theme:                 nathanmode
     non_verbose_templates: true
     with_show:             false
@@ -21,8 +21,8 @@ generator:
         nbrelance: {label: Relances}
       list:
         max_per_page: 30
-        table_method: queryCollections
-        table_count_method: queryCollections
+        table_method: queryProductionExcluded
+        table_count_method: queryProductionExcluded
         batch_actions: {}
         actions:
           csv: { label: "CSV" }

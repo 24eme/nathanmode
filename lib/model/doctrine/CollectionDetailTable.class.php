@@ -16,8 +16,19 @@ class CollectionDetailTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('CollectionDetail');
     }
-    
+
     public function getAll() {
         return $this->createQuery('d')->execute();
+    }
+
+    public function queryProductionExcluded() {
+
+        return $this->createQuery('d')
+                    ->leftJoin('d.Collection c')
+                    ->leftJoin('d.Devise de')
+                    ->leftJoin('c.Fournisseur f')
+                	  ->leftJoin('c.Saison s')
+                	  ->leftJoin('c.Client cl')
+                    ->addWhere('c.production = ?', false);
     }
 }

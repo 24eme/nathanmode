@@ -32,20 +32,6 @@ class collectionActions extends autoCollectionActions
         }
     }
 
-  
-protected function buildQuery()
-  {
-    $query = parent::buildQuery();
-    $rootAlias = $query->getRootAlias();
-    $query->leftJoin($rootAlias.'.Fournisseur f')
-    	  ->leftJoin($rootAlias.'.Saison s')
-    	  ->leftJoin($rootAlias.'.Client cl')
-    	  ->leftJoin($rootAlias.'.Commercial co');
-    $query->whereNotIn($rootAlias.'.situation', array(Situations::SITUATION_SOLDEE, Situations::SITUATION_ECRU_DESIGNER));
-   return $query;
-    
-  }
-  
 protected function buildQuerySoldees()
   {
     $query = parent::buildQuery();
