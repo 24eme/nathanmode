@@ -45,9 +45,9 @@
   <?php if ($pager->getNbResults()): ?>
       <tbody>
         <?php $j = 0; foreach ($pager->getResults() as $i => $collection): $j++; $odd = fmod(++$i, 2) ? 'odd' : 'even' ?>
-          <tr class="sf_admin_row <?php echo ($j == $pager->getNbResults())? 'last' : null; ?> <?php echo strtolower($collection->getSituation()) ?>">
-            <?php include_partial('collection/list_td_tabular', array('collection' => $collection)) ?>
-            <?php include_partial('collection/list_td_actions', array('collection' => $collection, 'helper' => $helper)) ?>
+          <tr class="sf_admin_row <?php echo ($j == $pager->getNbResults())? 'last' : null; ?>">
+            <?php include_partial('collection/list_td_tabular', array('collection_detail' => $collection)) ?>
+            <?php include_partial('collection/list_td_actions', array('collection_detail' => $collection, 'helper' => $helper)) ?>
           </tr>
         <?php endforeach; ?>
       </tbody>
