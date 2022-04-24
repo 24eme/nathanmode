@@ -30,10 +30,8 @@ generator:
         actions:
           csv: { label: "CSV" }
           _new: ~
-        title: "Liste des commandes de collection"
-        display: [Saison, Fournisseur, Client, date_commande, num_commande, date_livraison, date_retard, _situation, qualite, _ecrus, _nbrelance]
-      filter:
-        display: [saison_id, fournisseur_id, client_id, date_commande, num_commande, date_livraison, date_retard, situation, qualite, ecrus, nb_relance]
+        title: "Liste des coupes"
+        display: [_cd_saison, _cd_date_commande,  _cd_num_commande, _cd_fournisseur, _cd_client, colori, _cd_piece, _cd_prix, _cd_situation]
       form:
         class: CollectionCollectionForm
       edit:
