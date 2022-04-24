@@ -6,7 +6,7 @@
           <?php include_partial('collection/list_th_tabular', array('sort' => $sort)) ?>
           <th id="sf_admin_list_th_actions"><?php echo __('Actions', array(), 'sf_admin') ?></th>
         </tr>
-    	<?php if ($configuration->hasFilterForm()): ?>
+    	<?php if ($configuration->hasFilterForm()&&1==2): ?>
         <tr class="first">
         <?php foreach ($configuration->getFormFilterFields($form) as $name => $field): ?>
         <?php if ((isset($form[$name]) && $form[$name]->isHidden()) || (!isset($form[$name]) && $field->isReal())) continue ?>
