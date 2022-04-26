@@ -24,4 +24,23 @@ class coupeActions extends autoCoupeActions
    return $query;
     
   }
+
+  public function executeNew(sfWebRequest $request)
+  {
+    $this->form = new CoupeMultipleForm();
+    if (!$request->isMethod(sfWebRequest::POST)) {
+
+        return sfView::SUCCESS;
+    }
+
+    $this->form->bind($request->getParameter($this->form->getName()));
+
+    if (!$this->form->isValid()) {
+        return sfView::SUCCESS;
+    }
+
+    $this->form->save();
+
+    return $this->redirect('collection');
+  }
 }

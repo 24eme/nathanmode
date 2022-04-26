@@ -75,6 +75,46 @@ $(document).ready(function() {
 		allow_single_deselect:true,
    	 	width: "100%"
   	});
+    
+    // COUPE MULTIPLE CHOSEN
+
+    $('#table_coupe_multiple').find('[name*="saison_id"]').sortSelect().chosen();
+    $('#table_coupe_multiple').find('[name*="commercial_id"]').sortSelect().chosen();
+    $('#table_coupe_multiple').find('[name*="fournisseur_id"]').sortSelect().chosen();
+    $('#table_coupe_multiple').find('[name*="client_id"]').sortSelect().chosen();
+
+    function addCoupeMultipleLine() {
+        const lastLine = $('.coupe_multiple_ligne').last();
+        lastLine.find('[name*="saison_id"]').chosen("destroy");
+        lastLine.find('[name*="commercial_id"]').chosen("destroy");
+        lastLine.find('[name*="fournisseur_id"]').chosen("destroy");
+        lastLine.find('[name*="client_id"]').chosen("destroy");
+        let newLineIndex = parseInt(lastLine.attr('data-line-index')) + 1;
+        let newLineHTML = lastLine.prop('outerHTML');
+        lastLine.find('[name*="saison_id"]').chosen();
+        lastLine.find('[name*="commercial_id"]').chosen();
+        lastLine.find('[name*="fournisseur_id"]').chosen();
+        lastLine.find('[name*="client_id"]').chosen();
+        newLineHTML = newLineHTML.replace(/coupe_multiple_coupes_[0-9]+/g, 'coupe_multiple_coupes_'+newLineIndex);
+        newLineHTML = newLineHTML.replace(/coupe_multiple\[coupes\]\[[0-9]+\]/g, 'coupe_multiple[coupes]['+newLineIndex+']');
+        let newLine = $(newLineHTML);
+        newLine.attr('data-line-index', newLineIndex);
+        newLine.find('[name*="saison_id"]').val(lastLine.find('[name*="saison_id"]').val());
+        newLine.find('[name*="commercial_id"]').val(lastLine.find('[name*="saison_id"]').val());
+        newLine.find('[name*="fournisseur_id"]').val(lastLine.find('[name*="fournisseur_id"]').val());
+        newLine.find('[name*="client_id"]').val(lastLine.find('[name*="client_id"]').val());
+        newLine.find('[name*="qualite"]').val(lastLine.find('[name*="qualite"]').val());
+
+        newLine = newLine.insertAfter(lastLine);
+        newLine.find('[name*="saison_id"]').chosen();
+        newLine.find('[name*="commercial_id"]').chosen();
+        newLine.find('[name*="fournisseur_id"]').chosen();
+        newLine.find('[name*="client_id"]').chosen();
+    }
+    
+    $('#table_coupe_multiple').on('focus', '.coupe_multiple_ligne:last input:last', function(e) {
+        addCoupeMultipleLine();
+    });
 
 
 	// COLLECTION & PRODUCTION CHOSEN
