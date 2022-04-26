@@ -100,20 +100,36 @@ $(document).ready(function() {
         let newLine = $(newLineHTML);
         newLine.attr('data-line-index', newLineIndex);
         newLine.find('[name*="saison_id"]').val(lastLine.find('[name*="saison_id"]').val());
+        newLine.find('[name*="date_demande"]').val(lastLine.find('[name*="date_demande"]').val());
+        newLine.find('[name*="commande"]').val(lastLine.find('[name*="commande"]').val());
         newLine.find('[name*="commercial_id"]').val(lastLine.find('[name*="saison_id"]').val());
         newLine.find('[name*="fournisseur_id"]').val(lastLine.find('[name*="fournisseur_id"]').val());
         newLine.find('[name*="client_id"]').val(lastLine.find('[name*="client_id"]').val());
         newLine.find('[name*="qualite"]').val(lastLine.find('[name*="qualite"]').val());
 
         newLine = newLine.insertAfter(lastLine);
+        newLine.css('opacity', 0.5);
         newLine.find('[name*="saison_id"]').chosen();
         newLine.find('[name*="commercial_id"]').chosen();
         newLine.find('[name*="fournisseur_id"]').chosen();
         newLine.find('[name*="client_id"]').chosen();
     }
     
+    $('#table_coupe_multiple').on('keypress', 'input, select', function(e) {
+        $(e.currentTarget).parents('.coupe_multiple_ligne').css('opacity', '1');
+    });
+    $('#table_coupe_multiple').on('click', '.chosen-single', function(e) {
+        $(e.currentTarget).parents('.coupe_multiple_ligne').css('opacity', '1');
+    });
+
     $('#table_coupe_multiple').on('focus', '.coupe_multiple_ligne:last input:last', function(e) {
         addCoupeMultipleLine();
+    });
+
+    $('#lien_ajouter_ligne').on('click', function(e) {
+        addCoupeMultipleLine();
+
+        return false;
     });
 
 

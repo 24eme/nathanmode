@@ -12,6 +12,12 @@
       <?php echo $form->renderGlobalErrors() ?>
     <?php endif; ?>
 
+    <datalist id="liste_qualite">
+        <?php foreach(QualiteTable::getInstance()->getTabQualites() as $libelle): ?>
+        <option value="<?php echo $libelle ?>">
+        <?php endforeach; ?>
+    </datalist>
+
     <table id="table_coupe_multiple">
         <thead>
             <tr>
@@ -25,24 +31,30 @@
                 <th>Colori</th>
                 <th>Métrage</th>
                 <th>Prix</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach($form['coupes'] as $key => $formItem): ?>
-            <tr class="coupe_multiple_ligne" data-line-index="<?php echo $key ;?>">
-                <td style="padding: 4px; padding-left: 0;"><?php echo $formItem['saison_id']->render(); ?><?php echo $formItem['saison_id']->renderError(); ?></td>
-                <td style="padding: 4px; padding-left: 0;"><?php echo $formItem['commercial_id']->render(); ?><?php echo $formItem['commercial_id']->renderError(); ?></td>
+            <tr class="coupe_multiple_ligne" data-line-index="<?php echo $key ;?>" style="opacity: 0.5;">
+                <td style="padding: 4px; padding-left: 0;"><?php echo $formItem['saison_id']->render(array('style' => 'width: 120px;')); ?><?php echo $formItem['saison_id']->renderError(); ?></td>
+                <td style="padding: 4px; padding-left: 0;"><?php echo $formItem['commercial_id']->render(array('style' => 'width: 180px;')); ?><?php echo $formItem['commercial_id']->renderError(); ?></td>
                 <td style="padding: 4px;"><?php echo $formItem['date_demande']->render(); ?><?php echo $formItem['date_demande']->renderError(); ?></td>
                 <td style="padding: 4px;"><?php echo $formItem['commande']->render(array('style' => 'width: 100px;')); ?><?php echo $formItem['commande']->renderError(); ?></td>
                 <td style="padding: 4px;"><?php echo $formItem['fournisseur_id']->render(); ?><?php echo $formItem['fournisseur_id']->renderError(); ?></td>
                 <td style="padding: 4px;"><?php echo $formItem['client_id']->render(); ?><?php echo $formItem['client_id']->renderError(); ?></td>
-                <td style="padding: 4px;"><?php echo $formItem['qualite']->render(array('style' => 'width: 140px;')); ?><?php echo $formItem['qualite']->renderError(); ?></td>
-                <td style="padding: 4px;"><?php echo $formItem['colori']->render(array('style' => 'width: 140px;')); ?><?php echo $formItem['colori']->renderError(); ?></td>
+                <td style="padding: 4px;"><?php echo $formItem['qualite']->render(array('list' => 'liste_qualite', 'style' => 'width: 180px;', 'autocomplete' => 'off')); ?><?php echo $formItem['qualite']->renderError(); ?></td>
+                <td style="padding: 4px;"><?php echo $formItem['colori']->render(array('style' => 'width: 180px;')); ?><?php echo $formItem['colori']->renderError(); ?></td>
                 <td style="padding: 4px;"><?php echo $formItem['metrage']->render(array('style' => 'width: 60px;')); ?><?php echo $formItem['metrage']->renderError(); ?></td>
                 <td style="padding: 4px; padding-right: 0;"><?php echo $formItem['prix']->render(array('style' => 'width: 60px;')); ?><?php echo $formItem['prix']->renderError(); ?></td>
+                <td style="padding-left: 10px;"><a class="lien_supprimer_ligne" href="#">X</a></td>
             </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
 </form>
+
+<div class="actions">
+    <a id="lien_ajouter_ligne" class="btPlus right" href="#">+</a>
+</div>
 

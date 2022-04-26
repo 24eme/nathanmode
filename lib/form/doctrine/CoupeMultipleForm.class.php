@@ -65,6 +65,9 @@ class CoupeMultipleForm extends BaseForm
         $values = $this->getValues();
         $collections = array();
         foreach($values['coupes'] as $itemValues) {
+            if(!isset($itemValues['colori']) || !$itemValues['colori']) {
+                continue;
+            }
             $key = $itemValues['saison_id'].'_'.$itemValues['fournisseur_id'].'_'.$itemValues['client_id'];
             if(!isset($collections[$key])) {
                 $collection = new Collection();
