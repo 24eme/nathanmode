@@ -18,6 +18,7 @@
                 <th>Saison</th>
                 <th>Commercial</th>
                 <th>Date Demande</th>
+                <th>Commande</th>
                 <th>Fournisseur</th>
                 <th>Client</th>
                 <th>Qualité</th>
@@ -32,12 +33,13 @@
                 <td style="padding: 4px; padding-left: 0;"><?php echo $formItem['saison_id']->render(); ?><?php echo $formItem['saison_id']->renderError(); ?></td>
                 <td style="padding: 4px; padding-left: 0;"><?php echo $formItem['commercial_id']->render(); ?><?php echo $formItem['commercial_id']->renderError(); ?></td>
                 <td style="padding: 4px;"><?php echo $formItem['date_demande']->render(); ?><?php echo $formItem['date_demande']->renderError(); ?></td>
+                <td style="padding: 4px;"><?php echo $formItem['commande']->render(array('style' => 'width: 100px;')); ?><?php echo $formItem['commande']->renderError(); ?></td>
                 <td style="padding: 4px;"><?php echo $formItem['fournisseur_id']->render(); ?><?php echo $formItem['fournisseur_id']->renderError(); ?></td>
                 <td style="padding: 4px;"><?php echo $formItem['client_id']->render(); ?><?php echo $formItem['client_id']->renderError(); ?></td>
-                <td style="padding: 4px;"><?php echo $formItem['qualite']->render(); ?><?php echo $formItem['qualite']->renderError(); ?></td>
-                <td style="padding: 4px;"><?php echo $formItem['colori']->render(); ?><?php echo $formItem['colori']->renderError(); ?></td>
-                <td style="padding: 4px;"><?php echo $formItem['metrage']->render(); ?><?php echo $formItem['metrage']->renderError(); ?></td>
-                <td style="padding: 4px; padding-right: 0;"><?php echo $formItem['prix']->render(); ?><?php echo $formItem['prix']->renderError(); ?></td>
+                <td style="padding: 4px;"><?php echo $formItem['qualite']->render(array('style' => 'width: 140px;')); ?><?php echo $formItem['qualite']->renderError(); ?></td>
+                <td style="padding: 4px;"><?php echo $formItem['colori']->render(array('style' => 'width: 140px;')); ?><?php echo $formItem['colori']->renderError(); ?></td>
+                <td style="padding: 4px;"><?php echo $formItem['metrage']->render(array('style' => 'width: 60px;')); ?><?php echo $formItem['metrage']->renderError(); ?></td>
+                <td style="padding: 4px; padding-right: 0;"><?php echo $formItem['prix']->render(array('style' => 'width: 60px;')); ?><?php echo $formItem['prix']->renderError(); ?></td>
             </tr>
             <?php endforeach; ?>
         </tbody>

@@ -24,6 +24,9 @@ class CoupeMultipleForm extends BaseForm
         $formItem->setWidget('date_demande', new sfWidgetFormInput(array('type' => 'date')));
         $formItem->setValidator('date_demande', new sfValidatorPass());
         
+        $formItem->setWidget('commande', new sfWidgetFormInput());
+        $formItem->setValidator('commande', new sfValidatorPass());
+
         $formItem->setWidget('fournisseur_id', new sfWidgetFormDoctrineChoice(array('model' => 
         'Fournisseur', 'add_empty' => true)));
         $formItem->setValidator('fournisseur_id', new sfValidatorDoctrineChoice(array('model' => 'Fournisseur', 'required' => false)));
@@ -70,9 +73,10 @@ class CoupeMultipleForm extends BaseForm
                 $collection->setDeviseCommercialId(3);
                 $collection->setFournisseurId($itemValues['fournisseur_id']);
                 $collection->setDeviseFournisseurId(3);
+                $collection->setDateCommande($itemValues['date_demande']);
                 $collection->setClientId($itemValues['client_id']);
                 $collection->setQualite($itemValues['qualite']);
-                $collection->setSituation(Situations::SITUATION_ATT_CONFIRMATION);
+                $collection->setSituation(Situations::SITUATION_EN_COURS);
                 $collection->setProduction(0);
                 $collection->save();
                 $collections[$key] = $collection;
