@@ -29,6 +29,7 @@ class CollectionDetailTable extends Doctrine_Table
                     ->leftJoin('c.Fournisseur f')
                 	  ->leftJoin('c.Saison s')
                 	  ->leftJoin('c.Client cl')
+                    ->whereNotIn('c.situation', array(Situations::SITUATION_SOLDEE, Situations::SITUATION_ECRU_DESIGNER))
                     ->addWhere('c.production = ?', false);
     }
 }

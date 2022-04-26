@@ -1,36 +1,37 @@
 generator:
   class: sfDoctrineGenerator
   param:
-    model_class:           collection
+    model_class:           CollectionDetail
     theme:                 nathanmode
     non_verbose_templates: true
     with_show:             false
     singular:              ~
     plural:                ~
-    route_prefix:          collection
+    route_prefix:          collectiondetails
     with_doctrine_route:   true
     actions_base_class:    sfActions
 
     config:
       actions: ~
       fields:
-        date_commande: { date_format: dd/MM/yyyy }
-        date_livraison: { date_format: dd/MM/yyyy }
-        ecrus: {label: Coloris}
-        date_retard: {label: Retard, date_format: dd/MM/yyyy}
-        nbrelance: {label: Relances}
+        cd_saison: {label: Saison}
+        cd_date_commande: {label: Date commande}
+        cd_num_commande: {label: Num commande}
+        cd_fournisseur: {label: Fournisseur}
+        cd_client: {label: Client}
+        cd_piece: {label: Pièce}
+        cd_prix: {label: Prix}
+        cd_situation: {label: Situation}
       list:
         max_per_page: 30
-        table_method: queryCollections
-        table_count_method: queryCollections
+        table_method: queryProductionExcluded
+        table_count_method: queryProductionExcluded
         batch_actions: {}
         actions:
           csv: { label: "CSV" }
           _new: ~
-        title: "Liste des commandes de collection"
-        display: [Saison, Fournisseur, Client, date_commande, num_commande, date_livraison, date_retard, _situation, qualite, _ecrus, _nbrelance]
-      filter:
-        display: [saison_id, fournisseur_id, client_id, date_commande, num_commande, date_livraison, date_retard, situation, qualite, ecrus, nb_relance]
+        title: "Liste des coupes"
+        display: [_cd_saison, _cd_date_commande,  _cd_num_commande, _cd_fournisseur, _cd_client, colori, _cd_piece, _cd_prix, _cd_situation]
       form:
         class: CollectionCollectionForm
       edit:

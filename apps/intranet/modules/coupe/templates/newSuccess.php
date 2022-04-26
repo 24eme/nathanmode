@@ -2,7 +2,7 @@
     <div class="productName">
         <span>Nouvelles coupes</span>
         <div class="actions">
-            <input type="submit" value="Valider">  <a href="/index.php/coupe">Retour à la liste</a>
+            <input type="submit" value="Valider"> <?php echo link_to('Retour à la liste', 'collection'); ?>
         </div>
     </div>
     

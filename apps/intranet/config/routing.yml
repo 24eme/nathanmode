@@ -88,6 +88,15 @@ collection:
     column:               id
     with_wildcard_routes: true
 
+collectiondetails:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                collectionDetails
+    module:               collectiondetails
+    prefix_path:          /collectiondetails
+    column:               id
+    with_wildcard_routes: true
+
 prix_special:
   class: sfDoctrineRouteCollection
   options:

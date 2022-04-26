@@ -1,7 +1,7 @@
 <?php
 
-require_once dirname(__FILE__).'/../lib/collectionGeneratorConfiguration.class.php';
-require_once dirname(__FILE__).'/../lib/collectionGeneratorHelper.class.php';
+require_once dirname(__FILE__).'/../lib/collectiondetailsGeneratorConfiguration.class.php';
+require_once dirname(__FILE__).'/../lib/collectiondetailsGeneratorHelper.class.php';
 
 /**
  * collection actions.
@@ -11,7 +11,7 @@ require_once dirname(__FILE__).'/../lib/collectionGeneratorHelper.class.php';
  * @author     Your name here
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class collectionActions extends autoCollectionActions
+class collectiondetailsActions extends autoCollectiondetailsActions
 {
     
     public function initialize($context, $moduleName, $actionName)
@@ -32,20 +32,6 @@ class collectionActions extends autoCollectionActions
         }
     }
 
-  
-protected function buildQuery()
-  {
-    $query = parent::buildQuery();
-    $rootAlias = $query->getRootAlias();
-    $query->leftJoin($rootAlias.'.Fournisseur f')
-    	  ->leftJoin($rootAlias.'.Saison s')
-    	  ->leftJoin($rootAlias.'.Client cl')
-    	  ->leftJoin($rootAlias.'.Commercial co');
-    $query->whereNotIn($rootAlias.'.situation', array(Situations::SITUATION_SOLDEE, Situations::SITUATION_ECRU_DESIGNER));
-   return $query;
-    
-  }
-  
 protected function buildQuerySoldees()
   {
     $query = parent::buildQuery();
