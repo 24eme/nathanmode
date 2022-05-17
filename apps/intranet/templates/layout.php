@@ -32,7 +32,7 @@
                 		<a href="<?php echo url_for('@homepage') ?>"><img width="290" alt="" src="/images/nathanmode.png" /></a>
                 	</div>
                     <div class="setNav">
-                        <a class="coupe<?php if (in_array(sfContext::getInstance()->getModuleName(), array('collection', 'collectiondetails','coupe'))): ?> active<?php endif; ?>" href="<?php echo url_for('@collection') ?>">&nbsp;</a>
+                        <a class="coupe<?php if (sfContext::getInstance()->getModuleName() == 'collection'): ?> active<?php endif; ?>" href="<?php echo url_for('@coupe') ?>">&nbsp;</a>
                         <a class="prix<?php if (sfContext::getInstance()->getModuleName() == 'prix_special'): ?> active<?php endif; ?>" href="<?php echo url_for('@prix_special') ?>">&nbsp;</a>
                         <a class="prod<?php if (sfContext::getInstance()->getModuleName() == 'production'): ?> active<?php endif; ?>" href="<?php echo url_for('@collection_production') ?>">&nbsp;</a>
                         <a class="facture_np<?php if (sfContext::getInstance()->getModuleName() == 'facure' || sfContext::getInstance()->getModuleName() == 'facure_payee'): ?> active<?php endif; ?>" href="<?php echo url_for('@facture') ?>">&nbsp;</a>

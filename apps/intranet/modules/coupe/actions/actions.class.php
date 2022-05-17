@@ -41,6 +41,6 @@ class coupeActions extends autoCoupeActions
 
     $this->form->save();
 
-    return $this->redirect('collection');
+    return $this->redirect('coupe');
   }
 }
