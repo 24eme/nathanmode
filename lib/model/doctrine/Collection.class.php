@@ -128,7 +128,7 @@ class Collection extends BaseCollection
     			}
     		}
     	}
-      if ($hasFacture && ($this->getResteALivrer() > 0 || round($montantCommande - $montantFacture,2) > 0)) {
+      if ($hasFacture && (($this->getMetrageRestantALivrer() + $this->getPFRestantALivrer())  > 0 || round($montantCommande - $montantFacture,2) > 0)) {
       	$creditCommande = $this->updateCreditCommande(round($montantCommande - $montantFacture,2), $deviseId);
        	$creditCommande->save();
       } elseif (count($this->getCreditCommandes()) > 0) {
@@ -168,7 +168,8 @@ class Collection extends BaseCollection
       $creditCommande->setNumero('Commande : '.$this->getNumCommande());
       $creditCommande->setDate($this->getDateCommande());
       $creditCommande->setStatut(StatutsFacture::KEY_NON_PAYEE);
-      $creditCommande->setMetrage($this->getResteALivrer());
+      $creditCommande->setMetrage($this->getMetrageRestantALivrer());
+      $creditCommande->setPiece($this->getPFRestantALivrer());
       if ($montant >= 0) {
         $creditCommande->setMontantTotal($montant);
       } else {
