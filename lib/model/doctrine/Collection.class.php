@@ -14,14 +14,39 @@ class Collection extends BaseCollection
 {
     public function getPath($name, $absolute = false) {
         if($this->$name) {
-            
+
             return CollectionTable::getInstance()->getUploadPath($absolute).$this->$name;
         }
     }
 
+    public function getMetrageRestantALivrer() {
+      return $this->getRestantALivrer('metrage');
+    }
+
+    public function getPFRestantALivrer() {
+      return $this->getRestantALivrer('piece');
+    }
+
+    private function getRestantALivrer($attr) {
+      $quantiteEntree = 0;
+      $quantiteSortie = 0;
+      foreach ($this->getCollectionDetails() as $collectionDetail) {
+          $val = $collectionDetail->get($attr);
+          if (!is_numeric($val)) continue;
+          $quantiteEntree += $val;
+      }
+      foreach ($this->getCollectionLivraisons() as $collectionLivraison) {
+          $val = $collectionLivraison->get($attr);
+          if (!is_numeric($val)) continue;
+          $quantiteSortie += $val;
+      }
+      return $quantiteEntree - $quantiteSortie;
+    }
+
+
     public function delete(Doctrine_Connection $conn = null)
     {
-    	
+
     	foreach ($this->getCollectionLivraisons() as $collectionLivraison) {
     		if ($facture = $collectionLivraison->getFacture())
     			$facture->delete();
