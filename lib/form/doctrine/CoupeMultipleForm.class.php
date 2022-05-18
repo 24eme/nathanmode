@@ -72,9 +72,9 @@ class CoupeMultipleForm extends BaseForm
             $coupe = new Coupe();
             $coupe->setSaisonId($itemValues['saison_id']);
             $coupe->setCommercialId($itemValues['commercial_id']);
-            $coupe->setCommercialDeviseId(3);
+            $coupe->setCommercialDeviseId(Devise::POURCENTAGE_ID);
             $coupe->setFournisseurId($itemValues['fournisseur_id']);
-            $coupe->setFournisseurDeviseId(3);
+            $coupe->setFournisseurDeviseId(Devise::POURCENTAGE_ID);
             $coupe->setDateCommande($itemValues['date_demande']);
             $coupe->setClientId($itemValues['client_id']);
             //$coupe->setSituation(Situations::SITUATION_EN_COURS);
@@ -82,7 +82,7 @@ class CoupeMultipleForm extends BaseForm
             $coupe->setColori($itemValues['colori']);
             $coupe->setMetrage($itemValues['metrage']);
             //$coupe->setPrix($itemValues['prix']*1);
-            $coupe->setDeviseId(3);
+            $coupe->setDeviseId(Devise::EUROS_ID);
             $coupe->save();
         }
     }
