@@ -29,6 +29,7 @@
  * @property string $retard_livraison
  * @property date $livre_le
  * @property string $fichier
+ * @property string $situation
  * @property Saison $Saison
  * @property Fournisseur $Fournisseur
  * @property Commercial $Commercial
@@ -63,6 +64,7 @@
  * @method string      getRetardLivraison()        Returns the current record's "retard_livraison" value
  * @method date        getLivreLe()                Returns the current record's "livre_le" value
  * @method string      getFichier()                Returns the current record's "fichier" value
+ * @method string      getSituation()              Returns the current record's "situation" value
  * @method Saison      getSaison()                 Returns the current record's "Saison" value
  * @method Fournisseur getFournisseur()            Returns the current record's "Fournisseur" value
  * @method Commercial  getCommercial()             Returns the current record's "Commercial" value
@@ -96,6 +98,7 @@
  * @method Coupe       setRetardLivraison()        Sets the current record's "retard_livraison" value
  * @method Coupe       setLivreLe()                Sets the current record's "livre_le" value
  * @method Coupe       setFichier()                Sets the current record's "fichier" value
+ * @method Coupe       setSituation()              Sets the current record's "situation" value
  * @method Coupe       setSaison()                 Sets the current record's "Saison" value
  * @method Coupe       setFournisseur()            Sets the current record's "Fournisseur" value
  * @method Coupe       setCommercial()             Sets the current record's "Commercial" value
@@ -205,6 +208,10 @@ abstract class BaseCoupe extends sfDoctrineRecord
         $this->hasColumn('fichier', 'string', 255, array(
              'type' => 'string',
              'length' => 255,
+             ));
+        $this->hasColumn('situation', 'string', 128, array(
+             'type' => 'string',
+             'length' => 128,
              ));
     }
 

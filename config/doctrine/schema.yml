@@ -181,6 +181,9 @@ Coupe:
     fichier:
       type: string(255)
       default: NULL
+    situation:
+      type: string(128)
+      default: NULL
   relations:
     Saison:
       local: saison_id
