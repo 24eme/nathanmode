@@ -14,14 +14,39 @@ class Collection extends BaseCollection
 {
     public function getPath($name, $absolute = false) {
         if($this->$name) {
-            
+
             return CollectionTable::getInstance()->getUploadPath($absolute).$this->$name;
         }
     }
 
+    public function getMetrageRestantALivrer() {
+      return $this->getRestantALivrer('metrage');
+    }
+
+    public function getPFRestantALivrer() {
+      return $this->getRestantALivrer('piece');
+    }
+
+    private function getRestantALivrer($attr) {
+      $quantiteEntree = 0;
+      $quantiteSortie = 0;
+      foreach ($this->getCollectionDetails() as $collectionDetail) {
+          $val = $collectionDetail->get($attr);
+          if (!is_numeric($val)) continue;
+          $quantiteEntree += $val;
+      }
+      foreach ($this->getCollectionLivraisons() as $collectionLivraison) {
+          $val = $collectionLivraison->get($attr);
+          if (!is_numeric($val)) continue;
+          $quantiteSortie += $val;
+      }
+      return $quantiteEntree - $quantiteSortie;
+    }
+
+
     public function delete(Doctrine_Connection $conn = null)
     {
-    	
+
     	foreach ($this->getCollectionLivraisons() as $collectionLivraison) {
     		if ($facture = $collectionLivraison->getFacture())
     			$facture->delete();
@@ -103,7 +128,7 @@ class Collection extends BaseCollection
     			}
     		}
     	}
-      if ($hasFacture && ($this->getResteALivrer() > 0 || round($montantCommande - $montantFacture,2) > 0)) {
+      if ($hasFacture && (($this->getMetrageRestantALivrer() + $this->getPFRestantALivrer())  > 0 || round($montantCommande - $montantFacture,2) > 0)) {
       	$creditCommande = $this->updateCreditCommande(round($montantCommande - $montantFacture,2), $deviseId);
        	$creditCommande->save();
       } elseif (count($this->getCreditCommandes()) > 0) {
@@ -143,7 +168,8 @@ class Collection extends BaseCollection
       $creditCommande->setNumero('Commande : '.$this->getNumCommande());
       $creditCommande->setDate($this->getDateCommande());
       $creditCommande->setStatut(StatutsFacture::KEY_NON_PAYEE);
-      $creditCommande->setMetrage($this->getResteALivrer());
+      $creditCommande->setMetrage($this->getMetrageRestantALivrer());
+      $creditCommande->setPiece($this->getPFRestantALivrer());
       if ($montant >= 0) {
         $creditCommande->setMontantTotal($montant);
       } else {
@@ -157,23 +183,20 @@ class Collection extends BaseCollection
 
       if ($this->getDeviseFournisseur() && $this->getDeviseFournisseur()->getSymbole() == Devise::POURCENTAGE) {
       	try {
-      			$creditCommande->setTotalFournisseur($this->getMetrage() * $this->getPrix() * $creditCommande->getPrixFournisseur() / 100);
+      			$creditCommande->setTotalFournisseur($montant * $creditCommande->getPrixFournisseur() / 100);
       	} catch (Exception $e) {
       		$creditCommande->setTotalFournisseur(0);
       	}
-      } else {
-      	$creditCommande->setTotalFournisseur($this->getPrixFournisseur());
       }
 
       if ($this->getDeviseCommercial() && $this->getDeviseCommercial()->getSymbole() == Devise::POURCENTAGE) {
       	try {
-      			$creditCommande->setTotalCommercial($this->getMetrage() * $this->getPrix() * $creditCommande->getPrixCommercial() / 100);
+      			$creditCommande->setTotalCommercial($montant * $creditCommande->getPrixCommercial() / 100);
       	} catch (Exception $e) {
       		$creditCommande->setTotalCommercial(0);
       	}
-      } else {
-      	$creditCommande->setTotalCommercial($this->getPrixCommercial());
       }
+
       return $creditCommande;
     }
 }
