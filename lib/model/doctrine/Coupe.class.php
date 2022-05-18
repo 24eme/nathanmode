@@ -45,7 +45,17 @@ class Coupe extends BaseCoupe
             unlink($path);
         }
     }
-    
+
+    public function getQualite() {
+
+        return $this->tissu;
+    }
+
+    public function setQualite($qualite) {
+
+        $this->tissu = $qualite;
+    }
+
   public function save(Doctrine_Connection $conn = null)
   {
   	$facture = $this->updateFacture();
