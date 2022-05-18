@@ -183,23 +183,20 @@ class Collection extends BaseCollection
 
       if ($this->getDeviseFournisseur() && $this->getDeviseFournisseur()->getSymbole() == Devise::POURCENTAGE) {
       	try {
-      			$creditCommande->setTotalFournisseur($this->getMetrage() * $this->getPrix() * $creditCommande->getPrixFournisseur() / 100);
+      			$creditCommande->setTotalFournisseur($montant * $creditCommande->getPrixFournisseur() / 100);
       	} catch (Exception $e) {
       		$creditCommande->setTotalFournisseur(0);
       	}
-      } else {
-      	$creditCommande->setTotalFournisseur($this->getPrixFournisseur());
       }
 
       if ($this->getDeviseCommercial() && $this->getDeviseCommercial()->getSymbole() == Devise::POURCENTAGE) {
       	try {
-      			$creditCommande->setTotalCommercial($this->getMetrage() * $this->getPrix() * $creditCommande->getPrixCommercial() / 100);
+      			$creditCommande->setTotalCommercial($montant * $creditCommande->getPrixCommercial() / 100);
       	} catch (Exception $e) {
       		$creditCommande->setTotalCommercial(0);
       	}
-      } else {
-      	$creditCommande->setTotalCommercial($this->getPrixCommercial());
       }
+
       return $creditCommande;
     }
 }
