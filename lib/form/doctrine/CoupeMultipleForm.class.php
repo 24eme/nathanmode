@@ -68,30 +68,22 @@ class CoupeMultipleForm extends BaseForm
             if(!isset($itemValues['colori']) || !$itemValues['colori']) {
                 continue;
             }
-            $key = $itemValues['saison_id'].'_'.$itemValues['fournisseur_id'].'_'.$itemValues['client_id'];
-            if(!isset($collections[$key])) {
-                $collection = new Collection();
-                $collection->setSaisonId($itemValues['saison_id']);
-                $collection->setCommercialId($itemValues['commercial_id']);
-                $collection->setDeviseCommercialId(3);
-                $collection->setFournisseurId($itemValues['fournisseur_id']);
-                $collection->setDeviseFournisseurId(3);
-                $collection->setDateCommande($itemValues['date_demande']);
-                $collection->setClientId($itemValues['client_id']);
-                $collection->setQualite($itemValues['qualite']);
-                $collection->setSituation(Situations::SITUATION_EN_COURS);
-                $collection->setProduction(0);
-                $collection->save();
-                $collections[$key] = $collection;
-            }
             
-            $collectionDetail = new CollectionDetail();
-            $collectionDetail->setCollectionId($collection->getId());
-            $collectionDetail->setColori($itemValues['colori']);
-            $collectionDetail->setMetrage($itemValues['metrage']);
-            $collectionDetail->setPrix($itemValues['prix']*1);
-            $collectionDetail->setDeviseId(1);
-            $collectionDetail->save();
+            $coupe = new Coupe();
+            $coupe->setSaisonId($itemValues['saison_id']);
+            $coupe->setCommercialId($itemValues['commercial_id']);
+            $coupe->setCommercialDeviseId(3);
+            $coupe->setFournisseurId($itemValues['fournisseur_id']);
+            $coupe->setFournisseurDeviseId(3);
+            $coupe->setDateCommande($itemValues['date_demande']);
+            $coupe->setClientId($itemValues['client_id']);
+            //$coupe->setSituation(Situations::SITUATION_EN_COURS);
+            $coupe->setQualite($itemValues['qualite']);
+            $coupe->setColori($itemValues['colori']);
+            $coupe->setMetrage($itemValues['metrage']);
+            //$coupe->setPrix($itemValues['prix']*1);
+            $coupe->setDeviseId(3);
+            $coupe->save();
         }
     }
 }
