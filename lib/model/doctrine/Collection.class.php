@@ -19,6 +19,16 @@ class Collection extends BaseCollection
         }
     }
 
+    public function isInRetardDespiteTimeExtension($date) {
+      $retard = null;
+      foreach ($this->getCollectionRetards() as $collectionRetard) {
+        if (!$retard||$collectionRetard->getDate() > $retard) {
+          $retard = $collectionRetard->getDate();
+        }
+      }
+      return ($retard)? ($date >= $retard) : false;
+    }
+
     public function getMetrageRestantALivrer() {
       return $this->getRestantALivrer('metrage');
     }
