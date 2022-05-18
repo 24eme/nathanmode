@@ -35,7 +35,7 @@ EOF;
         $log = '';
         foreach($relancesTypes as $relanceType) {
           $items = CollectionTable::getInstance()->getNonLivres($relanceType['isproduction'], $relanceType['nbjouravantretard'], $relanceType['nbrelance']);
-          $itemsByFournisseurs = $this->organizeByFournisseur($items);
+          $itemsByFournisseurs = $this->organizeByFournisseur($items, $relanceType['nbjouravantretard']);
           foreach($itemsByFournisseurs as $idFournisseur => $itemsByFournisseur) {
             $fournisseur = FournisseurTable::getInstance()->findOneById($idFournisseur);
             $fournisseurEmails = ($fournisseur->emails)? explode(',', $fournisseur->emails) : null;
@@ -82,9 +82,10 @@ EOF;
       return $result;
     }
 
-    private function organizeByFournisseur($items) {
+    private function organizeByFournisseur($items, $nbJour) {
       $result = array();
       foreach($items as $item) {
+        if (!$item->isInRetardDespiteTimeExtension(date('Y-m-d', strtotime("+$nbJour day")))) continue;
         if (!isset($result[$item->fournisseur_id])) {
           $result[$item->fournisseur_id] = array();
         }
