@@ -1163,3 +1163,6 @@ dl, ol, ul {
 #activite_filters_commercial_id_chosen {
 	width: 12rem !important;
 }
+.details .btn {
+	text-decoration: none !important;
+}
