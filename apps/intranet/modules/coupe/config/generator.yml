@@ -23,13 +23,14 @@ generator:
       list:
         max_per_page: 50
         batch_actions: {}
+        sort: [date_commande, desc]
         actions:
           csv: { label: "CSV" }
           _new: ~
         title: "Liste des coupes"
-        display: [Saison, Fournisseur, Client, tissu, colori, metrage, _piece_categorie, piece, livre_le, _facture]
+        display: [date_commande, Saison, Fournisseur, Client, tissu, colori, metrage, prix, livre_le, num_facture, _facture, situation]
       filter:
-        display: [saison_id, fournisseur_id, client_id, tissu, colori, metrage, piece_categorie, piece, livre_le, fichier]
+        display: [date_commande, saison_id, fournisseur_id, client_id, tissu, colori, metrage, prix, livre_le, num_facture, fichier, situation]
       form: ~
       edit:
         title: "Modification de la coupe %%tissu%% %%colori%% %%metrage%%"
