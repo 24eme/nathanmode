@@ -145,6 +145,9 @@ Coupe:
     paiement:
       type: string(128)
       default: NULL
+    prix:
+      type: double
+      default: NULL
     montant_facture:
       type: double
       default: NULL
@@ -180,6 +183,9 @@ Coupe:
       default: NULL
     fichier:
       type: string(255)
+      default: NULL
+    situation:
+      type: string(128)
       default: NULL
   relations:
     Saison:

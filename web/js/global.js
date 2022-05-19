@@ -82,7 +82,8 @@ $(document).ready(function() {
     $('#table_coupe_multiple').find('[name*="commercial_id"]').sortSelect().chosen();
     $('#table_coupe_multiple').find('[name*="fournisseur_id"]').sortSelect().chosen();
     $('#table_coupe_multiple').find('[name*="client_id"]').sortSelect().chosen();
-
+    $('#table_coupe_multiple').find('[name*="situation"]').sortSelect().chosen();
+    
     function addCoupeMultipleLine() {
         const lastLine = $('.coupe_multiple_ligne').last();
         lastLine.find('[name*="saison_id"]').chosen("destroy");

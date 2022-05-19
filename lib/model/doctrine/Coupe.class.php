@@ -71,6 +71,10 @@ class Coupe extends BaseCoupe
   
   public function updateFacture()
   {
+    if($this->getPrix() && $this->getMetrage()) {
+        $this->setMontantFacture(round($this->getPrix()*$this->getMetrage(), 2));
+    }
+
   	$facture = ($this->isNew())? new Facture() : $this->getFacture();
   	if ($this->isNew()) {
   		$facture->setActif(true);
