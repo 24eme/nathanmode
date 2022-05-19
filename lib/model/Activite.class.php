@@ -7,7 +7,15 @@ class Activite
 	public $saison;
 	public $commercial;
 	public $produit;
-	
+
+	public static $ACCESSOIRES_CATEGORIES = array(
+		"ACCESSOIRES",
+		"ECHARPRES",
+		"BONNETS",
+		"GANTS",
+		"MAROQUINERIE",
+	);
+
 	public function __construct($from, $to, $saison, $commercial, $produit)
 	{
 		$this->from = $from;
