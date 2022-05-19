@@ -46,12 +46,15 @@ class CoupeMultipleForm extends BaseForm
 
         $formItem->setWidget('prix', new sfWidgetFormInput());
         $formItem->setValidator('prix', new sfValidatorPass());
+        
+        $formItem->setWidget('num_facture', new sfWidgetFormInput());
+        $formItem->setValidator('num_facture', new sfValidatorPass());
+
+        $formItem->setWidget('fichier', new sfWidgetFormInputFile(array()));
+        $formItem->setValidator('fichier', new sfValidatorFile(array('required' => false, 'path' => FactureTable::getInstance()->getUploadPath(true))));
 
         $formItem->setWidget('situation', new sfWidgetFormChoice(array('choices' => $this->getSituations())));
         $formItem->setValidator('situation', new sfValidatorChoice(array('choices' => array_keys($this->getSituations()), 'required' => false)));
-        
-        $formItem->setWidget('fichier', new sfWidgetFormInputFile(array()));
-        $formItem->setValidator('fichier', new sfValidatorFile(array('required' => false, 'path' => FactureTable::getInstance()->getUploadPath(true))));
  
         return $formItem;
     }
@@ -91,9 +94,10 @@ class CoupeMultipleForm extends BaseForm
             $coupe->setQualite($itemValues['qualite']);
             $coupe->setColori($itemValues['colori']);
             $coupe->setMetrage($itemValues['metrage']);
-            //$coupe->setPrix($itemValues['prix']*1);
+            $coupe->setPrix($itemValues['prix']*1);
             $coupe->setDeviseId(Devise::EUROS_ID);
             $coupe->setSituation($itemValues['situation']);
+            $coupe->setNumFacture($itemValues['num_facture']);
 
             if($itemValues['fichier']) {
                 $coupe->setFichier($itemValues['fichier']->generateFilename());

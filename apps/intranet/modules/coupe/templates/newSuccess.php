@@ -31,7 +31,8 @@
                 <th>Colori</th>
                 <th>Métrage</th>
                 <th>Prix</th>
-                <th>Facture</th>
+                <th>N° Facture</th>
+                <th>PDF Facture</th>
                 <th>Situation</th>
                 <th></th>
             </tr>
@@ -49,6 +50,7 @@
                 <td style="padding: 4px;"><?php echo $formItem['colori']->render(array('style' => 'width: 150px;')); ?><?php echo $formItem['colori']->renderError(); ?></td>
                 <td style="padding: 4px;"><?php echo $formItem['metrage']->render(array('style' => 'width: 60px;')); ?><?php echo $formItem['metrage']->renderError(); ?></td>
                 <td style="padding: 4px; padding-right: 0;"><?php echo $formItem['prix']->render(array('style' => 'width: 60px;')); ?><?php echo $formItem['prix']->renderError(); ?></td>
+                <td style="padding: 4px; padding-right: 0;"><?php echo $formItem['num_facture']->render(array('style' => 'width: 60px;')); ?><?php echo $formItem['num_facture']->renderError(); ?></td>
                 <td style="padding: 4px;"><?php echo $formItem['fichier']->render(array('style' => 'width: 120px;')); ?><?php echo $formItem['fichier']->renderError(); ?></td>
                 <td style="padding: 4px;"><?php echo $formItem['situation']->render(array('style' => 'width: 100px;')); ?><?php echo $formItem['situation']->renderError(); ?></td>
                 <td style="padding-left: 10px;"><a class="lien_supprimer_ligne" href="#">X</a></td>

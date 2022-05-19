@@ -17,6 +17,7 @@
  * @property integer $facture_id
  * @property integer $commande_id
  * @property string $paiement
+ * @property double $prix
  * @property double $montant_facture
  * @property string $num_facture
  * @property date $date_commande
@@ -52,6 +53,7 @@
  * @method integer     getFactureId()              Returns the current record's "facture_id" value
  * @method integer     getCommandeId()             Returns the current record's "commande_id" value
  * @method string      getPaiement()               Returns the current record's "paiement" value
+ * @method double      getPrix()                   Returns the current record's "prix" value
  * @method double      getMontantFacture()         Returns the current record's "montant_facture" value
  * @method string      getNumFacture()             Returns the current record's "num_facture" value
  * @method date        getDateCommande()           Returns the current record's "date_commande" value
@@ -86,6 +88,7 @@
  * @method Coupe       setFactureId()              Sets the current record's "facture_id" value
  * @method Coupe       setCommandeId()             Sets the current record's "commande_id" value
  * @method Coupe       setPaiement()               Sets the current record's "paiement" value
+ * @method Coupe       setPrix()                   Sets the current record's "prix" value
  * @method Coupe       setMontantFacture()         Sets the current record's "montant_facture" value
  * @method Coupe       setNumFacture()             Sets the current record's "num_facture" value
  * @method Coupe       setDateCommande()           Sets the current record's "date_commande" value
@@ -164,6 +167,9 @@ abstract class BaseCoupe extends sfDoctrineRecord
         $this->hasColumn('paiement', 'string', 128, array(
              'type' => 'string',
              'length' => 128,
+             ));
+        $this->hasColumn('prix', 'double', null, array(
+             'type' => 'double',
              ));
         $this->hasColumn('montant_facture', 'double', null, array(
              'type' => 'double',
