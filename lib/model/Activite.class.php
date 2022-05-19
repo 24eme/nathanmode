@@ -130,6 +130,54 @@ class Activite
 
 	}
 
+	public function getDetailledPcs($devise = 1, $client = null, $fournisseur = null)
+	{
+		$where = "";
+		if ($client) {
+			$where .= " AND b.client_id = ".$client;
+		}
+		if ($fournisseur) {
+			$where .= " AND b.fournisseur_id = ".$fournisseur;
+		}
+		if ($this->saison) {
+			$where .= " AND b.saison_id = ".$this->saison;
+		}
+		if ($this->commercial) {
+			$where .= " AND b.commercial_id = ".$this->commercial;
+		}
+		if ($this->produit == 'mts') {
+			$where .= " AND b.metrage IS NOT NULL AND b.metrage != ''";
+		}
+		if ($this->produit == 'pcs') {
+			$where .= " AND b.piece IS NOT NULL AND b.piece != ''";
+		}
+		if (preg_match("/^pcs_/", $this->produit)) {
+			$where .= " AND b.piece_categorie = '".str_replace("pcs_", "", $this->produit)."' AND b.piece IS NOT NULL AND b.piece != ''";
+		}
+
+		$reqCredit = "SELECT b.piece_categorie as categorie, SUM(b.piece) as montant FROM bon b WHERE b.type != 'Facture' AND b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where." GROUP BY categorie";
+		$items = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc($reqCredit);
+		$resultCredit = array();
+		foreach ($items as $item) {
+			$resultCredit[$item['categorie']] = ($item['montant'])? $item['montant']*-1 : 0;
+		}
+
+		$reqFacture = "SELECT b.piece_categorie as categorie, SUM(b.piece) as montant FROM commande b WHERE b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where." GROUP BY categorie";
+		$items = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc($reqFacture);
+		$resultFacture = array();
+		foreach ($items as $item) {
+			$resultFacture[$item['categorie']] = ($item['montant'])? $item['montant'] : 0;
+			if (isset($resultCredit[$item['categorie']])) {
+					$resultFacture[$item['categorie']] += $resultCredit[$item['categorie']];
+					unset($resultCredit[$item['categorie']]);
+			}
+		}
+		foreach($resultCredit as $k => $v) {
+			$resultFacture[$k] = $v;
+		}
+		return $resultFacture;
+	}
+
 	private function getPcs($devise = 1, $client = null, $fournisseur = null, $accessoire = true)
 	{
 		$where = "";
