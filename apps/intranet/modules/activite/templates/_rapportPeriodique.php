@@ -217,3 +217,107 @@
         </div>
     </div>
 </div>
+
+<p class="text-center mt-3 mb-0 details">
+  <a class="btn btn-light btn-sm" data-toggle="collapse" href="#details<?php if(isset($annuel)): ?>Annee<?php else: ?>Periode<?php endif; ?>" role="button" aria-expanded="false">
+    Détails Produits <span class="oi oi-chevron-bottom"></span>
+  </a>
+</p>
+
+<div class="collapse pt-3" id="details<?php if(isset($annuel)): ?>Annee<?php else: ?>Periode<?php endif; ?>">
+  <div class="row">
+      <div class="col-sm-4">
+        <?php $items = $activites->getDetailledPcs($devise, $clientId, $fournisseurId); ?>
+        <div class="card border-info">
+          <div class="card-header bg-info text-white"><h5>ACCES.</h5></div>
+          <div class="list-group list-group-flush">
+              <?php
+                foreach($items as $k => $valeur) :
+                  if (!in_array($k,Activite::$ACCESSOIRES_CATEGORIES)||!$valeur) continue;
+              ?>
+              <div class="list-group-item">
+                  <div class="col-8 text-dark small"><?php echo PieceCategories::getLibelle($k) ?></div>
+                  <div class="col-4 text-right text-dark"><?php echo number_format($valeur, 2, ',', ' ') ?></div>
+              </div>
+              <?php endforeach; ?>
+          </div>
+        </div>
+        <div class="card border-info mt-2">
+          <div class="card-header bg-info text-white"><h5>PF CN.</h5></div>
+          <div class="list-group list-group-flush">
+              <?php
+                foreach($items as $k => $valeur) :
+                  if (in_array($k,Activite::$ACCESSOIRES_CATEGORIES)||!$valeur) continue;
+              ?>
+              <div class="list-group-item">
+                  <div class="col-8 text-dark small"><?php echo PieceCategories::getLibelle($k) ?></div>
+                  <div class="col-4 text-right text-dark"><?php echo number_format($valeur, 2, ',', ' ') ?></div>
+              </div>
+              <?php endforeach; ?>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <?php $items = $activites1->getDetailledPcs($devise, $clientId, $fournisseurId);  ?>
+        <div class="card border-secondary">
+          <div class="card-header bg-secondary text-white"><h5>ACCES.</h5></div>
+          <div class="list-group list-group-flush">
+              <?php
+                foreach($items as $k => $valeur) :
+                  if (!in_array($k,Activite::$ACCESSOIRES_CATEGORIES)||!$valeur) continue;
+              ?>
+              <div class="list-group-item">
+                  <div class="col-8 text-dark small"><?php echo PieceCategories::getLibelle($k) ?></div>
+                  <div class="col-4 text-right text-dark"><?php echo number_format($valeur, 2, ',', ' ') ?></div>
+              </div>
+              <?php endforeach; ?>
+          </div>
+        </div>
+        <div class="card border-secondary mt-2">
+          <div class="card-header bg-secondary text-white"><h5>PF CN.</h5></div>
+          <div class="list-group list-group-flush">
+              <?php
+                foreach($items as $k => $valeur) :
+                  if (in_array($k,Activite::$ACCESSOIRES_CATEGORIES)||!$valeur) continue;
+              ?>
+              <div class="list-group-item">
+                  <div class="col-8 text-dark small"><?php echo PieceCategories::getLibelle($k) ?></div>
+                  <div class="col-4 text-right text-dark"><?php echo number_format($valeur, 2, ',', ' ') ?></div>
+              </div>
+              <?php endforeach; ?>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <?php $items = $activites2->getDetailledPcs($devise, $clientId, $fournisseurId); ?>
+        <div class="card border-secondary">
+          <div class="card-header bg-secondary text-white"><h5>ACCES.</h5></div>
+          <div class="list-group list-group-flush">
+              <?php
+                foreach($items as $k => $valeur) :
+                  if (!in_array($k,Activite::$ACCESSOIRES_CATEGORIES)||!$valeur) continue;
+              ?>
+              <div class="list-group-item">
+                  <div class="col-8 text-dark small"><?php echo PieceCategories::getLibelle($k) ?></div>
+                  <div class="col-4 text-right text-dark"><?php echo number_format($valeur, 2, ',', ' ') ?></div>
+              </div>
+              <?php endforeach; ?>
+          </div>
+        </div>
+        <div class="card border-secondary mt-2">
+          <div class="card-header bg-secondary text-white"><h5>PF CN.</h5></div>
+          <div class="list-group list-group-flush">
+              <?php
+                foreach($items as $k => $valeur) :
+                  if (in_array($k,Activite::$ACCESSOIRES_CATEGORIES)||!$valeur) continue;
+              ?>
+              <div class="list-group-item">
+                  <div class="col-8 text-dark small"><?php echo PieceCategories::getLibelle($k) ?></div>
+                  <div class="col-4 text-right text-dark"><?php echo number_format($valeur, 2, ',', ' ') ?></div>
+              </div>
+            <?php endforeach; ?>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
