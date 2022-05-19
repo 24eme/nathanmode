@@ -200,9 +200,9 @@ class Activite
 			$where .= " AND b.piece IS NOT NULL AND b.piece != ''";
 		}
 		if ($accessoire) {
-			$where .= " AND b.piece_categorie = 'ACCESSOIRES'";
+			$where .= " AND b.piece_categorie IN ('".implode("','", self::$ACCESSOIRES_CATEGORIES)."')";
 		} else {
-			$where .= " AND (b.piece_categorie != 'ACCESSOIRES' OR b.piece_categorie IS NULL OR b.piece_categorie = '')";
+			$where .= " AND (b.piece_categorie NOT IN ('".implode("','", self::$ACCESSOIRES_CATEGORIES)."') OR b.piece_categorie IS NULL OR b.piece_categorie = '')";
 		}
 		if (preg_match("/^pcs_/", $this->produit)) {
 			$where .= " AND b.piece_categorie = '".str_replace("pcs_", "", $this->produit)."' AND b.piece IS NOT NULL AND b.piece != ''";
