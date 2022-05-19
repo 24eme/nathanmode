@@ -49,7 +49,10 @@ class CoupeMultipleForm extends BaseForm
 
         $formItem->setWidget('situation', new sfWidgetFormChoice(array('choices' => $this->getSituations())));
         $formItem->setValidator('situation', new sfValidatorChoice(array('choices' => array_keys($this->getSituations()), 'required' => false)));
-
+        
+        $formItem->setWidget('fichier', new sfWidgetFormInputFile(array()));
+        $formItem->setValidator('fichier', new sfValidatorFile(array('required' => false, 'path' => FactureTable::getInstance()->getUploadPath(true))));
+ 
         return $formItem;
     }
 
@@ -85,13 +88,18 @@ class CoupeMultipleForm extends BaseForm
             $coupe->setFournisseurDeviseId(Devise::POURCENTAGE_ID);
             $coupe->setDateCommande($itemValues['date_demande']);
             $coupe->setClientId($itemValues['client_id']);
-            //$coupe->setSituation(Situations::SITUATION_EN_COURS);
             $coupe->setQualite($itemValues['qualite']);
             $coupe->setColori($itemValues['colori']);
             $coupe->setMetrage($itemValues['metrage']);
             //$coupe->setPrix($itemValues['prix']*1);
             $coupe->setDeviseId(Devise::EUROS_ID);
             $coupe->setSituation($itemValues['situation']);
+
+            if($itemValues['fichier']) {
+                $coupe->setFichier($itemValues['fichier']->generateFilename());
+                $itemValues['fichier']->save($coupe->getFichier());
+            }
+
             $coupe->save();
         }
     }
