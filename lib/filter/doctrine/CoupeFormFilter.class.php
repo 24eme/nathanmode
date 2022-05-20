@@ -41,6 +41,7 @@ class CoupeFormFilter extends BaseCoupeFormFilter
   		)
   	);
   	
+    $this->setWidget('situation', new sfWidgetFormChoice(array('choices' => array_merge(array('' => ' '), CoupeForm::getSituations()), 'multiple' => false)));
   	$this->getWidget('tissu')->setOption('with_empty', false);
   	$this->getWidget('colori')->setOption('with_empty', false);
   	$this->getWidget('metrage')->setOption('with_empty', false);
@@ -61,6 +62,10 @@ class CoupeFormFilter extends BaseCoupeFormFilter
   }
 
   public function addPieceCategorieColumnQuery($query, $field, $values) {
+        $this->addEnumQuery($query, $field, $values);
+  }
+  
+  public function addSituationColumnQuery($query, $field, $values) {
         $this->addEnumQuery($query, $field, $values);
   }
 

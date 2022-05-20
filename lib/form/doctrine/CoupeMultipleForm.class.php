@@ -41,8 +41,11 @@ class CoupeMultipleForm extends BaseForm
         $formItem->setWidget('colori', new sfWidgetFormInput());
         $formItem->setValidator('colori', new sfValidatorPass());
 
-        $formItem->setWidget('metrage', new sfWidgetFormInput());
-        $formItem->setValidator('metrage', new sfValidatorPass());
+        $formItem->setWidget('quantite_type', new sfWidgetFormChoice(array('choices' => CoupeForm::getQuantiteType())));
+        $formItem->setValidator('quantite_type', new sfValidatorChoice(array('choices' => array_keys(CoupeForm::getQuantiteType()), 'required' => false)));
+
+        $formItem->setWidget('quantite', new sfWidgetFormInput());
+        $formItem->setValidator('quantite', new sfValidatorPass());
 
         $formItem->setWidget('prix', new sfWidgetFormInput());
         $formItem->setValidator('prix', new sfValidatorPass());
@@ -53,8 +56,8 @@ class CoupeMultipleForm extends BaseForm
         $formItem->setWidget('fichier', new sfWidgetFormInputFile(array()));
         $formItem->setValidator('fichier', new sfValidatorFile(array('required' => false, 'path' => FactureTable::getInstance()->getUploadPath(true))));
 
-        $formItem->setWidget('situation', new sfWidgetFormChoice(array('choices' => $this->getSituations())));
-        $formItem->setValidator('situation', new sfValidatorChoice(array('choices' => array_keys($this->getSituations()), 'required' => false)));
+        $formItem->setWidget('situation', new sfWidgetFormChoice(array('choices' => array_merge(array("" => "Select an option"), CoupeForm::getSituations()))));
+        $formItem->setValidator('situation', new sfValidatorChoice(array('choices' => array_keys(CoupeForm::getSituations()), 'required' => false)));
  
         return $formItem;
     }
@@ -68,11 +71,6 @@ class CoupeMultipleForm extends BaseForm
         $this->embedForm('coupes', $formCollection);
 
         return parent::bind($taintedValues, $taintedFiles);
-    }
-
-    public function getSituations() {
-
-        return array_merge(array("" => "Select an Option"), array_filter(Situations::getListe(), function($k) { return in_array($k, array('EN_COURS', 'ATTENTE_LIVRAISON',  'EXPE_ATT_FACTURE', 'ATTENTE_PAIEMENT', 'SOLDEE')); }, ARRAY_FILTER_USE_KEY));
     }
 
     public function save() {
@@ -93,7 +91,12 @@ class CoupeMultipleForm extends BaseForm
             $coupe->setClientId($itemValues['client_id']);
             $coupe->setQualite($itemValues['qualite']);
             $coupe->setColori($itemValues['colori']);
-            $coupe->setMetrage($itemValues['metrage']);
+            if($itemValues['quantite_type'] == "METRAGE") {
+                $coupe->setMetrage($itemValues['quantite']);
+            } else {
+                $coupe->setPiece($itemValues['quantite']);
+                $coupe->setPieceCategorie($itemValues['quantite_type']);
+            }
             $coupe->setPrix($itemValues['prix']*1);
             $coupe->setDeviseId(Devise::EUROS_ID);
             $coupe->setSituation($itemValues['situation']);
@@ -107,4 +110,5 @@ class CoupeMultipleForm extends BaseForm
             $coupe->save();
         }
     }
+
 }

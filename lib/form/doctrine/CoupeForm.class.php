@@ -80,4 +80,15 @@ class CoupeForm extends BaseCoupeForm
         $this->defaults['fournisseur_devise_id'] = Devise::POURCENTAGE_ID;
       }
     }
+    
+    public static function getSituations() {
+
+        return array_filter(Situations::getListe(), function($k) { return in_array($k, array('EN_COURS', 'ATTENTE_LIVRAISON',  'EXPE_ATT_FACTURE', 'ATTENTE_PAIEMENT', 'SOLDEE')); }, ARRAY_FILTER_USE_KEY);
+    }
+    
+    
+    public static function getQuantiteType() {
+
+        return array_merge(array("METRAGE" => "Métrage"), PieceCategories::getListe());
+    }
 }

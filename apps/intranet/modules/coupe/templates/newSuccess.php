@@ -29,10 +29,11 @@
                 <th>Client</th>
                 <th>Qualité</th>
                 <th>Colori</th>
-                <th>Métrage</th>
+                <th>Quantité Type</th>
+                <th>Quantité</th>
                 <th>Prix</th>
                 <th>N° Facture</th>
-                <th>PDF Facture</th>
+                <th style="text-align: center;">PDF Facture</th>
                 <th>Situation</th>
                 <th></th>
             </tr>
@@ -44,14 +45,15 @@
                 <td style="padding: 4px; padding-left: 0;"><?php echo $formItem['commercial_id']->render(array('style' => 'width: 100px;')); ?><?php echo $formItem['commercial_id']->renderError(); ?></td>
                 <td style="padding: 4px;"><?php echo $formItem['date_demande']->render(); ?><?php echo $formItem['date_demande']->renderError(); ?></td>
                 <td style="padding: 4px;"><?php echo $formItem['commande']->render(array('style' => 'width: 80px;')); ?><?php echo $formItem['commande']->renderError(); ?></td>
-                <td style="padding: 4px;"><?php echo $formItem['fournisseur_id']->render(array('style' => 'width: 150px;')); ?><?php echo $formItem['fournisseur_id']->renderError(); ?></td>
-                <td style="padding: 4px;"><?php echo $formItem['client_id']->render(array('style' => 'width: 150px;')); ?><?php echo $formItem['client_id']->renderError(); ?></td>
-                <td style="padding: 4px;"><?php echo $formItem['qualite']->render(array('list' => 'liste_qualite', 'style' => 'width: 150px;', 'autocomplete' => 'off')); ?><?php echo $formItem['qualite']->renderError(); ?></td>
-                <td style="padding: 4px;"><?php echo $formItem['colori']->render(array('style' => 'width: 150px;')); ?><?php echo $formItem['colori']->renderError(); ?></td>
-                <td style="padding: 4px;"><?php echo $formItem['metrage']->render(array('style' => 'width: 60px;')); ?><?php echo $formItem['metrage']->renderError(); ?></td>
+                <td style="padding: 4px;"><?php echo $formItem['fournisseur_id']->render(array('style' => 'width: 120px;')); ?><?php echo $formItem['fournisseur_id']->renderError(); ?></td>
+                <td style="padding: 4px;"><?php echo $formItem['client_id']->render(array('style' => 'width: 120px;')); ?><?php echo $formItem['client_id']->renderError(); ?></td>
+                <td style="padding: 4px;"><?php echo $formItem['qualite']->render(array('list' => 'liste_qualite', 'style' => 'width: 120px;', 'autocomplete' => 'off')); ?><?php echo $formItem['qualite']->renderError(); ?></td>
+                <td style="padding: 4px;"><?php echo $formItem['colori']->render(array('style' => 'width: 120px;')); ?><?php echo $formItem['colori']->renderError(); ?></td>
+                <td style="padding: 4px;"><?php echo $formItem['quantite_type']->render(array('style' => 'width: 100px;')); ?><?php echo $formItem['quantite_type']->renderError(); ?></td>
+                <td style="padding: 4px;"><?php echo $formItem['quantite']->render(array('style' => 'width: 60px;')); ?><?php echo $formItem['quantite']->renderError(); ?></td>
                 <td style="padding: 4px; padding-right: 0;"><?php echo $formItem['prix']->render(array('style' => 'width: 60px;')); ?><?php echo $formItem['prix']->renderError(); ?></td>
                 <td style="padding: 4px; padding-right: 0;"><?php echo $formItem['num_facture']->render(array('style' => 'width: 60px;')); ?><?php echo $formItem['num_facture']->renderError(); ?></td>
-                <td style="padding: 4px;"><?php echo $formItem['fichier']->render(array('style' => 'width: 120px;')); ?><?php echo $formItem['fichier']->renderError(); ?></td>
+                <td style="padding: 4px;"><?php echo $formItem['fichier']->render(array('style' => 'width: 140px;')); ?><?php echo $formItem['fichier']->renderError(); ?></td>
                 <td style="padding: 4px;"><?php echo $formItem['situation']->render(array('style' => 'width: 100px;')); ?><?php echo $formItem['situation']->renderError(); ?></td>
                 <td style="padding-left: 10px;"><a class="lien_supprimer_ligne" href="#">X</a></td>
             </tr>

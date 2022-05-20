@@ -60,6 +60,11 @@ $(document).ready(function() {
 		allow_single_deselect:true,
    	 	width: "100%"
   	});
+    $('#coupe_filters_situation').sortSelect().chosen({
+        placeholder_text_single: "-",
+        allow_single_deselect:true,
+        width: "100%"
+    });
 	$('#activite_filters_saison_id').sortSelect().chosen({
     	placeholder_text_single: "-",
 		allow_single_deselect:true,
@@ -82,6 +87,7 @@ $(document).ready(function() {
     $('#table_coupe_multiple').find('[name*="commercial_id"]').sortSelect().chosen();
     $('#table_coupe_multiple').find('[name*="fournisseur_id"]').sortSelect().chosen();
     $('#table_coupe_multiple').find('[name*="client_id"]').sortSelect().chosen();
+    $('#table_coupe_multiple').find('[name*="quantite_type"]').sortSelect().chosen();
     $('#table_coupe_multiple').find('[name*="situation"]').sortSelect().chosen();
     
     function addCoupeMultipleLine() {
