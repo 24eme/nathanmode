@@ -63,4 +63,11 @@ class coupeActions extends autoCoupeActions
       
       return $this->renderText('test');
   }
+  
+  public function executeLigneview(sfWebRequest $request)
+  {
+      $this->coupe = CoupeTable::getInstance()->find($request->getParameter('id'));
+      
+      return $this->renderPartial($request->getParameter('partial'), array('coupe' => $this->coupe));
+  }
 }

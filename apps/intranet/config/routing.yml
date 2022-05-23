@@ -119,6 +119,10 @@ coupe_ligne_update:
   url:   /coupe/ligne-update
   param: { module: coupe, action: ligneupdate }
 
+coupe_ligne_view:
+  url:   /coupe/ligne-view
+  param: { module: coupe, action: ligneview }
+
 coupe:
   class: sfDoctrineRouteCollection
   options:
