@@ -138,6 +138,20 @@ $(document).ready(function() {
 
         return false;
     });
+    
+    $('.submit_ajax_on_change').on('change', function() {
+        console.log($(this).attr('form'));
+        let form = $('#' + $(this).attr('form'));
+        console.log(document.querySelector('#' + $(this).attr('form')));
+        formData = new FormData(document.getElementById($(this).attr('form')));
+        console.log(formData);
+        let xhr = new XMLHttpRequest();
+        xhr.open(form.attr('method'), form.attr('action'), true);
+        xhr.onreadystatechange = function () {
+            
+        };
+        xhr.send(formData);
+    });
 
 
 	// COLLECTION & PRODUCTION CHOSEN

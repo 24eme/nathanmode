@@ -28,6 +28,7 @@ abstract class BaseCoupeForm extends BaseFormDoctrine
       'facture_id'             => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Facture'), 'add_empty' => false)),
       'commande_id'            => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Commande'), 'add_empty' => false)),
       'paiement'               => new sfWidgetFormInputText(),
+      'prix'                   => new sfWidgetFormInputText(),
       'montant_facture'        => new sfWidgetFormInputText(),
       'num_facture'            => new sfWidgetFormInputText(),
       'date_commande'          => new sfWidgetFormDate(),
@@ -40,6 +41,7 @@ abstract class BaseCoupeForm extends BaseFormDoctrine
       'retard_livraison'       => new sfWidgetFormInputText(),
       'livre_le'               => new sfWidgetFormDate(),
       'fichier'                => new sfWidgetFormInputText(),
+      'situation'              => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
@@ -56,6 +58,7 @@ abstract class BaseCoupeForm extends BaseFormDoctrine
       'facture_id'             => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Facture'))),
       'commande_id'            => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Commande'))),
       'paiement'               => new sfValidatorString(array('max_length' => 128, 'required' => false)),
+      'prix'                   => new sfValidatorPass(array('required' => false)),
       'montant_facture'        => new sfValidatorPass(array('required' => false)),
       'num_facture'            => new sfValidatorString(array('max_length' => 128, 'required' => false)),
       'date_commande'          => new sfValidatorDate(array('required' => false)),
@@ -68,6 +71,7 @@ abstract class BaseCoupeForm extends BaseFormDoctrine
       'retard_livraison'       => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'livre_le'               => new sfValidatorDate(array('required' => false)),
       'fichier'                => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'situation'              => new sfValidatorString(array('max_length' => 128, 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('coupe[%s]');

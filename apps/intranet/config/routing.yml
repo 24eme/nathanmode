@@ -115,6 +115,10 @@ lab_dip:
     column:               id
     with_wildcard_routes: true
 
+coupe_ligne_update:
+  url:   /coupe/ligne-update
+  param: { module: coupe, action: ligneupdate }
+
 coupe:
   class: sfDoctrineRouteCollection
   options:

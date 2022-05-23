@@ -43,4 +43,24 @@ class coupeActions extends autoCoupeActions
 
     return $this->redirect('coupe');
   }
+  
+  public function executeLigneupdate(sfWebRequest $request)
+  {
+      $coupe = CoupeTable::getInstance()->find($request->getParameter('id'));
+      $this->form = new CoupeLigneForm($coupe);
+      if (!$request->isMethod(sfWebRequest::POST)) {
+
+         return $this->renderText('pas post');
+      }
+
+      $this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));
+      
+      if (!$this->form->isValid()) {
+         return $this->renderText('pas valide');
+      }
+
+      $this->form->save();
+      
+      return $this->renderText('test');
+  }
 }
