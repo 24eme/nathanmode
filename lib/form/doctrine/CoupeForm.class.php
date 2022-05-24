@@ -28,6 +28,14 @@ class CoupeForm extends BaseCoupeForm
   		$this->getWidget('livre_le')->setLabel("Expédié le");
         $this->setValidator('livre_le', new sfValidatorDate(array('date_format' => '~(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2})~', 'required' => false)));
         
+        $this->setWidget('num_commande', new sfWidgetFormInput());
+        $this->getWidget('num_commande')->setLabel("Commande n°");
+        $this->setValidator('num_commande', new sfValidatorPass());
+        
+        $this->setWidget('num_confirmation', new sfWidgetFormInput());
+        $this->getWidget('num_confirmation')->setLabel("Confirmation n°");
+        $this->setValidator('num_confirmation', new sfValidatorPass());
+        
         $this->setWidget('date_commande', new sfWidgetFormInputText(array(), array('type' => 'date')));
   		$this->getWidget('date_commande')->setLabel("Date commande");
         $this->setValidator('date_commande', new sfValidatorDate(array('date_format' => '~(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2})~', 'required' => false)));

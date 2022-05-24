@@ -449,7 +449,7 @@ select{
 
 .tableau .inputSelect.small,
 .tableau select.small{
-	width:98px;
+	width:98px !important;
 }
 
 
