@@ -139,6 +139,14 @@ $(document).ready(function() {
         return false;
     });
     
+    $('#table_coupe_multiple').on('click',  '.lien_supprimer_ligne_tr', function(e) {
+        if(!confirm('Etes vous sûr de voulois supprimer cet élément ?')) {
+            return false;
+        }
+        $(this).parents('tr').remove();
+        return false;
+    });
+
     $('.sf_admin_row').on('change', '.submit_ajax_on_change', function() {
         let element = this;
         element.style.visibility = 'hidden';

@@ -55,7 +55,7 @@
                 <td style="padding: 4px; padding-right: 0;"><?php echo $formItem['num_facture']->render(array('style' => 'width: 60px;')); ?><?php echo $formItem['num_facture']->renderError(); ?></td>
                 <td style="padding: 4px;"><?php echo $formItem['fichier']->render(array('style' => 'width: 140px;')); ?><?php echo $formItem['fichier']->renderError(); ?></td>
                 <td style="padding: 4px;"><?php echo $formItem['situation']->render(array('style' => 'width: 100px;')); ?><?php echo $formItem['situation']->renderError(); ?></td>
-                <td style="padding-left: 10px;"><a class="lien_supprimer_ligne" href="#">X</a></td>
+                <td style="padding-left: 10px;"><a class="lien_supprimer_ligne_tr" href="#">X</a></td>
             </tr>
             <?php endforeach; ?>
         </tbody>
