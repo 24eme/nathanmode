@@ -14,6 +14,8 @@ generator:
     config:
       actions: ~
       fields:
+        num_commande: { label: "N°Commande" }
+        num_facture: { label: "N°Facture" }
         date_commande: { help: "(jj/mm/aaaa)", date_format: dd/MM/yyyy }
         date_livraison: { help: "(jj/mm/aaaa)", date_format: dd/MM/yyyy }
         retard_livraison: { help: "(jj/mm/aaaa)", date_format: dd/MM/yyyy }
@@ -28,9 +30,9 @@ generator:
           csv: { label: "CSV" }
           _new: ~
         title: "Liste des coupes"
-        display: [date_commande, Saison, Fournisseur, Client, tissu, colori, _quantite_type,_quantite, prix, _num_facture, _facture, _livre_le, _situation]
+        display: [date_commande, num_commande, Saison, Fournisseur, Client, tissu, colori, _quantite_type,_quantite, prix, _num_facture, _facture, _livre_le, _situation]
       filter:
-        display: [date_commande, saison_id, fournisseur_id, client_id, tissu, colori, piece_categorie, metrage, prix, livre_le, num_facture, fichier, situation]
+        display: [date_commande, num_commande, saison_id, fournisseur_id, client_id, tissu, colori, piece_categorie, metrage, prix, num_facture, fichier, livre_le, situation]
       form: ~
       edit:
         title: "Modification de la coupe %%tissu%% %%colori%% %%metrage%%"

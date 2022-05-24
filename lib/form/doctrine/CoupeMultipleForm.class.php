@@ -21,11 +21,11 @@ class CoupeMultipleForm extends BaseForm
         'Commercial', 'add_empty' => true)));
         $formItem->setValidator('commercial_id', new sfValidatorDoctrineChoice(array('model' => 'Commercial', 'required' => false)));
 
-        $formItem->setWidget('date_demande', new sfWidgetFormInput(array('type' => 'date')));
-        $formItem->setValidator('date_demande', new sfValidatorPass());
+        $formItem->setWidget('date_commande', new sfWidgetFormInput(array('type' => 'date')));
+        $formItem->setValidator('date_commande', new sfValidatorPass());
 
-        $formItem->setWidget('commande', new sfWidgetFormInput());
-        $formItem->setValidator('commande', new sfValidatorPass());
+        $formItem->setWidget('num_commande', new sfWidgetFormInput());
+        $formItem->setValidator('num_commande', new sfValidatorPass());
 
         $formItem->setWidget('fournisseur_id', new sfWidgetFormDoctrineChoice(array('model' =>
         'Fournisseur', 'add_empty' => true)));
@@ -77,7 +77,7 @@ class CoupeMultipleForm extends BaseForm
         $values = $this->getValues();
         $collections = array();
         foreach($values['coupes'] as $itemValues) {
-            if(!isset($itemValues['colori']) || !$itemValues['colori']) {
+            if(!isset($itemValues['quantite']) || !$itemValues['quantite']) {
                 continue;
             }
             
@@ -87,7 +87,8 @@ class CoupeMultipleForm extends BaseForm
             $coupe->setCommercialDeviseId(Devise::POURCENTAGE_ID);
             $coupe->setFournisseurId($itemValues['fournisseur_id']);
             $coupe->setFournisseurDeviseId(Devise::POURCENTAGE_ID);
-            $coupe->setDateCommande($itemValues['date_demande']);
+            $coupe->setNumCommande($itemValues['num_commande']);
+            $coupe->setDateCommande($itemValues['date_commande']);
             $coupe->setClientId($itemValues['client_id']);
             $coupe->setQualite($itemValues['qualite']);
             $coupe->setColori($itemValues['colori']);

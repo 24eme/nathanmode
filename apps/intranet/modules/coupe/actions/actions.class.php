@@ -50,18 +50,18 @@ class coupeActions extends autoCoupeActions
       $this->form = new CoupeLigneForm($coupe);
       if (!$request->isMethod(sfWebRequest::POST)) {
 
-         return $this->renderText('pas post');
+         return $this->renderText("");
       }
 
       $this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));
       
       if (!$this->form->isValid()) {
-         return $this->renderText('pas valide');
+         return $this->renderText("formulaire pas valide");
       }
 
       $this->form->save();
       
-      return $this->renderText('test');
+      return $this->renderText("");
   }
   
   public function executeLigneview(sfWebRequest $request)

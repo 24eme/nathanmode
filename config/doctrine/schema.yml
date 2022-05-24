@@ -154,6 +154,9 @@ Coupe:
     num_facture:
       type: string(128)
       default: NULL
+    num_commande:
+      type: string(128)
+      default: NULL
     date_commande:
       type: date
       default: NULL

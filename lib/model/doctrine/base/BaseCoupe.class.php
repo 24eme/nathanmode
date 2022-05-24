@@ -20,6 +20,7 @@
  * @property double $prix
  * @property double $montant_facture
  * @property string $num_facture
+ * @property string $num_commande
  * @property date $date_commande
  * @property string $tissu
  * @property string $colori
@@ -56,6 +57,7 @@
  * @method double      getPrix()                   Returns the current record's "prix" value
  * @method double      getMontantFacture()         Returns the current record's "montant_facture" value
  * @method string      getNumFacture()             Returns the current record's "num_facture" value
+ * @method string      getNumCommande()            Returns the current record's "num_commande" value
  * @method date        getDateCommande()           Returns the current record's "date_commande" value
  * @method string      getTissu()                  Returns the current record's "tissu" value
  * @method string      getColori()                 Returns the current record's "colori" value
@@ -91,6 +93,7 @@
  * @method Coupe       setPrix()                   Sets the current record's "prix" value
  * @method Coupe       setMontantFacture()         Sets the current record's "montant_facture" value
  * @method Coupe       setNumFacture()             Sets the current record's "num_facture" value
+ * @method Coupe       setNumCommande()            Sets the current record's "num_commande" value
  * @method Coupe       setDateCommande()           Sets the current record's "date_commande" value
  * @method Coupe       setTissu()                  Sets the current record's "tissu" value
  * @method Coupe       setColori()                 Sets the current record's "colori" value
@@ -175,6 +178,10 @@ abstract class BaseCoupe extends sfDoctrineRecord
              'type' => 'double',
              ));
         $this->hasColumn('num_facture', 'string', 128, array(
+             'type' => 'string',
+             'length' => 128,
+             ));
+        $this->hasColumn('num_commande', 'string', 128, array(
              'type' => 'string',
              'length' => 128,
              ));

@@ -48,7 +48,9 @@ class CoupeFormFilter extends BaseCoupeFormFilter
   	$this->getWidget('date_commande')->setOption('with_empty', false);
   	$this->getWidget('date_livraison')->setOption('with_empty', false);
   	$this->getWidget('livre_le')->setOption('with_empty', false);
-  	$this->getWidget('fichier')->setOption('with_empty', false);
+
+    $this->setWidget('fichier', new WidgetFormInputDisabled());
+    $this->setValidator('fichier', new sfValidatorPass(array('required' => false)));
 
     $this->setWidget('piece_categorie', new sfWidgetFormChoice(array('choices' => $this->getPieceCategories(), 'multiple' => false)));
 

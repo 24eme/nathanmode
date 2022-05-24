@@ -28,6 +28,9 @@ class CoupeForm extends BaseCoupeForm
   		$this->getWidget('livre_le')->setLabel("Expédié le");
         $this->setValidator('livre_le', new sfValidatorDate(array('date_format' => '~(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2})~', 'required' => false)));
         
+        $this->getWidget('num_facture')->setLabel("Facture n°");
+        $this->getWidget('tissu')->setLabel("Qualité");
+        
         $this->setWidget('num_commande', new sfWidgetFormInput());
         $this->getWidget('num_commande')->setLabel("Commande n°");
         $this->setValidator('num_commande', new sfValidatorPass());
@@ -46,8 +49,10 @@ class CoupeForm extends BaseCoupeForm
 
       $this->setValidator('fichier_delete', new sfValidatorPass());
       
-      $this->setWidget('prix', new sfWidgetFormInput());
-      $this->setValidator('prix', new sfValidatorPass(array('required' => false)));
+      $this->setValidator('prix', new sfValidatorNumber(array('required' => false)));
+      $this->setValidator('commission_fournisseur', new sfValidatorNumber(array('required' => false)));
+      $this->setValidator('commission_commercial', new sfValidatorNumber(array('required' => false)));
+      $this->setValidator('montant_facture', new sfValidatorNumber(array('required' => false)));
 
       $this->getWidget('piece')->setLabel("Produit Fini");
       $this->setWidget('piece_categorie', new sfWidgetFormChoice(array('choices' => $this->getPieceCategories())));
