@@ -48,7 +48,7 @@ class CoupeMultipleForm extends BaseForm
         $formItem->setValidator('quantite', new sfValidatorPass());
 
         $formItem->setWidget('prix', new sfWidgetFormInput());
-        $formItem->setValidator('prix', new sfValidatorPass());
+        $formItem->setValidator('prix', new sfValidatorNumber(array('required' => false)));
         
         $formItem->setWidget('num_facture', new sfWidgetFormInput());
         $formItem->setValidator('num_facture', new sfValidatorPass());
@@ -97,7 +97,7 @@ class CoupeMultipleForm extends BaseForm
                 $coupe->setPiece($itemValues['quantite']);
                 $coupe->setPieceCategorie($itemValues['quantite_type']);
             }
-            $coupe->setPrix($itemValues['prix']*1);
+            $coupe->setPrix($itemValues['prix']);
             $coupe->setDeviseId(Devise::EUROS_ID);
             $coupe->setSituation($itemValues['situation']);
             $coupe->setNumFacture($itemValues['num_facture']);

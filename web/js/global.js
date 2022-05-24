@@ -153,7 +153,24 @@ $(document).ready(function() {
         };
         xhr.send(formData);
     });
-
+    
+    var inputDiscreetState = function(element, focus) {
+        if(focus || element.value || element.querySelectorAll('option[selected]').length > 0) {
+            element.style.opacity = '1';
+        } else {
+            element.style.opacity = '0.3';
+        }
+    }
+    document.querySelectorAll('.inputDiscreetState').forEach(function(item) {
+        inputDiscreetState(item, false);
+    });
+    $('body').on('focus', '.input-discreet', function() {
+        inputDiscreetState(this, true);
+    });
+    $('body').on('blur', '.input-discreet', function() {
+        console.log('blur');
+        inputDiscreetState(this, false);
+    });
 
 	// COLLECTION & PRODUCTION CHOSEN
 	$('#collection_saison_id').sortSelect().chosen({width: "90%"});

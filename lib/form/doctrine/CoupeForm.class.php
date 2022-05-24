@@ -12,7 +12,7 @@ class CoupeForm extends BaseCoupeForm
 {
   public function configure()
   {
-  	unset($this['facture_id'], $this['commande_id'], $this['date_livraison'], $this['date_commande'], $this['retard_livraison']);
+  	unset($this['facture_id'], $this['commande_id'], $this['date_livraison'], $this['retard_livraison']);
   	$this->setWidget('paiement', new sfWidgetFormChoice(array('choices' => $this->getPaiements())));
         $this->setValidator('paiement', new sfValidatorChoice(
             array('choices' => array_keys($this->getPaiements()),
@@ -24,16 +24,22 @@ class CoupeForm extends BaseCoupeForm
                                                                        'edit_mode' => $this->getObject()->fichier,
                                                                        'template' => '<a href="%file%" target="_blank">Télécharger le fichier</a><br />%input%<br />%delete% %delete_label%'
                                                                     )));
-  		$this->setWidget('livre_le', new sfWidgetFormInputText());
+  		$this->setWidget('livre_le', new sfWidgetFormInputText(array(), array('type' => 'date')));
   		$this->getWidget('livre_le')->setLabel("Expédié le");
+        $this->setValidator('livre_le', new sfValidatorDate(array('date_format' => '~(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2})~', 'required' => false)));
+        
+        $this->setWidget('date_commande', new sfWidgetFormInputText(array(), array('type' => 'date')));
+  		$this->getWidget('date_commande')->setLabel("Date commande");
+        $this->setValidator('date_commande', new sfValidatorDate(array('date_format' => '~(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2})~', 'required' => false)));
   		
       $this->setValidator('fichier', new sfValidatorFile(array('required' => false, 
                                                                'path' => FactureTable::getInstance()->getUploadPath(true))));
 
-      $this->setValidator('livre_le', new sfValidatorDate(array('date_format' => '~(?P<day>\d{2})/(?P<month>\d{2})/(?P<year>\d{4})~', 'required' => false)));
 
       $this->setValidator('fichier_delete', new sfValidatorPass());
-
+      
+      $this->setWidget('prix', new sfWidgetFormInput());
+      $this->setValidator('prix', new sfValidatorPass(array('required' => false)));
 
       $this->getWidget('piece')->setLabel("Produit Fini");
       $this->setWidget('piece_categorie', new sfWidgetFormChoice(array('choices' => $this->getPieceCategories())));
@@ -43,6 +49,9 @@ class CoupeForm extends BaseCoupeForm
                 'required' => $this->getValidator('piece_categorie')->getOption('required'),
               )
           ));
+          
+      $this->setWidget('situation', new sfWidgetFormChoice(array('choices' => array_merge(array("" => " "), CoupeForm::getSituations()))));
+      $this->setValidator('situation', new sfValidatorChoice(array('choices' => array_keys(CoupeForm::getSituations()), 'required' => false)));
 
       $this->mergePostValidator(new sfValidatorCallback(array('callback' => array($this, 'fctValidatorCallback'))));
   }
@@ -67,11 +76,7 @@ class CoupeForm extends BaseCoupeForm
     }
   public function updateDefaultsFromObject() {
       parent::updateDefaultsFromObject();
-
-      if ($this->getObject()->livre_le) {
-        $this->defaults['livre_le'] = $this->getObject()->getDateTimeObject('livre_le')->format('d/m/Y');
-      }
-
+      
       if (!$this->getObject()->commercial_devise_id) {
         $this->defaults['commercial_devise_id'] = Devise::POURCENTAGE_ID;
       }
