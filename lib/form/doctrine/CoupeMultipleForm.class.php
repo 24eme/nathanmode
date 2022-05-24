@@ -45,7 +45,7 @@ class CoupeMultipleForm extends BaseForm
         $formItem->setValidator('quantite_type', new sfValidatorChoice(array('choices' => array_keys(CoupeForm::getQuantiteType()), 'required' => false)));
 
         $formItem->setWidget('quantite', new sfWidgetFormInput());
-        $formItem->setValidator('quantite', new sfValidatorPass());
+        $formItem->setValidator('quantite', new sfValidatorNumber(array('required' => false)));
 
         $formItem->setWidget('prix', new sfWidgetFormInput());
         $formItem->setValidator('prix', new sfValidatorNumber(array('required' => false)));
