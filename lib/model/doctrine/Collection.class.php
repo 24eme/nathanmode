@@ -26,7 +26,7 @@ class Collection extends BaseCollection
           $retard = $collectionRetard->getDate();
         }
       }
-      return ($retard)? ($date >= $retard) : false;
+      return ($retard)? ($date >= $retard) : true;
     }
 
     public function getMetrageRestantALivrer() {
