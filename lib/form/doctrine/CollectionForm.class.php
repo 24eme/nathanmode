@@ -238,14 +238,20 @@ class CollectionForm extends BaseCollectionForm
     }
 
     public function getQualites() {
-    	
+
         return array('' => '') + QualiteTable::getInstance()->getTabQualites();
-        
+
     }
 
     public function doUpdateObject($values) {
+        $nbRetardPrev = count($this->getObject()->getCollectionRetards());
         parent::doUpdateObject($values);
-		
+		    $nbRetardAfter = count($this->getObject()->getCollectionRetards());
+
+        if ($nbRetardAfter > $nbRetardPrev) {
+          $this->getObject()->nb_relance = 0;
+        }
+
         $quantiteEntree = 0;
         if(is_array($values['details'])) {
 	        foreach ($values['details'] as $detail) {
