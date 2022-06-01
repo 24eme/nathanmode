@@ -72,6 +72,9 @@ EOF;
       $result = array();
       foreach($items as $item) {
         $emails =  ($item->getClient()->emails)? explode(',', str_replace(" ", "", $item->getClient()->emails)) : null;
+        if ($emails) {
+          $emails =  explode(';', str_replace(" ", "", $emails));
+        }
         if ($emails && !is_array($emails)) {
           $emails = array($emails);
         }
