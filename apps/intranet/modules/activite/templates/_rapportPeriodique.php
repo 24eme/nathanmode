@@ -227,93 +227,145 @@
 <div class="collapse pt-3" id="details<?php if(isset($annuel)): ?>Annee<?php else: ?>Periode<?php endif; ?>">
   <div class="row">
       <div class="col-sm-4">
-        <?php $items = $activites->getDetailledPcs($devise, $clientId, $fournisseurId); ?>
+        <?php $itemsBloc1 = $activites->getDetailledPcs($devise, $clientId, $fournisseurId); ?>
         <div class="card border-info">
-          <div class="card-header bg-info text-white"><h5>ACCES.</h5></div>
+          <div class="card-header bg-info text-white"><h5>ACCES. <small><?php if(isset($annuel)): ?><?php echo $from->format('Y') ?><?php else: ?>du <?php echo $from->format('d/m/Y') ?> au <?php echo $to->format('d/m/Y') ?><?php endif; ?></small></h5></div>
           <div class="list-group list-group-flush">
-              <?php
-                foreach($items as $k => $valeur) :
-                  if (!in_array($k,Activite::$ACCESSOIRES_CATEGORIES)||!$valeur) continue;
-              ?>
-              <div class="list-group-item">
-                  <div class="col-8 text-dark small"><?php echo PieceCategories::getLibelle($k) ?></div>
-                  <div class="col-4 text-right text-dark"><?php echo number_format($valeur, 2, ',', ' ') ?></div>
-              </div>
-              <?php endforeach; ?>
+            <?php
+              foreach(PieceCategories::getListe(true) as $id => $libelle) :
+                if (!in_array($id,Activite::$ACCESSOIRES_CATEGORIES)) continue;
+            ?>
+            <div class="list-group-item">
+                <div class="col-8 text-dark small"><?php echo $libelle ?></div>
+                <div class="col-4 text-right text-dark"><?php echo number_format((isset($itemsBloc1[$id]) && $itemsBloc1[$id])? $itemsBloc1[$id] : 0, 2, ',', ' ') ?></div>
+            </div>
+            <?php endforeach; ?>
           </div>
         </div>
         <div class="card border-info mt-2">
-          <div class="card-header bg-info text-white"><h5>PF CN.</h5></div>
+          <div class="card-header bg-info text-white"><h5>PF CN. <small><?php if(isset($annuel)): ?><?php echo $from->format('Y') ?><?php else: ?>du <?php echo $from->format('d/m/Y') ?> au <?php echo $to->format('d/m/Y') ?><?php endif; ?></small></h5></div>
           <div class="list-group list-group-flush">
               <?php
-                foreach($items as $k => $valeur) :
-                  if (in_array($k,Activite::$ACCESSOIRES_CATEGORIES)||!$valeur) continue;
+                foreach(PieceCategories::getListe(true) as $id => $libelle) :
+                  if (in_array($id,Activite::$ACCESSOIRES_CATEGORIES)) continue;
               ?>
               <div class="list-group-item">
-                  <div class="col-8 text-dark small"><?php echo PieceCategories::getLibelle($k) ?></div>
-                  <div class="col-4 text-right text-dark"><?php echo number_format($valeur, 2, ',', ' ') ?></div>
+                  <div class="col-8 text-dark small"><?php echo $libelle ?></div>
+                  <div class="col-4 text-right text-dark"><?php echo number_format((isset($itemsBloc1[$id]) && $itemsBloc1[$id])? $itemsBloc1[$id] : 0, 2, ',', ' ') ?></div>
               </div>
               <?php endforeach; ?>
           </div>
         </div>
       </div>
       <div class="col-sm-4">
-        <?php $items = $activites1->getDetailledPcs($devise, $clientId, $fournisseurId);  ?>
+        <?php $itemsBloc2 = $activites1->getDetailledPcs($devise, $clientId, $fournisseurId);  ?>
         <div class="card border-secondary">
-          <div class="card-header bg-secondary text-white"><h5>ACCES.</h5></div>
+          <div class="card-header bg-secondary text-white"><h5>ACCES. <small><?php if(isset($annuel)): ?>Année<?php else: ?>Période<?php endif; ?> <?php echo $from->format('Y')-1 ?></small></h5></div>
           <div class="list-group list-group-flush">
               <?php
-                foreach($items as $k => $valeur) :
-                  if (!in_array($k,Activite::$ACCESSOIRES_CATEGORIES)||!$valeur) continue;
+                foreach(PieceCategories::getListe(true) as $id => $libelle) :
+                  if (!in_array($id,Activite::$ACCESSOIRES_CATEGORIES)) continue;
               ?>
               <div class="list-group-item">
-                  <div class="col-8 text-dark small"><?php echo PieceCategories::getLibelle($k) ?></div>
-                  <div class="col-4 text-right text-dark"><?php echo number_format($valeur, 2, ',', ' ') ?></div>
+                  <div class="col-6 text-dark small"><?php echo $libelle ?></div>
+                  <div class="col-2 small">
+                    <?php
+                        $val1 = (isset($itemsBloc1[$id]) && $itemsBloc1[$id])? $itemsBloc1[$id] : 0;
+                        $val2 = (isset($itemsBloc2[$id]) && $itemsBloc2[$id])? $itemsBloc2[$id] : 0;
+                        if ($val1 > 0 && $val2 > 0):
+                            $diff = $val1 / $val2;
+                            if ($diff > 1):
+                    ?>
+                        <small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+                    <?php else: ?>
+                        <small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+                    <?php endif; endif; ?>
+                  </div>
+                  <div class="col-4 text-right text-dark"><?php echo number_format((isset($itemsBloc2[$id]) && $itemsBloc2[$id])? $itemsBloc2[$id] : 0, 2, ',', ' ') ?></div>
               </div>
               <?php endforeach; ?>
           </div>
         </div>
         <div class="card border-secondary mt-2">
-          <div class="card-header bg-secondary text-white"><h5>PF CN.</h5></div>
+          <div class="card-header bg-secondary text-white"><h5>PF CN. <small><?php if(isset($annuel)): ?>Année<?php else: ?>Période<?php endif; ?> <?php echo $from->format('Y')-1 ?></small></h5></div>
           <div class="list-group list-group-flush">
               <?php
-                foreach($items as $k => $valeur) :
-                  if (in_array($k,Activite::$ACCESSOIRES_CATEGORIES)||!$valeur) continue;
+              foreach(PieceCategories::getListe(true) as $id => $libelle) :
+                if (in_array($id,Activite::$ACCESSOIRES_CATEGORIES)) continue;
               ?>
               <div class="list-group-item">
-                  <div class="col-8 text-dark small"><?php echo PieceCategories::getLibelle($k) ?></div>
-                  <div class="col-4 text-right text-dark"><?php echo number_format($valeur, 2, ',', ' ') ?></div>
+                  <div class="col-6 text-dark small"><?php echo $libelle ?></div>
+                  <div class="col-2 small">
+                    <?php
+                        $val1 = (isset($itemsBloc1[$id]) && $itemsBloc1[$id])? $itemsBloc1[$id] : 0;
+                        $val2 = (isset($itemsBloc2[$id]) && $itemsBloc2[$id])? $itemsBloc2[$id] : 0;
+                        if ($val1 > 0 && $val2 > 0):
+                            $diff = $val1 / $val2;
+                            if ($diff > 1):
+                    ?>
+                        <small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+                    <?php else: ?>
+                        <small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+                    <?php endif; endif; ?>
+                  </div>
+                  <div class="col-4 text-right text-dark"><?php echo number_format((isset($itemsBloc2[$id]) && $itemsBloc2[$id])? $itemsBloc2[$id] : 0, 2, ',', ' ') ?></div>
               </div>
               <?php endforeach; ?>
           </div>
         </div>
       </div>
       <div class="col-sm-4">
-        <?php $items = $activites2->getDetailledPcs($devise, $clientId, $fournisseurId); ?>
+        <?php $itemsBloc3 = $activites2->getDetailledPcs($devise, $clientId, $fournisseurId); ?>
         <div class="card border-secondary">
-          <div class="card-header bg-secondary text-white"><h5>ACCES.</h5></div>
+          <div class="card-header bg-secondary text-white"><h5>ACCES. <small><?php if(isset($annuel)): ?>Année<?php else: ?>Période<?php endif; ?> <?php echo $from->format('Y')-2 ?></small></h5></div>
           <div class="list-group list-group-flush">
               <?php
-                foreach($items as $k => $valeur) :
-                  if (!in_array($k,Activite::$ACCESSOIRES_CATEGORIES)||!$valeur) continue;
+                foreach(PieceCategories::getListe(true) as $id => $libelle) :
+                  if (!in_array($id,Activite::$ACCESSOIRES_CATEGORIES)) continue;
               ?>
               <div class="list-group-item">
-                  <div class="col-8 text-dark small"><?php echo PieceCategories::getLibelle($k) ?></div>
-                  <div class="col-4 text-right text-dark"><?php echo number_format($valeur, 2, ',', ' ') ?></div>
+                  <div class="col-6 text-dark small"><?php echo $libelle ?></div>
+                  <div class="col-2 small">
+                    <?php
+                        $val1 = (isset($itemsBloc1[$id]) && $itemsBloc1[$id])? $itemsBloc1[$id] : 0;
+                        $val3 = (isset($itemsBloc3[$id]) && $itemsBloc3[$id])? $itemsBloc3[$id] : 0;
+                        if ($val1 > 0 && $val3 > 0):
+                            $diff = $val1 / $val3;
+                            if ($diff > 1):
+                    ?>
+                        <small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+                    <?php else: ?>
+                        <small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+                    <?php endif; endif; ?>
+                  </div>
+                  <div class="col-4 text-right text-dark"><?php echo number_format((isset($itemsBloc3[$id]) && $itemsBloc3[$id])? $itemsBloc3[$id] : 0, 2, ',', ' ') ?></div>
               </div>
               <?php endforeach; ?>
           </div>
         </div>
         <div class="card border-secondary mt-2">
-          <div class="card-header bg-secondary text-white"><h5>PF CN.</h5></div>
+          <div class="card-header bg-secondary text-white"><h5>PF CN. <small><?php if(isset($annuel)): ?>Année<?php else: ?>Période<?php endif; ?> <?php echo $from->format('Y')-2 ?></small></h5></div>
           <div class="list-group list-group-flush">
               <?php
-                foreach($items as $k => $valeur) :
-                  if (in_array($k,Activite::$ACCESSOIRES_CATEGORIES)||!$valeur) continue;
+                foreach(PieceCategories::getListe(true) as $id => $libelle) :
+                  if (in_array($id,Activite::$ACCESSOIRES_CATEGORIES)) continue;
               ?>
               <div class="list-group-item">
-                  <div class="col-8 text-dark small"><?php echo PieceCategories::getLibelle($k) ?></div>
-                  <div class="col-4 text-right text-dark"><?php echo number_format($valeur, 2, ',', ' ') ?></div>
+                  <div class="col-6 text-dark small"><?php echo $libelle ?></div>
+                  <div class="col-2 small">
+                    <?php
+                        $val1 = (isset($itemsBloc1[$id]) && $itemsBloc1[$id])? $itemsBloc1[$id] : 0;
+                        $val3 = (isset($itemsBloc3[$id]) && $itemsBloc3[$id])? $itemsBloc3[$id] : 0;
+                        if ($val1 > 0 && $val3 > 0):
+                            $diff = $val1 / $val3;
+                            if ($diff > 1):
+                    ?>
+                        <small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+                    <?php else: ?>
+                        <small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+                    <?php endif; endif; ?>
+                  </div>
+                  <div class="col-4 text-right text-dark"><?php echo number_format((isset($itemsBloc3[$id]) && $itemsBloc3[$id])? $itemsBloc3[$id] : 0, 2, ',', ' ') ?></div>
               </div>
             <?php endforeach; ?>
           </div>
