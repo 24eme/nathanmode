@@ -357,11 +357,6 @@ $(document).ready(function() {
 		allow_single_deselect:true,
    	 	width: "100%"
   	});
-	$('#sf_admin_batch_actions_choice').sortSelect().chosen({
-    	placeholder_text_single: "-",
-		allow_single_deselect:true,
-   	 	width: "80%"
-  	});
 	$('#facture_filters_commercial_id').sortSelect().chosen({
     	placeholder_text_single: "-",
 		allow_single_deselect:true,
