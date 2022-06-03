@@ -239,27 +239,8 @@ class CollectionForm extends BaseCollectionForm
     }
 
     public function getQualites() {
-    	
-        return array('' => '') + QualiteTable::getInstance()->getTabQualites();
-        
-    }
 
-    public function doUpdateObject($values) {
-        parent::doUpdateObject($values);
-		
-        $quantiteEntree = 0;
-        if(is_array($values['details'])) {
-	        foreach ($values['details'] as $detail) {
-	        	$quantiteEntree += $detail['metrage'];
-	        }
-        }
-        $quantiteSortie = 0;
-        if (is_array($values['livraisons'])) {
-	        foreach ($values['livraisons'] as $livraison) {
-	        	$quantiteSortie += $livraison['metrage'];
-	        }
-        }
-        $resteALivrer = $quantiteEntree - $quantiteSortie;
-        $this->getObject()->setResteALivrer($resteALivrer);
+        return array('' => '') + QualiteTable::getInstance()->getTabQualites();
+
     }
 }
