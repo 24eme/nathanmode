@@ -147,6 +147,11 @@ class Collection extends BaseCollection
       }
     }
 
+    public function updateResteALivrer() {
+      $reste = $this->getMetrageRestantALivrer() + $this->getPFRestantALivrer();
+      $this->setResteALivrer($reste);
+    }
+
     public function updateCreditCommande($montant, $deviseId)
     {
     	$creditCommande = (count($this->getCreditCommandes()) > 0)? $this->getCreditCommandes()[0] : new CreditCommande();
