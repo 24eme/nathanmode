@@ -145,6 +145,7 @@ class Collection extends BaseCollection
         $cc = $this->getCreditCommandes()[0];
         $cc->delete();
       }
+      $this->updateResteALivrer();
     }
 
     public function updateResteALivrer() {
