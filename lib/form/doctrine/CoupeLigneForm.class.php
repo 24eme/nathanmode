@@ -28,7 +28,7 @@ class CoupeLigneForm extends BaseForm
         $this->setWidget('livre_le', new sfWidgetFormInput(array('type' => 'date')));
         $this->setValidator('livre_le', new sfValidatorPass());
         
-        $this->setWidget('num_facture', new sfWidgetFormInput());
+        $this->setWidget('num_facture', new sfWidgetFormInput(array(), array('autocomplete' => 'off')));
         $this->setValidator('num_facture', new sfValidatorPass());
         
         $this->setWidget('fichier', new sfWidgetFormInputFile(array()));

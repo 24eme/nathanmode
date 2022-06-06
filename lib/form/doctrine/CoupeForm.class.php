@@ -31,11 +31,11 @@ class CoupeForm extends BaseCoupeForm
         $this->getWidget('num_facture')->setLabel("Facture n°");
         $this->getWidget('tissu')->setLabel("Qualité");
         
-        $this->setWidget('num_commande', new sfWidgetFormInput());
+        $this->setWidget('num_commande', new sfWidgetFormInput(array(), array('autocomplete' => 'off')));
         $this->getWidget('num_commande')->setLabel("Commande n°");
         $this->setValidator('num_commande', new sfValidatorPass());
         
-        $this->setWidget('num_confirmation', new sfWidgetFormInput());
+        $this->setWidget('num_confirmation', new sfWidgetFormInput(array(), array('autocomplete' => 'off')));
         $this->getWidget('num_confirmation')->setLabel("Confirmation n°");
         $this->setValidator('num_confirmation', new sfValidatorPass());
         

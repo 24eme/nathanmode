@@ -28,7 +28,7 @@ class CoupeMultipleForm extends BaseForm
         $formItem->setWidget('livre_le', new sfWidgetFormInput(array('type' => 'date')));
         $formItem->setValidator('livre_le', new sfValidatorPass());
 
-        $formItem->setWidget('num_commande', new sfWidgetFormInput());
+        $formItem->setWidget('num_commande', new sfWidgetFormInput(array(), array('autocomplete' => 'off')));
         $formItem->setValidator('num_commande', new sfValidatorPass());
 
         $formItem->setWidget('fournisseur_id', new sfWidgetFormDoctrineChoice(array('model' =>
@@ -48,13 +48,13 @@ class CoupeMultipleForm extends BaseForm
         $formItem->setWidget('quantite_type', new sfWidgetFormChoice(array('choices' => CoupeForm::getQuantiteType())));
         $formItem->setValidator('quantite_type', new sfValidatorChoice(array('choices' => array_keys(CoupeForm::getQuantiteType()), 'required' => false)));
 
-        $formItem->setWidget('quantite', new sfWidgetFormInput());
+        $formItem->setWidget('quantite', new sfWidgetFormInput(array(), array('autocomplete' => 'off')));
         $formItem->setValidator('quantite', new sfValidatorNumber(array('required' => false)));
 
-        $formItem->setWidget('prix', new sfWidgetFormInput());
+        $formItem->setWidget('prix', new sfWidgetFormInput(array(), array('autocomplete' => 'off')));
         $formItem->setValidator('prix', new sfValidatorNumber(array('required' => false)));
         
-        $formItem->setWidget('num_facture', new sfWidgetFormInput());
+        $formItem->setWidget('num_facture', new sfWidgetFormInput(array(), array('autocomplete' => 'off')));
         $formItem->setValidator('num_facture', new sfValidatorPass());
 
         $formItem->setWidget('fichier', new sfWidgetFormInputFile(array()));
