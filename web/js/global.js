@@ -87,8 +87,8 @@ $(document).ready(function() {
     $('#table_coupe_multiple').find('[name*="commercial_id"]').sortSelect().chosen();
     $('#table_coupe_multiple').find('[name*="fournisseur_id"]').sortSelect().chosen();
     $('#table_coupe_multiple').find('[name*="client_id"]').sortSelect().chosen();
-    $('#table_coupe_multiple').find('[name*="quantite_type"]').sortSelect().chosen();
-    $('#table_coupe_multiple').find('[name*="situation"]').sortSelect().chosen();
+    $('#table_coupe_multiple').find('[name*="quantite_type"]').chosen();
+    $('#table_coupe_multiple').find('[name*="situation"]').chosen();
     
     function addCoupeMultipleLine() {
         const lastLine = $('.coupe_multiple_ligne').last();
@@ -96,20 +96,24 @@ $(document).ready(function() {
         lastLine.find('[name*="commercial_id"]').chosen("destroy");
         lastLine.find('[name*="fournisseur_id"]').chosen("destroy");
         lastLine.find('[name*="client_id"]').chosen("destroy");
+        lastLine.find('[name*="quantite_type"]').chosen("destroy");
+        lastLine.find('[name*="situation"]').chosen("destroy");
         let newLineIndex = parseInt(lastLine.attr('data-line-index')) + 1;
         let newLineHTML = lastLine.prop('outerHTML');
         lastLine.find('[name*="saison_id"]').chosen();
         lastLine.find('[name*="commercial_id"]').chosen();
         lastLine.find('[name*="fournisseur_id"]').chosen();
         lastLine.find('[name*="client_id"]').chosen();
+        lastLine.find('[name*="quantite_type"]').chosen();
+        lastLine.find('[name*="situation"]').chosen();
         newLineHTML = newLineHTML.replace(/coupe_multiple_coupes_[0-9]+/g, 'coupe_multiple_coupes_'+newLineIndex);
         newLineHTML = newLineHTML.replace(/coupe_multiple\[coupes\]\[[0-9]+\]/g, 'coupe_multiple[coupes]['+newLineIndex+']');
         let newLine = $(newLineHTML);
         newLine.attr('data-line-index', newLineIndex);
         newLine.find('[name*="saison_id"]').val(lastLine.find('[name*="saison_id"]').val());
+        newLine.find('[name*="commercial_id"]').val(lastLine.find('[name*="commercial_id"]').val());
         newLine.find('[name*="date_demande"]').val(lastLine.find('[name*="date_demande"]').val());
         newLine.find('[name*="commande"]').val(lastLine.find('[name*="commande"]').val());
-        newLine.find('[name*="commercial_id"]').val(lastLine.find('[name*="saison_id"]').val());
         newLine.find('[name*="fournisseur_id"]').val(lastLine.find('[name*="fournisseur_id"]').val());
         newLine.find('[name*="client_id"]').val(lastLine.find('[name*="client_id"]').val());
         newLine.find('[name*="qualite"]').val(lastLine.find('[name*="qualite"]').val());
@@ -120,6 +124,8 @@ $(document).ready(function() {
         newLine.find('[name*="commercial_id"]').chosen();
         newLine.find('[name*="fournisseur_id"]').chosen();
         newLine.find('[name*="client_id"]').chosen();
+        newLine.find('[name*="quantite_type"]').chosen();
+        newLine.find('[name*="situation"]').chosen();
     }
     
     $('#table_coupe_multiple').on('keypress', 'input, select', function(e) {
