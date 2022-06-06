@@ -16,6 +16,7 @@ generator:
       fields:
         num_commande: { label: "N°Commande" }
         num_facture: { label: "N°Facture" }
+        tissu: { label: "Qualité" }
         date_commande: { help: "(jj/mm/aaaa)", date_format: dd/MM/yyyy }
         date_livraison: { help: "(jj/mm/aaaa)", date_format: dd/MM/yyyy }
         retard_livraison: { help: "(jj/mm/aaaa)", date_format: dd/MM/yyyy }
