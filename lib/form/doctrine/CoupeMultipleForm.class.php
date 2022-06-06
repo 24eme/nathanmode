@@ -62,6 +62,7 @@ class CoupeMultipleForm extends BaseForm
 
         $formItem->setWidget('situation', new sfWidgetFormChoice(array('choices' => array_merge(array("" => "Select an option"), CoupeForm::getSituations()))));
         $formItem->setValidator('situation', new sfValidatorChoice(array('choices' => array_keys(CoupeForm::getSituations()), 'required' => false)));
+        $formItem->setDefault('situation', 'ATT_CONFIRMATION');
  
         return $formItem;
     }

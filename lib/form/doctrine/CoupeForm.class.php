@@ -101,7 +101,7 @@ class CoupeForm extends BaseCoupeForm
     
     public static function getSituations() {
 
-        return array_filter(Situations::getListe(), function($k) { return in_array($k, array('EN_COURS', 'ATTENTE_LIVRAISON',  'EXPE_ATT_FACTURE', 'ATTENTE_PAIEMENT', 'SOLDEE')); }, ARRAY_FILTER_USE_KEY);
+        return array_filter(Situations::getListe(), function($k) { return in_array($k, array('ATT_CONFIRMATION', 'EN_COURS', 'ATTENTE_LIVRAISON',  'EXPE_ATT_FACTURE', 'ATTENTE_PAIEMENT', 'SOLDEE')); }, ARRAY_FILTER_USE_KEY);
     }
     
     
