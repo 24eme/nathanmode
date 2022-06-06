@@ -23,6 +23,7 @@ class CoupeMultipleForm extends BaseForm
 
         $formItem->setWidget('date_commande', new sfWidgetFormInput(array('type' => 'date')));
         $formItem->setValidator('date_commande', new sfValidatorPass());
+        $formItem->setDefault('date_commande', date('Y-m-d'));
 
         $formItem->setWidget('livre_le', new sfWidgetFormInput(array('type' => 'date')));
         $formItem->setValidator('livre_le', new sfValidatorPass());
