@@ -186,7 +186,7 @@ $(document).ready(function() {
         return false;
     });
 
-    $('.sf_admin_row').on('change', '.submit_ajax_on_change', function() {
+    $('.sf_admin_row').on('blur', '.submit_ajax_on_change', function() {
         let element = this;
         element.style.visibility = 'hidden';
         let form = $('#' + $(this).attr('form'));

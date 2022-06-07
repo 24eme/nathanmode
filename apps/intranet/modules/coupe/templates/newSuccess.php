@@ -55,7 +55,7 @@
                 <td style="padding: 4px;"><?php echo $formItem['quantite_type']->render(array('style' => 'width: 100px;')); ?><?php echo $formItem['quantite_type']->renderError(); ?></td>
                 <td style="padding: 4px;"><?php echo $formItem['quantite']->render(array('style' => 'width: 60px;')); ?><?php echo $formItem['quantite']->renderError(); ?></td>
                 <td style="padding: 4px; padding-right: 0;"><?php echo $formItem['prix']->render(array('style' => 'width: 60px;')); ?><?php echo $formItem['prix']->renderError(); ?></td>
-                <td style="padding: 4px;"><?php echo $formItem['date_commande']->render(); ?><?php echo $formItem['date_commande']->renderError(); ?></td>
+                <td style="padding: 4px;"><?php echo $formItem['livre_le']->render(); ?><?php echo $formItem['livre_le']->renderError(); ?></td>
                 <td style="padding: 4px; padding-right: 0;"><?php echo $formItem['num_facture']->render(array('style' => 'width: 60px;')); ?><?php echo $formItem['num_facture']->renderError(); ?></td>
                 <td style="padding: 4px;"><?php echo $formItem['fichier']->render(array('style' => 'width: 140px;')); ?><?php echo $formItem['fichier']->renderError(); ?></td>
                 <td style="padding: 4px;"><?php echo $formItem['situation']->render(array('style' => 'width: 100px;')); ?><?php echo $formItem['situation']->renderError(); ?></td>
