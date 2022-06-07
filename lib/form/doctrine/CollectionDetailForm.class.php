@@ -14,7 +14,6 @@ class CollectionDetailForm extends BaseCollectionDetailForm
     {
         $this->useFields(array('devise_id',
                                'colori',
-                               'metrage',
                                'piece_categorie',
                                'piece',
                                'prix'));
@@ -22,9 +21,8 @@ class CollectionDetailForm extends BaseCollectionDetailForm
         $this->getWidgetSchema()->setLabels(array(
           'devise_id' => 'Devise',
           'colori' => 'Colori',
-          'metrage' => 'Métrage',
-          'piece' => 'PF Type',
-          'piece' => 'PF',
+          'piece' => 'Quantité Type',
+          'piece' => 'Quantité',
           'prix' => 'Prix',
         ));
 
@@ -34,21 +32,29 @@ class CollectionDetailForm extends BaseCollectionDetailForm
                   'required' => $this->getValidator('piece_categorie')->getOption('required'),
                 )
             ));
+    }
 
-        $this->mergePostValidator(new sfValidatorCallback(array('callback' => array($this, 'fctValidatorCallback'))));
+    public function updateDefaultsFromObject() {
+      parent::updateDefaultsFromObject();
+
+      if ($this->getObject()->metrage) {
+        $this->defaults['piece'] = $this->getObject()->metrage;
+      }
+    }
+
+    public function doUpdateObject($values) {
+      if($values['piece_categorie'] == "METRAGE") {
+          $values['metrage'] = $values['piece'];
+          $values['piece_categorie'] = null;
+          $values['piece'] = null;
+      } else {
+        $values['metrage'] = null;
+      }
+      parent::doUpdateObject($values);
     }
 
     public function getPieceCategories() {
 
-        return array_merge(array("" => ""), PieceCategories::getListe());
-    }
-
-    public function fctValidatorCallback($validator, $values, $arguments)
-    {
-    	if ($values['metrage'] && $values['piece'])
-    	{
-    		throw new sfValidatorErrorSchema($validator, array('piece' => new sfValidatorError($validator, "Métrage ou pièce")));
-    	}
-    	return $values;
+        return array_merge(array("METRAGE" => "Métrage"), PieceCategories::getListe());
     }
 }
