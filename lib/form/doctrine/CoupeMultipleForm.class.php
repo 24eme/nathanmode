@@ -95,7 +95,7 @@ class CoupeMultipleForm extends BaseForm
             $coupe->setNumCommande($itemValues['num_commande']);
             $coupe->setDateCommande($itemValues['date_commande']);
             $coupe->setClientId($itemValues['client_id']);
-            $coupe->setQualite($itemValues['qualite']);
+            $coupe->setQualite(trim($itemValues['qualite']));
             $coupe->setColori($itemValues['colori']);
             if($itemValues['quantite_type'] == "METRAGE") {
                 $coupe->setMetrage($itemValues['quantite']);

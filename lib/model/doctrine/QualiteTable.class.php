@@ -16,7 +16,12 @@ class QualiteTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Qualite');
     }
-    
+
+    public function isQualiteExiste($qualite) {
+
+        return count($this->findBy('libelle', $qualite)) > 0;
+    }
+
     public function getTabQualites()
     {
     	$result = array();

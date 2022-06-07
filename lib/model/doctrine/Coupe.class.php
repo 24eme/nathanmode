@@ -66,6 +66,13 @@ class Coupe extends BaseCoupe
  	$commande->save();
  	$this->setCommandeId($commande->getId());
  	$this->setCommande($commande);
+
+    if(!QualiteTable::getInstance()->isQualiteExiste($this->getQualite())) {
+        $qualite = new Qualite();
+        $qualite->setLibelle($this->getQualite());
+        $qualite->save();
+    }
+
     return parent::save($conn);
   }
   
