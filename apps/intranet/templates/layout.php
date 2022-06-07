@@ -19,7 +19,6 @@
                 <div class="btHead">
                 	<div class="btRight">
                 		<a class="addHead<?php if (sfContext::getInstance()->getModuleName() == 'activite'): ?> active<?php endif; ?>" href="<?php echo url_for('@activite') ?>">Commercial Activity</a>
-                        <a class="addHead<?php if (sfContext::getInstance()->getModuleName() == 'lab_dip'): ?> active<?php endif; ?>" href="<?php echo url_for('@lab_dip') ?>">Lab dip</a>
                         <a class="addHead<?php if (sfContext::getInstance()->getModuleName() == 'qualite'): ?> active<?php endif; ?>" href="<?php echo url_for('@qualite') ?>">Qualité</a> 
                         <a class="addHead<?php if (sfContext::getInstance()->getModuleName() == 'client'): ?> active<?php endif; ?>" href="<?php echo url_for('@client') ?>">Clients</a>                
                         <a class="addHead<?php if (sfContext::getInstance()->getModuleName() == 'fournisseur'): ?> active<?php endif; ?>" href="<?php echo url_for('@fournisseur') ?>">Fournisseurs</a>
