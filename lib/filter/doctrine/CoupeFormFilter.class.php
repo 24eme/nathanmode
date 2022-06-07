@@ -16,8 +16,8 @@ class CoupeFormFilter extends BaseCoupeFormFilter
   	$this->setWidget('date_commande', 
   		new sfWidgetFormFilterDate(
   			array(
-  				'from_date' => new sfWidgetFormDate(array('format' => '%day%/%month%/%year%')), 
-  				'to_date' => new sfWidgetFormDate(array('format' => '%day%/%month%/%year%')),
+                'from_date' => new sfWidgetFormInput(array('type' => 'date')),
+   				'to_date' => new sfWidgetFormInput(array('type' => 'date')),
   				'template' => 'du %from_date%<br />au %to_date%'
   			)
   		)
@@ -25,8 +25,8 @@ class CoupeFormFilter extends BaseCoupeFormFilter
   	$this->setWidget('livre_le', 
   		new sfWidgetFormFilterDate(
   			array(
-  				'from_date' => new sfWidgetFormDate(array('format' => '%day%/%month%/%year%')), 
-  				'to_date' => new sfWidgetFormDate(array('format' => '%day%/%month%/%year%')),
+  				'from_date' => new sfWidgetFormInput(array('type' => 'date')),
+  				'to_date' => new sfWidgetFormInput(array('type' => 'date')),
   				'template' => 'du %from_date%<br />au %to_date%'
   			)
   		)
@@ -34,8 +34,8 @@ class CoupeFormFilter extends BaseCoupeFormFilter
   	$this->setWidget('date_livraison', 
   		new sfWidgetFormFilterDate(
   			array(
-  				'from_date' => new sfWidgetFormDate(array('format' => '%day%/%month%/%year%')), 
-  				'to_date' => new sfWidgetFormDate(array('format' => '%day%/%month%/%year%')),
+                'from_date' => new sfWidgetFormInput(array('type' => 'date')),
+   				'to_date' => new sfWidgetFormInput(array('type' => 'date')),
   				'template' => 'du %from_date%<br />au %to_date%'
   			)
   		)
@@ -49,8 +49,7 @@ class CoupeFormFilter extends BaseCoupeFormFilter
   	$this->getWidget('date_livraison')->setOption('with_empty', false);
   	$this->getWidget('livre_le')->setOption('with_empty', false);
 
-    $this->setWidget('fichier', new WidgetFormInputDisabled());
-    $this->setValidator('fichier', new sfValidatorPass(array('required' => false)));
+    $this->getWidget('fichier')->setOption('template', '%empty_checkbox% %empty_label%');
 
     $this->setWidget('piece_categorie', new sfWidgetFormChoice(array('choices' => $this->getPieceCategories(), 'multiple' => false)));
 
