@@ -223,7 +223,7 @@ $(document).ready(function() {
             element.style.opacity = '0.3';
         }
     }
-    document.querySelectorAll('.inputDiscreetState').forEach(function(item) {
+    document.querySelectorAll('.input-discreet').forEach(function(item) {
         inputDiscreetState(item, false);
     });
     $('body').on('focus', '.input-discreet', function() {
