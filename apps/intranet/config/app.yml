@@ -98,7 +98,6 @@ all:
       COMBINAISON: "Combinaison"
       CHEMISES: "Chemises / Blouses / Top"
       AUTRE: "Autre"
-      ACCESSOIRES: "Accessoires"
       ECHARPRES: "Echarpes"
       BONNETS: "Bonnets"
       GANTS: "Gants"
