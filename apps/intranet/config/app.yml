@@ -53,10 +53,12 @@ all:
       PAIEMENT_AVANCE_5_PERCENT_ESCOMPTE: "Paiement d'avance 5% d'escompte"
       LC: "L/C"
       LC_A_60_JOURS: "L/C à 60 jours"
+      LC_A_45_JOURS: "L/C à 45 jours"
       LC_A_90_JOURS: "L/C à 90 jours"
       CASH_ON_DELIVERY: "Cash on delivery"
       30_POURCENT_70_POURCENT: "30% à 10jrs et 70% à 60jrs"
       50_POURCENT_50_POURCENT: "50% à 10jrs et 50% à 60jrs"
+      30_POURCENT_COMMANDE_70%_ENVOI: "30% à la cmde et 70% à l'envoi"
   statuts:
     liste:
       REFUS: "Refus"
