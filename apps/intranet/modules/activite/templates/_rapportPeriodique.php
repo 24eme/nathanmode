@@ -59,9 +59,9 @@
                                 $diff = $montant / $montant1;
                                 if ($diff > 1):
                         ?>
-                            <small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+                            <small class="text-success font-italic font-weight-bold">+&nbsp;<?php echo number_format(($diff - 1) * 100, 0, ',', '&nbsp;') ?>%</small>
                         <?php else: ?>
-                            <small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+                            <small class="text-danger font-italic font-weight-bold">-&nbsp;<?php echo number_format(($diff - 1) * -100, 0, ',', '&nbsp;') ?>%</small>
                         <?php endif; endif; ?>
                     </div>
                     <div class="col-6 text-right text-dark"><?php echo number_format($montant1, 2, ',', ' ') ?></div>
@@ -76,9 +76,9 @@
                                 $diff = $com / $com1;
                                 if ($diff > 1):
                         ?>
-                            <small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+                            <small class="text-success font-italic font-weight-bold">+&nbsp;<?php echo number_format(($diff - 1) * 100, 0, ',', '&nbsp;') ?>%</small>
                         <?php else: ?>
-                            <small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+                            <small class="text-danger font-italic font-weight-bold">-&nbsp;<?php echo number_format(($diff - 1) * -100, 0, ',', '&nbsp;') ?>%</small>
                         <?php endif; endif; ?>
                     </div>
                     <div class="col-6 text-right text-dark"><?php echo number_format($com1, 2, ',', ' ') ?></div>
@@ -92,9 +92,9 @@
                                 $diff = $mvts / $mvts1;
                                 if ($diff > 1):
                         ?>
-                            <small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+                            <small class="text-success font-italic font-weight-bold">+&nbsp;<?php echo number_format(($diff - 1) * 100, 0, ',', '&nbsp;') ?>%</small>
                         <?php else: ?>
-                            <small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+                            <small class="text-danger font-italic font-weight-bold">-&nbsp;<?php echo number_format(($diff - 1) * -100, 0, ',', '&nbsp;') ?>%</small>
                         <?php endif; endif; ?>
                     </div>
                     <div class="col-6 text-right text-dark"><?php echo number_format($mvts1, 2, ',', ' ') ?></div>
@@ -107,9 +107,9 @@
                                 $diff = $pcs / $pcs1;
                                 if ($diff > 1):
                         ?>
-                            <small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+                            <small class="text-success font-italic font-weight-bold">+&nbsp;<?php echo number_format(($diff - 1) * 100, 0, ',', '&nbsp;') ?>%</small>
                         <?php else: ?>
-                            <small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+                            <small class="text-danger font-italic font-weight-bold">-&nbsp;<?php echo number_format(($diff - 1) * -100, 0, ',', '&nbsp;') ?>%</small>
                         <?php endif; endif; ?>
                     </div>
                     <div class="col-6 text-right text-dark"><?php echo number_format($pcs1, 2, ',', ' ') ?></div>
@@ -122,9 +122,9 @@
                                 $diff = $pcsNA / $pcs1NA;
                                 if ($diff > 1):
                         ?>
-                            <small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+                            <small class="text-success font-italic font-weight-bold">+&nbsp;<?php echo number_format(($diff - 1) * 100, 0, ',', '&nbsp;') ?>%</small>
                         <?php else: ?>
-                            <small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+                            <small class="text-danger font-italic font-weight-bold">-&nbsp;<?php echo number_format(($diff - 1) * -100, 0, ',', '&nbsp;') ?>%</small>
                         <?php endif; endif; ?>
                     </div>
                     <div class="col-6 text-right text-dark"><?php echo number_format($pcs1NA, 2, ',', ' ') ?></div>
@@ -144,9 +144,9 @@
                                 $diff = $montant / $montant2;
                                 if ($diff > 1):
                         ?>
-                            <small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+                            <small class="text-success font-italic font-weight-bold">+&nbsp;<?php echo number_format(($diff - 1) * 100, 0, ',', '&nbsp;') ?>%</small>
                         <?php else: ?>
-                            <small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+                            <small class="text-danger font-italic font-weight-bold">-&nbsp;<?php echo number_format(($diff - 1) * -100, 0, ',', '&nbsp;') ?>%</small>
                         <?php endif; endif; ?>
                     </div>
                     <div class="col-6 text-right text-dark"><?php echo number_format($montant2, 2, ',', ' ') ?></div>
@@ -160,9 +160,9 @@
                                 $diff = $com / $com2;
                                 if ($diff > 1):
                         ?>
-                            <small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+                            <small class="text-success font-italic font-weight-bold">+&nbsp;<?php echo number_format(($diff - 1) * 100, 0, ',', '&nbsp;') ?>%</small>
                         <?php else: ?>
-                            <small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+                            <small class="text-danger font-italic font-weight-bold">-&nbsp;<?php echo number_format(($diff - 1) * -100, 0, ',', '&nbsp;') ?>%</small>
                         <?php endif; endif; ?>
                     </div>
                     <div class="col-6 text-right text-dark"><?php echo number_format($com2, 2, ',', ' ') ?></div>
@@ -176,9 +176,9 @@
                                 $diff = $mvts / $mvts2;
                                 if ($diff > 1):
                         ?>
-                            <small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+                            <small class="text-success font-italic font-weight-bold">+&nbsp;<?php echo number_format(($diff - 1) * 100, 0, ',', '&nbsp;') ?>%</small>
                         <?php else: ?>
-                            <small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+                            <small class="text-danger font-italic font-weight-bold">-&nbsp;<?php echo number_format(($diff - 1) * -100, 0, ',', '&nbsp;') ?>%</small>
                         <?php endif; endif; ?>
                     </div>
                     <div class="col-6 text-right text-dark"><?php echo number_format($mvts2, 2, ',', ' ') ?></div>
@@ -191,9 +191,9 @@
                                 $diff = $pcs / $pcs2;
                                 if ($diff > 1):
                         ?>
-                            <small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+                            <small class="text-success font-italic font-weight-bold">+&nbsp;<?php echo number_format(($diff - 1) * 100, 0, ',', '&nbsp;') ?>%</small>
                         <?php else: ?>
-                            <small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+                            <small class="text-danger font-italic font-weight-bold">-&nbsp;<?php echo number_format(($diff - 1) * -100, 0, ',', '&nbsp;') ?>%</small>
                         <?php endif; endif; ?>
                     </div>
                     <div class="col-6 text-right text-dark"><?php echo number_format($pcs2, 2, ',', ' ') ?></div>
@@ -206,9 +206,9 @@
                                 $diff = $pcsNA / $pcs2NA;
                                 if ($diff > 1):
                         ?>
-                            <small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+                            <small class="text-success font-italic font-weight-bold">+&nbsp;<?php echo number_format(($diff - 1) * 100, 0, ',', '&nbsp;') ?>%</small>
                         <?php else: ?>
-                            <small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+                            <small class="text-danger font-italic font-weight-bold">-&nbsp;<?php echo number_format(($diff - 1) * -100, 0, ',', '&nbsp;') ?>%</small>
                         <?php endif; endif; ?>
                     </div>
                     <div class="col-6 text-right text-dark"><?php echo number_format($pcs2NA, 2, ',', ' ') ?></div>
@@ -276,9 +276,9 @@
                             $diff = $val1 / $val2;
                             if ($diff > 1):
                     ?>
-                        <small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+                        <small class="text-success font-italic font-weight-bold">+&nbsp;<?php echo number_format(($diff - 1) * 100, 0, ',', '&nbsp;') ?>%</small>
                     <?php else: ?>
-                        <small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+                        <small class="text-danger font-italic font-weight-bold">-&nbsp;<?php echo number_format(($diff - 1) * -100, 0, ',', '&nbsp;') ?>%</small>
                     <?php endif; endif; ?>
                   </div>
                   <div class="col-4 text-right text-dark"><?php echo number_format((isset($itemsBloc2[$id]) && $itemsBloc2[$id])? $itemsBloc2[$id] : 0, 2, ',', ' ') ?></div>
@@ -303,9 +303,9 @@
                             $diff = $val1 / $val2;
                             if ($diff > 1):
                     ?>
-                        <small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+                        <small class="text-success font-italic font-weight-bold">+&nbsp;<?php echo number_format(($diff - 1) * 100, 0, ',', '&nbsp;') ?>%</small>
                     <?php else: ?>
-                        <small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+                        <small class="text-danger font-italic font-weight-bold">-&nbsp;<?php echo number_format(($diff - 1) * -100, 0, ',', '&nbsp;') ?>%</small>
                     <?php endif; endif; ?>
                   </div>
                   <div class="col-4 text-right text-dark"><?php echo number_format((isset($itemsBloc2[$id]) && $itemsBloc2[$id])? $itemsBloc2[$id] : 0, 2, ',', ' ') ?></div>
@@ -333,9 +333,9 @@
                             $diff = $val1 / $val3;
                             if ($diff > 1):
                     ?>
-                        <small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+                        <small class="text-success font-italic font-weight-bold">+&nbsp;<?php echo number_format(($diff - 1) * 100, 0, ',', '&nbsp;') ?>%</small>
                     <?php else: ?>
-                        <small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+                        <small class="text-danger font-italic font-weight-bold">-&nbsp;<?php echo number_format(($diff - 1) * -100, 0, ',', '&nbsp;') ?>%</small>
                     <?php endif; endif; ?>
                   </div>
                   <div class="col-4 text-right text-dark"><?php echo number_format((isset($itemsBloc3[$id]) && $itemsBloc3[$id])? $itemsBloc3[$id] : 0, 2, ',', ' ') ?></div>
@@ -360,9 +360,9 @@
                             $diff = $val1 / $val3;
                             if ($diff > 1):
                     ?>
-                        <small class="text-success font-italic font-weight-bold">+ <?php echo number_format(($diff - 1) * 100, 0, ',', ' ') ?>%</small>
+                        <small class="text-success font-italic font-weight-bold">+&nbsp;<?php echo number_format(($diff - 1) * 100, 0, ',', '&nbsp;') ?>%</small>
                     <?php else: ?>
-                        <small class="text-danger font-italic font-weight-bold">- <?php echo number_format(($diff - 1) * -100, 0, ',', ' ') ?>%</small>
+                        <small class="text-danger font-italic font-weight-bold">-&nbsp;<?php echo number_format(($diff - 1) * -100, 0, ',', '&nbsp;') ?>%</small>
                     <?php endif; endif; ?>
                   </div>
                   <div class="col-4 text-right text-dark"><?php echo number_format((isset($itemsBloc3[$id]) && $itemsBloc3[$id])? $itemsBloc3[$id] : 0, 2, ',', ' ') ?></div>
