@@ -17,8 +17,10 @@
  * @property integer $facture_id
  * @property integer $commande_id
  * @property string $paiement
+ * @property double $prix
  * @property double $montant_facture
  * @property string $num_facture
+ * @property string $num_commande
  * @property date $date_commande
  * @property string $tissu
  * @property string $colori
@@ -29,6 +31,7 @@
  * @property string $retard_livraison
  * @property date $livre_le
  * @property string $fichier
+ * @property string $situation
  * @property Saison $Saison
  * @property Fournisseur $Fournisseur
  * @property Commercial $Commercial
@@ -51,8 +54,10 @@
  * @method integer     getFactureId()              Returns the current record's "facture_id" value
  * @method integer     getCommandeId()             Returns the current record's "commande_id" value
  * @method string      getPaiement()               Returns the current record's "paiement" value
+ * @method double      getPrix()                   Returns the current record's "prix" value
  * @method double      getMontantFacture()         Returns the current record's "montant_facture" value
  * @method string      getNumFacture()             Returns the current record's "num_facture" value
+ * @method string      getNumCommande()            Returns the current record's "num_commande" value
  * @method date        getDateCommande()           Returns the current record's "date_commande" value
  * @method string      getTissu()                  Returns the current record's "tissu" value
  * @method string      getColori()                 Returns the current record's "colori" value
@@ -63,6 +68,7 @@
  * @method string      getRetardLivraison()        Returns the current record's "retard_livraison" value
  * @method date        getLivreLe()                Returns the current record's "livre_le" value
  * @method string      getFichier()                Returns the current record's "fichier" value
+ * @method string      getSituation()              Returns the current record's "situation" value
  * @method Saison      getSaison()                 Returns the current record's "Saison" value
  * @method Fournisseur getFournisseur()            Returns the current record's "Fournisseur" value
  * @method Commercial  getCommercial()             Returns the current record's "Commercial" value
@@ -84,8 +90,10 @@
  * @method Coupe       setFactureId()              Sets the current record's "facture_id" value
  * @method Coupe       setCommandeId()             Sets the current record's "commande_id" value
  * @method Coupe       setPaiement()               Sets the current record's "paiement" value
+ * @method Coupe       setPrix()                   Sets the current record's "prix" value
  * @method Coupe       setMontantFacture()         Sets the current record's "montant_facture" value
  * @method Coupe       setNumFacture()             Sets the current record's "num_facture" value
+ * @method Coupe       setNumCommande()            Sets the current record's "num_commande" value
  * @method Coupe       setDateCommande()           Sets the current record's "date_commande" value
  * @method Coupe       setTissu()                  Sets the current record's "tissu" value
  * @method Coupe       setColori()                 Sets the current record's "colori" value
@@ -96,6 +104,7 @@
  * @method Coupe       setRetardLivraison()        Sets the current record's "retard_livraison" value
  * @method Coupe       setLivreLe()                Sets the current record's "livre_le" value
  * @method Coupe       setFichier()                Sets the current record's "fichier" value
+ * @method Coupe       setSituation()              Sets the current record's "situation" value
  * @method Coupe       setSaison()                 Sets the current record's "Saison" value
  * @method Coupe       setFournisseur()            Sets the current record's "Fournisseur" value
  * @method Coupe       setCommercial()             Sets the current record's "Commercial" value
@@ -162,10 +171,17 @@ abstract class BaseCoupe extends sfDoctrineRecord
              'type' => 'string',
              'length' => 128,
              ));
+        $this->hasColumn('prix', 'double', null, array(
+             'type' => 'double',
+             ));
         $this->hasColumn('montant_facture', 'double', null, array(
              'type' => 'double',
              ));
         $this->hasColumn('num_facture', 'string', 128, array(
+             'type' => 'string',
+             'length' => 128,
+             ));
+        $this->hasColumn('num_commande', 'string', 128, array(
              'type' => 'string',
              'length' => 128,
              ));
@@ -205,6 +221,10 @@ abstract class BaseCoupe extends sfDoctrineRecord
         $this->hasColumn('fichier', 'string', 255, array(
              'type' => 'string',
              'length' => 255,
+             ));
+        $this->hasColumn('situation', 'string', 128, array(
+             'type' => 'string',
+             'length' => 128,
              ));
     }
 

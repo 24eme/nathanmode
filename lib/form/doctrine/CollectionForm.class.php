@@ -190,6 +190,7 @@ class CollectionForm extends BaseCollectionForm
                   'required' => $this->getValidator('qualite')->getOption('required'),
                 )
             ));
+        $this->getWidget('reste_a_livrer')->setAttribute('readonly', 'readonly');
     }
 
     public function updateDefaultsFromObject() {

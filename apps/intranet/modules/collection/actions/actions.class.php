@@ -144,24 +144,35 @@ protected function buildQuerySoldees()
 
   public function executeGetbysaisonqualite(sfWebRequest $request)
   {
-    $this->forward404Unless($request->isXmlHttpRequest());
+    //$this->forward404Unless($request->isXmlHttpRequest());
     $saisonId = $request->getGetParameter('saison');
     $saison = SaisonTable::getInstance()->findOneBy('id', $saisonId);
     $saisons = SaisonTable::getInstance()->findOneBy('id', $saisonId)->getSaisonsForAlert();
     $clientId = $request->getGetParameter('client');
     $qualite = $request->getGetParameter('qualite');
+    $checkInCoupe = boolval($request->getParameter('coupe'));
     $this->forward404Unless(($saisonId && $qualite && $clientId));
     $items = CollectionTable::getInstance()->getBySaisonQualiteNotClient($saisonId, $qualite, $clientId);
+    if($checkInCoupe) {
+        $items = array_merge($items->getData(), CoupeTable::getInstance()->getBySaisonQualiteNotClient($saisonId, $qualite, $clientId)->getData());
+    }
     foreach($saisons as $s) {
-        $result = array_merge($items->getData(), CollectionTable::getInstance()->getBySaisonQualiteNotClient($s->getId(), $qualite, $clientId)->getData());
-        $items = $result;
+        $items = array_merge($items->getData(), CollectionTable::getInstance()->getBySaisonQualiteNotClient($s->getId(), $qualite, $clientId)->getData());
+        if($checkInCoupe) {
+            $items = array_merge($items->getData(), CoupeTable::getInstance()->getBySaisonQualiteNotClient($s->getId(), $qualite, $clientId)->getData());
+        }
     }
     $result = array();
     foreach($items as $item) {
+        $libelle = $item->getId().' - '.$item->getSaison()->getLibelle().' / '.$item->getClient()->getRaisonSociale();
+      if($item instanceof Coupe) {
+          $libelle = '(coupe) '.$libelle;
+          $result[$this->generateUrl('coupe_edit', $item)] = $libelle;
+          continue;
+      }
       $isProduction = $item->getProduction();
       $url = ($isProduction)? $this->generateUrl('collection_production_edit', $item) : $this->generateUrl('collection_edit', $item);
-      $libelle = ($isProduction)? '(production) ' : '(collection) ';
-      $libelle .= $item->getId().' - '.$item->getSaison()->getLibelle().' / '.$item->getClient()->getRaisonSociale();
+      $libelle = (($isProduction)? '(production) ' : '(collection) ').$libelle;
       $result[$url] = $libelle;
     }
     echo ($result)? json_encode($result): null;

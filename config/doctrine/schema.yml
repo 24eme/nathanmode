@@ -145,10 +145,16 @@ Coupe:
     paiement:
       type: string(128)
       default: NULL
+    prix:
+      type: double
+      default: NULL
     montant_facture:
       type: double
       default: NULL
     num_facture:
+      type: string(128)
+      default: NULL
+    num_commande:
       type: string(128)
       default: NULL
     date_commande:
@@ -180,6 +186,9 @@ Coupe:
       default: NULL
     fichier:
       type: string(255)
+      default: NULL
+    situation:
+      type: string(128)
       default: NULL
   relations:
     Saison:
@@ -790,6 +799,20 @@ Credit:
     date_debit:
       type: date
       default: NULL
+CreditCommande:
+  inheritance:
+    type:             column_aggregation
+    extends:          Bon
+  columns:
+    collection_id:
+      type: integer
+      default: NULL
+  relations:
+    Collection:
+      local: collection_id
+      foreign: id
+      foreignAlias: CollectionDetails
+      onDelete: CASCADE
 
 Commande:
   columns:

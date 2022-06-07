@@ -149,6 +149,8 @@
 
 
 	<?php else: ?>
+		
+	<hr class="mb-0 mt-4" />
 
 	<?php include_partial('activite/rapportPeriodique', array('comFiltered' => $comFiltered, 'from' => $from, 'to' => $to, 'activites' => $activiteAnnuel, 'devise' => $devise, 'clientId' => $clientId, 'fournisseurId' => $fournisseurId, 'activites1' => $activiteAnnuel1, 'activites2' => $activiteAnnuel2, 'titre' => 'Rapport annuel', 'annuel' => true)); ?>
 

@@ -14,4 +14,5 @@ class Bon extends BaseBon
 {
 	const TYPE_FACTURE = 'Facture';
 	const TYPE_CREDIT = 'Credit';
+	const TYPE_CREDIT_COMMANDE = 'CreditCommande';
 }

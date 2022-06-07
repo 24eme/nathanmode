@@ -2,9 +2,9 @@
 
 class PieceCategories
 {
-    public static function getListe() {
+    public static function getListe($withEmpty = false) {
 
-        return sfConfig::get('app_piece_categories_liste');
+        return ($withEmpty)? sfConfig::get('app_piece_categories_liste')+array(null => null) : sfConfig::get('app_piece_categories_liste');
     }
 
     public static function getLibelle($key) {

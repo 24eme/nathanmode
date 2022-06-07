@@ -24,4 +24,50 @@ class coupeActions extends autoCoupeActions
    return $query;
     
   }
+
+  public function executeNew(sfWebRequest $request)
+  {
+    $this->form = new CoupeMultipleForm();
+    if (!$request->isMethod(sfWebRequest::POST)) {
+
+        return sfView::SUCCESS;
+    }
+
+    $this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));
+
+    if (!$this->form->isValid()) {
+        return sfView::SUCCESS;
+    }
+
+    $this->form->save();
+
+    return $this->redirect('coupe');
+  }
+  
+  public function executeLigneupdate(sfWebRequest $request)
+  {
+      $coupe = CoupeTable::getInstance()->find($request->getParameter('id'));
+      $this->form = new CoupeLigneForm($coupe);
+      if (!$request->isMethod(sfWebRequest::POST)) {
+
+         return $this->renderText("");
+      }
+
+      $this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));
+      
+      if (!$this->form->isValid()) {
+         return $this->renderText("formulaire pas valide");
+      }
+
+      $this->form->save();
+      
+      return $this->renderText("");
+  }
+  
+  public function executeLigneview(sfWebRequest $request)
+  {
+      $this->coupe = CoupeTable::getInstance()->find($request->getParameter('id'));
+      
+      return $this->renderPartial($request->getParameter('partial'), array('coupe' => $this->coupe));
+  }
 }

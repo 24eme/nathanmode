@@ -1,0 +1,1 @@
+<?php echo ($collection->getSituation())? Situations::getLibelle($collection->getSituation()) : null; ?>

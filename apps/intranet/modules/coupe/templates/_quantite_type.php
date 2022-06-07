@@ -1,0 +1,1 @@
+<?php echo ($coupe->getPieceCategorie()) ? $coupe->getPieceCategorie() : 'Métrage'; ?>

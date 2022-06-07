@@ -334,5 +334,9 @@ abstract class BaseCollection extends sfDoctrineRecord
         $this->hasMany('CollectionLivraison as CollectionLivraisons', array(
              'local' => 'id',
              'foreign' => 'collection_id'));
+
+        $this->hasMany('CreditCommande as CreditCommandes', array(
+             'local' => 'id',
+             'foreign' => 'collection_id'));
     }
 }

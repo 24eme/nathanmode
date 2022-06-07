@@ -14,6 +14,7 @@ class Devise extends BaseDevise
 {
 	const POURCENTAGE = '%';
 	const POURCENTAGE_ID = 3;
+	const EUROS_ID = 1;
     public function __toString()
     {
         

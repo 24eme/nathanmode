@@ -25,8 +25,10 @@ abstract class BaseCoupeFormFilter extends BaseFormFilterDoctrine
       'facture_id'             => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Facture'), 'add_empty' => true)),
       'commande_id'            => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Commande'), 'add_empty' => true)),
       'paiement'               => new sfWidgetFormFilterInput(),
+      'prix'                   => new sfWidgetFormFilterInput(),
       'montant_facture'        => new sfWidgetFormFilterInput(),
       'num_facture'            => new sfWidgetFormFilterInput(),
+      'num_commande'            => new sfWidgetFormFilterInput(),
       'date_commande'          => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'tissu'                  => new sfWidgetFormFilterInput(),
       'colori'                 => new sfWidgetFormFilterInput(),
@@ -37,6 +39,7 @@ abstract class BaseCoupeFormFilter extends BaseFormFilterDoctrine
       'retard_livraison'       => new sfWidgetFormFilterInput(),
       'livre_le'               => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'fichier'                => new sfWidgetFormFilterInput(),
+      'situation'              => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
@@ -52,8 +55,10 @@ abstract class BaseCoupeFormFilter extends BaseFormFilterDoctrine
       'facture_id'             => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Facture'), 'column' => 'id')),
       'commande_id'            => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Commande'), 'column' => 'id')),
       'paiement'               => new sfValidatorPass(array('required' => false)),
+      'prix'                   => new sfValidatorPass(array('required' => false)),
       'montant_facture'        => new sfValidatorPass(array('required' => false)),
       'num_facture'            => new sfValidatorPass(array('required' => false)),
+      'num_commande'            => new sfValidatorPass(array('required' => false)),
       'date_commande'          => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
       'tissu'                  => new sfValidatorPass(array('required' => false)),
       'colori'                 => new sfValidatorPass(array('required' => false)),
@@ -64,6 +69,7 @@ abstract class BaseCoupeFormFilter extends BaseFormFilterDoctrine
       'retard_livraison'       => new sfValidatorPass(array('required' => false)),
       'livre_le'               => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
       'fichier'                => new sfValidatorPass(array('required' => false)),
+      'situation'              => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('coupe_filters[%s]');
@@ -96,6 +102,7 @@ abstract class BaseCoupeFormFilter extends BaseFormFilterDoctrine
       'facture_id'             => 'ForeignKey',
       'commande_id'            => 'ForeignKey',
       'paiement'               => 'Text',
+      'prix'                   => 'Text',
       'montant_facture'        => 'Text',
       'num_facture'            => 'Text',
       'date_commande'          => 'Date',
@@ -108,6 +115,7 @@ abstract class BaseCoupeFormFilter extends BaseFormFilterDoctrine
       'retard_livraison'       => 'Text',
       'livre_le'               => 'Date',
       'fichier'                => 'Text',
+      'situation'              => 'Text',
     );
   }
 }

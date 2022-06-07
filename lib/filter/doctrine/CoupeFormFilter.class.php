@@ -41,13 +41,16 @@ class CoupeFormFilter extends BaseCoupeFormFilter
   		)
   	);
   	
+    $this->setWidget('situation', new sfWidgetFormChoice(array('choices' => array_merge(array('' => ' '), CoupeForm::getSituations()), 'multiple' => false)));
   	$this->getWidget('tissu')->setOption('with_empty', false);
   	$this->getWidget('colori')->setOption('with_empty', false);
   	$this->getWidget('metrage')->setOption('with_empty', false);
   	$this->getWidget('date_commande')->setOption('with_empty', false);
   	$this->getWidget('date_livraison')->setOption('with_empty', false);
   	$this->getWidget('livre_le')->setOption('with_empty', false);
-  	$this->getWidget('fichier')->setOption('with_empty', false);
+
+    $this->setWidget('fichier', new WidgetFormInputDisabled());
+    $this->setValidator('fichier', new sfValidatorPass(array('required' => false)));
 
     $this->setWidget('piece_categorie', new sfWidgetFormChoice(array('choices' => $this->getPieceCategories(), 'multiple' => false)));
 
@@ -61,6 +64,10 @@ class CoupeFormFilter extends BaseCoupeFormFilter
   }
 
   public function addPieceCategorieColumnQuery($query, $field, $values) {
+        $this->addEnumQuery($query, $field, $values);
+  }
+  
+  public function addSituationColumnQuery($query, $field, $values) {
         $this->addEnumQuery($query, $field, $values);
   }
 

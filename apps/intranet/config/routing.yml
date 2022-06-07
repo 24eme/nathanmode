@@ -88,6 +88,15 @@ collection:
     column:               id
     with_wildcard_routes: true
 
+collectiondetails:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                collectionDetails
+    module:               collectiondetails
+    prefix_path:          /collectiondetails
+    column:               id
+    with_wildcard_routes: true
+
 prix_special:
   class: sfDoctrineRouteCollection
   options:
@@ -105,6 +114,14 @@ lab_dip:
     prefix_path:          /lab_dip
     column:               id
     with_wildcard_routes: true
+
+coupe_ligne_update:
+  url:   /coupe/ligne-update
+  param: { module: coupe, action: ligneupdate }
+
+coupe_ligne_view:
+  url:   /coupe/ligne-view
+  param: { module: coupe, action: ligneview }
 
 coupe:
   class: sfDoctrineRouteCollection

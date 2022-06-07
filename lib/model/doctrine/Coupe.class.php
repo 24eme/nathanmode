@@ -45,7 +45,17 @@ class Coupe extends BaseCoupe
             unlink($path);
         }
     }
-    
+
+    public function getQualite() {
+
+        return $this->tissu;
+    }
+
+    public function setQualite($qualite) {
+
+        $this->tissu = $qualite;
+    }
+
   public function save(Doctrine_Connection $conn = null)
   {
   	$facture = $this->updateFacture();
@@ -61,6 +71,14 @@ class Coupe extends BaseCoupe
   
   public function updateFacture()
   {
+    if($this->getPrix() && $this->getMetrage()) {
+        $this->setMontantFacture(round($this->getPrix()*$this->getMetrage(), 2));
+    }
+    
+    if($this->getPrix() && $this->getPiece()) {
+        $this->setMontantFacture(round($this->getPrix()*$this->getPiece(), 2));
+    }
+
   	$facture = ($this->isNew())? new Facture() : $this->getFacture();
   	if ($this->isNew()) {
   		$facture->setActif(true);

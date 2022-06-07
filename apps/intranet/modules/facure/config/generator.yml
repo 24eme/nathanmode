@@ -19,7 +19,8 @@ generator:
         total_commercial: { label: "Commission commercial" }
       list:
         max_per_page: 150
-        batch_actions: {}
+        batch_actions:
+          statutPayee: ~
         actions: { }
         object_actions:
           _edit: ~

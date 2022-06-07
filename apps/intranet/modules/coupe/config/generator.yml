@@ -14,22 +14,24 @@ generator:
     config:
       actions: ~
       fields:
+        num_commande: { label: "N°Commande" }
+        num_facture: { label: "N°Facture" }
+        tissu: { label: "Qualité" }
         date_commande: { help: "(jj/mm/aaaa)", date_format: dd/MM/yyyy }
-        date_livraison: { help: "(jj/mm/aaaa)", date_format: dd/MM/yyyy }
-        retard_livraison: { help: "(jj/mm/aaaa)", date_format: dd/MM/yyyy }
-        livre_le: { help: "(jj/mm/aaaa)", date_format: dd/MM/yyyy, label: "Expédié le" }
+        livre_le: { help: "(jj/mm/aaaa)", date_format: dd/MM/yyyy, label: "Date livraison" }
         piece_categorie: { label: "PF Type" }
         piece: { label: "Produit Fini" }
       list:
         max_per_page: 50
         batch_actions: {}
+        sort: [date_commande, desc]
         actions:
           csv: { label: "CSV" }
           _new: ~
         title: "Liste des coupes"
-        display: [Saison, Fournisseur, Client, tissu, colori, metrage, _piece_categorie, piece, livre_le, _facture]
+        display: [date_commande, num_commande, Saison, Fournisseur, Client, tissu, colori, _quantite_type,_quantite, prix, _livre_le, _num_facture, _facture, _situation]
       filter:
-        display: [saison_id, fournisseur_id, client_id, tissu, colori, metrage, piece_categorie, piece, livre_le, fichier]
+        display: [date_commande, num_commande, saison_id, fournisseur_id, client_id, tissu, colori, piece_categorie, metrage, prix, livre_le, num_facture, fichier, situation]
       form: ~
       edit:
         title: "Modification de la coupe %%tissu%% %%colori%% %%metrage%%"

@@ -14,6 +14,21 @@ require_once dirname(__FILE__).'/../lib/facureGeneratorHelper.class.php';
 class facureActions extends autoFacureActions
 {
 
+  public function executeBatchStatutPayee(sfWebRequest $request) {
+    $ids = $request->getParameter('ids');
+    $date = $request->getParameter('date', date('Y-m-d'));
+    $query = parent::buildQuery();
+    $rootAlias = $query->getRootAlias();
+    $query->whereIn($rootAlias.'.id', $ids);
+    $factures = $query->execute();
+    foreach ($factures as $facture) {
+      $facture->isPayee($date);
+      $facture->save();
+    }
+    $this->getUser()->setFlash('notice', 'Les factures séléctionnées ont bien été marquées comme payées au '.$date);
+  	$this->redirect('@facture');
+  }
+
   protected function buildQuery()
   {
     $query = parent::buildQuery();

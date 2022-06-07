@@ -60,6 +60,11 @@ $(document).ready(function() {
 		allow_single_deselect:true,
    	 	width: "100%"
   	});
+    $('#coupe_filters_situation').sortSelect().chosen({
+        placeholder_text_single: "-",
+        allow_single_deselect:true,
+        width: "100%"
+    });
 	$('#activite_filters_saison_id').sortSelect().chosen({
     	placeholder_text_single: "-",
 		allow_single_deselect:true,
@@ -75,7 +80,150 @@ $(document).ready(function() {
 		allow_single_deselect:true,
    	 	width: "100%"
   	});
+    
+    // COUPE MULTIPLE CHOSEN
 
+    $('#table_coupe_multiple').find('[name*="saison_id"]').sortSelect().chosen();
+    $('#table_coupe_multiple').find('[name*="commercial_id"]').sortSelect().chosen();
+    $('#table_coupe_multiple').find('[name*="fournisseur_id"]').sortSelect().chosen();
+    $('#table_coupe_multiple').find('[name*="client_id"]').sortSelect().chosen();
+    $('#table_coupe_multiple').find('[name*="quantite_type"]').chosen();
+    $('#table_coupe_multiple').find('[name*="situation"]').chosen();
+    
+    function addCoupeMultipleLine() {
+        const lastLine = $('.coupe_multiple_ligne').last();
+        lastLine.find('[name*="saison_id"]').chosen("destroy");
+        lastLine.find('[name*="commercial_id"]').chosen("destroy");
+        lastLine.find('[name*="fournisseur_id"]').chosen("destroy");
+        lastLine.find('[name*="client_id"]').chosen("destroy");
+        lastLine.find('[name*="quantite_type"]').chosen("destroy");
+        lastLine.find('[name*="situation"]').chosen("destroy");
+        let newLineIndex = parseInt(lastLine.attr('data-line-index')) + 1;
+        let newLineHTML = lastLine.prop('outerHTML');
+        lastLine.find('[name*="saison_id"]').chosen();
+        lastLine.find('[name*="commercial_id"]').chosen();
+        lastLine.find('[name*="fournisseur_id"]').chosen();
+        lastLine.find('[name*="client_id"]').chosen();
+        lastLine.find('[name*="quantite_type"]').chosen();
+        lastLine.find('[name*="situation"]').chosen();
+        newLineHTML = newLineHTML.replace(/coupe_multiple_coupes_[0-9]+/g, 'coupe_multiple_coupes_'+newLineIndex);
+        newLineHTML = newLineHTML.replace(/coupe_multiple\[coupes\]\[[0-9]+\]/g, 'coupe_multiple[coupes]['+newLineIndex+']');
+        let newLine = $(newLineHTML);
+        newLine.attr('data-line-index', newLineIndex);
+        newLine.find('[name*="saison_id"]').val(lastLine.find('[name*="saison_id"]').val());
+        newLine.find('[name*="commercial_id"]').val(lastLine.find('[name*="commercial_id"]').val());
+        newLine.find('[name*="date_demande"]').val(lastLine.find('[name*="date_demande"]').val());
+        newLine.find('[name*="commande"]').val(lastLine.find('[name*="commande"]').val());
+        newLine.find('[name*="fournisseur_id"]').val(lastLine.find('[name*="fournisseur_id"]').val());
+        newLine.find('[name*="client_id"]').val(lastLine.find('[name*="client_id"]').val());
+        newLine.find('[name*="qualite"]').val(lastLine.find('[name*="qualite"]').val());
+
+        newLine = newLine.insertAfter(lastLine);
+        newLine.css('opacity', 0.5);
+        newLine.find('[name*="saison_id"]').chosen();
+        newLine.find('[name*="commercial_id"]').chosen();
+        newLine.find('[name*="fournisseur_id"]').chosen();
+        newLine.find('[name*="client_id"]').chosen();
+        newLine.find('[name*="quantite_type"]').chosen();
+        newLine.find('[name*="situation"]').chosen();
+    }
+    
+    $('#table_coupe_multiple').on('keypress', 'input, select', function(e) {
+        $(e.currentTarget).parents('.coupe_multiple_ligne').css('opacity', '1');
+    });
+    $('#table_coupe_multiple').on('click', '.chosen-single', function(e) {
+        $(e.currentTarget).parents('.coupe_multiple_ligne').css('opacity', '1');
+    });
+
+    $('#table_coupe_multiple').on('change', '[name*="qualite"]', function() {
+        verifUniciteCommande($(this).parents('.coupe_multiple_ligne'));
+    });
+    $('#table_coupe_multiple').on('change', '[name*="client_id"]', function() {
+        verifUniciteCommande($(this).parents('.coupe_multiple_ligne'));
+    });
+    $('#table_coupe_multiple').on('change', '[name*="client_id"]', function() {
+        verifUniciteCommande($(this).parents('.coupe_multiple_ligne'));
+    });
+    
+    function verifUniciteCommande(line) {
+        let q = line.find('[name*="qualite"]').val();
+        let s = line.find('[name*="saison_id"]').val();
+        let c = line.find('[name*="client_id"]').val();
+        
+        $('#alertBox').hide();
+        $('#alertBox').html('');
+        if (q&&s&&c) {
+          $.get("/collection/getbysaisonqualite", {qualite: q, saison: s, client: c, coupe: 1}, function(infos) {
+            if (infos) {
+              const json = JSON.parse(infos);
+              let html = '<div style="padding:5px 10px;">/!\ Qualité "'+q+'" commandée par les clients suivants :</div><ul style="padding:0px 10px 10px 10px;" class="list-unstyled">';
+              for (let i in json) {
+                html += '<li><a href="'+i+'" target="_blank">'+json[i]+'</a></li>';
+              }
+              html += '</ul>';
+              $('#alertBox').html(html);
+              $('#alertBox').show();
+            }
+          });
+        }
+    }
+ 
+    $('#table_coupe_multiple').on('focus', '.coupe_multiple_ligne:last input:last', function(e) {
+        addCoupeMultipleLine();
+    });
+
+    $('#lien_ajouter_ligne').on('click', function(e) {
+        addCoupeMultipleLine();
+
+        return false;
+    });
+    
+    $('#table_coupe_multiple').on('click',  '.lien_supprimer_ligne_tr', function(e) {
+        if(!confirm('Etes vous sûr de voulois supprimer cet élément ?')) {
+            return false;
+        }
+        $(this).parents('tr').remove();
+        return false;
+    });
+
+    $('.sf_admin_row').on('blur', 'input.submit_ajax_on_change', function() {
+        saveFormPartialAjax(this);
+    });
+    
+    $('.sf_admin_row').on('change', 'select.submit_ajax_on_change', function() {
+        saveFormPartialAjax(this);
+    });
+    
+    var saveFormPartialAjax = function(element){
+        element.style.visibility = 'hidden';
+        let form = $('#' + $(element).attr('form'));
+        formData = new FormData(document.getElementById($(element).attr('form')));
+        let xhr = new XMLHttpRequest();
+        xhr.open(form.attr('method'), form.attr('action'), true);
+        xhr.onreadystatechange = function () {
+            if(xhr.readyState === 4 && xhr.status === 200 && element.dataset.partialview) {
+                $(element).parents('td').load(element.dataset.partialview);
+            }
+        };
+        xhr.send(formData);
+    }
+    
+    var inputDiscreetState = function(element, focus) {
+        if(focus || element.value || element.querySelectorAll('option[selected]').length > 0) {
+            element.style.opacity = '1';
+        } else {
+            element.style.opacity = '0.3';
+        }
+    }
+    document.querySelectorAll('.inputDiscreetState').forEach(function(item) {
+        inputDiscreetState(item, false);
+    });
+    $('body').on('focus', '.input-discreet', function() {
+        inputDiscreetState(this, true);
+    });
+    $('body').on('blur', '.input-discreet', function() {
+        inputDiscreetState(this, false);
+    });
 
 	// COLLECTION & PRODUCTION CHOSEN
 	$('#collection_saison_id').sortSelect().chosen({width: "90%"});
@@ -328,6 +476,24 @@ $(document).ready(function() {
 
   $('#fournisseur_devise_id').sortSelect().chosen();
   $('#commercial_devise_id').sortSelect().chosen();
+
+  $('#sf_admin_batch_actions_form').submit(function( event ) {
+    var datasTab = $(this).serializeArray();
+    var datas = {};
+    $(datasTab).each(function(i, field){
+      datas[field.name] = field.value;
+    });
+    if (!datas.hasOwnProperty('date')||!datas['date']) {
+      $('#facturePayeeDateChoiceModal').modal({show:true});
+      event.preventDefault();
+    }
+  });
+  $('#sf_admin_batch_actions_complete_form').submit(function( event ) {
+      var date = $(this).find("input[type=date]").val();
+      $('#sf_admin_batch_actions_date').val(date);
+      $('#sf_admin_batch_actions_form').submit();
+      event.preventDefault();
+  });
 
 	//$(':text').addClass('input');
 });

@@ -449,7 +449,7 @@ select{
 
 .tableau .inputSelect.small,
 .tableau select.small{
-	width:98px;
+	width:98px !important;
 }
 
 
@@ -1162,4 +1162,10 @@ dl, ol, ul {
 }
 #activite_filters_commercial_id_chosen {
 	width: 12rem !important;
+}
+.details .btn {
+	text-decoration: none !important;
+}
+#sf_admin_batch_actions_choice {
+	width: 150px !important;
 }
