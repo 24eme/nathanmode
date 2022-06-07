@@ -94,6 +94,9 @@ class CoupeMultipleForm extends BaseForm
             $coupe->setFournisseurDeviseId(Devise::POURCENTAGE_ID);
             $coupe->setNumCommande($itemValues['num_commande']);
             $coupe->setDateCommande($itemValues['date_commande']);
+            if($itemValues['livre_le']) {
+                $coupe->setLivreLe($itemValues['livre_le']);
+            }
             $coupe->setClientId($itemValues['client_id']);
             $coupe->setQualite(trim($itemValues['qualite']));
             $coupe->setColori($itemValues['colori']);
