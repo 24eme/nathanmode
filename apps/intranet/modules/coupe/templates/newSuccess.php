@@ -53,8 +53,8 @@
                 <td style="padding: 4px;"><?php echo $formItem['qualite']->render(array('list' => 'liste_qualite', 'style' => 'width: 120px;', 'autocomplete' => 'off', 'class'=> 'required')); ?><?php echo $formItem['qualite']->renderError(); ?></td>
                 <td style="padding: 4px;"><?php echo $formItem['colori']->render(array('style' => 'width: 100px;')); ?><?php echo $formItem['colori']->renderError(); ?></td>
                 <td style="padding: 4px;"><?php echo $formItem['quantite_type']->render(array('style' => 'width: 100px;')); ?><?php echo $formItem['quantite_type']->renderError(); ?></td>
-                <td style="padding: 4px;"><?php echo $formItem['quantite']->render(array('style' => 'width: 60px;', 'class' => 'required')); ?><?php echo $formItem['quantite']->renderError(); ?></td>
-                <td style="padding: 4px; padding-right: 0;"><?php echo $formItem['prix']->render(array('style' => 'width: 60px;')); ?><?php echo $formItem['prix']->renderError(); ?></td>
+                <td style="padding: 4px;"><?php echo $formItem['quantite']->render(array('style' => 'width: 60px;', 'class' => 'required input-float')); ?><?php echo $formItem['quantite']->renderError(); ?></td>
+                <td style="padding: 4px; padding-right: 0;"><?php echo $formItem['prix']->render(array('style' => 'width: 60px;', 'class' => 'input-float')); ?><?php echo $formItem['prix']->renderError(); ?></td>
                 <td style="padding: 4px;"><?php echo $formItem['livre_le']->render(); ?><?php echo $formItem['livre_le']->renderError(); ?></td>
                 <td style="padding: 4px; padding-right: 0;"><?php echo $formItem['num_facture']->render(array('style' => 'width: 60px;')); ?><?php echo $formItem['num_facture']->renderError(); ?></td>
                 <td style="padding: 4px;"><?php echo $formItem['fichier']->render(array('style' => 'width: 140px;')); ?><?php echo $formItem['fichier']->renderError(); ?></td>

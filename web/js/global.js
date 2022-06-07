@@ -126,6 +126,7 @@ $(document).ready(function() {
         newLine.find('[name*="client_id"]').chosen();
         newLine.find('[name*="quantite_type"]').chosen();
         newLine.find('[name*="situation"]').chosen();
+        newLine.find('.input-float').inputNumberFormat();
     }
     
     $('#table_coupe_multiple').on('keypress', 'input, select', function(e) {
@@ -244,6 +245,8 @@ $(document).ready(function() {
         $(this).find('input').show();
         $(this).find('span').hide();
     });
+    
+    $('.input-float').inputNumberFormat();
 
 	// COLLECTION & PRODUCTION CHOSEN
 	$('#collection_saison_id').sortSelect().chosen({width: "90%"});

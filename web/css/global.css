@@ -1174,3 +1174,6 @@ dl, ol, ul {
     opacity: 0 !important;
     position:absolute !important;
 }
+.input-float {
+	text-align: right;
+}
