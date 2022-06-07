@@ -219,8 +219,8 @@
 </div>
 
 <p class="text-center mt-3 mb-0 details">
-  <a class="btn btn-light btn-sm" data-toggle="collapse" href="#details<?php if(isset($annuel)): ?>Annee<?php else: ?>Periode<?php endif; ?>" role="button" aria-expanded="false">
-    Détails Produits <span class="oi oi-chevron-bottom"></span>
+  <a class="btn btn-light btn-sm text-uppercase" data-toggle="collapse" href="#details<?php if(isset($annuel)): ?>Annee<?php else: ?>Periode<?php endif; ?>" role="button" aria-expanded="false">
+    Voir le détail par produit fini <span class="oi oi-chevron-bottom"></span>
   </a>
 </p>
 
@@ -250,7 +250,7 @@
                   if (in_array($id,Activite::$ACCESSOIRES_CATEGORIES)) continue;
               ?>
               <div class="list-group-item">
-                  <div class="col-8 text-dark small"><?php echo $libelle ?></div>
+                  <div class="col-8 text-dark small"><?php if($libelle): ?><?php echo $libelle ?><?php else: ?><span class="text-muted">Sans catégorie</span><?php endif; ?></div>
                   <div class="col-4 text-right text-dark"><?php echo number_format((isset($itemsBloc1[$id]) && $itemsBloc1[$id])? $itemsBloc1[$id] : 0, 2, ',', ' ') ?></div>
               </div>
               <?php endforeach; ?>
@@ -267,7 +267,7 @@
                   if (!in_array($id,Activite::$ACCESSOIRES_CATEGORIES)) continue;
               ?>
               <div class="list-group-item">
-                  <div class="col-6 text-dark small"><?php echo $libelle ?></div>
+                  <div class="col-6 text-dark small"><?php if($libelle): ?><?php echo $libelle ?><?php else: ?><span class="text-muted">Sans catégorie</span><?php endif; ?></div>
                   <div class="col-2 small">
                     <?php
                         $val1 = (isset($itemsBloc1[$id]) && $itemsBloc1[$id])? $itemsBloc1[$id] : 0;
@@ -294,7 +294,7 @@
                 if (in_array($id,Activite::$ACCESSOIRES_CATEGORIES)) continue;
               ?>
               <div class="list-group-item">
-                  <div class="col-6 text-dark small"><?php echo $libelle ?></div>
+                  <div class="col-6 text-dark small"><?php if($libelle): ?><?php echo $libelle ?><?php else: ?><span class="text-muted">Sans catégorie</span><?php endif; ?></div>
                   <div class="col-2 small">
                     <?php
                         $val1 = (isset($itemsBloc1[$id]) && $itemsBloc1[$id])? $itemsBloc1[$id] : 0;
@@ -351,7 +351,7 @@
                   if (in_array($id,Activite::$ACCESSOIRES_CATEGORIES)) continue;
               ?>
               <div class="list-group-item">
-                  <div class="col-6 text-dark small"><?php echo $libelle ?></div>
+                  <div class="col-6 text-dark small"><?php if($libelle): ?><?php echo $libelle ?><?php else: ?><span class="text-muted">Sans catégorie</span><?php endif; ?></div>
                   <div class="col-2 small">
                     <?php
                         $val1 = (isset($itemsBloc1[$id]) && $itemsBloc1[$id])? $itemsBloc1[$id] : 0;
