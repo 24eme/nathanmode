@@ -155,7 +155,11 @@ class Collection extends BaseCollection
 
     public function updateCreditCommande($montant, $deviseId)
     {
-    	$creditCommande = (count($this->getCreditCommandes()) > 0)? $this->getCreditCommandes()[0] : new CreditCommande();
+      $cc = null;
+      if (!$this->isNew()) {
+        $cc = CreditCommandeTable::getInstance()->getByCollectionId($this->getId());
+      }
+    	$creditCommande = ($cc)?  $cc : new CreditCommande();
       $creditCommande->type = Bon::TYPE_CREDIT_COMMANDE;
     	if ($creditCommande->isNew()) {
         $creditCommande->setActif(true);
