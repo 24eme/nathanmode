@@ -86,7 +86,7 @@ class Activite
 		}
 
 		$reqFacture = "SELECT SUM(b.total_fournisseur) as montant FROM commande b WHERE b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
-		$reqCredit = "SELECT SUM(b.total_fournisseur) as montant FROM bon b WHERE b.type != 'Facture' AND b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
+		$reqCredit = "SELECT SUM(b.total_fournisseur) as montant FROM bon b WHERE b.type != 'Facture' AND b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant_total > 0".$where;
 		$req = "SELECT (".$reqFacture.") as facture, (".$reqCredit.") as credit, (SELECT ifnull(facture,0) - ifnull(credit,0)) as total";
 
 		$result = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc($req);
@@ -121,7 +121,7 @@ class Activite
 		}
 
 		$reqFacture = "SELECT SUM(b.metrage) as montant FROM commande b WHERE b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
-		$reqCredit = "SELECT SUM(b.metrage) as montant FROM bon b WHERE b.type != 'Facture' AND b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
+		$reqCredit = "SELECT SUM(b.metrage) as montant FROM bon b WHERE b.type != 'Facture' AND b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant_total > 0".$where;
 		$req = "SELECT (".$reqFacture.") as facture, (".$reqCredit.") as credit, (SELECT ifnull(facture,0) - ifnull(credit,0)) as total";
 
 		$result = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc($req);
@@ -209,7 +209,7 @@ class Activite
 		}
 
 		$reqFacture = "SELECT SUM(b.piece) as montant FROM commande b WHERE b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
-		$reqCredit = "SELECT SUM(b.piece) as montant FROM bon b WHERE b.type != 'Facture' AND b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
+		$reqCredit = "SELECT SUM(b.piece) as montant FROM bon b WHERE b.type != 'Facture' AND b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant_total > 0".$where;
 
 		$req = "SELECT (".$reqFacture.") as facture, (".$reqCredit.") as credit, (SELECT ifnull(facture,0) - ifnull(credit,0)) as total";
 
