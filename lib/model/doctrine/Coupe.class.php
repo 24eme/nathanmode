@@ -74,6 +74,10 @@ class Coupe extends BaseCoupe
     if($this->getPrix() && $this->getMetrage()) {
         $this->setMontantFacture(round($this->getPrix()*$this->getMetrage(), 2));
     }
+    
+    if($this->getPrix() && $this->getPiece()) {
+        $this->setMontantFacture(round($this->getPrix()*$this->getPiece(), 2));
+    }
 
   	$facture = ($this->isNew())? new Facture() : $this->getFacture();
   	if ($this->isNew()) {
