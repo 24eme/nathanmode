@@ -4,10 +4,6 @@
         <?php echo $form['colori']->renderError(); ?>
     </td>
     <td>
-        <?php echo $form['metrage']->render(array('class' => 'small')); ?>
-        <?php echo $form['metrage']->renderError(); ?>
-    </td>
-    <td>
         <?php echo $form['piece_categorie']->render(array('class' => 'small', 'style' => 'width: 60px !important;')); ?>
         <?php echo $form['piece_categorie']->renderError(); ?>
     </td>
