@@ -186,11 +186,18 @@ $(document).ready(function() {
         return false;
     });
 
-    $('.sf_admin_row').on('blur', '.submit_ajax_on_change', function() {
-        let element = this;
+    $('.sf_admin_row').on('blur', 'input.submit_ajax_on_change', function() {
+        saveFormPartialAjax(this);
+    });
+    
+    $('.sf_admin_row').on('change', 'select.submit_ajax_on_change', function() {
+        saveFormPartialAjax(this);
+    });
+    
+    var saveFormPartialAjax = function(element){
         element.style.visibility = 'hidden';
-        let form = $('#' + $(this).attr('form'));
-        formData = new FormData(document.getElementById($(this).attr('form')));
+        let form = $('#' + $(element).attr('form'));
+        formData = new FormData(document.getElementById($(element).attr('form')));
         let xhr = new XMLHttpRequest();
         xhr.open(form.attr('method'), form.attr('action'), true);
         xhr.onreadystatechange = function () {
@@ -199,7 +206,7 @@ $(document).ready(function() {
             }
         };
         xhr.send(formData);
-    });
+    }
     
     var inputDiscreetState = function(element, focus) {
         if(focus || element.value || element.querySelectorAll('option[selected]').length > 0) {
@@ -215,7 +222,6 @@ $(document).ready(function() {
         inputDiscreetState(this, true);
     });
     $('body').on('blur', '.input-discreet', function() {
-        console.log('blur');
         inputDiscreetState(this, false);
     });
 
