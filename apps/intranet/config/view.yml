@@ -14,14 +14,14 @@ default:
 
   stylesheets:
    - reset.css: { media: all }
-   - global.css?20180618: { media: all }
+   - global.css?20220607625: { media: all }
    - chosen.css: { media: all }
    - admin.css: { media: all }
    - jquery-ui.min.css: { media: all }
    - globalprint.css?20180618: { media: print }
    #- iefix.css : { media: all, condition: IE}
 
-  javascripts:    [jquery-1.7.2.min.js, jquery-ui.min.js, jquery.plugins.min.js, datepicker-fr.js, global.js?202206071529, chosen.jquery.min.js]
+  javascripts:    [jquery-1.7.2.min.js, jquery-ui.min.js, jquery.plugins.min.js, datepicker-fr.js, global.js?20220607625, chosen.jquery.min.js]
 
   has_layout:     true
   layout:         layout

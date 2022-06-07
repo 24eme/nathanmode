@@ -44,16 +44,16 @@
         <tbody>
             <?php foreach($form['coupes'] as $key => $formItem): ?>
             <tr class="coupe_multiple_ligne" data-line-index="<?php echo $key ;?>" style="opacity: 0.5;">
-                <td style="padding: 4px; padding-left: 0;"><?php echo $formItem['saison_id']->render(array('style' => 'width: 100px;')); ?><?php echo $formItem['saison_id']->renderError(); ?></td>
-                <td style="padding: 4px; padding-left: 0;"><?php echo $formItem['commercial_id']->render(array('style' => 'width: 100px;')); ?><?php echo $formItem['commercial_id']->renderError(); ?></td>
-                <td style="padding: 4px;"><?php echo $formItem['date_commande']->render(); ?><?php echo $formItem['date_commande']->renderError(); ?></td>
+                <td style="padding: 4px; padding-left: 0;"><?php echo $formItem['saison_id']->render(array('style' => 'width: 100px;', 'class' => 'select-invisible required')); ?><?php echo $formItem['saison_id']->renderError(); ?></td>
+                <td style="padding: 4px; padding-left: 0;"><?php echo $formItem['commercial_id']->render(array('style' => 'width: 100px;', 'class' => 'select-invisible required')); ?><?php echo $formItem['commercial_id']->renderError(); ?></td>
+                <td style="padding: 4px;"><?php echo $formItem['date_commande']->render(array('class' => 'required')); ?><?php echo $formItem['date_commande']->renderError(); ?></td>
                 <td style="padding: 4px;"><?php echo $formItem['num_commande']->render(array('style' => 'width: 60px;')); ?><?php echo $formItem['num_commande']->renderError(); ?></td>
-                <td style="padding: 4px;"><?php echo $formItem['fournisseur_id']->render(array('style' => 'width: 100px;')); ?><?php echo $formItem['fournisseur_id']->renderError(); ?></td>
-                <td style="padding: 4px;"><?php echo $formItem['client_id']->render(array('style' => 'width: 100px;')); ?><?php echo $formItem['client_id']->renderError(); ?></td>
-                <td style="padding: 4px;"><?php echo $formItem['qualite']->render(array('list' => 'liste_qualite', 'style' => 'width: 120px;', 'autocomplete' => 'off')); ?><?php echo $formItem['qualite']->renderError(); ?></td>
+                <td style="padding: 4px;"><?php echo $formItem['fournisseur_id']->render(array('style' => 'width: 100px;', 'class' => 'select-invisible required')); ?><?php echo $formItem['fournisseur_id']->renderError(); ?></td>
+                <td style="padding: 4px;"><?php echo $formItem['client_id']->render(array('style' => 'width: 100px;', 'class' => 'select-invisible required')); ?><?php echo $formItem['client_id']->renderError(); ?></td>
+                <td style="padding: 4px;"><?php echo $formItem['qualite']->render(array('list' => 'liste_qualite', 'style' => 'width: 120px;', 'autocomplete' => 'off', 'class'=> 'required')); ?><?php echo $formItem['qualite']->renderError(); ?></td>
                 <td style="padding: 4px;"><?php echo $formItem['colori']->render(array('style' => 'width: 100px;')); ?><?php echo $formItem['colori']->renderError(); ?></td>
                 <td style="padding: 4px;"><?php echo $formItem['quantite_type']->render(array('style' => 'width: 100px;')); ?><?php echo $formItem['quantite_type']->renderError(); ?></td>
-                <td style="padding: 4px;"><?php echo $formItem['quantite']->render(array('style' => 'width: 60px;')); ?><?php echo $formItem['quantite']->renderError(); ?></td>
+                <td style="padding: 4px;"><?php echo $formItem['quantite']->render(array('style' => 'width: 60px;', 'class' => 'required')); ?><?php echo $formItem['quantite']->renderError(); ?></td>
                 <td style="padding: 4px; padding-right: 0;"><?php echo $formItem['prix']->render(array('style' => 'width: 60px;')); ?><?php echo $formItem['prix']->renderError(); ?></td>
                 <td style="padding: 4px;"><?php echo $formItem['livre_le']->render(); ?><?php echo $formItem['livre_le']->renderError(); ?></td>
                 <td style="padding: 4px; padding-right: 0;"><?php echo $formItem['num_facture']->render(array('style' => 'width: 60px;')); ?><?php echo $formItem['num_facture']->renderError(); ?></td>

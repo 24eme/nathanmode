@@ -129,10 +129,13 @@ $(document).ready(function() {
     }
     
     $('#table_coupe_multiple').on('keypress', 'input, select', function(e) {
-        $(e.currentTarget).parents('.coupe_multiple_ligne').css('opacity', '1');
+        activeLine($(e.currentTarget).parents('.coupe_multiple_ligne'));
+    });
+    $('#table_coupe_multiple').on('change', 'input, select', function(e) {
+        activeLine($(e.currentTarget).parents('.coupe_multiple_ligne'));
     });
     $('#table_coupe_multiple').on('click', '.chosen-single', function(e) {
-        $(e.currentTarget).parents('.coupe_multiple_ligne').css('opacity', '1');
+        activeLine($(e.currentTarget).parents('.coupe_multiple_ligne'));
     });
 
     $('#table_coupe_multiple').on('change', '[name*="qualite"]', function() {
@@ -145,6 +148,11 @@ $(document).ready(function() {
         verifUniciteCommande($(this).parents('.coupe_multiple_ligne'));
     });
     
+    function activeLine(line) {
+        line.css('opacity', '1');
+        line.find('.required').attr('required', 'required');
+    }
+
     function verifUniciteCommande(line) {
         let q = line.find('[name*="qualite"]').val();
         let s = line.find('[name*="saison_id"]').val();
