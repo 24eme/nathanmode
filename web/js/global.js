@@ -240,9 +240,9 @@ $(document).ready(function() {
     $('body').on('blur', '.input-discreet', function() {
         inputDiscreetState(this, false);
     });
-    $('body').on('click', '.clic2showfield', function() {
-        $(this).prev().show();
-        $(this).hide();
+    $('td .clic2showfield').parent('td').on('click', function() {
+        $(this).find('input').show();
+        $(this).find('span').hide();
     });
 
 	// COLLECTION & PRODUCTION CHOSEN
