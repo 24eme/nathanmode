@@ -153,7 +153,7 @@ $(document).ready(function() {
         $('#alertBox').hide();
         $('#alertBox').html('');
         if (q&&s&&c) {
-          $.get("/collection/getbysaisonqualite", {qualite: q, saison: s, client: c}, function(infos) {
+          $.get("/collection/getbysaisonqualite", {qualite: q, saison: s, client: c, coupe: 1}, function(infos) {
             if (infos) {
               const json = JSON.parse(infos);
               let html = '<div style="padding:5px 10px;">/!\ Qualité "'+q+'" commandée par les clients suivants :</div><ul style="padding:0px 10px 10px 10px;" class="list-unstyled">';

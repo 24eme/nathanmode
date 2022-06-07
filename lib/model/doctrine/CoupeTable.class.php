@@ -28,4 +28,12 @@ class CoupeTable extends Doctrine_Table
 
         return $path;
     }
+    
+    public function getBySaisonQualiteNotClient($saisonId, $qualite, $clientId) {
+      return $this->createQuery('c')
+                  ->addWhere('c.saison_id = ?', $saisonId)
+                  ->addWhere('c.tissu = ?', $qualite)
+                  ->addWhere('c.client_id != ?', $clientId)
+                  ->execute();
+    }
 }
