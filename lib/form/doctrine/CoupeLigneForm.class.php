@@ -25,6 +25,12 @@ class CoupeLigneForm extends BaseForm
         $this->setWidget('situation', new sfWidgetFormChoice(array('choices' => array_merge(array("" => "Select an option"), CoupeForm::getSituations()))));
         $this->setValidator('situation', new sfValidatorChoice(array('choices' => array_keys(CoupeForm::getSituations()), 'required' => false)));
         
+        $this->setWidget('prix', new sfWidgetFormInput());
+        $this->setValidator('prix', new sfValidatorPass());
+
+        $this->setWidget('quantite', new sfWidgetFormInput());
+        $this->setValidator('quantite', new sfValidatorPass());
+        
         $this->setWidget('livre_le', new sfWidgetFormInput(array('type' => 'date')));
         $this->setValidator('livre_le', new sfValidatorPass());
         
@@ -46,6 +52,18 @@ class CoupeLigneForm extends BaseForm
         
         if(isset($values['num_facture']) && $values['num_facture']) {
             $this->coupe->setNumFacture($values['num_facture']);
+        }
+        
+        if(isset($values['quantite']) && $values['quantite']) {
+            if($this->coupe->getPiece()) {
+                $this->coupe->setPiece($values['quantite']);
+            } else {
+                $this->coupe->setMetrage($values['quantite']);
+            }
+        }
+        
+        if(isset($values['prix']) && $values['prix']) {
+            $this->coupe->setPrix($values['prix']);
         }
         
         if(isset($values['livre_le']) && $values['livre_le']) {

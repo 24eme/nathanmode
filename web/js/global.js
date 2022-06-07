@@ -141,7 +141,7 @@ $(document).ready(function() {
     $('#table_coupe_multiple').on('change', '[name*="client_id"]', function() {
         verifUniciteCommande($(this).parents('.coupe_multiple_ligne'));
     });
-    $('#table_coupe_multiple').on('change', '[name*="client_id"]', function() {
+    $('#table_coupe_multiple').on('change', '[name*="saison_id"]', function() {
         verifUniciteCommande($(this).parents('.coupe_multiple_ligne'));
     });
     
@@ -186,11 +186,19 @@ $(document).ready(function() {
         return false;
     });
 
-    $('.sf_admin_row').on('blur', 'input.submit_ajax_on_change', function() {
+    $('.sf_admin_row').on('blur', 'input[type="text"].submit_ajax_on_change', function() {
+        saveFormPartialAjax(this);
+    });
+    
+    $('.sf_admin_row').on('blur', 'input[type="date"].submit_ajax_on_change', function() {
         saveFormPartialAjax(this);
     });
     
     $('.sf_admin_row').on('change', 'select.submit_ajax_on_change', function() {
+        saveFormPartialAjax(this);
+    });
+    
+    $('.sf_admin_row').on('change', 'input[type="file"].submit_ajax_on_change', function() {
         saveFormPartialAjax(this);
     });
     
@@ -215,7 +223,7 @@ $(document).ready(function() {
             element.style.opacity = '0.3';
         }
     }
-    document.querySelectorAll('.inputDiscreetState').forEach(function(item) {
+    document.querySelectorAll('.input-discreet').forEach(function(item) {
         inputDiscreetState(item, false);
     });
     $('body').on('focus', '.input-discreet', function() {
