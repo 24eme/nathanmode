@@ -17,6 +17,8 @@
         <option value="<?php echo $libelle ?>">
         <?php endforeach; ?>
     </datalist>
+    
+    <div id="alertBox" class="bg-danger" style="float:left;width:100%; margin-top: -10px; margin-bottom: 10px; display:none;"></div>
 
     <table id="table_coupe_multiple">
         <thead>

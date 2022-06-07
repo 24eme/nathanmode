@@ -135,6 +135,39 @@ $(document).ready(function() {
         $(e.currentTarget).parents('.coupe_multiple_ligne').css('opacity', '1');
     });
 
+    $('#table_coupe_multiple').on('change', '[name*="qualite"]', function() {
+        verifUniciteCommande($(this).parents('.coupe_multiple_ligne'));
+    });
+    $('#table_coupe_multiple').on('change', '[name*="client_id"]', function() {
+        verifUniciteCommande($(this).parents('.coupe_multiple_ligne'));
+    });
+    $('#table_coupe_multiple').on('change', '[name*="client_id"]', function() {
+        verifUniciteCommande($(this).parents('.coupe_multiple_ligne'));
+    });
+    
+    function verifUniciteCommande(line) {
+        let q = line.find('[name*="qualite"]').val();
+        let s = line.find('[name*="saison_id"]').val();
+        let c = line.find('[name*="client_id"]').val();
+        
+        $('#alertBox').hide();
+        $('#alertBox').html('');
+        if (q&&s&&c) {
+          $.get("/collection/getbysaisonqualite", {qualite: q, saison: s, client: c}, function(infos) {
+            if (infos) {
+              const json = JSON.parse(infos);
+              let html = '<div style="padding:5px 10px;">/!\ Qualité "'+q+'" commandée par les clients suivants :</div><ul style="padding:0px 10px 10px 10px;" class="list-unstyled">';
+              for (let i in json) {
+                html += '<li><a href="'+i+'" target="_blank">'+json[i]+'</a></li>';
+              }
+              html += '</ul>';
+              $('#alertBox').html(html);
+              $('#alertBox').show();
+            }
+          });
+        }
+    }
+ 
     $('#table_coupe_multiple').on('focus', '.coupe_multiple_ligne:last input:last', function(e) {
         addCoupeMultipleLine();
     });
