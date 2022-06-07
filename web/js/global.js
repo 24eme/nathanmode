@@ -232,6 +232,10 @@ $(document).ready(function() {
     $('body').on('blur', '.input-discreet', function() {
         inputDiscreetState(this, false);
     });
+    $('body').on('click', '.clic2showfield', function() {
+        $(this).prev().show();
+        $(this).hide();
+    });
 
 	// COLLECTION & PRODUCTION CHOSEN
 	$('#collection_saison_id').sortSelect().chosen({width: "90%"});
