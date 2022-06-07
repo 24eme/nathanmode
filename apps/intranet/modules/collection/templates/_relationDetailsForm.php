@@ -1,9 +1,8 @@
  <table width="100%" border="0" cellpadding="0" cellspacing="0" class="subTab">
     <tr>
         <th><label>Colori</label></th>
-        <th><label>Métrage</label></th>
-        <th><label>PF Type</label></th>
-        <th><label>PF</label></th>
+        <th><label>Type</label></th>
+        <th><label>Quantité</label></th>
         <th><label>Prix</label></th>
         <th><label>&nbsp;</label></th>
         <th><label>&nbsp;</label></th>
