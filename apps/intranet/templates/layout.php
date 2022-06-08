@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php $gitcommit = str_replace("\n", "", file_get_contents('../.git/ORIG_HEAD'));?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
         <?php include_http_metas() ?>
@@ -6,9 +6,18 @@
         <?php include_title() ?>
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
-        <link href="/css/open-iconic/font/css/open-iconic-bootstrap.css" rel="stylesheet" />
-        <?php include_stylesheets() ?>
-        <?php include_javascripts() ?>
+        <link href="/css/open-iconic/font/css/open-iconic-bootstrap.css?<?php echo $gitcommit ?>" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" media="all" href="/css/reset.css?<?php echo $gitcommit ?>" />
+        <link rel="stylesheet" type="text/css" media="all" href="/css/global.css?<?php echo $gitcommit ?>" />
+        <link rel="stylesheet" type="text/css" media="all" href="/css/chosen.css?<?php echo $gitcommit ?>" />
+        <link rel="stylesheet" type="text/css" media="all" href="/css/admin.css?<?php echo $gitcommit ?>" />
+        <link rel="stylesheet" type="text/css" media="all" href="/css/jquery-ui.min.css?<?php echo $gitcommit ?>" />
+        <link rel="stylesheet" type="text/css" media="print" href="/css/globalprint.css?<?php echo $gitcommit ?>" />
+        <script type="text/javascript" src="/js/jquery-1.7.2.min.js?<?php echo $gitcommit ?>"></script>
+        <script type="text/javascript" src="/js/jquery-ui.min.js?<?php echo $gitcommit ?>"></script>
+        <script type="text/javascript" src="/js/jquery.plugins.min.js?<?php echo $gitcommit ?>"></script>
+        <script type="text/javascript" src="/js/datepicker-fr.js?<?php echo $gitcommit ?>"></script>
+        <script type="text/javascript" src="/js/global.js?<?php echo $gitcommit ?>"></script>
     </head>
     <body>
     	<div id="wrapper">
