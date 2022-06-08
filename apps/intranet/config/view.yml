@@ -13,7 +13,7 @@ default:
     robots:       noindex, nofollow
 
   stylesheets: []
-  javascripts:    []
+  javascripts: []
 
   has_layout:     true
   layout:         layout

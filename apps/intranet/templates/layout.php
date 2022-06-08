@@ -17,7 +17,10 @@
         <script type="text/javascript" src="/js/jquery-ui.min.js?<?php echo $gitcommit ?>"></script>
         <script type="text/javascript" src="/js/jquery.plugins.min.js?<?php echo $gitcommit ?>"></script>
         <script type="text/javascript" src="/js/datepicker-fr.js?<?php echo $gitcommit ?>"></script>
+        <script type="text/javascript" src="/js/chosen.jquery.min.js?<?php echo $gitcommit ?>"></script>
         <script type="text/javascript" src="/js/global.js?<?php echo $gitcommit ?>"></script>
+        <?php include_stylesheets() ?>
+        <?php include_javascripts() ?>
     </head>
     <body>
     	<div id="wrapper">
