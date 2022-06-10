@@ -43,10 +43,10 @@ $(document).ready(function() {
 	$('#coupe_client_id').sortSelect().chosen({width: "90%"});
 	$('#coupe_commercial_id').sortSelect().chosen({width: "90%"});
 	$('#coupe_paiement').sortSelect().chosen({width: "90%"});
-	$('#coupe_devise_id').sortSelect().chosen({width: "90%"});
+	$('#coupe_devise_id').sortSelect().chosen({width: "25%"});
   $('#coupe_situation').sortSelect().chosen({width: "90%"});
-  $('#coupe_fournisseur_devise_id').sortSelect().chosen({width: "90%"});
-  $('#coupe_commercial_devise_id').sortSelect().chosen({width: "90%"});
+  $('#coupe_fournisseur_devise_id').sortSelect().chosen({width: "25%"});
+  $('#coupe_commercial_devise_id').sortSelect().chosen({width: "25%"});
   $('#coupe_piece_categorie').sortSelect().chosen({width: "90%"});
 
 
