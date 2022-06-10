@@ -304,6 +304,20 @@ $(document).ready(function() {
     $('#collection_fournisseur_id').trigger( "change" );
   }
 
+  $('#coupe_fournisseur_id').on('change', function() {
+    const fId = this.value;
+    $.get("/fournisseur/"+fId+"/getcommission", function(infos) {
+      const json = JSON.parse(infos);
+      $('#coupe_commission_fournisseur').val(json.commission);
+      $('#coupe_devise_fournisseur_id').val(json.devise_id);
+      $('#coupe_devise_fournisseur_id').trigger("chosen:updated");
+    });
+  });
+
+  if($('#coupe_fournisseur_id').length > 0 && !editUrlRegexp.test($('form').attr('action'))) {
+    $('#coupe_fournisseur_id').trigger( "change" );
+  }
+
   $('#collection_client_id').on('change', function() {
     const cId = this.value;
     $.get("/client/"+cId+"/getpaiement", function(infos) {
