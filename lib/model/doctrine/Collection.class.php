@@ -138,7 +138,7 @@ class Collection extends BaseCollection
     			}
     		}
     	}
-      if ($hasFacture && (($this->getMetrageRestantALivrer() + $this->getPFRestantALivrer())  > 0 || round($montantCommande - $montantFacture,2) > 0)) {
+      if ($hasFacture) {
       	$creditCommande = $this->updateCreditCommande(round($montantCommande - $montantFacture,2), $deviseId);
        	$creditCommande->save();
       } elseif ($cc = CreditCommandeTable::getInstance()->getByCollectionId($this->getId())) {
@@ -149,7 +149,7 @@ class Collection extends BaseCollection
 
     public function updateResteALivrer() {
       $reste = $this->getMetrageRestantALivrer() + $this->getPFRestantALivrer();
-      $this->setResteALivrer($reste);
+      $this->setResteALivrer(($reste >= 0)? $reste : 0);
     }
 
     public function updateCreditCommande($montant, $deviseId)
@@ -189,11 +189,7 @@ class Collection extends BaseCollection
       $creditCommande->setStatut(StatutsFacture::KEY_NON_PAYEE);
       $creditCommande->setMetrage($this->getMetrageRestantALivrer());
       $creditCommande->setPiece($this->getPFRestantALivrer());
-      if ($montant >= 0) {
-        $creditCommande->setMontantTotal($montant);
-      } else {
-        $creditCommande->setMontantTotal(0);
-      }
+      $creditCommande->setMontantTotal($montant);
       $creditCommande->setQualite($this->getQualite());
       if ($this->getProduction())
       	$creditCommande->setRelation(Facture::TYPE_PRODUCTION);
