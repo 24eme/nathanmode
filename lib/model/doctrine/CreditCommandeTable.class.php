@@ -20,7 +20,7 @@ class CreditCommandeTable extends BonTable
     public function getByCollectionId($collectionId) {
           return Doctrine_Query::create()
                   ->from('Bon b')
-                  ->where('b.collection_id', $collectionId)
+                  ->where('b.collection_id = ?', $collectionId)
                   ->fetchOne();
     }
 }
