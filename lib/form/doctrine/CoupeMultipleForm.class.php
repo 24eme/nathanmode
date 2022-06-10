@@ -85,19 +85,34 @@ class CoupeMultipleForm extends BaseForm
             if(!isset($itemValues['quantite']) || !$itemValues['quantite']) {
                 continue;
             }
-            
+
             $coupe = new Coupe();
             $coupe->setSaisonId($itemValues['saison_id']);
             $coupe->setCommercialId($itemValues['commercial_id']);
-            $coupe->setCommercialDeviseId(Devise::POURCENTAGE_ID);
+            if ($commercial = CommercialTable::getInstance()->find($itemValues['commercial_id'])) {
+              $coupe->setCommissionCommercial($commercial->getCommission());
+              $coupe->setCommercialDeviseId($commercial->getDeviseId());
+              $coupe->setDeviseCommercial($commercial->getDevise());
+            } else {
+              $coupe->setCommercialDeviseId(Devise::POURCENTAGE_ID);
+            }
             $coupe->setFournisseurId($itemValues['fournisseur_id']);
-            $coupe->setFournisseurDeviseId(Devise::POURCENTAGE_ID);
+            if ($fournisseur = FournisseurTable::getInstance()->find($itemValues['fournisseur_id'])) {
+              $coupe->setCommissionFournisseur($fournisseur->getCommission());
+              $coupe->setFournisseurDeviseId($fournisseur->getDeviseId());
+              $coupe->setDeviseFournisseur($fournisseur->getDevise());
+            } else {
+              $coupe->setFournisseurDeviseId(Devise::POURCENTAGE_ID);
+            }
             $coupe->setNumCommande($itemValues['num_commande']);
             $coupe->setDateCommande($itemValues['date_commande']);
             if($itemValues['livre_le']) {
                 $coupe->setLivreLe($itemValues['livre_le']);
             }
             $coupe->setClientId($itemValues['client_id']);
+            if ($client = ClientTable::getInstance()->find($itemValues['client_id'])) {
+              $coupe->setPaiement($client->getConditionPaiement());
+            }
             $coupe->setQualite(trim($itemValues['qualite']));
             $coupe->setColori($itemValues['colori']);
             if($itemValues['quantite_type'] == "METRAGE") {
