@@ -330,6 +330,18 @@ $(document).ready(function() {
     $('#collection_client_id').trigger( "change" );
   }
 
+  $('#coupe_client_id').on('change', function() {
+    const cId = this.value;
+    $.get("/client/"+cId+"/getpaiement", function(infos) {
+      const json = JSON.parse(infos);
+      $('#coupe_paiement').val(json.paiement);
+      $('#coupe_paiement').trigger("chosen:updated");
+    });
+  });
+  if($('#coupe_client_id').length > 0 && !editUrlRegexp.test($('form').attr('action'))) {
+    $('#coupe_client_id').trigger( "change" );
+  }
+
 
 
   $('#collection_qualite').on('change', function() {
