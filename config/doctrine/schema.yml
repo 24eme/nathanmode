@@ -686,6 +686,9 @@ Bon:
     devise_escompte_id:
       type: integer
       default: NULL
+    collection_id:
+      type: integer
+      default: NULL
     prix_fournisseur:
       type: double
       default: NULL
@@ -781,6 +784,11 @@ Bon:
       local: devise_commercial_id
       foreign: id
       foreignAlias: Bons
+      onDelete: CASCADE
+    Collection:
+      local: collection_id
+      foreign: id
+      foreignAlias: Collections
       onDelete: CASCADE
 
 Facture:
