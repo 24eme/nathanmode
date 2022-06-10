@@ -21,6 +21,7 @@ class CreditCommandeTable extends BonTable
           return Doctrine_Query::create()
                   ->from('Bon b')
                   ->where('b.collection_id = ?', $collectionId)
+                  ->andWhere('b.type = ?', 'CreditCommande')
                   ->fetchOne();
     }
 }
