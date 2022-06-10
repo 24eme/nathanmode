@@ -574,19 +574,6 @@ $.initTemplateLigne = function() {
         return false;
     });
 }
-$.coupeDependentSelect = function() {
-	if ($('#coupe_client_id').length != 0) {
-	    $('#coupe_client_id').live('change', function() {
-			$.coupeUpdateSelect();
-	        return false;
-	    });
-	}
-}
-$.coupeUpdateSelect = function() {
-	var client_id = $('#coupe_client_id').val();
-	var url = $('#dependent_select_url_template').html().replace('var---id---', client_id);
-	$.get(url, function(paiement) { $('#coupe_paiement').val(paiement); });
-}
 
 $.fn.sortSelect = function () {
 	var mylist = $(this);
