@@ -1,6 +1,5 @@
 $(document).ready(function() {
     $.initTemplateLigne();
-    $.coupeDependentSelect();
 
     var editUrlRegexp = /[0-9]+/g;
 
