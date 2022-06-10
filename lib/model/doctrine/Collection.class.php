@@ -141,8 +141,7 @@ class Collection extends BaseCollection
       if ($hasFacture && (($this->getMetrageRestantALivrer() + $this->getPFRestantALivrer())  > 0 || round($montantCommande - $montantFacture,2) > 0)) {
       	$creditCommande = $this->updateCreditCommande(round($montantCommande - $montantFacture,2), $deviseId);
        	$creditCommande->save();
-      } elseif (count($this->getCreditCommandes()) > 0) {
-        $cc = $this->getCreditCommandes()[0];
+      } elseif ($cc = CreditCommandeTable::getInstance()->getByCollectionId($this->getId())) {
         $cc->delete();
       }
       $this->updateResteALivrer();
