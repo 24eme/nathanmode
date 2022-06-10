@@ -156,6 +156,9 @@ abstract class BaseBon extends sfDoctrineRecord
         $this->hasColumn('devise_escompte_id', 'integer', null, array(
              'type' => 'integer',
              ));
+        $this->hasColumn('collection_id', 'integer', null, array(
+             'type' => 'integer',
+             ));
         $this->hasColumn('prix_fournisseur', 'double', null, array(
              'type' => 'double',
              ));
@@ -279,6 +282,11 @@ abstract class BaseBon extends sfDoctrineRecord
 
         $this->hasOne('Devise as DeviseCommercial', array(
              'local' => 'devise_commercial_id',
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
+
+        $this->hasOne('Collection', array(
+             'local' => 'collection_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
     }
