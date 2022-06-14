@@ -1177,3 +1177,19 @@ dl, ol, ul {
 .input-float {
 	text-align: right;
 }
+
+table tr.coupe_statut_soldee {
+	background-color: #bebbbb;
+}
+table tr.coupe_statut_att_confirmation {
+	background-color: #edede9;
+}
+table tr.coupe_statut_attente_paiement {
+	background-color: #b7e4c7;
+}
+table tr.coupe_statut_attente_livraison {
+	background-color: #bbd0ff;
+}
+table tr.coupe_statut_expe_att_facture {
+	background-color: #f4d58d;
+}
