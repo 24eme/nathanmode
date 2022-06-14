@@ -187,6 +187,9 @@ class Collection extends BaseCollection
       $creditCommande->setNumero('Commande : '.$this->getNumCommande());
       $creditCommande->setDate($this->getDateCommande());
       $creditCommande->setStatut(StatutsFacture::KEY_NON_PAYEE);
+      if ($this->getStatut() == 'SOLDEE') {
+        $creditCommande->setStatut(StatutsFacture::KEY_PAYEE);
+      }
       $creditCommande->setMetrage($this->getMetrageRestantALivrer());
       $creditCommande->setPiece($this->getPFRestantALivrer());
       $creditCommande->setMontantTotal($montant);
