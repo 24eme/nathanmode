@@ -48,6 +48,9 @@ EOF;
               try {
                 Email::getInstance($contextInstance)->$emailType($itemsByFournisseur, $fournisseurEmails, $correspondantEmails);
                 $this->increaseNbRelanceForItems($itemsByFournisseur);
+                foreach($itemsByFournisseur as $item) {
+                  echo date('Y-m-d H:i:s').' / '.$item->id.' / '.implode(',', $correspondantEmails)."\n";
+                }
               } catch(Exception $e) {
                 $log .= '<li>'.$e->getMessage().'</li>';
               }
