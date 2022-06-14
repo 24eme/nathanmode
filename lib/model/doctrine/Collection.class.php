@@ -149,7 +149,7 @@ class Collection extends BaseCollection
 
     public function updateResteALivrer() {
       $reste = $this->getMetrageRestantALivrer() + $this->getPFRestantALivrer();
-      $this->setResteALivrer(($reste >= 0)? $reste : 0);
+      $this->setResteALivrer($reste);
     }
 
     public function updateCreditCommande($montant, $deviseId)
