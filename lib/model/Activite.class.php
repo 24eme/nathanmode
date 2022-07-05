@@ -14,6 +14,8 @@ class Activite
 		"BONNETS",
 		"GANTS",
 		"MAROQUINERIE",
+		"PONCHOS",
+		"PLAIDS",
 	);
 
 	public function __construct($from, $to, $saison, $commercial, $produit)
