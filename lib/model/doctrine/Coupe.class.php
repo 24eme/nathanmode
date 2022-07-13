@@ -58,10 +58,7 @@ class Coupe extends BaseCoupe
 
   public function save(Doctrine_Connection $conn = null)
   {
-  	$facture = $this->updateFacture();
- 	$facture->save();
- 	$this->setFactureId($facture->getId());
- 	$this->setFacture($facture);
+    $this->updateFacture();
  	$commande = $this->updateCommande();
  	$commande->save();
  	$this->setCommandeId($commande->getId());
@@ -78,6 +75,10 @@ class Coupe extends BaseCoupe
   
   public function updateFacture()
   {
+    if(!$this->getFactureId() && !$this->getFichier()) {
+        return;
+    }
+
     if($this->getPrix() && $this->getMetrage()) {
         $this->setMontantFacture(round($this->getPrix()*$this->getMetrage(), 2));
     }
@@ -86,9 +87,9 @@ class Coupe extends BaseCoupe
         $this->setMontantFacture(round($this->getPrix()*$this->getPiece(), 2));
     }
 
-  	$facture = ($this->isNew())? new Facture() : $this->getFacture();
-  	if ($this->isNew()) {
-  		$facture->setActif(true);
+  	$facture = (!$this->getFactureId())? new Facture() : $this->getFacture();
+    if($facture->isNew()) {
+  	    $facture->setActif(true);
   	}
   	$facture->setSaisonId($this->getSaisonId());
     $facture->setFournisseurId($this->getFournisseurId());
@@ -151,6 +152,11 @@ class Coupe extends BaseCoupe
     } else {
     	$facture->setTotalCommercial($facture->getPrixCommercial());
     }
+    
+    $facture->save();
+    $this->setFactureId($facture->getId());
+    $this->setFacture($facture);
+    
     return $facture;
   }
   
