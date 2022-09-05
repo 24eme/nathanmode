@@ -49,7 +49,7 @@
     </div>
     <div class="col-sm-4">
         <div class="card border-secondary">
-            <div class="card-header bg-secondary text-white"><h5><?php if(isset($annuel)): ?>Année<?php else: ?>Période<?php endif; ?> <?php echo $from->format('Y')-1 ?><?php if(isset($detailsLink) && $detailsLink): ?><a href="#" class="float-right" data-toggle="modal" data-target="#<?php echo $detailsLink ?>Modal" data-url="<?php echo url_for('modal'.ucfirst($detailsLink), array('parameters' => array_merge($parameters->getRawValue(), array('from' => ($from->format('Y')-1).'-'.$from->format('m').'-'.$from->format('d'), 'to' => ($to->format('Y')-1).'-'.$to->format('m').'-'.$to->format('d'), 'ofrom' => $from->format('Y-m-d'), 'oto' => $to->format('Y-m-d'))))) ?>"><span class="oi oi-zoom-in text-white" title="details" aria-hidden="true"></span></a><?php endif; ?></h5></div>
+            <div class="card-header bg-secondary text-white"><h5><?php if(isset($annuel)): ?><?php echo $from->format('Y')-1 ?><?php else: ?><strong>N-1</strong> du <?php echo DateTime::createFromFormat("Y-m-d", $activites1->from)->format('d/m/Y'); ?> au <?php echo DateTime::createFromFormat("Y-m-d", $activites1->to)->format('d/m/Y'); ?><?php endif; ?><?php if(isset($detailsLink) && $detailsLink): ?><a href="#" class="float-right" data-toggle="modal" data-target="#<?php echo $detailsLink ?>Modal" data-url="<?php echo url_for('modal'.ucfirst($detailsLink), array('parameters' => array_merge($parameters->getRawValue(), array('from' => ($from->format('Y')-1).'-'.$from->format('m').'-'.$from->format('d'), 'to' => ($to->format('Y')-1).'-'.$to->format('m').'-'.$to->format('d'), 'ofrom' => $from->format('Y-m-d'), 'oto' => $to->format('Y-m-d'))))) ?>"><span class="oi oi-zoom-in text-white" title="details" aria-hidden="true"></span></a><?php endif; ?></h5></div>
             <div class="list-group list-group-flush">
                 <div class="list-group-item">
                     <div class="col-3 text-dark">CA <span class="text-warning"><?php echo ($devise == 2)? '<small class="oi oi-dollar" title="dollar" aria-hidden="true"></small>' : '<small class="oi oi-euro" title="euro" aria-hidden="true"></small>'; ?></span></div>
@@ -134,7 +134,7 @@
     </div>
     <div class="col-sm-4">
         <div class="card border-secondary">
-            <div class="card-header bg-secondary text-white"><h5><?php if(isset($annuel)): ?>Année<?php else: ?>Période<?php endif; ?> <?php echo $from->format('Y')-2 ?><?php if(isset($detailsLink) && $detailsLink): ?><a href="#" class="float-right" data-toggle="modal" data-target="#<?php echo $detailsLink ?>Modal" data-url="<?php echo url_for('modal'.ucfirst($detailsLink), array('parameters' => array_merge($parameters->getRawValue(), array('from' => ($from->format('Y')-2).'-'.$from->format('m').'-'.$from->format('d'), 'to' => ($to->format('Y')-2).'-'.$to->format('m').'-'.$to->format('d'), 'ofrom' => $from->format('Y-m-d'), 'oto' => $to->format('Y-m-d'))))) ?>"><span class="oi oi-zoom-in text-white" title="details" aria-hidden="true"></span></a><?php endif; ?></h5></div>
+            <div class="card-header bg-secondary text-white"><h5><?php if(isset($annuel)): ?><?php echo $from->format('Y')-2 ?><?php else: ?><strong>N-2</strong> du <?php echo DateTime::createFromFormat("Y-m-d", $activites2->from)->format('d/m/Y'); ?> au <?php echo DateTime::createFromFormat("Y-m-d", $activites2->to)->format('d/m/Y'); ?><?php endif; ?><?php if(isset($detailsLink) && $detailsLink): ?><a href="#" class="float-right" data-toggle="modal" data-target="#<?php echo $detailsLink ?>Modal" data-url="<?php echo url_for('modal'.ucfirst($detailsLink), array('parameters' => array_merge($parameters->getRawValue(), array('from' => ($from->format('Y')-2).'-'.$from->format('m').'-'.$from->format('d'), 'to' => ($to->format('Y')-2).'-'.$to->format('m').'-'.$to->format('d'), 'ofrom' => $from->format('Y-m-d'), 'oto' => $to->format('Y-m-d'))))) ?>"><span class="oi oi-zoom-in text-white" title="details" aria-hidden="true"></span></a><?php endif; ?></h5></div>
             <div class="list-group list-group-flush">
                 <div class="list-group-item">
                     <div class="col-3 text-dark">CA <span class="text-warning"><?php echo ($devise == 2)? '<small class="oi oi-dollar" title="dollar" aria-hidden="true"></small>' : '<small class="oi oi-euro" title="euro" aria-hidden="true"></small>'; ?></span></div>
@@ -260,7 +260,7 @@
       <div class="col-sm-4">
         <?php $itemsBloc2 = $activites1->getDetailledPcs($devise, $clientId, $fournisseurId);  ?>
         <div class="card border-secondary">
-          <div class="card-header bg-secondary text-white"><h5>ACCES. <small><?php if(isset($annuel)): ?>Année<?php else: ?>Période<?php endif; ?> <?php echo $from->format('Y')-1 ?></small></h5></div>
+          <div class="card-header bg-secondary text-white"><h5>ACCES. <small><?php if(isset($annuel)): ?><?php echo $from->format('Y')-1 ?><?php else: ?><strong>N-1</strong> du <?php echo DateTime::createFromFormat("Y-m-d", $activites1->from)->format('d/m/Y'); ?> au <?php echo DateTime::createFromFormat("Y-m-d", $activites1->to)->format('d/m/Y'); ?><?php endif; ?></small></h5></div>
           <div class="list-group list-group-flush">
               <?php
                 foreach(PieceCategories::getListe(true) as $id => $libelle) :
@@ -287,7 +287,7 @@
           </div>
         </div>
         <div class="card border-secondary mt-2">
-          <div class="card-header bg-secondary text-white"><h5>PF CN. <small><?php if(isset($annuel)): ?>Année<?php else: ?>Période<?php endif; ?> <?php echo $from->format('Y')-1 ?></small></h5></div>
+          <div class="card-header bg-secondary text-white"><h5>PF CN. <small><?php if(isset($annuel)): ?><?php echo $from->format('Y')-1 ?><?php else: ?><strong>N-1</strong> du <?php echo DateTime::createFromFormat("Y-m-d", $activites1->from)->format('d/m/Y'); ?> au <?php echo DateTime::createFromFormat("Y-m-d", $activites1->to)->format('d/m/Y'); ?><?php endif; ?></small></h5></div>
           <div class="list-group list-group-flush">
               <?php
               foreach(PieceCategories::getListe(true) as $id => $libelle) :
@@ -317,7 +317,7 @@
       <div class="col-sm-4">
         <?php $itemsBloc3 = $activites2->getDetailledPcs($devise, $clientId, $fournisseurId); ?>
         <div class="card border-secondary">
-          <div class="card-header bg-secondary text-white"><h5>ACCES. <small><?php if(isset($annuel)): ?>Année<?php else: ?>Période<?php endif; ?> <?php echo $from->format('Y')-2 ?></small></h5></div>
+          <div class="card-header bg-secondary text-white"><h5>ACCES. <small><?php if(isset($annuel)): ?><?php echo $from->format('Y')-2 ?><?php else: ?><strong>N-2</strong> du <?php echo DateTime::createFromFormat("Y-m-d", $activites2->from)->format('d/m/Y'); ?> au <?php echo DateTime::createFromFormat("Y-m-d", $activites2->to)->format('d/m/Y'); ?><?php endif; ?></small></h5></div>
           <div class="list-group list-group-flush">
               <?php
                 foreach(PieceCategories::getListe(true) as $id => $libelle) :
@@ -344,7 +344,7 @@
           </div>
         </div>
         <div class="card border-secondary mt-2">
-          <div class="card-header bg-secondary text-white"><h5>PF CN. <small><?php if(isset($annuel)): ?>Année<?php else: ?>Période<?php endif; ?> <?php echo $from->format('Y')-2 ?></small></h5></div>
+          <div class="card-header bg-secondary text-white"><h5>PF CN. <small><?php if(isset($annuel)): ?><?php echo $from->format('Y')-2 ?><?php else: ?><strong>N-2</strong> du <?php echo DateTime::createFromFormat("Y-m-d", $activites2->from)->format('d/m/Y'); ?> au <?php echo DateTime::createFromFormat("Y-m-d", $activites2->to)->format('d/m/Y'); ?><?php endif; ?></small></h5></div>
           <div class="list-group list-group-flush">
               <?php
                 foreach(PieceCategories::getListe(true) as $id => $libelle) :
