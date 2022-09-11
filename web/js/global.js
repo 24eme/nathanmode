@@ -125,6 +125,7 @@ $(document).ready(function() {
 
         newLine = newLine.insertAfter(lastLine);
         newLine.css('opacity', 0.5);
+        newLine.find('.required').removeAttr('required');
         newLine.find('[name*="saison_id"]').chosen();
         newLine.find('[name*="commercial_id"]').chosen();
         newLine.find('[name*="fournisseur_id"]').chosen();
@@ -185,7 +186,7 @@ $(document).ready(function() {
     $('#table_coupe_multiple').on('focus', '.coupe_multiple_ligne:last input:last', function(e) {
         let id = $(this).parents('.chosen-container-single').attr('id');
         addCoupeMultipleLine();
-        $(document).find('#'+id+' input').focus();
+        $('#'+id+' input').focus();
     });
 
 
