@@ -183,8 +183,11 @@ $(document).ready(function() {
     }
  
     $('#table_coupe_multiple').on('focus', '.coupe_multiple_ligne:last input:last', function(e) {
+        let id = $(this).parents('.chosen-container-single').attr('id');
         addCoupeMultipleLine();
+        $(document).find('#'+id+' input').focus();
     });
+
 
     $('#lien_ajouter_ligne').on('click', function(e) {
         addCoupeMultipleLine();
