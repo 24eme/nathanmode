@@ -117,7 +117,7 @@ $(document).ready(function() {
         newLine.attr('data-line-index', newLineIndex);
         newLine.find('[name*="saison_id"]').val(lastLine.find('[name*="saison_id"]').val());
         newLine.find('[name*="commercial_id"]').val(lastLine.find('[name*="commercial_id"]').val());
-        newLine.find('[name*="date_demande"]').val(lastLine.find('[name*="date_demande"]').val());
+        newLine.find('[name*="date_commande"]').val(lastLine.find('[name*="date_commande"]').val());
         newLine.find('[name*="num_commande"]').val(lastLine.find('[name*="num_commande"]').val());
         newLine.find('[name*="fournisseur_id"]').val(lastLine.find('[name*="fournisseur_id"]').val());
         newLine.find('[name*="client_id"]').val(lastLine.find('[name*="client_id"]').val());
