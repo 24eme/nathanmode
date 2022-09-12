@@ -97,6 +97,7 @@ all:
       JUPE: "Jupe"
       COMBINAISON: "Combinaison"
       CHEMISES: "Chemises / Blouses / Top"
+      MAILLOT_BAIN: "Maillot de bain"
       AUTRE: "Autre"
       ECHARPRES: "Echarpes"
       BONNETS: "Bonnets"
