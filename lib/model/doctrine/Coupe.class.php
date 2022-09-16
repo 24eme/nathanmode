@@ -208,4 +208,8 @@ class Coupe extends BaseCoupe
     return $commande;
   }
 
+  public function isInRetardDespiteTimeExtension($date) {
+    return true;
+  }
+
 }

@@ -7,4 +7,7 @@ Could you please confirm us that no delay is expected ?
 Many thanks in advance for your return.
 <br /><br />
 LA MANUFACTURE AGENCY'S TEAM
-<?php echo include_partial('Email/details_relance', array('items' => $items)) ?>
+<?php
+  $details = ($isCoupe)? 'Email/details_coupe_relance' : 'Email/details_relance';
+  echo include_partial($details, array('items' => $items))
+?>

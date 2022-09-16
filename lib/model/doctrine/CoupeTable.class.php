@@ -36,4 +36,12 @@ class CoupeTable extends Doctrine_Table
                   ->addWhere('c.client_id != ?', $clientId)
                   ->execute();
     }
+
+    public function getNonLivres($nbJour, $nbRelance) {
+      return $this->createQuery('c')
+                  ->addWhere('(c.situation = \''.Situations::SITUATION_ATT_CONFIRMATION.'\' OR c.situation = \''.Situations::SITUATION_EN_COURS.'\' )')
+                  ->addWhere('c.livre_le <= ?', date('Y-m-d', strtotime("+$nbJour day")))
+                  ->addWhere('c.nb_relance = ?', $nbRelance)
+                  ->execute();
+    }
 }

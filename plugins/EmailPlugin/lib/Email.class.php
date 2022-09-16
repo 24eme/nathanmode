@@ -17,7 +17,7 @@ class Email
 				return self::$_instance;
   	}
 
-    public function firstProductionRelance($productions, $destinataires, $correspondants)
+    public function firstProductionRelance($productions, $destinataires, $correspondants, $isCoupe = false)
     {
         $subject = 'Reminder // Bulk orders to come';
         $body = $this->getBodyFromPartial('first_production_relance', array('items' => $productions));
@@ -32,7 +32,7 @@ class Email
         return $this->getMailer()->send($message);
     }
 
-    public function secondProductionRelance($productions, $destinataires, $correspondants)
+    public function secondProductionRelance($productions, $destinataires, $correspondants, $isCoupe = false)
     {
         $subject = 'Urgent reminder // Bulk orders to come';
         $body = $this->getBodyFromPartial('second_production_relance', array('items' => $productions));
@@ -47,10 +47,10 @@ class Email
         return $this->getMailer()->send($message);
 		}
 
-    public function collectionRelance($collections, $destinataires, $correspondants)
+    public function collectionRelance($collections, $destinataires, $correspondants, $isCoupe = false)
     {
         $subject = 'Urgent reminder // Collections order to come';
-        $body = $this->getBodyFromPartial('collection_relance', array('items' => $collections));
+        $body = $this->getBodyFromPartial('collection_relance', array('items' => $collections, 'isCoupe' => $isCoupe));
 				$message = Swift_Message::newInstance()
 								->setFrom(array(sfConfig::get('app_email_plugin_from_adresse') => sfConfig::get('app_email_plugin_from_name')))
 								->setTo($destinataires)

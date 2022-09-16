@@ -31,10 +31,18 @@ EOF;
           array("isproduction" => 1, "nbjouravantretard" => 7, "nbrelance" => 1, "email" => "secondProductionRelance"),
           array("isproduction" => 0, "nbjouravantretard" => 15, "nbrelance" => 0, "email" => "collectionRelance"),
           array("isproduction" => 0, "nbjouravantretard" => 7, "nbrelance" => 1, "email" => "collectionRelance"),
+          array("iscoupe" => 1, "nbjouravantretard" => 15, "nbrelance" => 0, "email" => "collectionRelance"),
+          array("iscoupe" => 1, "nbjouravantretard" => 7, "nbrelance" => 1, "email" => "collectionRelance"),
         );
         $log = '';
         foreach($relancesTypes as $relanceType) {
-          $items = CollectionTable::getInstance()->getNonLivres($relanceType['isproduction'], $relanceType['nbjouravantretard'], $relanceType['nbrelance']);
+          $isCoupe = false;
+          if (isset($relanceType['iscoupe'])) {
+            $items = CoupeTable::getInstance()->getNonLivres($relanceType['nbjouravantretard'], $relanceType['nbrelance']);
+            $isCoupe = true;
+          } else {
+            $items = CollectionTable::getInstance()->getNonLivres($relanceType['isproduction'], $relanceType['nbjouravantretard'], $relanceType['nbrelance']);
+          }
           $itemsByFournisseurs = $this->organizeByFournisseur($items, $relanceType['nbjouravantretard']);
           foreach($itemsByFournisseurs as $idFournisseur => $itemsByFournisseur) {
             $fournisseur = FournisseurTable::getInstance()->findOneById($idFournisseur);
@@ -46,10 +54,10 @@ EOF;
             $emailType = $relanceType['email'];
             if ($fournisseurEmails) {
               try {
-                Email::getInstance($contextInstance)->$emailType($itemsByFournisseur, $fournisseurEmails, $correspondantEmails);
+                Email::getInstance($contextInstance)->$emailType($itemsByFournisseur, $fournisseurEmails, $correspondantEmails, $isCoupe);
                 $this->increaseNbRelanceForItems($itemsByFournisseur);
                 foreach($itemsByFournisseur as $item) {
-                  echo date('Y-m-d H:i:s').' / '.$item->id.' / '.implode(',', $correspondantEmails)."\n";
+                  echo date('Y-m-d H:i:s').' / '.$item->id.' / '.implode(',', $fournisseurEmails).' / '.implode(',', $correspondantEmails)."\n";
                 }
               } catch(Exception $e) {
                 $log .= '<li>'.$e->getMessage().'</li>';
@@ -82,7 +90,7 @@ EOF;
           $result = array_merge($result, $emails);
         }
       }
-      return $result;
+      return array_unique($result);
     }
 
     private function organizeByFournisseur($items, $nbJour) {
