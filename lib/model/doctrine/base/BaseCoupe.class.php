@@ -226,6 +226,9 @@ abstract class BaseCoupe extends sfDoctrineRecord
              'type' => 'string',
              'length' => 128,
              ));
+        $this->hasColumn('nb_relance', 'integer', null, array(
+             'type' => 'integer'
+             ));
     }
 
     public function setUp()

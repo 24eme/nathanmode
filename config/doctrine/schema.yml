@@ -190,6 +190,10 @@ Coupe:
     situation:
       type: string(128)
       default: NULL
+    nb_relance:
+      type: integer
+      notnull: true
+      default: 0
   relations:
     Saison:
       local: saison_id
@@ -466,6 +470,10 @@ Collection:
     date_retard:
       type: date
       default: NULL
+    nb_relance:
+      type: integer
+      notnull: true
+      default: 0
   relations:
     Saison:
       local: saison_id

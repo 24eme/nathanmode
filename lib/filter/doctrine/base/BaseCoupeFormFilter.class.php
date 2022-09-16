@@ -40,6 +40,7 @@ abstract class BaseCoupeFormFilter extends BaseFormFilterDoctrine
       'livre_le'               => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'fichier'                => new sfWidgetFormFilterInput(),
       'situation'              => new sfWidgetFormFilterInput(),
+      'nb_relance'            => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
@@ -70,6 +71,7 @@ abstract class BaseCoupeFormFilter extends BaseFormFilterDoctrine
       'livre_le'               => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
       'fichier'                => new sfValidatorPass(array('required' => false)),
       'situation'              => new sfValidatorPass(array('required' => false)),
+      'nb_relance'            => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('coupe_filters[%s]');
@@ -116,6 +118,7 @@ abstract class BaseCoupeFormFilter extends BaseFormFilterDoctrine
       'livre_le'               => 'Date',
       'fichier'                => 'Text',
       'situation'              => 'Text',
+      'nb_relance' => 'Text'
     );
   }
 }

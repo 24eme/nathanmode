@@ -21,6 +21,7 @@ generator:
         livre_le: { help: "(jj/mm/aaaa)", date_format: dd/MM/yyyy, label: "Date livraison" }
         piece_categorie: { label: "PF Type" }
         piece: { label: "Produit Fini" }
+        nbrelance: {label: Relances}
       list:
         max_per_page: 50
         batch_actions: {}
@@ -29,9 +30,9 @@ generator:
           csv: { label: "CSV" }
           _new: ~
         title: "Liste des coupes"
-        display: [date_commande, num_commande, Saison, Fournisseur, Client, tissu, colori, _quantite_type,_quantite, _prix, _livre_le, _num_facture, _facture, _situation]
+        display: [date_commande, num_commande, Saison, Fournisseur, Client, tissu, colori, _quantite_type,_quantite, _prix, _livre_le, _num_facture, _facture, _situation, _nbrelance]
       filter:
-        display: [date_commande, num_commande, saison_id, fournisseur_id, client_id, tissu, colori, piece_categorie, metrage, prix, livre_le, num_facture, fichier, situation]
+        display: [date_commande, num_commande, saison_id, fournisseur_id, client_id, tissu, colori, piece_categorie, metrage, prix, livre_le, num_facture, fichier, situation, nb_relance]
       form: ~
       edit:
         title: "Modification de la coupe %%tissu%% %%colori%% %%metrage%%"
