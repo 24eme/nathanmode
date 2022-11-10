@@ -160,12 +160,10 @@ abstract class BaseCoupe extends sfDoctrineRecord
              'type' => 'double',
              ));
         $this->hasColumn('facture_id', 'integer', null, array(
-             'type' => 'integer',
-             'notnull' => true,
+             'type' => 'integer'
              ));
         $this->hasColumn('commande_id', 'integer', null, array(
-             'type' => 'integer',
-             'notnull' => true,
+             'type' => 'integer'
              ));
         $this->hasColumn('paiement', 'string', 128, array(
              'type' => 'string',
@@ -272,11 +270,11 @@ abstract class BaseCoupe extends sfDoctrineRecord
         $this->hasOne('Facture', array(
              'local' => 'facture_id',
              'foreign' => 'id',
-             'onDelete' => 'CASCADE'));
+             'onDelete' => 'SET NULL'));
 
         $this->hasOne('Commande', array(
              'local' => 'commande_id',
              'foreign' => 'id',
-             'onDelete' => 'CASCADE'));
+             'onDelete' => 'SET NULL'));
     }
 }

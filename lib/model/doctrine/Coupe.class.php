@@ -59,12 +59,16 @@ class Coupe extends BaseCoupe
   public function save(Doctrine_Connection $conn = null)
   {
 
-      if(!$this->getFactureId() && !$this->getFichier()) {
+      if(!$this->getFichier()) {
           if ($facture = $this->getFacture()) {
           		$facture->delete();
+           	  $this->setFactureId(null);
+           	  $this->setFacture(null);
           }
         	if ($commande = $this->getCommande()) {
         		$commande->delete();
+         	  $this->setCommandeId(null);
+         	  $this->setCommande(null);
         	}
       } else {
         $this->updateFacture();
