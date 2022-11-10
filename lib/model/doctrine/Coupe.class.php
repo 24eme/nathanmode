@@ -58,11 +58,21 @@ class Coupe extends BaseCoupe
 
   public function save(Doctrine_Connection $conn = null)
   {
-    $this->updateFacture();
- 	$commande = $this->updateCommande();
- 	$commande->save();
- 	$this->setCommandeId($commande->getId());
- 	$this->setCommande($commande);
+
+      if(!$this->getFactureId() && !$this->getFichier()) {
+          if ($facture = $this->getFacture()) {
+          		$facture->delete();
+          }
+        	if ($commande = $this->getCommande()) {
+        		$commande->delete();
+        	}
+      } else {
+        $this->updateFacture();
+     	  $commande = $this->updateCommande();
+     	  $commande->save();
+     	  $this->setCommandeId($commande->getId());
+     	  $this->setCommande($commande);
+    }
 
     if($this->getPrix() && !QualiteTable::getInstance()->isQualiteExiste($this->getQualite())) {
         $qualite = new Qualite();
@@ -72,17 +82,14 @@ class Coupe extends BaseCoupe
 
     return parent::save($conn);
   }
-  
+
   public function updateFacture()
   {
-    if(!$this->getFactureId() && !$this->getFichier()) {
-        return;
-    }
 
     if($this->getPrix() && $this->getMetrage()) {
         $this->setMontantFacture(round($this->getPrix()*$this->getMetrage(), 2));
     }
-    
+
     if($this->getPrix() && $this->getPiece()) {
         $this->setMontantFacture(round($this->getPrix()*$this->getPiece(), 2));
     }
