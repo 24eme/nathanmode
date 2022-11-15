@@ -59,10 +59,7 @@ class Coupe extends BaseCoupe
   public function save(Doctrine_Connection $conn = null)
   {
     $this->updateFacture();
- 	$commande = $this->updateCommande();
- 	$commande->save();
- 	$this->setCommandeId($commande->getId());
- 	$this->setCommande($commande);
+ 	  $this->updateCommande();
 
     if($this->getPrix() && !QualiteTable::getInstance()->isQualiteExiste($this->getQualite())) {
         $qualite = new Qualite();
@@ -152,16 +149,19 @@ class Coupe extends BaseCoupe
     } else {
     	$facture->setTotalCommercial($facture->getPrixCommercial());
     }
-    
+
     $facture->save();
     $this->setFactureId($facture->getId());
     $this->setFacture($facture);
-    
+
     return $facture;
   }
-  
+
   public function updateCommande()
   {
+    if(!$this->getCommandeId() && !$this->getFichier()) {
+        return;
+    }
   	$commande = ($this->isNew())? new Commande() : $this->getCommande();
   	$commande->setRelation(Commande::TYPE_COUPE);
   	$commande->setSaisonId($this->getSaisonId());
@@ -205,6 +205,11 @@ class Coupe extends BaseCoupe
     } else {
     	$commande->setTotalCommercial($commande->getPrixCommercial());
     }
+
+   	$commande->save();
+   	$this->setCommandeId($commande->getId());
+   	$this->setCommande($commande);
+    
     return $commande;
   }
 
