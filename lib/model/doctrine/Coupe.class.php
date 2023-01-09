@@ -124,7 +124,7 @@ class Coupe extends BaseCoupe
     $facture->setPiece($this->getPiece());
     $facture->setQualite($this->getTissu());
     $facture->setFichier($this->getFichier());
-    if ($this->isNew())
+    if ($facture->isNew())
     	$facture->setStatut(StatutsFacture::KEY_NON_PAYEE);
     $facture->setRelation(Facture::TYPE_COUPE);
     
