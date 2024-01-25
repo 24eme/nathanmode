@@ -41,14 +41,14 @@
             <tr>
                 <td><?php echo $form['num_commande']->renderLabel() ?>&nbsp;:</td>
                 <td>
-                    <?php echo $form['num_commande']->render() ?>
+                    <?php echo $form['num_commande']->render(['required' => 'required']) ?>
                     <?php echo $form['num_commande']->renderError() ?>
                 </td>
             </tr>
             <tr>
                 <td><?php echo $form['date_commande']->renderLabel() ?>&nbsp;:</td>
                 <td style="text-align:left;">
-                    <?php echo $form['date_commande']->render() ?>
+                    <?php echo $form['date_commande']->render(['required' => 'required']) ?>
                     <?php echo $form['date_commande']->renderError() ?>&nbsp;(jj/mm/aaaa)
                 </td>
             </tr>
