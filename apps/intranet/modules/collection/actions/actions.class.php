@@ -114,8 +114,13 @@ protected function buildQuerySoldees()
     if ($request->hasParameter('_reset'))
     {
       $this->setFilters($this->configuration->getFilterDefaults());
-		if ($referer = $request->getReferer()) {
-			$this->redirect($referer);
+      if ($referer = $request->getReferer()) {
+        $parsedUrl = parse_url($referer);
+        if (!$parsedUrl) {
+          $this->redirect('@collection');
+        }
+        $referer = $parsedUrl['scheme'] . '://' . $parsedUrl['host'] . $parsedUrl['path'];
+        $this->redirect($referer);
 		} else {
       		$this->redirect('@collection');
 		}
@@ -127,9 +132,14 @@ protected function buildQuerySoldees()
     if ($this->filters->isValid())
     {
       $this->setFilters($this->filters->getValues());
-    
-		if ($referer = $request->getReferer()) {
-			$this->redirect($referer);
+
+      if ($referer = $request->getReferer()) {
+        $parsedUrl = parse_url($referer);
+        if (!$parsedUrl) {
+          $this->redirect('@collection');
+        }
+        $referer = $parsedUrl['scheme'] . '://' . $parsedUrl['host'] . $parsedUrl['path'];
+        $this->redirect($referer);
 		} else {
       		$this->redirect('@collection');
 		}
