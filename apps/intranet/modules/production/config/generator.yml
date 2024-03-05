@@ -18,6 +18,7 @@ generator:
         date_commande: { date_format: dd/MM/yyyy }
         date_livraison: { date_format: dd/MM/yyyy }
         date_retard: {label: Retard, date_format: dd/MM/yyyy}
+        reste_a_livrer: {label: "Reste a livrer" }
         nbrelance: {label: Relances}
       list:
         max_per_page: 30
@@ -27,7 +28,7 @@ generator:
         actions:
           _new: ~
         title: "Liste des commandes de production"
-        display: [Saison, Fournisseur, Client, date_commande, num_commande, date_livraison, date_retard, _situation, qualite, _ecrus, _nbrelance]
+        display: [Saison, Fournisseur, Client, date_commande, num_commande, date_livraison, _restealivrer, date_retard, _situation, qualite, _ecrus, _nbrelance]
       filter:
         display: [saison_id, fournisseur_id, client_id, date_commande, num_commande, date_livraison, date_retard, situation, qualite, ecrus, nb_relance]
       form:
