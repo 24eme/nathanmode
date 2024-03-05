@@ -270,7 +270,6 @@ $(document).ready(function() {
 	$('#collection_client_id').sortSelect().chosen({width: "90%"});
 	$('#collection_paiement').sortSelect().chosen({width: "90%"});
 	$('#collection_situation').sortSelect().chosen({width: "90%"});
-	$('#collection_qualite').sortSelect().chosen({width: "90%"});
   $('#collection_devise_fournisseur_id').sortSelect().chosen({width: "25%"});
   $('#collection_devise_commercial_id').sortSelect().chosen({width: "25%"});
   $('#sf_guard_user_commercial_id').sortSelect().chosen({allow_single_deselect:true,width: "90%"});
@@ -356,37 +355,6 @@ $(document).ready(function() {
   if($('#coupe_client_id').length > 0 && !editUrlRegexp.test($('form').attr('action'))) {
     $('#coupe_client_id').trigger( "change" );
   }
-
-
-
-  $('#collection_qualite').on('change', function() {
-    const q = this.value;
-    const s = $('#collection_saison_id').val();
-    const c = $('#collection_client_id').val();
-    $('#alertBox').html('');
-    if (q&&s&&c) {
-      $.get("/collection/getbysaisonqualite", {qualite: q, saison: s, client: c}, function(infos) {
-        if (infos) {
-          const json = JSON.parse(infos);
-          let html = '<div style="padding:5px 10px;">/!\ Qualité commandée par les clients suivants :</div><ul style="padding:0px 10px 10px 10px;" class="list-unstyled">';
-          for (let i in json) {
-            html += '<li><a href="'+i+'" target="_blank">'+json[i]+'</a></li>';
-          }
-          html += '</ul>';
-          $('#alertBox').html(html);
-        }
-      });
-    }
-  });
-  if($('#collection_qualite').length > 0) {
-    $('#collection_qualite').trigger( "change" );
-  }
-  $('#collection_saison_id').on('change', function() {
-    $('#collection_qualite').trigger( "change" );
-  });
-  $('#collection_client_id').on('change', function() {
-    $('#collection_qualite').trigger( "change" );
-  });
 
 	// NOTE DE CREDIT CHOSEN
 	$('#credit_saison_id').sortSelect().chosen({width: "90%"});

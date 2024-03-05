@@ -181,15 +181,11 @@ class CollectionForm extends BaseCollectionForm
            'adresse_livraison' => 'Adresse de livraison',
            'reste_a_livrer' => 'Reste à livrer',
            'observation_livraison' => 'Observation',
-           'commande_soldee' => 'Commande soldée',   
+           'commande_soldee' => 'Commande soldée',
         ));
-        
-        $this->setWidget('qualite', new sfWidgetFormChoice(array('choices' => $this->getQualites())));
-        $this->setValidator('qualite', new sfValidatorChoice(
-            array('choices' => array_keys($this->getQualites()),
-                  'required' => $this->getValidator('qualite')->getOption('required'),
-                )
-            ));
+
+        $this->setWidget('qualite', new sfWidgetFormInput());
+        $this->setValidator('qualite', new sfValidatorPass());
         $this->getWidget('reste_a_livrer')->setAttribute('readonly', 'readonly');
     }
 
@@ -213,12 +209,6 @@ class CollectionForm extends BaseCollectionForm
     public function getSituations() {
 
         return Situations::getListe();
-    }
-
-    public function getQualites() {
-
-        return array('' => '') + QualiteTable::getInstance()->getTabQualites();
-
     }
 
     public function doUpdateObject($values) {

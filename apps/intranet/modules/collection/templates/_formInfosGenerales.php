@@ -87,8 +87,13 @@
             <tr>
                 <td><?php echo $form['qualite']->renderLabel() ?>&nbsp;:</td>
                 <td>
-                    <?php echo $form['qualite']->render(array('class' => 'small')) ?>
+                    <?php echo $form['qualite']->render(array('list' => "qualites")) ?>
                     <?php echo $form['qualite']->renderError() ?>
+                    <datalist id="qualites">
+                      <?php $items = CollectionTable::getInstance()->getQualites(); foreach ($items as $item): ?>
+                      <option value="<?php echo $item['qualite'] ?>"></option>
+                      <?php endforeach ?>
+                    </datalist>
                 </td>
             </tr>
             <tr>
@@ -111,4 +116,3 @@
 <script id="dependent_select_url_template" type="text/x-jquery-tmpl">
 	<?php echo url_for('client/paiement?id=var---id---'); ?>
 </script>
-

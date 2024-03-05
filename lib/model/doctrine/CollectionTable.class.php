@@ -61,4 +61,8 @@ class CollectionTable extends Doctrine_Table
                   ->addWhere('c.client_id != ?', $clientId)
                   ->execute();
     }
+
+    public function getQualites() {
+      return Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc('select distinct qualite from collection');
+    }
 }
