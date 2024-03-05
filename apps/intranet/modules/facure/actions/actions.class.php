@@ -39,9 +39,13 @@ class facureActions extends autoFacureActions
     	  ->leftJoin($rootAlias.'.Commercial co');
    $query->addWhere($rootAlias.'.statut = "'.StatutsFacture::KEY_NON_PAYEE.'" OR year('.$rootAlias.'.date) = "'.date('Y').'"');
    $query->addWhere($rootAlias.'.actif = ?', true);
-   $query->orderBy($rootAlias.'.statut DESC, '.$rootAlias.'.date DESC');
+   if (array(null, null) == ($sort = $this->getSort())) {
+    $query->orderBy($rootAlias.'.statut DESC, '.$rootAlias.'.date DESC');
+   } else {
+    $this->addSortQuery($query);
+  }
    return $query;
-    
+
   }
   protected function getFilters()
   {
