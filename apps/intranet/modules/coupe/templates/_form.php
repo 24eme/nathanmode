@@ -53,7 +53,7 @@
                     <td><?php echo $form['date_commande']->renderLabel() ?>&nbsp;:</td>
                     <td style="text-align:left;">
                         <?php echo $form['date_commande']->render() ?>
-                        <?php echo $form['date_commande']->renderError() ?>&nbsp;(jj/mm/aaaa)
+                        <?php echo $form['date_commande']->renderError() ?>
                     </td>
                 </tr>
                 <tr>
@@ -166,7 +166,7 @@
             <tr>
                 <td><?php echo $form['livre_le']->renderLabel() ?>&nbsp;:</td>
                 <td style="text-align:left;">
-                    <?php echo $form['livre_le']->render() ?>&nbsp;(jj/mm/aaaa)
+                    <?php echo $form['livre_le']->render() ?>
                     <?php echo $form['livre_le']->renderError() ?>
                 </td>
             </tr>

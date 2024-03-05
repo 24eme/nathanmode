@@ -17,8 +17,8 @@ generator:
         num_commande: { label: "N°Commande" }
         num_facture: { label: "N°Facture" }
         tissu: { label: "Qualité" }
-        date_commande: { help: "(jj/mm/aaaa)", date_format: dd/MM/yyyy }
-        livre_le: { help: "(jj/mm/aaaa)", date_format: dd/MM/yyyy, label: "Date livraison" }
+        date_commande: { date_format: dd/MM/yyyy }
+        livre_le: { date_format: dd/MM/yyyy, label: "Date livraison" }
         piece_categorie: { label: "PF Type" }
         piece: { label: "Produit Fini" }
         nbrelance: {label: Relances}

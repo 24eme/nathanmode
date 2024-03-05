@@ -68,7 +68,7 @@
             <td><?php echo $form['date']->renderLabel() ?>&nbsp;:</td>
             <td style="text-align:left;">
                 <?php echo $form['date']->render() ?>
-                <?php echo $form['date']->renderError() ?>&nbsp;(jj/mm/aaaa)
+                <?php echo $form['date']->renderError() ?>
             </td>
         </tr>
         <tr>

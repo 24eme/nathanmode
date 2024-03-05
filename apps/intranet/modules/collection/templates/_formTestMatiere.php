@@ -6,7 +6,7 @@
                 <td width="30%"><?php echo $form['tm_date_expedition']->renderLabel() ?> :</td>
                 <td style="text-align:left;">
                     <?php echo $form['tm_date_expedition']->render() ?>
-                    <?php echo $form['tm_date_expedition']->renderError() ?>&nbsp;(jj/mm/aaaa)
+                    <?php echo $form['tm_date_expedition']->renderError() ?>
                 </td>
             </tr>
             <tr>
@@ -27,7 +27,7 @@
                 <td><?php echo $form['tm_date_expedition_coteco']->renderLabel() ?> :</td>
                 <td style="text-align:left;">
                     <?php echo $form['tm_date_expedition_coteco']->render() ?>
-                    <?php echo $form['tm_date_expedition_coteco']->renderError() ?>&nbsp;(jj/mm/aaaa)
+                    <?php echo $form['tm_date_expedition_coteco']->renderError() ?>
                 </td>
             </tr>
             <tr>

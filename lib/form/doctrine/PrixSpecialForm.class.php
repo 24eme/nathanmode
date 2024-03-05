@@ -12,19 +12,10 @@ class PrixSpecialForm extends BasePrixSpecialForm
 {
   public function configure()
   {
-  		$this->setWidget('date', new sfWidgetFormInputText());
+  		$this->setWidget('date', new WidgetFormInputDate());
 
-  		$this->setValidator('date', new sfValidatorDate(array('date_format' => '~(?P<day>\d{2})/(?P<month>\d{2})/(?P<year>\d{4})~', 'required' => false)));
-  		  
-        $this->widgetSchema->setHelp('date', '(jj/mm/aaaa)');
+  		$this->setValidator('date', new sfValidatorDate(array('required' => false)));
+
   		$this->embedRelation('PrixSpecialDetails as details');
-  }
-
-  public function updateDefaultsFromObject() {
-      parent::updateDefaultsFromObject();
-
-      if ($this->getObject()->date) {
-        $this->defaults['date'] = $this->getObject()->getDateTimeObject('date')->format('d/m/Y');
-      }
   }
 }

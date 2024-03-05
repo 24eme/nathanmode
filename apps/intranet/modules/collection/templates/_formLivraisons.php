@@ -15,7 +15,7 @@
                 <td><?php echo $form['date_livraison']->renderLabel() ?>&nbsp;:</td>
                 <td style="text-align:left;">
                     <?php echo $form['date_livraison']->render() ?>
-                    <?php echo $form['date_livraison']->renderError() ?>&nbsp;(jj/mm/aaaa)
+                    <?php echo $form['date_livraison']->renderError() ?>
                 </td>
             </tr>
             <tr>

@@ -112,21 +112,21 @@ class CollectionForm extends BaseCollectionForm
                                                                        'template' => '<a href="%file%" target="_blank">Télécharger le fichier</a><br />%input%<br />%delete% Suppr. le fichier'
                                                                     )));
         $this->setValidator('fichier_confirmation', new sfValidatorFile(
-            array('required' => $this->getValidator('fichier_confirmation')->getOption('required'), 
+            array('required' => $this->getValidator('fichier_confirmation')->getOption('required'),
                   'path' => CollectionTable::getInstance()->getUploadPath(true))
             ));
 
-        $this->setWidget('date_commande', new sfWidgetFormInputText());
-        $this->setValidator('date_commande', new sfValidatorDate(array('date_format' => '~(?P<day>\d{2})/(?P<month>\d{2})/(?P<year>\d{4})~', 'required' => false)));
+        $this->setWidget('date_commande', new WidgetFormInputDate());
+        $this->setValidator('date_commande', new sfValidatorDate(array('required' => false)));
 
-        $this->setWidget('date_livraison', new sfWidgetFormInputText());
-        $this->setValidator('date_livraison', new sfValidatorDate(array('date_format' => '~(?P<day>\d{2})/(?P<month>\d{2})/(?P<year>\d{4})~', 'required' => false)));         
+        $this->setWidget('date_livraison', new WidgetFormInputDate());
+        $this->setValidator('date_livraison', new sfValidatorDate(array('required' => false)));
 
-        $this->setWidget('tm_date_expedition', new sfWidgetFormInputText());
-        $this->setValidator('tm_date_expedition', new sfValidatorDate(array('date_format' => '~(?P<day>\d{2})/(?P<month>\d{2})/(?P<year>\d{4})~', 'required' => false)));
+        $this->setWidget('tm_date_expedition', new WidgetFormInputDate());
+        $this->setValidator('tm_date_expedition', new sfValidatorDate(array('required' => false)));
 
-        $this->setWidget('tm_date_expedition_coteco', new sfWidgetFormInputText());
-        $this->setValidator('tm_date_expedition_coteco', new sfValidatorDate(array('date_format' => '~(?P<day>\d{2})/(?P<month>\d{2})/(?P<year>\d{4})~', 'required' => false))); 
+        $this->setWidget('tm_date_expedition_coteco', new WidgetFormInputDate());
+        $this->setValidator('tm_date_expedition_coteco', new sfValidatorDate(array('required' => false)));
 
         $this->setWidget('observation_general', new sfWidgetFormTextarea());
         $this->setWidget('observation_tirelle', new sfWidgetFormTextarea());
@@ -196,22 +196,6 @@ class CollectionForm extends BaseCollectionForm
     public function updateDefaultsFromObject() {
       parent::updateDefaultsFromObject();
 
-      if ($this->getObject()->date_commande) {
-        $this->defaults['date_commande'] = $this->getObject()->getDateTimeObject('date_commande')->format('d/m/Y');
-      }
-      
-      if ($this->getObject()->date_livraison) {
-        $this->defaults['date_livraison'] = $this->getObject()->getDateTimeObject('date_livraison')->format('d/m/Y');
-      }
-
-      if ($this->getObject()->tm_date_expedition) {
-        $this->defaults['tm_date_expedition'] = $this->getObject()->getDateTimeObject('tm_date_expedition')->format('d/m/Y');
-      }
-
-      if ($this->getObject()->tm_date_expedition_coteco) {
-        $this->defaults['tm_date_expedition_coteco'] = $this->getObject()->getDateTimeObject('tm_date_expedition_coteco')->format('d/m/Y');
-      }
-
       if (!$this->getObject()->devise_commercial_id) {
         $this->defaults['devise_commercial_id'] = Devise::POURCENTAGE_ID;
       }
@@ -219,13 +203,6 @@ class CollectionForm extends BaseCollectionForm
       if (!$this->getObject()->devise_fournisseur_id) {
         $this->defaults['devise_fournisseur_id'] = Devise::POURCENTAGE_ID;
       }
-		
-	  $this->widgetSchema->setHelp('date_commande', '(jj/mm/aaaa)');	  
-        $this->widgetSchema->setHelp('date_livraison', '(jj/mm/aaaa)'); 
-        $this->widgetSchema->setHelp('tm_date_expedition', '(jj/mm/aaaa)'); 
-        $this->widgetSchema->setHelp('tm_date_expedition_coteco', '(jj/mm/aaaa)');
-        
-        
     }
 
     public function getPaiements() {

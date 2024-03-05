@@ -49,7 +49,7 @@
                 <td><?php echo $form['date_commande']->renderLabel() ?>&nbsp;:</td>
                 <td style="text-align:left;">
                     <?php echo $form['date_commande']->render(['required' => 'required']) ?>
-                    <?php echo $form['date_commande']->renderError() ?>&nbsp;(jj/mm/aaaa)
+                    <?php echo $form['date_commande']->renderError() ?>
                 </td>
             </tr>
             <tr>

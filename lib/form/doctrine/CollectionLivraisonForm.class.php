@@ -26,8 +26,8 @@ class CollectionLivraisonForm extends BaseCollectionLivraisonForm
                                'fichier',
                                'packing_list'));
 
-        $this->setWidget('date', new sfWidgetFormInputText());
-        $this->setValidator('date', new sfValidatorDate(array('date_format' => '~(?P<day>\d{2})/(?P<month>\d{2})/(?P<year>\d{4})~', 'required' => false)));
+        $this->setWidget('date', new WidgetFormInputDate());
+        $this->setValidator('date', new sfValidatorDate(array('required' => false)));
 
 
         $this->setWidget('fichier', new sfWidgetFormInputFileEditable(array(
@@ -76,8 +76,6 @@ class CollectionLivraisonForm extends BaseCollectionLivraisonForm
           'fichier' => 'Joindre',
           'packing_list' => 'Packing list',
         ));
-
-        $this->widgetSchema->setHelp('date', '(jj/mm/aaaa)');
         $this->mergePostValidator(new sfValidatorCallback(array('callback' => array($this, 'fctValidatorCallback'))));
     }
 
@@ -107,15 +105,11 @@ class CollectionLivraisonForm extends BaseCollectionLivraisonForm
     public function updateDefaultsFromObject() {
       parent::updateDefaultsFromObject();
 
-      if ($this->getObject()->date) {
-        $this->defaults['date'] = $this->getObject()->getDateTimeObject('date')->format('d/m/Y');
-      }
-      
       if (!$this->getObject()->escompte_devise_id) {
         $this->defaults['escompte_devise_id'] = Devise::POURCENTAGE_ID;
       }
-      
-        
-        
+
+
+
     }
 }

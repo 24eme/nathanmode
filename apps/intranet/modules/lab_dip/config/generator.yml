@@ -23,9 +23,6 @@ generator:
         display: [Saison, Fournisseur, Client, article, colori, date_envoi, _statut]
       filter:
         display: [saison_id, fournisseur_id, client_id, article, colori, date_envoi, statut]
-      form:
-        fields:
-          date_envoi: { help: "(jj/mm/aaaa)" }
       edit:
         title: "Modification du lab dip %%article%%"
       new:
