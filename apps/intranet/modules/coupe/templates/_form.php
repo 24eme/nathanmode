@@ -43,13 +43,6 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><?php echo $form['num_commande']->renderLabel() ?>&nbsp;:</td>
-                    <td>
-                        <?php echo $form['num_commande']->render() ?>
-                        <?php echo $form['num_commande']->renderError() ?>
-                    </td>
-                </tr>
-                <tr>
                     <td><?php echo $form['date_commande']->renderLabel() ?>&nbsp;:</td>
                     <td style="text-align:left;">
                         <?php echo $form['date_commande']->render() ?>
@@ -81,13 +74,6 @@
     			</tr>
             </table>
             <table width="50%" border="0" cellpadding="0" cellspacing="0">
-                <tr>
-                    <td width="103"><?php echo $form['situation']->renderLabel() ?>&nbsp;:</td>
-                    <td>
-                        <?php echo $form['situation']->render() ?>
-                        <?php echo $form['situation']->renderError() ?>
-                    </td>
-                </tr>
                 <tr>
                     <td colspan="2">
                         <?php echo $form['commission_fournisseur']->render(array('class' => 'small')) ?>
@@ -153,15 +139,17 @@
 </div>
 
 <div class="tableau rightTab">
-    <div class="titre"><span>Livraison</span></div>   
-    <div class="contentRight">             
+    <div class="titre"><span>Livraison</span></div>
+    <div class="contentRight">
         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tabloLivraison">
             <tr>
-                <td><?php echo $form['num_confirmation']->renderLabel() ?>&nbsp;:</td>
-                <td>
-                    <?php echo $form['num_confirmation']->render() ?>
-                    <?php echo $form['num_confirmation']->renderError() ?>
-                </td>
+              <td width="30%" style="vertical-align:top;">
+                  <?php echo $form['fichier_confirmation']->renderLabel() ?><img src="/css/img/pdf.gif" width="18" height="19" alt="" align="absbottom" />&nbsp;:
+              </td>
+              <td class="uploadFile">
+                  <?php echo $form['fichier_confirmation']->render(array('class' => 'input')) ?>
+                  <?php echo $form['fichier_confirmation']->renderError() ?>
+              </td>
             </tr>
             <tr>
                 <td><?php echo $form['livre_le']->renderLabel() ?>&nbsp;:</td>

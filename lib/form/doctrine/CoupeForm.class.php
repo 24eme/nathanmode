@@ -27,28 +27,39 @@ class CoupeForm extends BaseCoupeForm
   		$this->setWidget('livre_le', new sfWidgetFormInputText(array(), array('type' => 'date')));
   		$this->getWidget('livre_le')->setLabel("Expédié le");
         $this->setValidator('livre_le', new sfValidatorDate(array('date_format' => '~(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2})~', 'required' => false)));
-        
+
         $this->getWidget('num_facture')->setLabel("Facture n°");
         $this->getWidget('tissu')->setLabel("Qualité");
-        
+
         $this->setWidget('num_commande', new sfWidgetFormInput(array(), array('autocomplete' => 'off')));
         $this->getWidget('num_commande')->setLabel("Commande n°");
         $this->setValidator('num_commande', new sfValidatorPass());
-        
+
         $this->setWidget('num_confirmation', new sfWidgetFormInput(array(), array('autocomplete' => 'off')));
         $this->getWidget('num_confirmation')->setLabel("Confirmation n°");
         $this->setValidator('num_confirmation', new sfValidatorPass());
-        
+
         $this->setWidget('date_commande', new sfWidgetFormInputText(array(), array('type' => 'date')));
   		$this->getWidget('date_commande')->setLabel("Date commande");
         $this->setValidator('date_commande', new sfValidatorDate(array('date_format' => '~(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2})~', 'required' => false)));
-  		
-      $this->setValidator('fichier', new sfValidatorFile(array('required' => false, 
+
+      $this->setValidator('fichier', new sfValidatorFile(array('required' => false,
                                                                'path' => FactureTable::getInstance()->getUploadPath(true))));
 
 
       $this->setValidator('fichier_delete', new sfValidatorPass());
-      
+
+      $this->setWidget('fichier_confirmation', new sfWidgetFormInputFileEditable(array(
+                                                                    'file_src' => CoupeTable::getInstance()->getUploadPath(false).$this->getObject()->fichier_confirmation,
+                                                                     'edit_mode' => $this->getObject()->fichier_confirmation,
+                                                                     'template' => '<a href="%file%" target="_blank">Télécharger le fichier</a><br />%input%<br />%delete% Suppr. le fichier'
+                                                                  )));
+      $this->setValidator('fichier_confirmation', new sfValidatorFile(
+          array('required' => false,
+                'path' => CoupeTable::getInstance()->getUploadPath(true))
+          ));
+      $this->setValidator('fichier_confirmation_delete', new sfValidatorPass());
+
       $this->setValidator('prix', new sfValidatorNumber(array('required' => false)));
       $this->setValidator('commission_fournisseur', new sfValidatorNumber(array('required' => false)));
       $this->setValidator('commission_commercial', new sfValidatorNumber(array('required' => false)));

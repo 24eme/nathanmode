@@ -39,6 +39,7 @@ abstract class BaseCoupeFormFilter extends BaseFormFilterDoctrine
       'retard_livraison'       => new sfWidgetFormFilterInput(),
       'livre_le'               => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'fichier'                => new sfWidgetFormFilterInput(),
+      'fichier_confirmation'   => new sfWidgetFormFilterInput(),
       'situation'              => new sfWidgetFormFilterInput(),
       'nb_relance'            => new sfWidgetFormFilterInput(),
     ));
@@ -70,6 +71,7 @@ abstract class BaseCoupeFormFilter extends BaseFormFilterDoctrine
       'retard_livraison'       => new sfValidatorPass(array('required' => false)),
       'livre_le'               => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
       'fichier'                => new sfValidatorPass(array('required' => false)),
+      'fichier_confirmation'   => new sfValidatorPass(array('required' => false)),
       'situation'              => new sfValidatorPass(array('required' => false)),
       'nb_relance'            => new sfValidatorPass(array('required' => false)),
     ));
@@ -117,6 +119,7 @@ abstract class BaseCoupeFormFilter extends BaseFormFilterDoctrine
       'retard_livraison'       => 'Text',
       'livre_le'               => 'Date',
       'fichier'                => 'Text',
+      'fichier_confirmation'   => 'Text',
       'situation'              => 'Text',
       'nb_relance' => 'Text'
     );

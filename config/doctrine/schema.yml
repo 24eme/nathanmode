@@ -194,6 +194,9 @@ Coupe:
       type: integer
       notnull: true
       default: 0
+    fichier_confirmation:
+      type: string(255)
+      default: NULL
   relations:
     Saison:
       local: saison_id

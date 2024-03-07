@@ -15,9 +15,21 @@ class Coupe extends BaseCoupe
 
     public function getPath($name, $absolute = false) {
         if($this->$name) {
-            
+
             return FactureTable::getInstance()->getUploadPath($absolute).$this->$name;
         }
+    }
+
+    public function getUploadPath($absolute = false) {
+
+        $path = '/uploads/coupe/';
+
+        if ($absolute) {
+
+            return sfConfig::get('sf_web_dir').$path;
+        }
+
+        return $path;
     }
 
     public function delete(Doctrine_Connection $conn = null)
@@ -29,8 +41,12 @@ class Coupe extends BaseCoupe
     		$commande->delete();
     	}
         parent::delete($conn);
-		
+
         $this->removeFile('fichier');
+        $path = CoupeTable::getInstance()->getUploadPath(true).'fichier_confirmation';
+        if(is_file($path)) {
+            unlink($path);
+        }
     }
 
     protected function removeFile($name) {

@@ -41,7 +41,8 @@
  * @property Devise $DeviseCommercial
  * @property Facture $Facture
  * @property Commande $Commande
- * 
+ * @property string $fichier_confirmation
+ *
  * @method integer     getSaisonId()               Returns the current record's "saison_id" value
  * @method integer     getFournisseurId()          Returns the current record's "fournisseur_id" value
  * @method integer     getCommercialId()           Returns the current record's "commercial_id" value
@@ -114,7 +115,9 @@
  * @method Coupe       setDeviseCommercial()       Sets the current record's "DeviseCommercial" value
  * @method Coupe       setFacture()                Sets the current record's "Facture" value
  * @method Coupe       setCommande()               Sets the current record's "Commande" value
- * 
+ * @method string      getFichierConfirmation()    Returns the current record's "fichier_confirmation" value
+ * @method Coupe       setFichierConfirmation()    Sets the current record's "fichier_confirmation" value
+ *
  * @package    nathanmode
  * @subpackage model
  * @author     Your name here
@@ -228,7 +231,11 @@ abstract class BaseCoupe extends sfDoctrineRecord
              ));
         $this->hasColumn('nb_relance', 'integer', null, array(
              'type' => 'integer'
-             ));
+          ));
+        $this->hasColumn('fichier_confirmation', 'string', 255, array(
+            'type' => 'string',
+            'length' => 255,
+          ));
     }
 
     public function setUp()

@@ -28,9 +28,6 @@ class CoupeMultipleForm extends BaseForm
         $formItem->setWidget('livre_le', new sfWidgetFormInput(array('type' => 'date')));
         $formItem->setValidator('livre_le', new sfValidatorPass());
 
-        $formItem->setWidget('num_commande', new sfWidgetFormInput(array(), array('autocomplete' => 'off')));
-        $formItem->setValidator('num_commande', new sfValidatorPass());
-
         $formItem->setWidget('fournisseur_id', new sfWidgetFormDoctrineChoice(array('model' =>
         'Fournisseur', 'add_empty' => true)));
         $formItem->setValidator('fournisseur_id', new sfValidatorDoctrineChoice(array('model' => 'Fournisseur', 'required' => false)));
@@ -53,17 +50,16 @@ class CoupeMultipleForm extends BaseForm
 
         $formItem->setWidget('prix', new sfWidgetFormInput(array(), array('autocomplete' => 'off')));
         $formItem->setValidator('prix', new sfValidatorNumber(array('required' => false)));
-        
+
         $formItem->setWidget('num_facture', new sfWidgetFormInput(array(), array('autocomplete' => 'off')));
         $formItem->setValidator('num_facture', new sfValidatorPass());
 
         $formItem->setWidget('fichier', new sfWidgetFormInputFile(array()));
         $formItem->setValidator('fichier', new sfValidatorFile(array('required' => false, 'path' => FactureTable::getInstance()->getUploadPath(true))));
 
-        $formItem->setWidget('situation', new sfWidgetFormChoice(array('choices' => array_merge(array("" => "Select an option"), CoupeForm::getSituations()))));
-        $formItem->setValidator('situation', new sfValidatorChoice(array('choices' => array_keys(CoupeForm::getSituations()), 'required' => false)));
-        $formItem->setDefault('situation', 'ATT_CONFIRMATION');
- 
+        $formItem->setWidget('fichier_confirmation', new sfWidgetFormInputFile(array()));
+        $formItem->setValidator('fichier_confirmation', new sfValidatorFile(array('required' => false, 'path' => CoupeTable::getInstance()->getUploadPath(true))));
+
         return $formItem;
     }
 
@@ -104,7 +100,6 @@ class CoupeMultipleForm extends BaseForm
             } else {
               $coupe->setFournisseurDeviseId(Devise::POURCENTAGE_ID);
             }
-            $coupe->setNumCommande($itemValues['num_commande']);
             $coupe->setDateCommande($itemValues['date_commande']);
             if($itemValues['livre_le']) {
                 $coupe->setLivreLe($itemValues['livre_le']);
@@ -123,13 +118,17 @@ class CoupeMultipleForm extends BaseForm
             }
             $coupe->setPrix($itemValues['prix']);
             $coupe->setDeviseId(Devise::EUROS_ID);
-            $coupe->setSituation($itemValues['situation']);
             $coupe->setNumFacture($itemValues['num_facture']);
 
             if($itemValues['fichier']) {
                 $coupe->setFichier($itemValues['fichier']->generateFilename());
                 $itemValues['fichier']->save($coupe->getFichier());
-            }
+              }
+
+              if($itemValues['fichier_confirmation']) {
+                  $coupe->setFichierConfirmation($itemValues['fichier_confirmation']->generateFilename());
+                  $itemValues['fichier_confirmation']->save($coupe->getFichierConfirmation());
+              }
 
             $coupe->save();
         }

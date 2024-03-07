@@ -12,8 +12,8 @@ class CoupeFormFilter extends BaseCoupeFormFilter
 {
   public function configure()
   {
-  	
-  	$this->setWidget('date_commande', 
+
+  	$this->setWidget('date_commande',
   		new sfWidgetFormFilterDate(
   			array(
                 'from_date' => new sfWidgetFormInput(array('type' => 'date')),
@@ -22,7 +22,7 @@ class CoupeFormFilter extends BaseCoupeFormFilter
   			)
   		)
   	);
-  	$this->setWidget('livre_le', 
+  	$this->setWidget('livre_le',
   		new sfWidgetFormFilterDate(
   			array(
   				'from_date' => new sfWidgetFormInput(array('type' => 'date')),
@@ -51,6 +51,7 @@ class CoupeFormFilter extends BaseCoupeFormFilter
     $this->getWidget('nb_relance')->setOption('with_empty', false);
 
     $this->getWidget('fichier')->setOption('template', '%empty_checkbox% %empty_label%');
+    $this->getWidget('fichier_confirmation')->setOption('template', '%empty_checkbox% %empty_label%');
 
     $this->setWidget('piece_categorie', new sfWidgetFormChoice(array('choices' => $this->getPieceCategories(), 'multiple' => false)));
 
