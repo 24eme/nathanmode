@@ -83,9 +83,17 @@ class Coupe extends BaseCoupe
         $qualite->save();
     }
 
+    $this->setSituation(Situations::SITUATION_ATT_CONFIRMATION);
+    if ($this->getFichierConfirmation()) {
+      $this->setSituation(Situations::SITUATION_EN_COURS);
+    }
+    if ($this->getFichier()) {
+      $this->setSituation(Situations::SITUATION_SOLDEE);
+    }
+
     return parent::save($conn);
   }
-  
+
   public function updateFacture()
   {
     if(!$this->getFactureId() && !$this->getFichier()) {
