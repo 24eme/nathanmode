@@ -6,14 +6,14 @@
             <tr>
                 <td width="110"><?php echo $form['saison_id']->renderLabel() ?>&nbsp;:</td>
                 <td>
-                    <?php echo $form['saison_id']->render() ?>
+                    <?php echo $form['saison_id']->render(['required' => 'required']) ?>
                     <?php echo $form['saison_id']->renderError() ?>
                 </td>
             </tr>
             <tr>
                 <td><?php echo $form['fournisseur_id']->renderLabel() ?>&nbsp;:</td>
                 <td>
-                    <?php echo $form['fournisseur_id']->render() ?>
+                    <?php echo $form['fournisseur_id']->render(['required' => 'required']) ?>
                     <?php echo $form['fournisseur_id']->renderError() ?>
                 </td>
             </tr>
@@ -27,14 +27,14 @@
             <tr>
                 <td><?php echo $form['client_id']->renderLabel() ?>&nbsp;:</td>
                 <td>
-                    <?php echo $form['client_id']->render() ?>
+                    <?php echo $form['client_id']->render(['required' => 'required']) ?>
                     <?php echo $form['client_id']->renderError() ?>
                 </td>
             </tr>
             <tr>
                 <td><?php echo $form['paiement']->renderLabel() ?>&nbsp;:</td>
                 <td>
-                    <?php echo $form['paiement']->render() ?>
+                    <?php echo $form['paiement']->render(['required' => 'required']) ?>
                     <?php echo $form['paiement']->renderError() ?>
                 </td>
             </tr>
@@ -72,12 +72,12 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <?php echo $form['prix_fournisseur']->render(array('class' => 'small')) ?>
+                    <?php echo $form['prix_fournisseur']->render(array('class' => 'small', 'required' => 'required')) ?>
                     <?php echo $form['devise_fournisseur_id']->render(array('class' => 'small')) ?>
                     <?php echo $form['prix_fournisseur']->renderError() ?>
                 </td>
             </tr>
-            <tr>                            
+            <tr>
                 <td colspan="2">
                     <?php echo $form['prix_commercial']->render(array('class' => 'small')) ?>
                     <?php echo $form['devise_commercial_id']->render(array('class' => 'small')) ?>
@@ -87,7 +87,7 @@
             <tr>
                 <td><?php echo $form['qualite']->renderLabel() ?>&nbsp;:</td>
                 <td>
-                    <?php echo $form['qualite']->render(array('list' => "qualites")) ?>
+                    <?php echo $form['qualite']->render(array('list' => "qualites", 'required' => 'required')) ?>
                     <?php echo $form['qualite']->renderError() ?>
                     <datalist id="qualites">
                       <?php $items = CollectionTable::getInstance()->getQualites(); foreach ($items as $item): ?>

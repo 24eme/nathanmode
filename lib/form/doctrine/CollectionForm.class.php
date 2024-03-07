@@ -65,7 +65,7 @@ class CollectionForm extends BaseCollectionForm
         $this->setWidget('paiement', new sfWidgetFormChoice(array('choices' => $this->getPaiements())));
         $this->setValidator('paiement', new sfValidatorChoice(
             array('choices' => array_keys($this->getPaiements()),
-                  'required' => $this->getValidator('paiement')->getOption('required'),
+                  'required' => true,
                 )
             ));
 
@@ -117,7 +117,7 @@ class CollectionForm extends BaseCollectionForm
             ));
 
         $this->setWidget('date_commande', new WidgetFormInputDate());
-        $this->setValidator('date_commande', new sfValidatorDate(array('required' => false)));
+        $this->setValidator('date_commande', new sfValidatorDate(array('required' => true)));
 
         $this->setWidget('date_livraison', new WidgetFormInputDate());
         $this->setValidator('date_livraison', new sfValidatorDate(array('required' => false)));
@@ -185,8 +185,14 @@ class CollectionForm extends BaseCollectionForm
         ));
 
         $this->setWidget('qualite', new sfWidgetFormInput());
-        $this->setValidator('qualite', new sfValidatorPass());
+        $this->setValidator('qualite', new sfValidatorString(array('required' => true)));
         $this->getWidget('reste_a_livrer')->setAttribute('readonly', 'readonly');
+
+        $this->getValidator('saison_id')->setOption('required', true);
+        $this->getValidator('fournisseur_id')->setOption('required', true);
+        $this->getValidator('client_id')->setOption('required', true);
+        $this->getValidator('num_commande')->setOption('required', true);
+        $this->getValidator('prix_fournisseur')->setOption('required', true);
     }
 
     public function updateDefaultsFromObject() {
