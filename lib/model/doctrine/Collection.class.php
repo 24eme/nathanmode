@@ -144,6 +144,9 @@ class Collection extends BaseCollection
       } elseif ($cc = CreditCommandeTable::getInstance()->getByCollectionId($this->getId())) {
         $cc->delete();
       }
+      if ($this->getFichierConfirmation() && $this->getSituation() == Situations::SITUATION_ATT_CONFIRMATION) {
+        $this->setSituation(Situations::SITUATION_EN_COURS);
+      }
       $this->updateResteALivrer();
     }
 
