@@ -20,7 +20,14 @@
 <div class="row">
     <div class="col-sm-4">
         <div class="card border-info">
-            <div class="card-header bg-info text-white"><h5><?php if(isset($annuel)): ?><?php echo $from->format('Y') ?><?php else: ?>du <?php echo $from->format('d/m/Y') ?> au <?php echo $to->format('d/m/Y') ?><?php endif; ?><?php if(isset($detailsLink) && $detailsLink): ?><a href="#" class="float-right" data-toggle="modal" data-target="#<?php echo $detailsLink ?>Modal" data-url="<?php echo url_for('modal'.ucfirst($detailsLink), array('parameters' => array_merge($parameters->getRawValue(), array('from' => $from->format('Y-m-d'), 'to' => $to->format('Y-m-d'), 'ofrom' => $from->format('Y-m-d'), 'oto' => $to->format('Y-m-d'))))) ?>"><span class="oi oi-zoom-in text-white" title="details" aria-hidden="true"></span></a><?php endif; ?></h5></div>
+            <div class="card-header bg-info text-white">
+              <h5>
+                <?php if(isset($annuel)): ?><?php echo $from->format('Y') ?><?php else: ?>du <?php echo $from->format('d/m/Y') ?> au <?php echo $to->format('d/m/Y') ?><?php endif; ?>
+                  <?php if(isset($detailsLink) && $detailsLink): ?>
+                    <a style="margin-left: 10px;" href="#" class="float-right" data-toggle="modal" data-target="#<?php echo $detailsLink ?>Modal" data-url="<?php echo url_for('modal'.ucfirst($detailsLink), array('parameters' => array_merge($parameters->getRawValue(), array('from' => $from->format('Y-m-d'), 'to' => $to->format('Y-m-d'), 'ofrom' => $from->format('Y-m-d'), 'oto' => $to->format('Y-m-d'))))) ?>"><span class="oi oi-zoom-in text-white" title="details" aria-hidden="true"></span></a>
+                  <?php endif; ?>
+                  <a href="<?php echo url_for('activiteCsv', array('from' => $activites->from, 'to' => $activites->to, 'devise' => $devise, 'clientId' => $clientId, 'fournisseurId' => $fournisseurId, 'commercialId' => $activites->commercial, 'produit' => $activites->produit, 'saison' => $activites->saison)) ?>" class="float-right"><span class="oi oi-data-transfer-download text-white" title="Télécharger le détail" aria-hidden="true"></span></a>
+              </h5></div>
             <div class="list-group list-group-flush">
                 <div class="list-group-item">
                     <div class="col-3 text-dark">CA <span class="text-warning"><?php echo ($devise == 2)? '<small class="oi oi-dollar" title="dollar" aria-hidden="true"></small>' : '<small class="oi oi-euro" title="euro" aria-hidden="true"></small>'; ?></span></div>
@@ -49,7 +56,15 @@
     </div>
     <div class="col-sm-4">
         <div class="card border-secondary">
-            <div class="card-header bg-secondary text-white"><h5><?php if(isset($annuel)): ?><?php echo $from->format('Y')-1 ?><?php else: ?><strong>N-1</strong> du <?php echo DateTime::createFromFormat("Y-m-d", $activites1->from)->format('d/m/Y'); ?> au <?php echo DateTime::createFromFormat("Y-m-d", $activites1->to)->format('d/m/Y'); ?><?php endif; ?><?php if(isset($detailsLink) && $detailsLink): ?><a href="#" class="float-right" data-toggle="modal" data-target="#<?php echo $detailsLink ?>Modal" data-url="<?php echo url_for('modal'.ucfirst($detailsLink), array('parameters' => array_merge($parameters->getRawValue(), array('from' => ($from->format('Y')-1).'-'.$from->format('m').'-'.$from->format('d'), 'to' => ($to->format('Y')-1).'-'.$to->format('m').'-'.$to->format('d'), 'ofrom' => $from->format('Y-m-d'), 'oto' => $to->format('Y-m-d'))))) ?>"><span class="oi oi-zoom-in text-white" title="details" aria-hidden="true"></span></a><?php endif; ?></h5></div>
+            <div class="card-header bg-secondary text-white">
+              <h5>
+                <?php if(isset($annuel)): ?><?php echo $from->format('Y')-1 ?><?php else: ?><strong>N-1</strong> du <?php echo DateTime::createFromFormat("Y-m-d", $activites1->from)->format('d/m/Y'); ?> au <?php echo DateTime::createFromFormat("Y-m-d", $activites1->to)->format('d/m/Y'); ?><?php endif; ?>
+                  <?php if(isset($detailsLink) && $detailsLink): ?>
+                    <a href="#" class="float-right" data-toggle="modal" data-target="#<?php echo $detailsLink ?>Modal" data-url="<?php echo url_for('modal'.ucfirst($detailsLink), array('parameters' => array_merge($parameters->getRawValue(), array('from' => ($from->format('Y')-1).'-'.$from->format('m').'-'.$from->format('d'), 'to' => ($to->format('Y')-1).'-'.$to->format('m').'-'.$to->format('d'), 'ofrom' => $from->format('Y-m-d'), 'oto' => $to->format('Y-m-d'))))) ?>"><span class="oi oi-zoom-in text-white" title="details" aria-hidden="true"></span></a>
+                  <?php endif; ?>
+                  <a href="<?php echo url_for('activiteCsv', array('from' => $activites1->from, 'to' => $activites1->to, 'devise' => $devise, 'clientId' => $clientId, 'fournisseurId' => $fournisseurId, 'commercialId' => $activites1->commercial, 'produit' => $activites1->produit, 'saison' => $activites1->saison)) ?>" class="float-right"><span class="oi oi-data-transfer-download text-white" title="Télécharger le détail" aria-hidden="true"></span></a>
+                </h5>
+            </div>
             <div class="list-group list-group-flush">
                 <div class="list-group-item">
                     <div class="col-3 text-dark">CA <span class="text-warning"><?php echo ($devise == 2)? '<small class="oi oi-dollar" title="dollar" aria-hidden="true"></small>' : '<small class="oi oi-euro" title="euro" aria-hidden="true"></small>'; ?></span></div>
@@ -134,7 +149,13 @@
     </div>
     <div class="col-sm-4">
         <div class="card border-secondary">
-            <div class="card-header bg-secondary text-white"><h5><?php if(isset($annuel)): ?><?php echo $from->format('Y')-2 ?><?php else: ?><strong>N-2</strong> du <?php echo DateTime::createFromFormat("Y-m-d", $activites2->from)->format('d/m/Y'); ?> au <?php echo DateTime::createFromFormat("Y-m-d", $activites2->to)->format('d/m/Y'); ?><?php endif; ?><?php if(isset($detailsLink) && $detailsLink): ?><a href="#" class="float-right" data-toggle="modal" data-target="#<?php echo $detailsLink ?>Modal" data-url="<?php echo url_for('modal'.ucfirst($detailsLink), array('parameters' => array_merge($parameters->getRawValue(), array('from' => ($from->format('Y')-2).'-'.$from->format('m').'-'.$from->format('d'), 'to' => ($to->format('Y')-2).'-'.$to->format('m').'-'.$to->format('d'), 'ofrom' => $from->format('Y-m-d'), 'oto' => $to->format('Y-m-d'))))) ?>"><span class="oi oi-zoom-in text-white" title="details" aria-hidden="true"></span></a><?php endif; ?></h5></div>
+            <div class="card-header bg-secondary text-white">
+              <h5>
+                <?php if(isset($annuel)): ?><?php echo $from->format('Y')-2 ?><?php else: ?><strong>N-2</strong> du <?php echo DateTime::createFromFormat("Y-m-d", $activites2->from)->format('d/m/Y'); ?> au <?php echo DateTime::createFromFormat("Y-m-d", $activites2->to)->format('d/m/Y'); ?><?php endif; ?>
+                <?php if(isset($detailsLink) && $detailsLink): ?><a href="#" class="float-right" data-toggle="modal" data-target="#<?php echo $detailsLink ?>Modal" data-url="<?php echo url_for('modal'.ucfirst($detailsLink), array('parameters' => array_merge($parameters->getRawValue(), array('from' => ($from->format('Y')-2).'-'.$from->format('m').'-'.$from->format('d'), 'to' => ($to->format('Y')-2).'-'.$to->format('m').'-'.$to->format('d'), 'ofrom' => $from->format('Y-m-d'), 'oto' => $to->format('Y-m-d'))))) ?>"><span class="oi oi-zoom-in text-white" title="details" aria-hidden="true"></span></a><?php endif; ?>
+                <a href="<?php echo url_for('activiteCsv', array('from' => $activites2->from, 'to' => $activites2->to, 'devise' => $devise, 'clientId' => $clientId, 'fournisseurId' => $fournisseurId, 'commercialId' => $activites2->commercial, 'produit' => $activites2->produit, 'saison' => $activites2->saison)) ?>" class="float-right"><span class="oi oi-data-transfer-download text-white" title="Télécharger le détail" aria-hidden="true"></span></a>
+              </h5>
+            </div>
             <div class="list-group list-group-flush">
                 <div class="list-group-item">
                     <div class="col-3 text-dark">CA <span class="text-warning"><?php echo ($devise == 2)? '<small class="oi oi-dollar" title="dollar" aria-hidden="true"></small>' : '<small class="oi oi-euro" title="euro" aria-hidden="true"></small>'; ?></span></div>

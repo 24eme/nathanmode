@@ -29,6 +29,24 @@ class activiteActions extends sfActions
   	$this->parameters = array('ofrom' => date('Y').'-01-01', 'oto' => date('Y-m-d'), 'from' => date('Y').'-01-01', 'to' => date('Y-m-d'), 'commercial' => $this->commercial);
   }
 
+  public function executeCsv(sfWebRequest $request) {
+  	  $from = ($request->getParameter('from'))? $request->getParameter('from') : date('Y').'-01-01';
+    	$to = ($request->getParameter('to'))? $request->getParameter('to') : date('Y-m-d');
+    	$this->saison = ($request->getParameter('saison'))? $request->getParameter('saison') : null;
+    	$this->commercialId = ($request->getParameter('commercial'))? $request->getParameter('commercial') : null;
+      $this->fournisseurId = ($request->getParameter('fournisseur'))? $request->getParameter('fournisseur') : null;
+      $this->clientId = ($request->getParameter('client'))? $request->getParameter('client') : null;
+    	$this->produit = ($request->getParameter('produit'))? $request->getParameter('produit') : null;
+      $this->devise = $request->getParameter('devise', 1);
+      $activite = new Activite($from, $to, $this->saison, $this->commercialId, $this->produit);
+
+      $this->getResponse()->setContentType('application/csv');
+      $this->getResponse()->setHttpHeader('Content-disposition', 'filename='.$from.'_'.$to.'_commercial_activity_ca_details.csv', true);
+      $this->getResponse()->setHttpHeader('Pragma', 'o-cache', true);
+      $this->getResponse()->setHttpHeader('Expires', '0', true);
+      return $this->renderText($activite->getMontantCsv($this->devise, $this->clientId, $this->fournisseurId));
+  }
+
   public function executeRapport(sfWebRequest $request)
   {
 	  $from = ($request->getParameter('from'))? $request->getParameter('from') : date('Y').'-01-01';
