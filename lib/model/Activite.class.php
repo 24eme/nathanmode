@@ -26,6 +26,40 @@ class Activite
 		$this->produit = $produit;
 	}
 
+	public function getMontantCsv($devise = 1, $client = null, $fournisseur = null) {
+		$where = $this->getConditions($client, $fournisseur);
+		$reqFacture = "SELECT 'CREDIT' as Flux, s.libelle as Saison, REPLACE(c.raison_sociale, ',', ' ') as Client, REPLACE(CONCAT(f.raison_sociale, ' ', f.prenom), ',', ' ') as Fournisseur, REPLACE(CONCAT(co.nom, ' ', co.prenom), ',', ' ') as Commerical, REPLACE(b.numero, ',', ' ') as 'Num commande', DATE_FORMAT(b.date, '%d/%m/%Y') as 'Date', REPLACE(b.colori, ',', ' ') as Colori, REPLACE(b.qualite, ',', ' ') as Qualite, b.situation as Situation, REPLACE(b.piece_categorie, ',', ' ') as 'Categorie piece', b.piece as 'Nb piece', b.metrage as Metrage, b.montant as 'CA commande', b.total_fournisseur as 'CA fournisseur', b.total_commercial as 'CA commercial'
+		 	FROM commande b
+			LEFT JOIN saison s ON b.saison_id = s.id
+			LEFT JOIN client c ON b.client_id = c.id
+			LEFT JOIN fournisseur f ON b.fournisseur_id = f.id
+			LEFT JOIN commercial co ON b.commercial_id = co.id
+			WHERE b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
+		$reqCredit = "SELECT 'DEBIT' as Flux, s.libelle as Saison, REPLACE(c.raison_sociale, ',', ' ') as Client, REPLACE(CONCAT(f.raison_sociale, ' ', f.prenom), ',', ' ') as Fournisseur, REPLACE(CONCAT(co.nom, ' ', co.prenom), ',', ' ') as Commerical, REPLACE(REPLACE(b.numero, 'Commande : ', ''), ',', ' ') as 'Num commande', DATE_FORMAT(b.date, '%d/%m/%Y') as 'Date', NULL as Colori, REPLACE(b.qualite, ',', ' ') as Qualite, b.statut as Situation, REPLACE(b.piece_categorie, ',', ' ') as 'Categorie piece', (-1 * b.piece) as 'Nb piece', (-1 * b.metrage) as Metrage, (-1 * b.montant_total) as 'CA commande', (-1 * b.total_fournisseur) as 'CA fournisseur', (-1 * b.total_commercial) as 'CA commercial'
+			FROM bon b
+			LEFT JOIN saison s ON b.saison_id = s.id
+			LEFT JOIN client c ON b.client_id = c.id
+			LEFT JOIN fournisseur f ON b.fournisseur_id = f.id
+			LEFT JOIN commercial co ON b.commercial_id = co.id
+			WHERE b.type != 'Facture' AND b.statut IN ('DEDUITE','EN_ATTENTE','PAYEE') AND b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise.$where;
+		$resultFacture = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc($reqFacture);
+		$resultCredit = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc($reqCredit);
+		$entetes = '';
+		if ($resultFacture) {
+			$entetes = implode(',', array_keys($resultFacture[0])).PHP_EOL;
+		} elseif($resultCredit) {
+			$entetes = implode(',', array_keys($resultCredit[0])).PHP_EOL;
+		}
+		$csv = $entetes;
+		foreach ($resultFacture as $item) {
+			$csv .= implode(',', $item).PHP_EOL;
+		}
+		foreach ($resultCredit as $item) {
+			$csv .= implode(',', $item).PHP_EOL;
+		}
+		return $csv;
+	}
+
 	public function getMontant($devise = 1, $client = null, $fournisseur = null) {
 		$where = $this->getConditions($client, $fournisseur);
 		return $this->getTotalCalcule('montant', $devise, $where);
