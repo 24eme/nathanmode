@@ -200,6 +200,9 @@ class Activite
 
 	protected function getTotalCalcule($field, $devise, $where) {
 		$reqFacture = "SELECT SUM(b.$field) as montant FROM commande b WHERE b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
+		if ($field == 'montant') {
+			$field .= '_total';
+		}
 		$reqCredit = "SELECT SUM(b.$field) as montant FROM bon b WHERE b.type != 'Facture' AND b.statut IN ('DEDUITE','EN_ATTENTE','PAYEE') AND b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise.$where;
 		$reqTotal = "SELECT (".$reqFacture.") as facture, (".$reqCredit.") as credit, (SELECT ifnull(facture,0) - ifnull(credit,0)) as total";
 		$result = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc($reqTotal);
