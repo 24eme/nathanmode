@@ -27,6 +27,9 @@ class activiteActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
   	$this->parameters = array('ofrom' => date('Y').'-01-01', 'oto' => date('Y-m-d'), 'from' => date('Y').'-01-01', 'to' => date('Y-m-d'), 'commercial' => $this->commercial);
+
+    $this->date = $request->getParameter('date', date('Y-m-d'));
+    $this->logs = ActiviteLogger::categorizeLogs(ActiviteLogger::getLogs('2024-01-01 00:00:00', '2024-03-15 23:59:59'));
   }
 
   public function executeCsv(sfWebRequest $request) {
