@@ -30,6 +30,7 @@ class activiteActions extends sfActions
   }
 
   public function executeGraph(sfWebRequest $request) {
+    date_default_timezone_set('Europe/Paris');
     $this->periode = $request->getParameter('periode', 'day');
     $end = date ('Y-m-d H:i:s');
     switch($this->periode) {
