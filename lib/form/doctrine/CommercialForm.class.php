@@ -12,6 +12,7 @@ class CommercialForm extends BaseCommercialForm
 {
   public function configure()
   {
+    $this->getWidget('commission')->setAttribute('class', 'input-float');
   }
 
   protected function updateDefaultsFromObject()

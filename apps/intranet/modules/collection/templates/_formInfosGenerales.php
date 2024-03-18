@@ -72,14 +72,14 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <?php echo $form['prix_fournisseur']->render(array('class' => 'small', 'required' => 'required')) ?>
+                    <?php echo $form['prix_fournisseur']->render(array('class' => 'small input-float', 'required' => 'required')) ?>
                     <?php echo $form['devise_fournisseur_id']->render(array('class' => 'small')) ?>
                     <?php echo $form['prix_fournisseur']->renderError() ?>
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
-                    <?php echo $form['prix_commercial']->render(array('class' => 'small')) ?>
+                    <?php echo $form['prix_commercial']->render(array('class' => 'small input-float')) ?>
                     <?php echo $form['devise_commercial_id']->render(array('class' => 'small')) ?>
                     <?php echo $form['prix_commercial']->renderError() ?>
                 </td>

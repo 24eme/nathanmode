@@ -73,13 +73,18 @@ class CoupeForm extends BaseCoupeForm
                 'required' => $this->getValidator('piece_categorie')->getOption('required'),
               )
           ));
-          
+
       $this->setWidget('situation', new sfWidgetFormChoice(array('choices' => array_merge(array("" => " "), CoupeForm::getSituations()))));
       $this->setValidator('situation', new sfValidatorChoice(array('choices' => array_keys(CoupeForm::getSituations()), 'required' => false)));
 
+      $this->getWidget('prix')->setAttribute('class', 'input-float');
+      $this->getWidget('commission_fournisseur')->setAttribute('class', 'input-float');
+      $this->getWidget('commission_commercial')->setAttribute('class', 'input-float');
+      $this->getWidget('montant_facture')->setAttribute('class', 'input-float');
+
       $this->mergePostValidator(new sfValidatorCallback(array('callback' => array($this, 'fctValidatorCallback'))));
   }
-    
+
     public function fctValidatorCallback($validator, $values, $arguments)
     {
     	if ($values['metrage'] && $values['piece'])

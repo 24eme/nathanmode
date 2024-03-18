@@ -76,6 +76,7 @@ class CollectionLivraisonForm extends BaseCollectionLivraisonForm
           'fichier' => 'Joindre',
           'packing_list' => 'Packing list',
         ));
+        $this->getWidget('prix')->setAttribute('class', 'input-float');
         $this->mergePostValidator(new sfValidatorCallback(array('callback' => array($this, 'fctValidatorCallback'))));
     }
 

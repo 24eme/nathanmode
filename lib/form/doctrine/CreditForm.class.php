@@ -22,17 +22,21 @@ class CreditForm extends BaseCreditForm
                                                                        'edit_mode' => $this->getObject()->fichier,
                                                                        'template' => '<a href="%file%" target="_blank">Télécharger le fichier</a><br />%input%<br />%delete% %delete_label%'
                                                                     )));
-  		
-      $this->setValidator('fichier', new sfValidatorFile(array('required' => false, 
+
+      $this->setValidator('fichier', new sfValidatorFile(array('required' => false,
                                                                'path' => FactureTable::getInstance()->getUploadPath(true))));
       $this->setValidator('fichier_delete', new sfValidatorPass());
-      
+
       $this->setWidget('date', new sfWidgetFormInputText());
       $this->setWidget('date_debit', new sfWidgetFormInputText());
       $this->setValidator('date', new sfValidatorDate(array('date_format' => '~(?P<day>\d{2})/(?P<month>\d{2})/(?P<year>\d{4})~', 'required' => false)));
       $this->setValidator('date_debit', new sfValidatorDate(array('date_format' => '~(?P<day>\d{2})/(?P<month>\d{2})/(?P<year>\d{4})~', 'required' => false)));
       $this->setWidget('statut', new sfWidgetFormChoice(array('choices' => $this->getStatuts(), 'multiple' => false)));
   	  $this->setValidator('statut', new sfValidatorChoice(array('choices' => array_keys($this->getStatuts()), 'required' => true)));
+      
+      $this->getWidget('montant')->setAttribute('class', 'input-float');
+      $this->getWidget('prix_fournisseur')->setAttribute('class', 'input-float');
+      $this->getWidget('prix_commercial')->setAttribute('class', 'input-float');
   }
 
 
@@ -46,7 +50,7 @@ class CreditForm extends BaseCreditForm
       if ($this->getObject()->date) {
         $this->defaults['date'] = $this->getObject()->getDateTimeObject('date')->format('d/m/Y');
       }
-      
+
       if ($this->getObject()->date_debit) {
         $this->defaults['date_debit'] = $this->getObject()->getDateTimeObject('date_debit')->format('d/m/Y');
       }

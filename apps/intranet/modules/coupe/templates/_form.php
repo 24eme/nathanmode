@@ -76,14 +76,14 @@
             <table width="50%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
                     <td colspan="2">
-                        <?php echo $form['commission_fournisseur']->render(array('class' => 'small')) ?>
+                        <?php echo $form['commission_fournisseur']->render(array('class' => 'small input-float',)) ?>
                         <?php echo $form['fournisseur_devise_id']->render(array('class' => 'small')) ?>
                         <?php echo $form['commission_fournisseur']->renderError() ?>
                     </td>
                 </tr>
-                <tr>                            
+                <tr>
                     <td colspan="2">
-                        <?php echo $form['commission_commercial']->render(array('class' => 'small')) ?>
+                        <?php echo $form['commission_commercial']->render(array('class' => 'small input-float')) ?>
                         <?php echo $form['commercial_devise_id']->render(array('class' => 'small')) ?>
                         <?php echo $form['commission_commercial']->renderError() ?>
                     </td>

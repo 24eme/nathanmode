@@ -41,7 +41,7 @@
 			</tr>
   			<tr>
 			  <td width="20%"><?php echo $form['montant']->renderLabel() ?></td>
-			  <td><?php echo $form['montant']->render(array('class' => 'small')) ?>&nbsp;<?php echo $form['devise_montant_id']->render(array('class' => 'small')) ?><br /><?php echo $form['montant']->renderError() ?><?php echo $form['devise_montant_id']->renderError() ?></td>
+			  <td><?php echo $form['montant']->render(array('class' => 'small input-float')) ?>&nbsp;<?php echo $form['devise_montant_id']->render(array('class' => 'small')) ?><br /><?php echo $form['montant']->renderError() ?><?php echo $form['devise_montant_id']->renderError() ?></td>
 			  <?php if ($help = $form['montant']->renderHelp()): ?>
 			  <td class="help"><?php echo $help ?></td>
 			  <?php endif; ?>
@@ -62,14 +62,14 @@
 			</tr>
   			<tr>
 			  <td width="20%"><?php echo $form['prix_fournisseur']->renderLabel() ?></td>
-			  <td><?php echo $form['prix_fournisseur']->render(array('class' => 'small')) ?>&nbsp;<?php echo $form['devise_fournisseur_id']->render(array('class' => 'small')) ?><br /><?php echo $form['devise_fournisseur_id']->renderError() ?><?php echo $form['devise_fournisseur_id']->renderError() ?></td>
+			  <td><?php echo $form['prix_fournisseur']->render(array('class' => 'small input-float')) ?>&nbsp;<?php echo $form['devise_fournisseur_id']->render(array('class' => 'small')) ?><br /><?php echo $form['devise_fournisseur_id']->renderError() ?><?php echo $form['devise_fournisseur_id']->renderError() ?></td>
 			  <?php if ($help = $form['prix_fournisseur']->renderHelp()): ?>
 			  <td class="help"><?php echo $help ?></td>
 			  <?php endif; ?>
 			</tr>
   			<tr>
 			  <td width="20%"><?php echo $form['prix_commercial']->renderLabel() ?></td>
-			  <td><?php echo $form['prix_commercial']->render(array('class' => 'small')) ?>&nbsp;<?php echo $form['devise_commercial_id']->render(array('class' => 'small')) ?><br /><?php echo $form['devise_commercial_id']->renderError() ?><?php echo $form['devise_commercial_id']->renderError() ?></td>
+			  <td><?php echo $form['prix_commercial']->render(array('class' => 'small input-float')) ?>&nbsp;<?php echo $form['devise_commercial_id']->render(array('class' => 'small')) ?><br /><?php echo $form['devise_commercial_id']->renderError() ?><?php echo $form['devise_commercial_id']->renderError() ?></td>
 			  <?php if ($help = $form['prix_commercial']->renderHelp()): ?>
 			  <td class="help"><?php echo $help ?></td>
 			  <?php endif; ?>

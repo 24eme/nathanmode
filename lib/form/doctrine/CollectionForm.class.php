@@ -193,6 +193,9 @@ class CollectionForm extends BaseCollectionForm
         $this->getValidator('client_id')->setOption('required', true);
         $this->getValidator('num_commande')->setOption('required', true);
         $this->getValidator('prix_fournisseur')->setOption('required', true);
+
+        $this->getWidget('prix_fournisseur')->setAttribute('class', 'input-float');
+        $this->getWidget('prix_commercial')->setAttribute('class', 'input-float');
     }
 
     public function updateDefaultsFromObject() {

@@ -12,7 +12,7 @@
         <?php echo $form['piece']->renderError(); ?>
     </td>
     <td>
-        <?php echo $form['prix']->render(array('class' => 'small', 'style' => 'width:50px;')); ?>
+        <?php echo $form['prix']->render(array('class' => 'small input-float', 'style' => 'width:50px;')); ?>
         <?php echo $form['prix']->renderError(); ?>
     </td>
     <td>
