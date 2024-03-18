@@ -27,6 +27,9 @@
                     <a style="margin-left: 10px;" href="#" class="float-right" data-toggle="modal" data-target="#<?php echo $detailsLink ?>Modal" data-url="<?php echo url_for('modal'.ucfirst($detailsLink), array('parameters' => array_merge($parameters->getRawValue(), array('from' => $from->format('Y-m-d'), 'to' => $to->format('Y-m-d'), 'ofrom' => $from->format('Y-m-d'), 'oto' => $to->format('Y-m-d'))))) ?>"><span class="oi oi-zoom-in text-white" title="details" aria-hidden="true"></span></a>
                   <?php endif; ?>
                   <a href="<?php echo url_for('activiteCsv', array('from' => $activites->from, 'to' => $activites->to, 'devise' => $devise, 'clientId' => $clientId, 'fournisseurId' => $fournisseurId, 'commercialId' => $activites->commercial, 'produit' => $activites->produit, 'saison' => $activites->saison)) ?>" class="float-right"><span class="oi oi-data-transfer-download text-white" title="Télécharger le détail" aria-hidden="true"></span></a>
+                  <?php if(!isset($annuel)): ?>
+                  <a style="margin-right: 10px;" href="<?php echo url_for('activiteGraph') ?>" class="float-right"><span class="oi oi-bar-chart text-white" title="Graph" aria-hidden="true"></span></a>
+                  <?php endif; ?>
               </h5></div>
             <div class="list-group list-group-flush">
                 <div class="list-group-item">

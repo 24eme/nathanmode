@@ -187,6 +187,9 @@ activiteglobal:
 activiteCsv:
   url:   /commercial-activity/csv
   param: { module: activite, action: csv }
+activiteGraph:
+  url:   /commercial-activity/graph
+  param: { module: activite, action: graph }
 
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing

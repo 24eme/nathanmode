@@ -36,44 +36,4 @@
 <?php include_partial('activite/fournisseurModal'); ?>
 <?php include_partial('activite/commercialModal'); ?>
 
-<h2 class="text-center p-3">
-	<a class="btn btn-light active" href="<?php echo url_for('activite') ?>" role="button" style="text-decoration:none;">24H</a>
-	<a class="btn btn-light" href="<?php echo url_for('activite') ?>?periode=semaine" role="button" style="text-decoration:none;">Semaine</a>
-	<a class="btn btn-light" href="<?php echo url_for('activite') ?>?periode=mois" role="button" style="text-decoration:none;">Mois</a>
-	<a class="btn btn-light" href="<?php echo url_for('activite') ?>?periode=annee" role="button" style="text-decoration:none;">Année</a>
-</h2>
-
-<div class="row justify-content-md-center">
-	<div class="col-12">
-  	<canvas id="cacom"></canvas>
-	</div>
-</div>
-
-
-<?php $items = $sf_data->getRaw('logs'); ?>
-<script>
-  const cacom = document.getElementById('cacom');
-  new Chart(cacom, {
-    type: 'line',
-    data: {
-      labels: ['<?php echo implode('\',\'', array_keys($items["ca"])) ?>'],
-      datasets: [{
-        label: 'CA',
-        data: [<?php echo implode(',', $items["ca"]) ?>],
-      	backgroundColor: 'rgb(75, 192, 192)'
-      }]
-		},
-		options: {
-    	scales: {
-      	x: {
-        	type: 'time',
-					time: {
-              unit: 'month'
-          }
-      	}
-    	}
-  	}
-	});
-</script>
-
 </div>

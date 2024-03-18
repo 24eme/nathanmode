@@ -27,9 +27,26 @@ class activiteActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
   	$this->parameters = array('ofrom' => date('Y').'-01-01', 'oto' => date('Y-m-d'), 'from' => date('Y').'-01-01', 'to' => date('Y-m-d'), 'commercial' => $this->commercial);
+  }
 
-    $this->date = $request->getParameter('date', date('Y-m-d'));
-    $this->logs = ActiviteLogger::categorizeLogs(ActiviteLogger::getLogs('2024-01-01 00:00:00', '2024-03-15 23:59:59'));
+  public function executeGraph(sfWebRequest $request) {
+    $this->periode = $request->getParameter('periode', 'day');
+    $end = date ('Y-m-d H:i:s');
+    switch($this->periode) {
+      case 'week':
+        $start =  date('Y-m-d 00:00:00', strtotime('-7 days'));
+        break;
+      case 'month':
+        $start =  date('Y-m-d 00:00:00', strtotime('-1 month'));
+        break;
+      case 'year':
+        $start =  date('Y-m-d 00:00:00', strtotime('-1 year'));
+        break;
+      case 'day':
+      default:
+        $start = date ('Y-m-d 00:00:00');
+    }
+    $this->logs = ActiviteLogger::categorizeLogs(ActiviteLogger::getLogs($start, $end));
   }
 
   public function executeCsv(sfWebRequest $request) {
