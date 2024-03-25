@@ -33,7 +33,6 @@
                 <div class="btHead">
                 	<div class="btRight">
                 		<a class="addHead<?php if (sfContext::getInstance()->getModuleName() == 'activite'): ?> active<?php endif; ?>" href="<?php echo url_for('@activite') ?>">Commercial Activity</a>
-                        <a class="addHead<?php if (sfContext::getInstance()->getModuleName() == 'qualite'): ?> active<?php endif; ?>" href="<?php echo url_for('@qualite') ?>">Qualité</a> 
                         <a class="addHead<?php if (sfContext::getInstance()->getModuleName() == 'client'): ?> active<?php endif; ?>" href="<?php echo url_for('@client') ?>">Clients</a>                
                         <a class="addHead<?php if (sfContext::getInstance()->getModuleName() == 'fournisseur'): ?> active<?php endif; ?>" href="<?php echo url_for('@fournisseur') ?>">Fournisseurs</a>
                         <a class="addHead<?php if (sfContext::getInstance()->getModuleName() == 'commercial'): ?> active<?php endif; ?>" href="<?php echo url_for('@commercial') ?>">Commerciaux</a>
