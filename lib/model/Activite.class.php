@@ -28,14 +28,14 @@ class Activite
 
 	public function getMontantCsv($devise = 1, $client = null, $fournisseur = null) {
 		$where = $this->getConditions($client, $fournisseur);
-		$reqFacture = "SELECT 'CREDIT' as Flux, s.libelle as Saison, REPLACE(c.raison_sociale, ',', ' ') as Client, REPLACE(CONCAT(f.raison_sociale, ' ', f.prenom), ',', ' ') as Fournisseur, REPLACE(CONCAT(co.nom, ' ', co.prenom), ',', ' ') as Commerical, REPLACE(b.numero, ',', ' ') as 'Num commande', DATE_FORMAT(b.date, '%d/%m/%Y') as 'Date', REPLACE(b.colori, ',', ' ') as Colori, REPLACE(b.qualite, ',', ' ') as Qualite, b.situation as Situation, REPLACE(b.piece_categorie, ',', ' ') as 'Categorie piece', b.piece as 'Nb piece', b.metrage as Metrage, b.montant as 'CA commande', b.total_fournisseur as 'CA fournisseur', b.total_commercial as 'CA commercial'
+		$reqFacture = "SELECT DATE_FORMAT(b.date, '%d/%m/%Y') as 'Date', 'Commande' as Flux, s.libelle as Saison, REPLACE(c.raison_sociale, ',', ' ') as Client, REPLACE(CONCAT(f.raison_sociale, ' ', f.prenom), ',', ' ') as Fournisseur, REPLACE(CONCAT(co.nom, ' ', co.prenom), ',', ' ') as Commerical, REPLACE(b.numero, ',', ' ') as 'Num commande', REPLACE(b.colori, ',', ' ') as Colori, REPLACE(b.qualite, ',', ' ') as Qualite, b.situation as Situation, REPLACE(b.piece_categorie, ',', ' ') as 'Categorie piece', b.piece as 'Nb piece', b.metrage as MTS, b.montant as 'CA', b.total_fournisseur as 'COM'
 		 	FROM commande b
 			LEFT JOIN saison s ON b.saison_id = s.id
 			LEFT JOIN client c ON b.client_id = c.id
 			LEFT JOIN fournisseur f ON b.fournisseur_id = f.id
 			LEFT JOIN commercial co ON b.commercial_id = co.id
 			WHERE b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where;
-		$reqCredit = "SELECT 'DEBIT' as Flux, s.libelle as Saison, REPLACE(c.raison_sociale, ',', ' ') as Client, REPLACE(CONCAT(f.raison_sociale, ' ', f.prenom), ',', ' ') as Fournisseur, REPLACE(CONCAT(co.nom, ' ', co.prenom), ',', ' ') as Commerical, REPLACE(REPLACE(b.numero, 'Commande : ', ''), ',', ' ') as 'Num commande', DATE_FORMAT(b.date, '%d/%m/%Y') as 'Date', NULL as Colori, REPLACE(b.qualite, ',', ' ') as Qualite, b.statut as Situation, REPLACE(b.piece_categorie, ',', ' ') as 'Categorie piece', (-1 * b.piece) as 'Nb piece', (-1 * b.metrage) as Metrage, (-1 * b.montant_total) as 'CA commande', (-1 * b.total_fournisseur) as 'CA fournisseur', (-1 * b.total_commercial) as 'CA commercial'
+		$reqCredit = "SELECT DATE_FORMAT(b.date, '%d/%m/%Y') as 'Date', 'Note de credit' as Flux, s.libelle as Saison, REPLACE(c.raison_sociale, ',', ' ') as Client, REPLACE(CONCAT(f.raison_sociale, ' ', f.prenom), ',', ' ') as Fournisseur, REPLACE(CONCAT(co.nom, ' ', co.prenom), ',', ' ') as Commerical, REPLACE(REPLACE(b.numero, 'Commande : ', ''), ',', ' ') as 'Num commande', NULL as Colori, REPLACE(b.qualite, ',', ' ') as Qualite, b.statut as Situation, REPLACE(b.piece_categorie, ',', ' ') as 'Categorie piece', (-1 * b.piece) as 'Nb piece', (-1 * b.metrage) as MTS, (-1 * b.montant_total) as 'CA', (-1 * b.total_fournisseur) as 'COM'
 			FROM bon b
 			LEFT JOIN saison s ON b.saison_id = s.id
 			LEFT JOIN client c ON b.client_id = c.id
