@@ -51,10 +51,11 @@ class Activite
 			$entetes = implode(',', array_keys($resultCredit[0])).PHP_EOL;
 		}
 		$csv = $entetes;
-		foreach ($resultFacture as $item) {
-			$csv .= implode(',', $item).PHP_EOL;
-		}
-		foreach ($resultCredit as $item) {
+		$allResult = array_merge($resultFacture, $resultCredit);
+		usort($allResult, function($a, $b) {
+			return (-1 * (DateTime::createFromFormat('d/m/Y', $a['Date']) <=> DateTime::createFromFormat('d/m/Y', $b['Date'])));
+		});
+		foreach ($allResult as $item) {
 			$csv .= implode(',', $item).PHP_EOL;
 		}
 		return $csv;
