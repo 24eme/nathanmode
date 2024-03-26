@@ -395,6 +395,36 @@ $(document).ready(function() {
     $('#collection_qualite').trigger( "change" );
   });
 
+
+  $('#coupe_tissu').on('change', function() {
+    const q = this.value;
+    const s = $('#coupe_saison_id').val();
+    const c = $('#coupe_client_id').val();
+    $('#alertBox').html('');
+    if (q&&s&&c) {
+      $.get("/collection/getbysaisonqualite", {qualite: q, saison: s, client: c, coupe: 1}, function(infos) {
+        if (infos) {
+          const json = JSON.parse(infos);
+          let html = '<div style="padding:5px 10px;">/!\ Qualité commandée par les clients suivants :</div><ul style="padding:0px 10px 10px 10px;" class="list-unstyled">';
+          for (let i in json) {
+            html += '<li><a href="'+i+'" target="_blank">'+json[i]+'</a></li>';
+          }
+          html += '</ul>';
+          $('#alertBox').html(html);
+        }
+      });
+    }
+  });
+  if($('#coupe_tissu').length > 0) {
+    $('#coupe_tissu').trigger( "change" );
+  }
+  $('#coupe_saison_id').on('change', function() {
+    $('#coupe_tissu').trigger( "change" );
+  });
+  $('#coupe_client_id').on('change', function() {
+    $('#coupe_tissu').trigger( "change" );
+  });
+
 	// NOTE DE CREDIT CHOSEN
 	$('#credit_saison_id').chosen({width: "90%"});
 	$('#credit_fournisseur_id').sortSelect().chosen({width: "90%"});
