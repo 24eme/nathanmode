@@ -37,10 +37,11 @@ $(document).ready(function() {
     	$($(this).attr('href')).addClass('show active');
     });
 
-  $('.actions input[type=submit]').on('click', function(event) {
-    $(this).css('visibility', 'hidden');
-    var buttonValider = $(this);
-    setTimeout(function() { buttonValider.attr('disabled', 'disabled'); buttonValider.css('visibility', 'visible'); }, 500);
+
+  $('form').submit(function(e){
+      e.preventDefault();
+      $('form input[type=submit]').prop('disabled', true);
+      $(this).unbind('submit').submit();
   });
 
 	// COUPE CHOSEN
