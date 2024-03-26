@@ -46,6 +46,7 @@ class CollectionFormFilter extends BaseCollectionFormFilter
     $this->getWidget('num_commande')->setOption('with_empty', false);
     $this->getWidget('date_livraison')->setOption('with_empty', false);
     $this->getWidget('nb_relance')->setOption('with_empty', false);
+    $this->getWidget('reste_a_livrer')->setOption('with_empty', false);
   }
 
 
