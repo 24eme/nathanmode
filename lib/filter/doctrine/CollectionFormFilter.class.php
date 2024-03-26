@@ -59,10 +59,12 @@ class CollectionFormFilter extends BaseCollectionFormFilter
 
 
     public function getQualites() {
-		$list = QualiteTable::getInstance()->getTabQualites();
-		$emptyValue = array('' => ' ');
-		$qualites = $emptyValue + $list;
-		return $qualites; 
+  		$list = CollectionTable::getInstance()->getQualites();
+      $result = array('' => ' ');
+      foreach ($list as $val) {
+        $result[$val['qualite']] = $val['qualite'];
+      }
+  		return $result;
     }
   
   public function addSituationColumnQuery($query, $field, $values) {
