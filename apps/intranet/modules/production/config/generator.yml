@@ -18,7 +18,7 @@ generator:
         date_commande: { date_format: dd/MM/yyyy }
         date_livraison: { date_format: dd/MM/yyyy }
         date_retard: {label: Retard, date_format: dd/MM/yyyy}
-        reste_a_livrer: {label: "Reste a livrer" }
+        restealivrer: {label: "Reste à livrer" }
         nbrelance: {label: Relances}
       list:
         max_per_page: 30
