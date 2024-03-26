@@ -82,8 +82,14 @@ class CoupeForm extends BaseCoupeForm
       $this->getWidget('commission_commercial')->setAttribute('class', 'input-float');
       $this->getWidget('montant_facture')->setAttribute('class', 'input-float');
 
+      $this->setWidget('saison_id', new sfWidgetFormChoice(array('choices' => $this->getSaisons())));
+
       $this->mergePostValidator(new sfValidatorCallback(array('callback' => array($this, 'fctValidatorCallback'))));
-  }
+    }
+
+    public function getSaisons() {
+        return SaisonTable::getInstance()->getListeTriee();
+    }
 
     public function fctValidatorCallback($validator, $values, $arguments)
     {

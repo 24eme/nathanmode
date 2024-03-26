@@ -44,7 +44,7 @@ $(document).ready(function() {
   });
 
 	// COUPE CHOSEN
-	$('#coupe_saison_id').sortSelect().chosen({width: "90%"});
+	$('#coupe_saison_id').chosen({width: "90%"});
 	$('#coupe_fournisseur_id').sortSelect().chosen({width: "90%"});
 	$('#coupe_client_id').sortSelect().chosen({width: "90%"});
 	$('#coupe_commercial_id').sortSelect().chosen({width: "90%"});
