@@ -101,16 +101,16 @@ $(document).ready(function() {
 		allow_single_deselect:true,
    	 	width: "100%"
   	});
-    
+
     // COUPE MULTIPLE CHOSEN
 
-    $('#table_coupe_multiple').find('[name*="saison_id"]').sortSelect().chosen();
+    $('#table_coupe_multiple').find('[name*="saison_id"]').chosen();
     $('#table_coupe_multiple').find('[name*="commercial_id"]').sortSelect().chosen();
     $('#table_coupe_multiple').find('[name*="fournisseur_id"]').sortSelect().chosen();
     $('#table_coupe_multiple').find('[name*="client_id"]').sortSelect().chosen();
     $('#table_coupe_multiple').find('[name*="quantite_type"]').chosen();
     $('#table_coupe_multiple').find('[name*="situation"]').chosen();
-    
+
     function addCoupeMultipleLine() {
         const lastLine = $('.coupe_multiple_ligne').last();
         lastLine.find('[name*="saison_id"]').chosen("destroy");
@@ -270,11 +270,11 @@ $(document).ready(function() {
         $(this).find('input').show();
         $(this).find('span').hide();
     });
-    
+
     $('.input-float').inputNumberFormat();
 
 	// COLLECTION & PRODUCTION CHOSEN
-	$('#collection_saison_id').sortSelect().chosen({width: "90%"});
+	$('#collection_saison_id').chosen({width: "90%"});
 	$('#collection_fournisseur_id').sortSelect().chosen({width: "90%"});
 	$('#collection_commercial_id').sortSelect().chosen({width: "90%"});
 	$('#collection_client_id').sortSelect().chosen({width: "90%"});
@@ -396,7 +396,7 @@ $(document).ready(function() {
   });
 
 	// NOTE DE CREDIT CHOSEN
-	$('#credit_saison_id').sortSelect().chosen({width: "90%"});
+	$('#credit_saison_id').chosen({width: "90%"});
 	$('#credit_fournisseur_id').sortSelect().chosen({width: "90%"});
 	$('#credit_commercial_id').sortSelect().chosen({width: "90%"});
 	$('#credit_client_id').sortSelect().chosen({width: "90%"});
