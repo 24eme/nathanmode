@@ -33,17 +33,23 @@ class CreditForm extends BaseCreditForm
       $this->setValidator('date_debit', new sfValidatorDate(array('date_format' => '~(?P<day>\d{2})/(?P<month>\d{2})/(?P<year>\d{4})~', 'required' => false)));
       $this->setWidget('statut', new sfWidgetFormChoice(array('choices' => $this->getStatuts(), 'multiple' => false)));
   	  $this->setValidator('statut', new sfValidatorChoice(array('choices' => array_keys($this->getStatuts()), 'required' => true)));
-      
+
       $this->getWidget('montant')->setAttribute('class', 'input-float');
       $this->getWidget('prix_fournisseur')->setAttribute('class', 'input-float');
       $this->getWidget('prix_commercial')->setAttribute('class', 'input-float');
+
+      $this->setWidget('saison_id', new sfWidgetFormChoice(array('choices' => $this->getSaisons())));
   }
 
 
     public function getStatuts() {
 
         return StatutsCredit::getListe();
-    }
+      }
+
+      public function getSaisons() {
+          return SaisonTable::getInstance()->getListeTriee();
+      }
   public function updateDefaultsFromObject() {
       parent::updateDefaultsFromObject();
 
@@ -53,6 +59,10 @@ class CreditForm extends BaseCreditForm
 
       if ($this->getObject()->date_debit) {
         $this->defaults['date_debit'] = $this->getObject()->getDateTimeObject('date_debit')->format('d/m/Y');
+      }
+
+      if (!$this->getObject()->saison_id) {
+        $this->defaults['saison_id'] = SaisonTable::getInstance()->getIgByLibelle('ETE '.date('Y'));
       }
     }
 }

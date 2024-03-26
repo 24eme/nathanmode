@@ -196,6 +196,8 @@ class CollectionForm extends BaseCollectionForm
 
         $this->getWidget('prix_fournisseur')->setAttribute('class', 'input-float');
         $this->getWidget('prix_commercial')->setAttribute('class', 'input-float');
+
+        $this->setWidget('saison_id', new sfWidgetFormChoice(array('choices' => $this->getSaisons())));
     }
 
     public function updateDefaultsFromObject() {
@@ -208,6 +210,10 @@ class CollectionForm extends BaseCollectionForm
       if (!$this->getObject()->devise_fournisseur_id) {
         $this->defaults['devise_fournisseur_id'] = Devise::POURCENTAGE_ID;
       }
+
+      if (!$this->getObject()->saison_id) {
+        $this->defaults['saison_id'] = SaisonTable::getInstance()->getIgByLibelle('ETE '.date('Y'));
+      }
     }
 
     public function getPaiements() {
@@ -217,7 +223,11 @@ class CollectionForm extends BaseCollectionForm
 
     public function getSituations() {
 
-        return Situations::getListe();
+      return Situations::getListe();
+    }
+
+    public function getSaisons() {
+        return SaisonTable::getInstance()->getListeTriee();
     }
 
     public function doUpdateObject($values) {

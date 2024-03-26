@@ -13,9 +13,9 @@ class CoupeMultipleForm extends BaseForm
 
     public function createFormItem() {
         $formItem = new BaseForm();
-        $formItem->setWidget('saison_id', new sfWidgetFormDoctrineChoice(array('model' =>
-        'Saison', 'add_empty' => true)));
+        $formItem->setWidget('saison_id', new sfWidgetFormChoice(array('choices' => $this->getSaisons())));
         $formItem->setValidator('saison_id', new sfValidatorDoctrineChoice(array('model' => 'Saison', 'required' => false)));
+        $formItem->defaults['saison_id'] = SaisonTable::getInstance()->getIgByLibelle('ETE '.date('Y'));
 
         $formItem->setWidget('commercial_id', new sfWidgetFormDoctrineChoice(array('model' =>
         'Commercial', 'add_empty' => true)));
@@ -132,6 +132,10 @@ class CoupeMultipleForm extends BaseForm
 
             $coupe->save();
         }
-    }
+      }
+
+      public function getSaisons() {
+          return SaisonTable::getInstance()->getListeTriee();
+      }
 
 }
