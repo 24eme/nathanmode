@@ -50,6 +50,8 @@ class CoupeFormFilter extends BaseCoupeFormFilter
   	$this->getWidget('date_livraison')->setOption('with_empty', false);
   	$this->getWidget('livre_le')->setOption('with_empty', false);
     $this->getWidget('nb_relance')->setOption('with_empty', false);
+    $this->getWidget('prix')->setOption('with_empty', false);
+    $this->getWidget('num_facture')->setOption('with_empty', false);
 
     $this->getWidget('fichier')->setOption('template', '%empty_checkbox% %empty_label%');
     $this->getWidget('fichier_confirmation')->setOption('template', '%empty_checkbox% %empty_label%');
