@@ -87,7 +87,7 @@
             <tr>
                 <td><?php echo $form['qualite']->renderLabel() ?>&nbsp;:</td>
                 <td>
-                    <?php echo $form['qualite']->render(array('list' => "qualites", 'required' => 'required')) ?>
+                    <?php echo $form['qualite']->render(array('list' => "qualites", 'required' => 'required', 'style' => 'overflow-x: auto; width: 245px;')) ?>
                     <?php echo $form['qualite']->renderError() ?>
                     <datalist id="qualites">
                       <?php $items = CollectionTable::getInstance()->getQualites(); foreach ($items as $item): ?>

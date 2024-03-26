@@ -48,7 +48,7 @@
                 <td style="padding: 4px;"><?php echo $formItem['date_commande']->render(array('class' => 'required')); ?><?php echo $formItem['date_commande']->renderError(); ?></td>
                 <td style="padding: 4px;"><?php echo $formItem['fournisseur_id']->render(array('style' => 'width: 100px;', 'class' => 'select-invisible required')); ?><?php echo $formItem['fournisseur_id']->renderError(); ?></td>
                 <td style="padding: 4px;"><?php echo $formItem['client_id']->render(array('style' => 'width: 100px;', 'class' => 'select-invisible required')); ?><?php echo $formItem['client_id']->renderError(); ?></td>
-                <td style="padding: 4px;"><?php echo $formItem['qualite']->render(array('list' => 'liste_qualite', 'style' => 'width: 120px;', 'autocomplete' => 'off', 'class'=> 'required')); ?><?php echo $formItem['qualite']->renderError(); ?></td>
+                <td style="padding: 4px;"><?php echo $formItem['qualite']->render(array('list' => 'liste_qualite', 'style' => 'width: 250px;', 'autocomplete' => 'off', 'class'=> 'required')); ?><?php echo $formItem['qualite']->renderError(); ?></td>
                 <td style="padding: 4px;"><?php echo $formItem['colori']->render(array('style' => 'width: 100px;')); ?><?php echo $formItem['colori']->renderError(); ?></td>
                 <td style="padding: 4px;"><?php echo $formItem['quantite_type']->render(array('style' => 'width: 100px;')); ?><?php echo $formItem['quantite_type']->renderError(); ?></td>
                 <td style="padding: 4px;"><?php echo $formItem['quantite']->render(array('style' => 'width: 60px;', 'class' => 'required input-float')); ?><?php echo $formItem['quantite']->renderError(); ?></td>
