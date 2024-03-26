@@ -16,4 +16,29 @@ class SaisonTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Saison');
     }
+
+    public function getListeTriee() {
+      $result = array();
+    	$saisons = $this->findAll();
+    	foreach ($saisons as $saison) {
+    		$result[$saison->id] = $saison->libelle;
+    	}
+      uasort($result, function ($a, $b) {
+        $aA = ($a[0] == 'E')? substr($a, -4) : '20'.substr($a, -2);
+        $aB = ($b[0] == 'E')? substr($b, -4) : '20'.substr($b, -2);
+        return $aA <=> $aB;
+      });
+    	return $result;
+    }
+
+    public function getIgByLibelle($libelle) {
+      $saisons = $this->findAll();
+      foreach ($saisons as $saison) {
+        if ($saison->libelle == $libelle) {
+          //var_dump($saison->libelle, $libelle, $saison->id);exit;
+          return $saison->id;
+        }
+      }
+      return null;
+    }
 }
