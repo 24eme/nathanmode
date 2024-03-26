@@ -30,7 +30,7 @@ generator:
         title: "Liste des commandes de production"
         display: [Saison, Fournisseur, Client, date_commande, num_commande, date_livraison, _restealivrer, date_retard, _situation, qualite, _ecrus, _nbrelance]
       filter:
-        display: [saison_id, fournisseur_id, client_id, date_commande, num_commande, date_livraison, date_retard, situation, qualite, ecrus, nb_relance]
+        display: [saison_id, fournisseur_id, client_id, date_commande, num_commande, date_livraison, reste_a_livrer, date_retard, situation, qualite, ecrus, nb_relance]
       form:
         class: ProductionCollectionForm
       edit:
