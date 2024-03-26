@@ -90,7 +90,14 @@
                 </tr>
                 <tr>
                   <td><?php echo $form['tissu']->renderLabel() ?></td>
-                  <td><?php echo $form['tissu']->render() ?><br /><?php echo $form['tissu']->renderError() ?></td>
+                  <td>
+                    <?php echo $form['tissu']->render(array('list' => "liste_qualite", 'style' => 'width: 250px;')) ?><br /><?php echo $form['tissu']->renderError() ?>
+                    <datalist id="liste_qualite">
+                        <?php foreach(CollectionTable::getInstance()->getQualites() as $libelle): ?>
+                        <option value="<?php echo $libelle['qualite'] ?>">
+                        <?php endforeach; ?>
+                    </datalist>
+                  </td>
                   <?php if ($help = $form['tissu']->renderHelp()): ?>
                   <td class="help"><?php echo $help ?></td>
                   <?php endif; ?>
