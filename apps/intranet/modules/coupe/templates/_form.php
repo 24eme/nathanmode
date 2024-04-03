@@ -93,8 +93,8 @@
                   <td>
                     <?php echo $form['tissu']->render(array('list' => "liste_qualite", 'style' => 'width: 250px;')) ?><br /><?php echo $form['tissu']->renderError() ?>
                     <datalist id="liste_qualite">
-                        <?php foreach(CollectionTable::getInstance()->getQualites() as $libelle): ?>
-                        <option value="<?php echo $libelle['qualite'] ?>">
+                        <?php foreach(CoupeTable::getInstance()->getTissus() as $libelle): ?>
+                        <option value="<?php echo $libelle['tissu'] ?>">
                         <?php endforeach; ?>
                     </datalist>
                   </td>
