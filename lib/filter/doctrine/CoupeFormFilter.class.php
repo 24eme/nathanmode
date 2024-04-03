@@ -40,9 +40,9 @@ class CoupeFormFilter extends BaseCoupeFormFilter
   			)
   		)
   	);
-  	
+
     $this->setWidget('situation', new sfWidgetFormChoice(array('choices' => array_merge(array('' => ' '), CoupeForm::getSituations()), 'multiple' => false)));
-    $this->setWidget('tissu', new sfWidgetFormChoice(array('choices' => $this->getQualites(), 'multiple' => false)));
+    $this->setWidget('tissu', new sfWidgetFormChoice(array('choices' => $this->getTissus(), 'multiple' => false)));
 
   	$this->getWidget('colori')->setOption('with_empty', false);
   	$this->getWidget('metrage')->setOption('with_empty', false);
@@ -76,11 +76,11 @@ class CoupeFormFilter extends BaseCoupeFormFilter
       }
 
 
-  public function getQualites() {
-    $list = CollectionTable::getInstance()->getQualites();
+  public function getTissus() {
+    $list = CoupeTable::getInstance()->getTissus();
     $result = array('' => ' ');
     foreach ($list as $val) {
-      $result[$val['qualite']] = $val['qualite'];
+      $result[$val['tissu']] = $val['tissu'];
     }
     return $result;
   }

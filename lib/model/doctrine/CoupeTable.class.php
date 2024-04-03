@@ -44,4 +44,8 @@ class CoupeTable extends Doctrine_Table
                   ->addWhere('c.nb_relance = ?', $nbRelance)
                   ->execute();
     }
+
+    public function getTissus() {
+      return Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc('select distinct tissu from coupe');
+    }
 }
