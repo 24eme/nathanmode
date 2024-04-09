@@ -579,7 +579,9 @@ $(document).ready(function() {
   $('#fournisseur_devise_id').sortSelect().chosen();
   $('#commercial_devise_id').sortSelect().chosen();
 
-  $('#sf_admin_batch_actions_form').submit(function( event ) {
+
+
+  $(document).on('submit', "#sf_admin_batch_actions_form", function(event) {
     var datasTab = $(this).serializeArray();
     var datas = {};
     $(datasTab).each(function(i, field){
@@ -590,7 +592,8 @@ $(document).ready(function() {
       event.preventDefault();
     }
   });
-  $('#sf_admin_batch_actions_complete_form').submit(function( event ) {
+  
+  $(document).on('submit', "#sf_admin_batch_actions_complete_form", function(event) {
       var date = $(this).find("input[type=date]").val();
       $('#sf_admin_batch_actions_date').val(date);
       $('#sf_admin_batch_actions_form').submit();
