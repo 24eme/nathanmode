@@ -33,9 +33,7 @@ EOF;
         $log = new ActiviteLogger($now->format('Y-m-d H:i:s'), $activity->getMontant(), $activity->getCom(), $activity->getMts(), $activity->getPcsAccessoires(), $activity->getPcsNonAccessoires());
         $result = $log->save();
 
-        if (!$result) {
-          echo "Log enregistré avec succès\n";
-        } else {
+        if ($result) {
           echo "Erreur dans l'enregistrement des valeurs : ".$now->format('Y-m-d H:i:s').", ".$activity->getMontant().", ".$activity->getCom().", ".$activity->getMts().", ".$activity->getPcsAccessoires().", ".$activity->getPcsNonAccessoires()."\n";
         }
     }
