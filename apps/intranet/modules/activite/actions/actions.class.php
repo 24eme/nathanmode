@@ -65,7 +65,7 @@ class activiteActions extends sfActions
       $this->getResponse()->setHttpHeader('Content-disposition', 'filename='.$from.'_'.$to.'_commercial_activity_ca_details.csv', true);
       $this->getResponse()->setHttpHeader('Pragma', 'o-cache', true);
       $this->getResponse()->setHttpHeader('Expires', '0', true);
-      return $this->renderText($activite->getMontantCsv($this->devise, $this->clientId, $this->fournisseurId));
+      return $this->renderText(iconv("UTF-8", "ISO-8859-15", $activite->getMontantCsv($this->devise, $this->clientId, $this->fournisseurId)));
   }
 
   public function executeRapport(sfWebRequest $request)
