@@ -85,4 +85,8 @@ class CoupeFormFilter extends BaseCoupeFormFilter
     return $result;
   }
 
+  public function addTissuColumnQuery($query, $field, $values) {
+        $this->addEnumQuery($query, $field, $values);
+  }
+
 }
