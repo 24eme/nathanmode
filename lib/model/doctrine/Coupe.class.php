@@ -204,7 +204,7 @@ class Coupe extends BaseCoupe
     else
     	$commande->setPrixCommercial($this->getCommercial()->getCommission());
     $commande->setNumero(null);
-    $commande->setDate($this->getLivreLe());
+    $commande->setDate($this->getDateCommande());
     $commande->setMontant($this->getMontantFacture());
     $commande->setMetrage($this->getMetrage());
     $commande->setPieceCategorie($this->getPieceCategorie());
