@@ -34,14 +34,14 @@ class Activite
 			LEFT JOIN client c ON b.client_id = c.id
 			LEFT JOIN fournisseur f ON b.fournisseur_id = f.id
 			LEFT JOIN commercial co ON b.commercial_id = co.id
-			WHERE b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where." ORDER BY b.id";
+			WHERE b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where." ORDER BY b.id DESC";
 		$reqCredit = "SELECT DATE_FORMAT(b.date, '%d/%m/%Y') as 'Date', 'Note de credit' as Flux, s.libelle as Saison, REPLACE(c.raison_sociale, ',', ' ') as Client, REPLACE(CONCAT(f.raison_sociale, ' ', f.prenom), ',', ' ') as Fournisseur, REPLACE(CONCAT(co.nom, ' ', co.prenom), ',', ' ') as Commerical, REPLACE(REPLACE(b.numero, 'Commande : ', ''), ',', ' ') as 'Num commande', NULL as Colori, REPLACE(b.qualite, ',', ' ') as Qualite, b.statut as Situation, REPLACE(b.piece_categorie, ',', ' ') as 'Categorie piece', (-1 * b.piece) as 'Nb piece', (-1 * b.metrage) as MTS, (-1 * b.montant_total) as 'CA', (-1 * b.total_fournisseur) as 'COM'
 			FROM bon b
 			LEFT JOIN saison s ON b.saison_id = s.id
 			LEFT JOIN client c ON b.client_id = c.id
 			LEFT JOIN fournisseur f ON b.fournisseur_id = f.id
 			LEFT JOIN commercial co ON b.commercial_id = co.id
-			WHERE b.type != 'Facture' AND b.statut IN ('DEDUITE','EN_ATTENTE','PAYEE') AND b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise.$where." ORDER BY b.id";
+			WHERE b.type != 'Facture' AND b.statut IN ('DEDUITE','EN_ATTENTE','PAYEE') AND b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise.$where." ORDER BY b.id DESC";
 		$resultFacture = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc($reqFacture);
 		$resultCredit = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc($reqCredit);
 		$entetes = '';
