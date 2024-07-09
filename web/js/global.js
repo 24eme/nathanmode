@@ -1,3 +1,23 @@
+function getDatasFromForm(form) {
+  var elements = form.querySelectorAll('input, select, textarea');
+  var datas = {};
+  elements.forEach(element => {
+    datas[element.name] = element.value;
+  });
+  return datas;
+}
+function compareObj(obj1, obj2) {
+  var ret = {};
+  for(var i in obj2) {
+    if(!obj1.hasOwnProperty(i) || obj2[i] !== obj1[i]) {
+      if (i && obj2[i]) {
+        ret[i] = obj2[i];
+      }
+    }
+  }
+  return ret;
+};
+
 $(document).ready(function() {
     $.initTemplateLigne();
 
