@@ -24,7 +24,7 @@ generator:
         object_actions:
           _edit: ~
           _delete: ~
-        title: "Liste des factures archivées"
+        title: "Liste des factures archivées (les facture payées des années précédentes)"
         display: [Fournisseur, Saison, relation, numero, date, Client, montant, total_fournisseur, Commercial, total_commercial, _statut, _fichier]
       filter: 
         display: [fournisseur_id, saison_id, relation, numero, date, client_id, montant, total_fournisseur, commercial_id, total_commercial, statut, fichier]
