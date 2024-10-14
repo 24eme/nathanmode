@@ -60,7 +60,7 @@
                 </tr>
                 <tr>
     			  <td><?php echo $form['num_facture']->renderLabel() ?></td>
-    			  <td><?php echo $form['num_facture']->render() ?><br /><?php echo $form['num_facture']->renderError() ?></td>
+    			  <td><?php echo $form['num_facture']->render() ?> <?php if($coupe->getFacture() && !$coupe->getFacture()->isNew()): ?><a href="<?php echo url_for('facture_edit', $coupe->getFacture()) ?>">Voir la facture</a><?php endif; ?><br /><?php echo $form['num_facture']->renderError() ?></td>
     			  <?php if ($help = $form['num_facture']->renderHelp()): ?>
     			  <td class="help"><?php echo $help ?></td>
     			  <?php endif; ?>
