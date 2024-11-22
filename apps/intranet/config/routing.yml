@@ -191,6 +191,10 @@ activiteGraph:
   url:   /commercial-activity/graph
   param: { module: activite, action: graph }
 
+status:
+  url:   /status
+  param: { module: activite, action: status }
+
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 

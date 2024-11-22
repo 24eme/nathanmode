@@ -349,15 +349,21 @@ class activiteActions extends sfActions
     	$result .= ';';
     	$result .= (isset($aa2[$id]))? number_format($aa2[$id]['total'], 2, ',', ' ') : '';
     	$result .= "\n";
-    	
+
     }
     	mb_convert_encoding($result, 'UTF-16LE', 'UTF-8');
-    	
+
         $this->getResponse()->setContentType('application/csv');
         $this->getResponse()->setHttpHeader('Content-disposition', 'filename=commercial_activity_rapport_global.csv', true);
         $this->getResponse()->setHttpHeader('Pragma', 'o-cache', true);
         $this->getResponse()->setHttpHeader('Expires', '0', true);
-        
+
         return $this->renderText($result);
+  }
+
+  public function executeStatus(sfWebRequest $request)
+  {
+      $this->getResponse()->setContentType('text/plain');
+      return $this->renderText('OK');
   }
 }
