@@ -14,6 +14,10 @@
 		    if ($field == 'ecrus') {
 			continue;
 		    }
+        if (!isset($item->$field)) {
+        $line[$field] = null;
+        continue;
+        }
     		    $line[$field] = $item->$field;
     		} catch (sfException $e) {
     			$line[$field] = null;
