@@ -98,7 +98,7 @@ class Activite
 	public function getDetailledPcs($devise = 1, $client = null, $fournisseur = null) {
 		$where = $this->getConditions($client, $fournisseur);
 
-		$reqCredit = "SELECT b.piece_categorie as categorie, SUM(b.piece) as montant FROM bon b WHERE b.type != 'Facture' AND b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise." AND b.montant > 0".$where." GROUP BY categorie";
+		$reqCredit = "SELECT b.piece_categorie as categorie, SUM(b.piece) as montant FROM bon b WHERE b.type != 'Facture' AND b.statut IN ('DEDUITE','EN_ATTENTE','PAYEE') AND b.date <= '".$this->to."' AND b.date >= '".$this->from."' AND b.devise_montant_id = ".$devise.$where." GROUP BY categorie";
 		$items = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc($reqCredit);
 		$resultCredit = array();
 		foreach ($items as $item) {
