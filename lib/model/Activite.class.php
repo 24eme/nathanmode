@@ -46,9 +46,9 @@ class Activite
 		$resultCredit = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc($reqCredit);
 		$entetes = '';
 		if ($resultFacture) {
-			$entetes = implode(';', array_keys($resultFacture[0])).PHP_EOL;
+			$entetes = implode(';', array_keys($resultFacture[0])).';Type'.PHP_EOL;
 		} elseif($resultCredit) {
-			$entetes = implode(';', array_keys($resultCredit[0])).PHP_EOL;
+			$entetes = implode(';', array_keys($resultCredit[0])).';Type'.PHP_EOL;
 		}
 		$csv = $entetes;
 		$allResult = array_merge($resultFacture, $resultCredit);
@@ -56,7 +56,8 @@ class Activite
 			return (-1 * (DateTime::createFromFormat('d/m/Y', $a['Date']) <=> DateTime::createFromFormat('d/m/Y', $b['Date'])));
 		});*/
 		foreach ($allResult as $item) {
-			$csv .= preg_replace('/(\d)\.(\d)/', '\1,\2', implode(';', $item)).PHP_EOL;
+			$cat = (isset($item['Categorie piece']) && in_array($item['Categorie piece'], self::$ACCESSOIRES_CATEGORIES))? 'ACCES' : 'PF CN';
+			$csv .= preg_replace('/(\d)\.(\d)/', '\1,\2', implode(';', $item)).';'.$cat.PHP_EOL;
 		}
 		return $csv;
 	}
