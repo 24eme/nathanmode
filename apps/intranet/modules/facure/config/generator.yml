@@ -18,7 +18,7 @@ generator:
         total_fournisseur: { label: "Commission société" }
         total_commercial: { label: "Commission commercial" }
       list:
-        sort: [numero, asc]
+        sort: [date, desc]
         max_per_page: 150
         batch_actions:
           statutPayee: ~
