@@ -28,7 +28,7 @@ generator:
         title: "Liste des clients"
         display: [raison_sociale, telephone, adresse_livraison, code_postal_livraison, ville_livraison, _condition_paiement, id]
       filter:
-        display: [raison_sociale, telephone, adresse_livraison, code_postal_livraison, ville_livraison, condition_paiement]
+        display: [raison_sociale, telephone, adresse_livraison, code_postal_livraison, ville_livraison, condition_paiement, id]
       form:    ~
       edit:
         title: "Modification du client %%raison_sociale%%"
