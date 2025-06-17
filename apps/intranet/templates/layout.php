@@ -5,9 +5,10 @@
         <?php include_metas() ?>
         <?php include_title() ?>
         <link rel="shortcut icon" href="/favicon.ico" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
-        <link href="/css/open-iconic/font/css/open-iconic-bootstrap.css?<?php echo $gitcommit ?>" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" media="all" href="/css/reset.css?<?php echo $gitcommit ?>" />
+        <link rel="stylesheet" type="text/css" media="all" href="/css/themes/<?php echo sfConfig::get('sf_app') ?>.css?<?php echo $gitcommit ?>" />
+        <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
+        <link rel="stylesheet" type="text/css" media="all" href="/css/bootstrap-icons.min.css" />
         <link rel="stylesheet" type="text/css" media="all" href="/css/global.css?<?php echo $gitcommit ?>" />
         <link rel="stylesheet" type="text/css" media="all" href="/css/chosen.css?<?php echo $gitcommit ?>" />
         <link rel="stylesheet" type="text/css" media="all" href="/css/admin.css?<?php echo $gitcommit ?>" />
@@ -25,51 +26,71 @@
         <?php include_javascripts() ?>
     </head>
     <body>
-    	<div id="wrapper">
-          	<?php if ($sf_user->isAuthenticated()): ?>
-          	<div id="header">
-            	<div class="account"><?php echo $sf_user->getGuardUser()->getFirstName() ?>,</div>
-                <a class="logOut" href="<?php echo url_for('@sf_guard_signout') ?>">Déconnexion</a>  
-                <div class="btHead">
-                	<div class="btRight">
-                		<a class="addHead<?php if (sfContext::getInstance()->getModuleName() == 'activite'): ?> active<?php endif; ?>" href="<?php echo url_for('@activite') ?>">Commercial Activity</a>
-                        <a class="addHead<?php if (sfContext::getInstance()->getModuleName() == 'client'): ?> active<?php endif; ?>" href="<?php echo url_for('@client') ?>">Clients</a>                
-                        <a class="addHead<?php if (sfContext::getInstance()->getModuleName() == 'fournisseur'): ?> active<?php endif; ?>" href="<?php echo url_for('@fournisseur') ?>">Fournisseurs</a>
-                        <a class="addHead<?php if (sfContext::getInstance()->getModuleName() == 'commercial'): ?> active<?php endif; ?>" href="<?php echo url_for('@commercial') ?>">Commerciaux</a>
-                        <a class="addHead<?php if (sfContext::getInstance()->getModuleName() == 'sfGuardUser'): ?> active<?php endif; ?>" href="<?php echo url_for('@sf_guard_user') ?>">Administrateurs</a>
-                    </div>
-                </div>
-                <div class="navigation">
-                	<div class="logo">
-                		<a href="<?php echo url_for('@homepage') ?>"><img width="290" alt="" src="/images/nathanmode.png" /></a>
-                	</div>
-                    <div class="setNav">
-                        <a class="coupe<?php if (sfContext::getInstance()->getModuleName() == 'collection'): ?> active<?php endif; ?>" href="<?php echo url_for('@coupe') ?>">&nbsp;</a>
-                        <a class="prix<?php if (sfContext::getInstance()->getModuleName() == 'prix_special'): ?> active<?php endif; ?>" href="<?php echo url_for('@prix_special') ?>">&nbsp;</a>
-                        <a class="prod<?php if (sfContext::getInstance()->getModuleName() == 'production'): ?> active<?php endif; ?>" href="<?php echo url_for('@collection_production') ?>">&nbsp;</a>
-                        <a class="facture_np<?php if (sfContext::getInstance()->getModuleName() == 'facure' || sfContext::getInstance()->getModuleName() == 'facure_payee'): ?> active<?php endif; ?>" href="<?php echo url_for('@facture') ?>">&nbsp;</a>
-                        <!-- <a class="facture<?php if (sfContext::getInstance()->getModuleName() == 'facure_payee'): ?> active<?php endif; ?>" href="<?php echo url_for('@facture_facure_payee') ?>">&nbsp;</a> -->
-                        <a class="notecredit<?php if (sfContext::getInstance()->getModuleName() == 'credit'): ?> active<?php endif; ?>" href="<?php echo url_for('@credit') ?>">&nbsp;</a>
-                        <a class="stat<?php if (sfContext::getInstance()->getModuleName() == 'bon'): ?> active<?php endif; ?>" href="<?php echo url_for('@bon') ?>">&nbsp;</a>
-                        <a class="statCommande<?php if (sfContext::getInstance()->getModuleName() == 'commande'): ?> active<?php endif; ?>" href="<?php echo url_for('@commande') ?>">&nbsp;</a>
-                    </div>
-            	</div>
-            </div>
-            <?php else: ?>
-          	<div id="header">
-            	<div class="account">Connexion</div>
-                <div class="navigation">
-                	<div class="logo">
-                		<a href="<?php echo url_for('@sf_guard_signin') ?>"><img width="290" alt="" src="/images/nathanmode.png" /></a>
-                	</div>
-            	</div>
-            </div>
-          	<?php endif; ?>
-          	<div id="pageContent">
-            	<?php echo $sf_content ?>
-            </div>
+      <header class="mb-3">
+        <div id="navbar" style="height: 42px;">
+          <div class="d-flex align-items-center container h-100">
+            <a href="<?php echo url_for('@homepage') ?>" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+              <span class="bi bi-person-square fs-6"> <?php echo ($sf_user->isAuthenticated())? $sf_user->getGuardUser()->getFirstName() : 'Connexion' ?></span>
+            </a>
+            <?php if ($sf_user->isAuthenticated()): ?>
+            <ul class="nav col-12 col-lg-auto">
+              <li class="nav-item me-1">
+                <a class="btn btn-light btn-sm<?php if (sfContext::getInstance()->getModuleName() == 'activite'): ?> active<?php endif; ?>" href="<?php echo url_for('@activite') ?>">Commercial Activity</a>
+              </li>
+              <li class="nav-item me-1">
+                <a class="btn btn-light btn-sm<?php if (sfContext::getInstance()->getModuleName() == 'client'): ?> active<?php endif; ?>" href="<?php echo url_for('@client') ?>">Clients</a>
+              </li>
+              <li class="nav-item me-1">
+                <a class="btn btn-light btn-sm<?php if (sfContext::getInstance()->getModuleName() == 'fournisseur'): ?> active<?php endif; ?>" href="<?php echo url_for('@fournisseur') ?>">Fournisseurs</a>
+              </li>
+              <li class="nav-item me-1">
+                <a class="btn btn-light btn-sm<?php if (sfContext::getInstance()->getModuleName() == 'commercial'): ?> active<?php endif; ?>" href="<?php echo url_for('@commercial') ?>">Commerciaux</a>
+              </li>
+              <li class="nav-item me-1">
+                <a class="btn btn-light btn-sm<?php if (sfContext::getInstance()->getModuleName() == 'sfGuardUser'): ?> active<?php endif; ?>" href="<?php echo url_for('@sf_guard_user') ?>">Administrateurs</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white px-0" href="<?php echo url_for('@sf_guard_signout') ?>"><i class="bi bi-box-arrow-right"></i> Déconnexion</a>
+              </li>
+            </ul>
+            <?php endif; ?>
+          </div>
         </div>
-        <div></div>
+        <div class="bg-body-tertiary border-bottom border-5 border-secondary-subtle" style="height: 100px;">
+          <div class="d-flex align-items-center container h-100">
+            <a href="<?php echo url_for('@homepage') ?>" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none" >
+              <img style="max-height: 60px;" alt="" src="<?php echo '/images/'.sfConfig::get('sf_app').'.png' ?>" />
+            </a>
+            <?php if ($sf_user->isAuthenticated()): ?>
+            <ul class="nav col-12 col-lg-auto">
+              <li class="nav-item me-1">
+                <a style="min-width: 120px" class="py-2 px-3 border btn btn-light<?php if (sfContext::getInstance()->getModuleName() == 'coupe'): ?> active<?php endif; ?>" href="<?php echo url_for('@coupe') ?>"><i class="bi bi-scissors fs-4"></i><br /><small>Coupe</small></a>
+              </li>
+              <li class="nav-item me-1">
+                  <a style="min-width: 120px" class="py-2 px-3 border btn btn-light<?php if (sfContext::getInstance()->getModuleName() == 'production'): ?> active<?php endif; ?>" href="<?php echo url_for('@collection_production') ?>"><i class="bi bi-asterisk fs-4"></i><br /><small>Production</small></a>
+              </li>
+              <li class="nav-item me-1">
+                <a style="min-width: 120px" class="py-2 px-3 border btn btn-light<?php if (sfContext::getInstance()->getModuleName() == 'facure' || sfContext::getInstance()->getModuleName() == 'facure_payee'): ?> active<?php endif; ?>" href="<?php echo url_for('@facture') ?>"><i class="bi bi-file-earmark-text fs-4"></i><br /><small>Factures</small></a>
+              </li>
+              <li class="nav-item me-1">
+                <a style="min-width: 120px" class="py-2 px-3 border btn btn-light<?php if (sfContext::getInstance()->getModuleName() == 'credit'): ?> active<?php endif; ?>" href="<?php echo url_for('@credit') ?>"><i class="bi bi-currency-euro fs-4"></i><br /><small>Notes de crédits</small></a>
+              </li>
+              <li class="nav-item me-1">
+                <a style="min-width: 120px" class="py-2 px-3 border btn btn-light<?php if (sfContext::getInstance()->getModuleName() == 'bon'): ?> active<?php endif; ?>" href="<?php echo url_for('@bon') ?>"><i class="bi bi-bar-chart-fill fs-4"></i><br /><small>Statistiques</small></a>
+              </li>
+              <li class="nav-item me-1">
+                <a style="min-width: 120px" class="py-2 px-3 border btn btn-light<?php if (sfContext::getInstance()->getModuleName() == 'commande'): ?> active<?php endif; ?>" href="<?php echo url_for('@commande') ?>"><i class="bi bi-bar-chart-fill fs-4"></i><br /><small class="mt-2">Statistiques Com.</small></a>
+              </li>
+            </ul>
+            <?php endif; ?>
+          </div>
+        </div>
+      </header>
+    	<div class="container">
+        	<div id="pageContent">
+          	<?php echo $sf_content ?>
+          </div>
+      </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     </body>

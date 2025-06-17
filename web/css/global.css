@@ -8,12 +8,30 @@ html {
 }
 
 body{
-	background: url('/css/img/background.gif') repeat-x top;
-	color:#000000;
+	color: #000000;
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:12px;
 	margin:0;
 	padding:0;
+}
+
+.container {
+	max-width: 95%;
+}
+
+#navbar {
+	background-color:var(--couleur-primaire);
+}
+
+ul.nav .btn {
+	color:var(--couleur-primaire) !important;
+}
+
+h1 {
+	color:var(--couleur-primaire);
+	letter-spacing: -0.05em;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
 }
 
 a,
@@ -21,6 +39,12 @@ a:link,
 a:visited{
 	color:#000;
 	text-decoration:underline;
+}
+
+header a,
+header a:link,
+header a:visited {
+  text-decoration: none;
 }
 
 .tableNm a,
@@ -103,7 +127,7 @@ img{border:0px;}
 }
 .tableNm tr.statTotalMax td {
 	color:#FFF;
-	background-color:#000;
+	background-color:var(--couleur-primaire);
 	font-size:18px;
 	padding-top:5px;
 	padding-bottom:5px;
@@ -193,8 +217,22 @@ a:hover.logOut{
 
 .navigation .logo{
 	float:left;
-	width:180px;
-	padding:15px 0 0 0;
+	width: 290px;
+}
+
+.navigation .logo a,
+.navigation .logo a:link,
+.navigation .logo a:visited {
+	width: 100% !important;
+}
+
+.navigation .logo img {
+	max-width: 290px;
+	max-height: 56px;
+	position: relative;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
 }
 
 .navigation .setNav{
@@ -250,7 +288,7 @@ a:hover.logOut{
 	background:url('/images/bt/nav-stats.gif');
 }
 .navigation a.statCommande{
-	
+
 	background:url('/images/bt/nav-stats-com.gif');
 	margin:0 0 0 0 !important;
 }
@@ -291,7 +329,7 @@ a:hover.logOut{
 	line-height:26px;
 	padding:0 5px;
 	color:#fff !important;
-	background:#000;
+	background:var(--couleur-primaire);
 	text-decoration:none !important;
 	margin:0 0 0 5px;
 }
@@ -303,7 +341,7 @@ a:hover.logOut{
 	line-height:26px;
 	padding:0 5px;
 	color:#fff;
-	background:#000;
+	background:var(--couleur-primaire);
 	text-decoration:none;
 	margin:0 0 0 5px;
 	border: none;
@@ -405,15 +443,20 @@ a:hover.logOut{
 .tableau .input,
 .tableau input[type=password],
 input[type=password],
-input[type=file]{
-    border:1px solid #bfbfbf !important;
-    color:#3C3C3C;
-    float:left;
-    font-family:Arial,Helvetica,sans-serif;
-    font-size:12px;
-    padding:3px;
+input[type=file],
+input[type=text],
+input[type=date]{
+  border:1px solid #bfbfbf !important;
+  color:#3C3C3C;
+  float:left;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:12px;
+  padding:3px;
 	margin:0 0 0 5px;
 	width:200px;
+}
+#signin_password {
+	margin-top: 5px;
 }
 .sf_admin_list input[type=text] {
 	width:98% !important;
@@ -466,7 +509,6 @@ a:visited.btPlus{
 	font-size:15px;
 	color:#fff;
 	text-decoration:none;
-	margin:0 0 0 10px;
 }
 
 a:hover.btPlus{
@@ -477,7 +519,6 @@ a.btPlus.right,
 a:link.btPlus.right,
 a:visited.btPlus.right{
 	float:right;
-	margin:0 5px 0 5px;
 }
 
 .txtArea{
@@ -551,15 +592,15 @@ a:hover.btAdd{
 }
 
 .tableNm th{
-	background: #000 repeat-x bottom;
+	background: var(--couleur-primaire) repeat-x bottom;
 	font-size:12px;
 	text-align:left;
 	padding:5px 5px 9px 5px;
 	border-left:1px solid #fff;
 	border-right:1px solid #000;
-    border-top: none;
-    border-bottom: none;   
-    color: #fff;
+  border-top: none;
+  border-bottom: none;
+  color: #fff;
 }
 
 .tableNm td{
@@ -1004,15 +1045,15 @@ tbody tr.trHover:hover{
 }
 
 td.sf_admin_list_td_date_retard{
-	color:#F10004 !important;	
+	color:#F10004 !important;
 }
 
 dl, ol, ul {
     margin-bottom: 0;
-
+		padding-left: 0;
 }
 #containerCA {
-	margin-bottom: 20px;	
+	margin-bottom: 20px;
 }
 #containerCA .breadcrumb {
 	font-size: .9rem;
@@ -1029,12 +1070,12 @@ dl, ol, ul {
 #containerCA h2,
 #containerCA h3,
 #containerCA h4,
-#containerCA h5, 
+#containerCA h5,
 #containerCA h6 {
 	margin-bottom: 0;
 }
 #containerCA h5 {
-	font-size: 1rem;	
+	font-size: 1rem;
 }
 
 #containerCA .p-3 {
@@ -1052,7 +1093,7 @@ dl, ol, ul {
 #containerCards {
 	padding: 1rem 6rem;
 }
-.modalContainerCards, 
+.modalContainerCards,
 .modal form {
 	padding: 1rem 1rem;
 }
@@ -1085,8 +1126,8 @@ dl, ol, ul {
 #detailsTabs li {
 	max-width: 33.333333%
 }
-#detailsTabs li a, 
-#detailsTabs li a:link, 
+#detailsTabs li a,
+#detailsTabs li a:link,
 #detailsTabs li a:visited {
     text-decoration: none;
     color: #343a40;
@@ -1107,13 +1148,13 @@ dl, ol, ul {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);	
+    transform: translate(-50%, -50%);
     font-size: 2rem;
 	font-style: italic;
 	text-shadow: 2px 0 0 #343a40, -2px 0 0 #343a40, 0 2px 0 #343a40, 0 -2px 0 #343a40, 1px 1px #343a40, -1px -1px 0 #343a40, 1px -1px 0 #343a40, -1px 1px 0 #343a40;
 }
-.modal-body li a, 
-.modal-body li a:link, 
+.modal-body li a,
+.modal-body li a:link,
 .modal-body li a:visited {
     text-decoration: none;
     color: #fff;
@@ -1132,10 +1173,13 @@ dl, ol, ul {
 	border-radius: 0px;
 }
 .modal-body  form .chosen-container-single .chosen-single div b {
-	background: none;	
+	background: none;
 }
 .modal-body form .input-group-append {
-    height: 26px;
+    height: 40px;
+}
+.modal-body .chosen-container-single .chosen-single {
+	height: 40px;
 }
 .modal-body form .btn {
 	font-size: 0.85rem;
