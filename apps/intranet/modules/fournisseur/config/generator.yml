@@ -21,9 +21,9 @@ generator:
           csv: { label: "CSV" }
           _new: ~
         title: "Liste des fournisseurs"
-        display: [raison_sociale, prenom, telephone, commission, Devise]
+        display: [raison_sociale, prenom, telephone, commission, Devise, id]
       filter:
-        display: [raison_sociale, prenom, telephone, commission, devise_id]
+        display: [raison_sociale, prenom, telephone, commission, devise_id, id]
       form:
         display: [raison_sociale, prenom, telephone, commission, devise_id, emails]
       edit:
