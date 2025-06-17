@@ -1,5 +1,6 @@
 web/uploads/*
 web/intranet_dev.php
+web/linup_dev.php
 cache/*
 log/*
 data/fixtures
