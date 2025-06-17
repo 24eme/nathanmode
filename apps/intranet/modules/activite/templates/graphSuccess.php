@@ -1,6 +1,6 @@
-<div id="containerCA" class="container">
+<div id="containerCA" class="container" style="max-width: 1140px;">
 
-<a href="<?php echo url_for('activiteRapport') ?>" style="text-decoration: none;"><span style="top: 2px;" class="oi oi-chevron-left"></span> Retour</a>
+<a href="<?php echo url_for('activiteRapport') ?>" style="text-decoration: none;"><span style="top: 2px;" class="bi bi-chevron-left"></span> Retour</a>
 
 <h1 class="text-center p-3 text-dark">Commercial Activity</h1>
 

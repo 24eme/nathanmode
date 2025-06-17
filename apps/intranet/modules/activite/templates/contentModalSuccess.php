@@ -19,27 +19,27 @@
 
 <div class="modal-body">
 	<?php if (count($items) > 0): ?>
-	
+
 			<form action="<?php echo url_for('activiteRapport', array_merge($parameters->getRawValue(), array('from' => $parameters['ofrom'], 'to' => $parameters['oto'])))?>" method="get">
 			  	<?php foreach ($parameters as $k => $value): if ($k == strtolower($type)) continue; ?>
 			  	<input type="hidden" name="<?php echo $k ?>" value="<?php echo $value ?>" />
 			  	<?php endforeach;?>
 				<div class="input-group mb-3">
-				
-				    
+
+
 			    <select id="modal_filters_<?php echo strtolower($type) ?>_id" class="form-control" name="<?php echo strtolower($type) ?>">
 			        <option value="" selected="selected"></option>
 			        <?php foreach ($itemsAll as $itemAll): ?>
 			        <option value="<?php echo $itemAll->getId() ?>" ><?php echo $itemAll ?></option>
 			        <?php endforeach; ?>
 			    </select>
-				    
+
 				  <div class="input-group-append">
-				    <button type="submit" class="btn btn-info"><span class="oi oi-magnifying-glass"></span></button>
+				    <button type="submit" class="btn btn-info"><span class="bi bi-search text-white fs-5"></span></button>
 				  </div>
 				</div>
 			</form>
-	
+
 			<ul>
 			<?php $i=0; foreach ($items as $item): if ($i<9) $i++; else $i=1; ?>
 			<li><a href="<?php echo url_for('activiteRapport', array_merge($parameters->getRawValue(), array(strtolower($type) => $item->getId()), array('from' => $parameters['ofrom'], 'to' => $parameters['oto']))) ?>" class="btn btn-info">

@@ -30,7 +30,7 @@
       </thead>
       <tfoot>
         <tr>
-          <th colspan="10">
+          <th colspan="13">
             <?php if ($pager->haveToPaginate()): ?>
               <?php include_partial('production/pagination', array('pager' => $pager)) ?>
             <?php endif; ?>

@@ -31,9 +31,9 @@
                 <?php endforeach; ?>
             </select>
             &nbsp;Période du&nbsp;
-            <input type="text" class="dp" name="from" value="<?php echo $from->format('d/m/Y') ?>" />
+            <input style="float:none;" type="text" class="dp" name="from" value="<?php echo $from->format('d/m/Y') ?>" />
             &nbsp;au&nbsp;
-            <input type="text" class="dp" name="to" value="<?php echo $to->format('d/m/Y') ?>" />
+            <input style="float:none;" type="text" class="dp" name="to" value="<?php echo $to->format('d/m/Y') ?>" />
             &nbsp;<input type="submit" value="OK" class="activity_date_bt" />
         </div>
     </div>

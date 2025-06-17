@@ -1,4 +1,4 @@
-<div id="containerCA" class="container">
+<div id="containerCA" class="container" style="max-width: 1140px;">
 
 	<?php include_partial('activite/breadcrumb', array('commercial' => $commercial, 'client' => $client, 'fournisseur' => $fournisseur, 'parameters' => $parameters, 'devise' => $devise, 'tous' => true, 'type' => $type)); ?>
 

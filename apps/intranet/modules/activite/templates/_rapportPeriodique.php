@@ -24,21 +24,21 @@
               <h5>
                 <?php if(isset($annuel)): ?><?php echo $from->format('Y') ?><?php else: ?>du <?php echo $from->format('d/m/Y') ?> au <?php echo $to->format('d/m/Y') ?><?php endif; ?>
                   <?php if(isset($detailsLink) && $detailsLink): ?>
-                    <a style="margin-left: 10px;" href="#" class="float-right" data-toggle="modal" data-target="#<?php echo $detailsLink ?>Modal" data-url="<?php echo url_for('modal'.ucfirst($detailsLink), array('parameters' => array_merge($parameters->getRawValue(), array('from' => $from->format('Y-m-d'), 'to' => $to->format('Y-m-d'), 'ofrom' => $from->format('Y-m-d'), 'oto' => $to->format('Y-m-d'))))) ?>"><span class="oi oi-zoom-in text-white" title="details" aria-hidden="true"></span></a>
+                    <a style="margin-left: 10px;" href="#" class="float-right" data-toggle="modal" data-target="#<?php echo $detailsLink ?>Modal" data-url="<?php echo url_for('modal'.ucfirst($detailsLink), array('parameters' => array_merge($parameters->getRawValue(), array('from' => $from->format('Y-m-d'), 'to' => $to->format('Y-m-d'), 'ofrom' => $from->format('Y-m-d'), 'oto' => $to->format('Y-m-d'))))) ?>"><span class="bi bi-eye-fill fs-5 text-white" title="details" aria-hidden="true"></span></a>
                   <?php endif; ?>
-                  <a href="<?php echo url_for('activiteCsv', array('from' => $activites->from, 'to' => $activites->to, 'devise' => $devise, 'client' => $clientId, 'fournisseur' => $fournisseurId, 'commercial' => $activites->commercial, 'produit' => $activites->produit, 'saison' => $activites->saison)) ?>" class="float-right"><span class="oi oi-data-transfer-download text-white" title="Télécharger le détail" aria-hidden="true"></span></a>
+                  <a href="<?php echo url_for('activiteCsv', array('from' => $activites->from, 'to' => $activites->to, 'devise' => $devise, 'client' => $clientId, 'fournisseur' => $fournisseurId, 'commercial' => $activites->commercial, 'produit' => $activites->produit, 'saison' => $activites->saison)) ?>" class="float-right"><span class="bi bi-arrow-down-square-fill fs-5 text-white" title="Télécharger le détail" aria-hidden="true"></span></a>
                   <?php if(!isset($annuel)): ?>
-                  <a style="margin-right: 10px;" href="<?php echo url_for('activiteGraph') ?>" class="float-right"><span class="oi oi-bar-chart text-white" title="Graph" aria-hidden="true"></span></a>
+                  <a style="margin-right: 10px;" href="<?php echo url_for('activiteGraph') ?>" class="float-right"><span class="bi bi-bar-chart-line-fill fs-5 text-white" title="Graph" aria-hidden="true"></span></a>
                   <?php endif; ?>
               </h5></div>
             <div class="list-group list-group-flush">
                 <div class="list-group-item">
-                    <div class="col-3 text-dark">CA <span class="text-warning"><?php echo ($devise == 2)? '<small class="oi oi-dollar" title="dollar" aria-hidden="true"></small>' : '<small class="oi oi-euro" title="euro" aria-hidden="true"></small>'; ?></span></div>
+                    <div class="col-3 text-dark">CA <span class="text-warning"><?php echo ($devise == 2)? '<i class="bi bi-currency-dollar fs-6"></i>' : '<i class="bi bi-currency-euro fs-6"></i>'; ?></span></div>
                     <div class="col-9 text-right text-dark"><?php echo number_format($montant, 2, ',', ' ') ?></div>
                 </div>
                 <?php if ($comFiltered && $comFiltered->is_super_commercial): ?>
                 <div class="list-group-item">
-                    <div class="col-3 text-dark">COM <span class="text-warning"><?php echo ($devise == 2)? '<small class="oi oi-dollar" title="dollar" aria-hidden="true"></small>' : '<small class="oi oi-euro" title="euro" aria-hidden="true"></small>'; ?></span></div>
+                    <div class="col-3 text-dark">COM <span class="text-warning"><?php echo ($devise == 2)? '<i class="bi bi-currency-dollar fs-6"></i>' : '<i class="bi bi-currency-euro fs-6"></i>'; ?></span></div>
                     <div class="col-9 text-right text-dark"><?php echo number_format($com, 2, ',', ' ') ?></div>
                 </div>
                 <?php endif; ?>
@@ -63,14 +63,14 @@
               <h5>
                 <?php if(isset($annuel)): ?><?php echo $from->format('Y')-1 ?><?php else: ?><strong>N-1</strong> du <?php echo DateTime::createFromFormat("Y-m-d", $activites1->from)->format('d/m/Y'); ?> au <?php echo DateTime::createFromFormat("Y-m-d", $activites1->to)->format('d/m/Y'); ?><?php endif; ?>
                   <?php if(isset($detailsLink) && $detailsLink): ?>
-                    <a href="#" class="float-right" data-toggle="modal" data-target="#<?php echo $detailsLink ?>Modal" data-url="<?php echo url_for('modal'.ucfirst($detailsLink), array('parameters' => array_merge($parameters->getRawValue(), array('from' => ($from->format('Y')-1).'-'.$from->format('m').'-'.$from->format('d'), 'to' => ($to->format('Y')-1).'-'.$to->format('m').'-'.$to->format('d'), 'ofrom' => $from->format('Y-m-d'), 'oto' => $to->format('Y-m-d'))))) ?>"><span class="oi oi-zoom-in text-white" title="details" aria-hidden="true"></span></a>
+                    <a href="#" style="margin-left: 10px;" class="float-right" data-toggle="modal" data-target="#<?php echo $detailsLink ?>Modal" data-url="<?php echo url_for('modal'.ucfirst($detailsLink), array('parameters' => array_merge($parameters->getRawValue(), array('from' => ($from->format('Y')-1).'-'.$from->format('m').'-'.$from->format('d'), 'to' => ($to->format('Y')-1).'-'.$to->format('m').'-'.$to->format('d'), 'ofrom' => $from->format('Y-m-d'), 'oto' => $to->format('Y-m-d'))))) ?>"><span class="bi bi-eye-fill fs-5 text-white" title="details" aria-hidden="true"></span></a>
                   <?php endif; ?>
-                  <a href="<?php echo url_for('activiteCsv', array('from' => $activites1->from, 'to' => $activites1->to, 'devise' => $devise, 'client' => $clientId, 'fournisseur' => $fournisseurId, 'commercial' => $activites1->commercial, 'produit' => $activites1->produit, 'saison' => $activites1->saison)) ?>" class="float-right"><span class="oi oi-data-transfer-download text-white" title="Télécharger le détail" aria-hidden="true"></span></a>
+                  <a href="<?php echo url_for('activiteCsv', array('from' => $activites1->from, 'to' => $activites1->to, 'devise' => $devise, 'client' => $clientId, 'fournisseur' => $fournisseurId, 'commercial' => $activites1->commercial, 'produit' => $activites1->produit, 'saison' => $activites1->saison)) ?>" class="float-right"><span class="bi bi-arrow-down-square-fill fs-5 text-white" title="Télécharger le détail" aria-hidden="true"></span></a>
                 </h5>
             </div>
             <div class="list-group list-group-flush">
                 <div class="list-group-item">
-                    <div class="col-3 text-dark">CA <span class="text-warning"><?php echo ($devise == 2)? '<small class="oi oi-dollar" title="dollar" aria-hidden="true"></small>' : '<small class="oi oi-euro" title="euro" aria-hidden="true"></small>'; ?></span></div>
+                    <div class="col-3 text-dark">CA <span class="text-warning"><?php echo ($devise == 2)? '<i class="bi bi-currency-dollar fs-6"></i>' : '<i class="bi bi-currency-euro fs-6"></i>'; ?></span></div>
                     <div class="col-3">
                         <?php
                             if ($montant > 0 && $montant1 > 0):
@@ -86,7 +86,7 @@
                 </div>
                 <?php if ($comFiltered && $comFiltered->is_super_commercial): ?>
                 <div class="list-group-item">
-                    <div class="col-3 text-dark">COM <span class="text-warning"><?php echo ($devise == 2)? '<small class="oi oi-dollar" title="dollar" aria-hidden="true"></small>' : '<small class="oi oi-euro" title="euro" aria-hidden="true"></small>'; ?></span></div>
+                    <div class="col-3 text-dark">COM <span class="text-warning"><?php echo ($devise == 2)? '<i class="bi bi-currency-dollar fs-6"></i>' : '<i class="bi bi-currency-euro fs-6"></i>'; ?></span></div>
                     <div class="col-3">
                         <?php
 
@@ -155,13 +155,13 @@
             <div class="card-header bg-secondary text-white">
               <h5>
                 <?php if(isset($annuel)): ?><?php echo $from->format('Y')-2 ?><?php else: ?><strong>N-2</strong> du <?php echo DateTime::createFromFormat("Y-m-d", $activites2->from)->format('d/m/Y'); ?> au <?php echo DateTime::createFromFormat("Y-m-d", $activites2->to)->format('d/m/Y'); ?><?php endif; ?>
-                <?php if(isset($detailsLink) && $detailsLink): ?><a href="#" class="float-right" data-toggle="modal" data-target="#<?php echo $detailsLink ?>Modal" data-url="<?php echo url_for('modal'.ucfirst($detailsLink), array('parameters' => array_merge($parameters->getRawValue(), array('from' => ($from->format('Y')-2).'-'.$from->format('m').'-'.$from->format('d'), 'to' => ($to->format('Y')-2).'-'.$to->format('m').'-'.$to->format('d'), 'ofrom' => $from->format('Y-m-d'), 'oto' => $to->format('Y-m-d'))))) ?>"><span class="oi oi-zoom-in text-white" title="details" aria-hidden="true"></span></a><?php endif; ?>
-                <a href="<?php echo url_for('activiteCsv', array('from' => $activites2->from, 'to' => $activites2->to, 'devise' => $devise, 'client' => $clientId, 'fournisseur' => $fournisseurId, 'commercial' => $activites2->commercial, 'produit' => $activites2->produit, 'saison' => $activites2->saison)) ?>" class="float-right"><span class="oi oi-data-transfer-download text-white" title="Télécharger le détail" aria-hidden="true"></span></a>
+                <?php if(isset($detailsLink) && $detailsLink): ?><a style="margin-left: 10px;" href="#" class="float-right" data-toggle="modal" data-target="#<?php echo $detailsLink ?>Modal" data-url="<?php echo url_for('modal'.ucfirst($detailsLink), array('parameters' => array_merge($parameters->getRawValue(), array('from' => ($from->format('Y')-2).'-'.$from->format('m').'-'.$from->format('d'), 'to' => ($to->format('Y')-2).'-'.$to->format('m').'-'.$to->format('d'), 'ofrom' => $from->format('Y-m-d'), 'oto' => $to->format('Y-m-d'))))) ?>"><span class="bi bi-eye-fill fs-5 text-white" title="details" aria-hidden="true"></span></a><?php endif; ?>
+                <a href="<?php echo url_for('activiteCsv', array('from' => $activites2->from, 'to' => $activites2->to, 'devise' => $devise, 'client' => $clientId, 'fournisseur' => $fournisseurId, 'commercial' => $activites2->commercial, 'produit' => $activites2->produit, 'saison' => $activites2->saison)) ?>" class="float-right"><span class="bi bi-arrow-down-square-fill fs-5 text-white" title="Télécharger le détail" aria-hidden="true"></span></a>
               </h5>
             </div>
             <div class="list-group list-group-flush">
                 <div class="list-group-item">
-                    <div class="col-3 text-dark">CA <span class="text-warning"><?php echo ($devise == 2)? '<small class="oi oi-dollar" title="dollar" aria-hidden="true"></small>' : '<small class="oi oi-euro" title="euro" aria-hidden="true"></small>'; ?></span></div>
+                    <div class="col-3 text-dark">CA <span class="text-warning"><?php echo ($devise == 2)? '<i class="bi bi-currency-dollar fs-6"></i>' : '<i class="bi bi-currency-euro fs-6"></i>'; ?></span></div>
                     <div class="col-3">
                         <?php
                             if ($montant > 0 && $montant2 > 0):
@@ -177,7 +177,7 @@
                 </div>
                 <?php if ($comFiltered && $comFiltered->is_super_commercial): ?>
                 <div class="list-group-item">
-                    <div class="col-3 text-dark">COM <span class="text-warning"><?php echo ($devise == 2)? '<small class="oi oi-dollar" title="dollar" aria-hidden="true"></small>' : '<small class="oi oi-euro" title="euro" aria-hidden="true"></small>'; ?></span></div>
+                    <div class="col-3 text-dark">COM <span class="text-warning"><?php echo ($devise == 2)? '<i class="bi bi-currency-dollar fs-6"></i>' : '<i class="bi bi-currency-euro fs-6"></i>'; ?></span></div>
                     <div class="col-3">
                         <?php
                             if ($com > 0 && $com2 > 0):
@@ -244,7 +244,7 @@
 
 <p class="text-center mt-3 mb-0 details">
   <a class="btn btn-light btn-sm text-uppercase" data-toggle="collapse" href="#details<?php if(isset($annuel)): ?>Annee<?php else: ?>Periode<?php endif; ?>" role="button" aria-expanded="false">
-    Voir le détail par produit fini <span class="oi oi-chevron-bottom"></span>
+    Voir le détail par produit fini <span class="bi bi-chevron-down"></span>
   </a>
 </p>
 

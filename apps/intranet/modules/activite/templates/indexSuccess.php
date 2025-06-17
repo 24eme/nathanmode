@@ -1,4 +1,4 @@
-<div id="containerCA" class="container">
+<div id="containerCA" class="container" style="max-width: 1140px;">
 
 <h1 class="text-center p-3 text-dark">Commercial Activity</h1>
 
