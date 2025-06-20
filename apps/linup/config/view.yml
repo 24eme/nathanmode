@@ -6,8 +6,8 @@ default:
     content-type: text/html
 
   metas:
-    title:        NATHAN MODE
-    description:  "Intranet de gestion des activités NATHAN MODE"
+    title:        LinUp
+    description:  "Intranet de gestion des activités de LinUp"
     #keywords:     symfony, project
     language:     fr
     robots:       noindex, nofollow
