@@ -32,7 +32,7 @@
 
 	</div>
 	<div class="col-sm-1">
-		<div class="btn-group float-right p-2">
+		<div class="btn-group float-end p-2">
 				<a href="<?php echo url_for($sf_request->getParameter('module').ucfirst($sf_request->getParameter('action')), array_merge($parameters->getRawValue(), array('devise' => 1))) ?>" class="btn btn-sm <?php if($devise==1): ?>btn-warning text-white<?php else: ?>btn-light<?php endif; ?>" role="button" aria-pressed="true"><i class="bi bi-currency-euro fs-6"></i></a>
 				<a href="<?php echo url_for($sf_request->getParameter('module').ucfirst($sf_request->getParameter('action')), array_merge($parameters->getRawValue(), array('devise' => 2))) ?>" class="btn btn-sm <?php if($devise==2): ?>btn-warning text-white<?php else: ?>btn-light<?php endif; ?>" role="button" aria-pressed="true"><i class="bi bi-currency-dollar fs-6"></i></a>
 			</div>

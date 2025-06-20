@@ -1145,14 +1145,17 @@ dl, ol, ul {
 }
 
 .centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 2rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-size: 2rem;
 	font-style: italic;
 	text-shadow: 2px 0 0 #343a40, -2px 0 0 #343a40, 0 2px 0 #343a40, 0 -2px 0 #343a40, 1px 1px #343a40, -1px -1px 0 #343a40, 1px -1px 0 #343a40, -1px 1px 0 #343a40;
 }
+
 .modal-body li a,
 .modal-body li a:link,
 .modal-body li a:visited {
@@ -1179,7 +1182,7 @@ dl, ol, ul {
     height: 40px;
 }
 .modal-body .chosen-container-single .chosen-single {
-	height: 40px;
+	height: 34px;
 }
 .modal-body form .btn {
 	font-size: 0.85rem;
