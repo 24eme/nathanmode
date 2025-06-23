@@ -18,11 +18,17 @@ class ClientFormFilter extends BaseClientFormFilter
   	$this->getWidget('ville_livraison')->setOption('with_empty', false);
   	$this->setWidget('condition_paiement', new sfWidgetFormChoice(array('choices' => $this->getConditionsPaiement())));
   	$this->setValidator('condition_paiement', new sfValidatorChoice(array('required' => false, 'choices' => array_keys($this->getConditionsPaiement()))));
+
+
+
+    $this->setWidget('id', new sfWidgetFormFilterInput());
+  	$this->getWidget('id')->setOption('with_empty', false);
+    $this->setValidator('id', new sfValidatorPass(array('required' => false)));
   }
   public function getConditionsPaiement() {
   	return array_merge(array('' => ''), ConditionsPaiement::getListe());
   }
-  
+
   public function addConditionPaiementColumnQuery($query, $field, $values) {
         $this->addEnumQuery($query, $field, $values);
   }
