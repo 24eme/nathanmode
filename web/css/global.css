@@ -47,9 +47,9 @@ header a:visited {
   text-decoration: none;
 }
 
-.tableNm a,
-.tableNm a:link,
-.tableNm a:visited{
+.tableNm th a,
+.tableNm th a:link,
+.tableNm th a:visited{
 	color:#fff;
 	text-decoration:underline;
 }
