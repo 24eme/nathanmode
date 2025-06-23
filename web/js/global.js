@@ -538,6 +538,18 @@ $(document).ready(function() {
    	 	width: "100%"
   	});
 
+  $('#fournisseur_filters_devise_id').sortSelect().chosen({
+    	placeholder_text_single: "-",
+		allow_single_deselect:true,
+   	 	width: "100%"
+  	});
+
+  $('#commercial_filters_devise_id').sortSelect().chosen({
+    	placeholder_text_single: "-",
+		allow_single_deselect:true,
+   	 	width: "100%"
+  	});
+
 
 	// STATS CHOSEN
 	$('#bon_filters_fournisseur_id').sortSelect().chosen({
