@@ -104,13 +104,13 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2">
-                   <?php include_partial('collection/relationDetailsForm', array('form' => $form)) ?>
+                <td><?php echo $form['observation_general']->renderLabel() ?>&nbsp;:</td>
+                <td>
+                  <?php echo $form['observation_general']->renderError() ?>
+                  <?php echo $form['observation_general']->render(array('class' => '')) ?>
                 </td>
             </tr>
         </table>
-        <?php echo $form['observation_general']->renderError() ?>
-        <?php echo $form['observation_general']->render(array('class' => 'txtAreaBig')) ?>
     </div>
 </div>
 <script id="dependent_select_url_template" type="text/x-jquery-tmpl">
