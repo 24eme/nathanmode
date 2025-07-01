@@ -11,12 +11,13 @@
     <?php echo $form->renderHiddenFields(false); ?>
     <?php echo $form->renderGlobalErrors(false); ?>
 
-    <div class="colLeft">
+    <div class="row justify-content-center">
         <?php include_partial('collection/formInfosGenerales', array('form' => $form)) ?>
+        <?php include_partial('collection/formDetails', array('form' => $form)) ?>
+        <?php include_partial('collection/formLivraisons', array('form' => $form)) ?>
         <?php include_partial('collection/formTirelles', array('form' => $form)) ?>
         <?php include_partial('collection/formTestMatiere', array('form' => $form)) ?>
     </div>
-    <?php include_partial('collection/formLivraisons', array('form' => $form)) ?>
 
 </form>
 <script type="text/javascript">

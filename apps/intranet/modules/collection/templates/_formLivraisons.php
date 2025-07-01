@@ -1,6 +1,6 @@
-<div class="tableau rightTab">
-    <div class="titre"><span>Livraison</span></div>   
-    <div class="contentRight">             
+<div class="tableau col-8">
+    <div class="titre"><span>Livraison</span></div>
+    <div class="contentRight">
         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tabloLivraison">
             <tr>
 				<td width="30%" style="vertical-align:top;">
