@@ -1,4 +1,4 @@
-<div class="tableau">
+<div class="tableau col-8">
     <div class="titre"><span>Test matière</span></div>
     <div class="contentLeft">
         <table width="100%" border="0" cellpadding="0" cellspacing="0">

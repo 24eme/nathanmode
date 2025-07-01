@@ -1,7 +1,7 @@
-<div class="tableau">
+<div class="tableau col-8">
     <div class="titre"><span>Infos générales</span></div>
     <div id="alertBox" class="bg-danger" style="float:left;width:100%; margin-top: -10px;"></div>
-    <div class="contentLeft">
+    <div>
         <table width="50%" border="0" cellpadding="0" cellspacing="0" class="tabloInfoGen">
             <tr>
                 <td width="110"><?php echo $form['saison_id']->renderLabel() ?>&nbsp;:</td>
