@@ -295,14 +295,15 @@ $(document).ready(function() {
     $('.input-float').inputNumberFormat();
 
 	// COLLECTION & PRODUCTION CHOSEN
+  $('.chosen').chosen({width: "90%"});
 	$('#collection_saison_id').chosen({width: "90%"});
 	$('#collection_fournisseur_id').sortSelect().chosen({width: "90%"});
 	$('#collection_commercial_id').sortSelect().chosen({width: "90%"});
 	$('#collection_client_id').sortSelect().chosen({width: "90%"});
 	$('#collection_paiement').sortSelect().chosen({width: "90%"});
 	$('#collection_situation').sortSelect().chosen({width: "90%"});
-  $('#collection_devise_fournisseur_id').sortSelect().chosen({width: "25%"});
-  $('#collection_devise_commercial_id').sortSelect().chosen({width: "25%"});
+  $('#collection_devise_fournisseur_id').sortSelect().chosen({width: "35%"});
+  $('#collection_devise_commercial_id').sortSelect().chosen({width: "35%"});
   $('#sf_guard_user_commercial_id').sortSelect().chosen({allow_single_deselect:true,width: "90%"});
 
 	$('#collection_filters_saison_id').sortSelect().chosen({
@@ -642,7 +643,7 @@ $.initTemplateLigne = function() {
 
         var content = template.html().replace(/var---nbItem---/g, UUID.generate());
         container.append(content);
-
+        $('.chosen').chosen();
         return false;
     });
 

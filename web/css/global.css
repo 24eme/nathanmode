@@ -419,6 +419,13 @@ a:hover.logOut{
 	float:left;
 }
 
+.tableau td:first-child {
+	padding-left: 5px;
+}
+.tableau td:last-child {
+	padding-right: 5px;
+}
+
 .tableau td{
 	height:25px;
 	padding:0 0 5px 0;
@@ -452,8 +459,7 @@ input[type=date]{
   font-family:Arial,Helvetica,sans-serif;
   font-size:12px;
   padding:3px;
-	margin:0 0 0 5px;
-	width:200px;
+	width: 90%;
 }
 #signin_password {
 	margin-top: 5px;
@@ -525,9 +531,9 @@ a:visited.btPlus.right{
     border:1px solid #bfbfbf;
 	font-family:Arial, Helvetica, sans-serif;
     font-size:12px;
-    height:45px;
+    height:80px;
+		width: 100%;
     padding:0 0 0 0;
-    width:476px;
 	resize:none;
 	margin:10px 0 0 0;
 }
@@ -560,7 +566,6 @@ a:visited.btPlus.right{
 .setAdd{
 	width:100%;
 	float:left;
-	background:url('/css/img/dash.gif') repeat-x top;
 	margin:10px 0;
 	padding:5px 0 0 0;
 }
@@ -852,14 +857,8 @@ td.sf_admin_list_td_total_commercial{
 	text-align:right;
 }
 
-.tabloInfoGen input{
-	width:100px !important;
-}
-.tabloInfoGen select{
-	width:158px !important;
-}
+
 td.uploadFile{
-    height: 65px;
     position: relative;
     text-align: left;
     vertical-align: top;
@@ -878,14 +877,15 @@ td.uploadFile input[type=checkbox]{
 	vertical-align:sub !important;
 	float:left !important;
 	margin-top:3px !important;
+	margin-right: 5px;
 }
 td.uploadFile label{
 	line-height:19px !important;
 	float:left !important;
 }
 td.uploadFile a{
-    margin: 42px 0 0 5px;
-    position: absolute;
+	margin-right:10% !important;
+  float:right !important;
 }
 
 td.sf_admin_list_td_qualite,

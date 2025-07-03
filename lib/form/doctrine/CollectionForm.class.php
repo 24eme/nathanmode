@@ -79,37 +79,37 @@ class CollectionForm extends BaseCollectionForm
         $this->setWidget('fichier', new sfWidgetFormInputFileEditable(array(
                                                                       'file_src' => CollectionTable::getInstance()->getUploadPath(false).$this->getObject()->fichier,
                                                                        'edit_mode' => $this->getObject()->fichier,
-                                                                       'template' => '<a href="%file%" target="_blank">Télécharger le fichier</a><br />%input%<br />%delete% Suppr. le fichier'
+                                                                       'template' => '%input%<br />%delete% Suppr. le fichier<a href="%file%" target="_blank">Voir le fichier</a>'
                                                                     )));
         $this->setValidator('fichier', new sfValidatorFile(
-            array('required' => $this->getValidator('fichier')->getOption('required'), 
+            array('required' => $this->getValidator('fichier')->getOption('required'),
                   'path' => CollectionTable::getInstance()->getUploadPath(true))
             ));
 
         $this->setWidget('fiche_client', new sfWidgetFormInputFileEditable(array(
                                                                       'file_src' => CollectionTable::getInstance()->getUploadPath(false).$this->getObject()->fiche_client,
                                                                        'edit_mode' => $this->getObject()->fiche_client,
-                                                                       'template' => '<a href="%file%" target="_blank">Télécharger le fichier</a><br />%input%<br />%delete% Suppr. le fichier'
+                                                                       'template' => '%input%<br />%delete% Suppr. le fichier<a href="%file%" target="_blank">Voir le fichier</a>'
                                                                     )));
         $this->setValidator('fiche_client', new sfValidatorFile(
-            array('required' => $this->getValidator('fiche_client')->getOption('required'), 
+            array('required' => $this->getValidator('fiche_client')->getOption('required'),
                   'path' => CollectionTable::getInstance()->getUploadPath(true))
             ));
 
         $this->setWidget('fiche_technique', new sfWidgetFormInputFileEditable(array(
                                                                       'file_src' => CollectionTable::getInstance()->getUploadPath(false).$this->getObject()->fiche_technique,
                                                                        'edit_mode' => $this->getObject()->fiche_technique,
-                                                                       'template' => '<a href="%file%" target="_blank">Télécharger le fichier</a><br />%input%<br />%delete% Suppr. le fichier'
+                                                                       'template' => '%input%<br />%delete% Suppr. le fichier<a href="%file%" target="_blank">Voir le fichier</a>'
                                                                     )));
         $this->setValidator('fiche_technique', new sfValidatorFile(
-            array('required' => $this->getValidator('fiche_technique')->getOption('required'), 
+            array('required' => $this->getValidator('fiche_technique')->getOption('required'),
                   'path' => CollectionTable::getInstance()->getUploadPath(true))
             ));
 
         $this->setWidget('fichier_confirmation', new sfWidgetFormInputFileEditable(array(
                                                                       'file_src' => CollectionTable::getInstance()->getUploadPath(false).$this->getObject()->fichier_confirmation,
                                                                        'edit_mode' => $this->getObject()->fichier_confirmation,
-                                                                       'template' => '<a href="%file%" target="_blank">Télécharger le fichier</a><br />%input%<br />%delete% Suppr. le fichier'
+                                                                       'template' => '%input%<br />%delete% Suppr. le fichier<a href="%file%" target="_blank">Voir le fichier</a>'
                                                                     )));
         $this->setValidator('fichier_confirmation', new sfValidatorFile(
             array('required' => $this->getValidator('fichier_confirmation')->getOption('required'),

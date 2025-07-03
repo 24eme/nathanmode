@@ -1,4 +1,4 @@
-<div class="subTitle">Retard de livraison</div>
+
 <div id="form_retards_container">
     <?php foreach($form['retards'] as $item_form): ?>
         <?php echo include_partial('collection/relationRetardsItem', array('form' => $item_form)); ?>

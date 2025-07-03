@@ -33,10 +33,10 @@ class CollectionLivraisonForm extends BaseCollectionLivraisonForm
         $this->setWidget('fichier', new sfWidgetFormInputFileEditable(array(
                                                                       'file_src' => FactureTable::getInstance()->getUploadPath(false).$this->getObject()->fichier,
                                                                        'edit_mode' => $this->getObject()->fichier,
-                                                                       'template' => '<a href="%file%" target="_blank">Télécharger le fichier</a><br />%input%<br />%delete% %delete_label%'
+                                                                       'template' => '%input%<br />%delete% Suppr. le fichier<a href="%file%" target="_blank">Voir le fichier</a>'
                                                                     )));
         $this->setValidator('fichier', new sfValidatorFile(
-            array('required' => $this->getValidator('fichier')->getOption('required'), 
+            array('required' => $this->getValidator('fichier')->getOption('required'),
                   'path' => FactureTable::getInstance()->getUploadPath(true))
             ));
 
@@ -44,7 +44,7 @@ class CollectionLivraisonForm extends BaseCollectionLivraisonForm
         $this->setWidget('packing_list', new sfWidgetFormInputFileEditable(array(
                                                                       'file_src' => CollectionLivraisonTable::getInstance()->getUploadPath(false).$this->getObject()->packing_list,
                                                                        'edit_mode' => $this->getObject()->packing_list,
-                                                                       'template' => '<a href="%file%" target="_blank">Télécharger le fichier</a><br />%input%<br />%delete% %delete_label%'
+                                                                       'template' => '%input%<br />%delete% Suppr. le fichier<a href="%file%" target="_blank">Voir le fichier</a>'
                                                                     )));
         $this->setValidator('packing_list', new sfValidatorFile(
             array('required' => $this->getValidator('packing_list')->getOption('required'),
@@ -63,8 +63,8 @@ class CollectionLivraisonForm extends BaseCollectionLivraisonForm
 
         $this->getWidgetSchema()->setLabels(array(
           'colori' => 'Colori',
-          'devise_id' => 'Devise;',
-          'escompte_devise_id' => 'Escompte devise;',
+          'devise_id' => 'Devise',
+          'escompte_devise_id' => 'Escompte devise',
           'piece_categorie' => 'PF Type',
           'piece' => 'Produit Fini',
           'metrage' => 'Métrage',

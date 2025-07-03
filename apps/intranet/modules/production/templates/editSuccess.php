@@ -1,10 +1,12 @@
 <?php use_helper('I18N', 'Date') ?>
 
 <?php echo form_tag_for($form, '@collection_production') ?>
-    <div class="productName">
+<div class="productName row justify-content-center float-none p-0 w-auto">
+  <div class="tableau col-8 border-0">
         <span><?php echo $collection->Fournisseur ?> - <?php echo $collection->Client ?> - <?php echo $collection->Saison ?></span>
         <?php include_partial('production/form_actions', array('collection' => $collection, 'form' => $form, 'configuration' => $configuration, 'helper' => $helper)) ?>
     </div>
+</div>
 
     <?php include_partial('production/flashes') ?>
 

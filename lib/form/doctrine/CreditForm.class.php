@@ -20,7 +20,7 @@ class CreditForm extends BaseCreditForm
   		$this->setWidget('fichier', new sfWidgetFormInputFileEditable(array(
                                                                       'file_src' => FactureTable::getInstance()->getUploadPath(false).$this->getObject()->fichier,
                                                                        'edit_mode' => $this->getObject()->fichier,
-                                                                       'template' => '<a href="%file%" target="_blank">Télécharger le fichier</a><br />%input%<br />%delete% %delete_label%'
+                                                                       'template' => '%input%<br />%delete% Suppr. le fichier<a href="%file%" target="_blank">Voir le fichier</a>'
                                                                     )));
 
       $this->setValidator('fichier', new sfValidatorFile(array('required' => false,
