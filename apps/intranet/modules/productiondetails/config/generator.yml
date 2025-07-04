@@ -1,0 +1,31 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           CollectionDetail
+    theme:                 nathanmode
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          collection_detail
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:
+        date_commande: { date_format: dd/MM/yyyy }
+        date_livraison: { date_format: dd/MM/yyyy }
+      list:
+        max_per_page: 30
+        table_method: queryProductions
+        table_count_method: queryProductions
+        batch_actions: {  }
+        actions:
+          _new: ~
+        title: "Liste des commandes de production"
+        display: [saison, fournisseur, client, date_commande, num_commande, date_livraison, colori, piece_categorie, piece, prix, Devise]
+      filter:  ~
+      form:    ~
+      edit:    ~
+      new:     ~

@@ -105,4 +105,28 @@ class CollectionDetail extends BaseCollectionDetail
     }
     return $commande;
   }
+
+  public function getSaison() {
+    return $this->getCollection()->getSaison();
+  }
+
+  public function getFournisseur() {
+    return $this->getCollection()->getFournisseur();
+  }
+
+  public function getClient() {
+    return $this->getCollection()->getClient();
+  }
+
+  public function getDateCommande() {
+    return $this->getCollection()->getDateCommande();
+  }
+
+  public function getNumCommande() {
+    return $this->getCollection()->getNumCommande();
+  }
+
+  public function getDateLivraison() {
+    return $this->getCollection()->getDateLivraison();
+  }
 }

@@ -32,4 +32,11 @@ class CollectionDetailTable extends Doctrine_Table
                     ->whereNotIn('c.situation', array(Situations::SITUATION_SOLDEE, Situations::SITUATION_ECRU_DESIGNER))
                     ->addWhere('c.production = ?', false);
     }
+
+    public function queryProductions() {
+
+        return $this->createQuery('d')
+                    ->leftJoin('d.Collection c')
+                    ->addWhere('c.production = ?', true);
+    }
 }
