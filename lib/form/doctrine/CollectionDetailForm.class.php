@@ -37,13 +37,20 @@ class CollectionDetailForm extends BaseCollectionDetailForm
 
         $this->setWidget('image', new sfWidgetFormInputFileEditable(array(
             'file_src' => CollectionDetailTable::getInstance()->getUploadPath(false).$this->getObject()->image,
+            'is_image' => true,
             'edit_mode' => $this->getObject()->image,
-            'template' => '%input%<br />%delete% Suppr. le fichier<a href="%file%" target="_blank">Voir le fichier</a>'
-                                                                    )));
-        $this->setValidator('image', new sfValidatorFile(
-            array('required' => $this->getValidator('image')->getOption('required'),
-                    'path' => CollectionDetailTable::getInstance()->getUploadPath(true))
+            'with_delete' => true,
+            'delete_label' => 'Supprimer la photo'
+            )));
+
+        $this->setValidator('image', new sfValidatorFile(array(
+            'mime_types' => 'web_images',
+            'required' => $this->getValidator('image')->getOption('required'),
+            'path' => CollectionDetailTable::getInstance()->getUploadPath(true))
             ));
+
+        $this->setValidator('image_delete', new sfValidatorPass());
+
     }
 
     public function updateDefaultsFromObject() {

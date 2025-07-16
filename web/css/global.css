@@ -1240,3 +1240,7 @@ table tr.coupe_statut_attente_livraison {
 table tr.coupe_statut_expe_att_facture {
 	background-color: #f4d58d;
 }
+
+img.production-images {
+    margin-right: 10px;
+}
