@@ -39,4 +39,16 @@ class CollectionDetailTable extends Doctrine_Table
                     ->leftJoin('d.Collection c')
                     ->addWhere('c.production = ?', true);
     }
+
+    public function getUploadPath($absolute = false) {
+
+        $path = '/uploads/production_images/';
+
+        if ($absolute) {
+
+            return sfConfig::get('sf_web_dir').$path;
+        }
+
+        return $path;
+    }
 }

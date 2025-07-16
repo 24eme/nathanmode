@@ -1,4 +1,9 @@
 <tr class="relation_item_form">
+
+    <td class="uploadFile">
+        <?php echo $form['image']->render(array('class' => 'input')) ?>
+        <?php echo $form['image']->renderError() ?>
+    </td>
     <td>
         <?php echo $form['colori']->render(); ?>
         <?php echo $form['colori']->renderError(); ?>

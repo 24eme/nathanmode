@@ -16,7 +16,8 @@ class CollectionDetailForm extends BaseCollectionDetailForm
                                'colori',
                                'piece_categorie',
                                'piece',
-                               'prix'));
+                               'prix',
+                               'image'));
 
         $this->getWidgetSchema()->setLabels(array(
           'devise_id' => 'Devise',
@@ -24,6 +25,7 @@ class CollectionDetailForm extends BaseCollectionDetailForm
           'piece' => 'Quantité Type',
           'piece' => 'Quantité',
           'prix' => 'Prix',
+          'image' => 'Ajouter une image'
         ));
 
         $this->setWidget('piece_categorie', new sfWidgetFormChoice(array('choices' => $this->getPieceCategories())));
@@ -31,6 +33,16 @@ class CollectionDetailForm extends BaseCollectionDetailForm
             array('choices' => array_keys($this->getPieceCategories()),
                   'required' => $this->getValidator('piece_categorie')->getOption('required'),
                 )
+            ));
+
+        $this->setWidget('image', new sfWidgetFormInputFileEditable(array(
+            'file_src' => CollectionDetailTable::getInstance()->getUploadPath(false).$this->getObject()->image,
+            'edit_mode' => $this->getObject()->image,
+            'template' => '%input%<br />%delete% Suppr. le fichier<a href="%file%" target="_blank">Voir le fichier</a>'
+                                                                    )));
+        $this->setValidator('image', new sfValidatorFile(
+            array('required' => $this->getValidator('image')->getOption('required'),
+                    'path' => CollectionDetailTable::getInstance()->getUploadPath(true))
             ));
     }
 

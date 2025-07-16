@@ -21,6 +21,7 @@ abstract class BaseCollectionDetailFormFilter extends BaseFormFilterDoctrine
       'piece_categorie' => new sfWidgetFormFilterInput(),
       'piece'           => new sfWidgetFormFilterInput(),
       'prix'            => new sfWidgetFormFilterInput(),
+      'image'           => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
@@ -32,6 +33,7 @@ abstract class BaseCollectionDetailFormFilter extends BaseFormFilterDoctrine
       'piece_categorie' => new sfValidatorPass(array('required' => false)),
       'piece'           => new sfValidatorPass(array('required' => false)),
       'prix'            => new sfValidatorPass(array('required' => false)),
+      'image'           => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('collection_detail_filters[%s]');
@@ -60,6 +62,7 @@ abstract class BaseCollectionDetailFormFilter extends BaseFormFilterDoctrine
       'piece_categorie' => 'Text',
       'piece'           => 'Text',
       'prix'            => 'Text',
+      'image'           => 'Text',
     );
   }
 }

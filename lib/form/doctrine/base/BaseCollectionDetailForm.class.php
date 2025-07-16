@@ -24,6 +24,7 @@ abstract class BaseCollectionDetailForm extends BaseFormDoctrine
       'piece_categorie' => new sfWidgetFormInputText(),
       'piece'           => new sfWidgetFormInputText(),
       'prix'            => new sfWidgetFormInputText(),
+      'image'           => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
@@ -36,6 +37,7 @@ abstract class BaseCollectionDetailForm extends BaseFormDoctrine
       'piece_categorie' => new sfValidatorString(array('max_length' => 128, 'required' => false)),
       'piece'           => new sfValidatorString(array('max_length' => 128, 'required' => false)),
       'prix'            => new sfValidatorPass(array('required' => false)),
+      'image'           => new sfValidatorString(array('max_length' => 255, 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('collection_detail[%s]');

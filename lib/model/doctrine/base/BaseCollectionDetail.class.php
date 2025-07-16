@@ -13,6 +13,7 @@
  * @property string $piece_categorie
  * @property string $piece
  * @property double $prix
+ * @property string $image
  * @property Collection $Collection
  * @property Devise $Devise
  * @property Commande $Commande
@@ -25,6 +26,7 @@
  * @method string           getPieceCategorie()  Returns the current record's "piece_categorie" value
  * @method string           getPiece()           Returns the current record's "piece" value
  * @method double           getPrix()            Returns the current record's "prix" value
+ * @method string           getImage()           Returns the current record's "image" value
  * @method Collection       getCollection()      Returns the current record's "Collection" value
  * @method Devise           getDevise()          Returns the current record's "Devise" value
  * @method Commande         getCommande()        Returns the current record's "Commande" value
@@ -36,6 +38,7 @@
  * @method CollectionDetail setPieceCategorie()  Sets the current record's "piece_categorie" value
  * @method CollectionDetail setPiece()           Sets the current record's "piece" value
  * @method CollectionDetail setPrix()            Sets the current record's "prix" value
+ * @method CollectionDetail setImage()           Sets the current record's "image" value
  * @method CollectionDetail setCollection()      Sets the current record's "Collection" value
  * @method CollectionDetail setDevise()          Sets the current record's "Devise" value
  * @method CollectionDetail setCommande()        Sets the current record's "Commande" value
@@ -80,6 +83,10 @@ abstract class BaseCollectionDetail extends sfDoctrineRecord
              ));
         $this->hasColumn('prix', 'double', null, array(
              'type' => 'double',
+             ));
+        $this->hasColumn('image', 'string', 255, array(
+             'type' => 'string',
+             'length' => 255,
              ));
     }
 

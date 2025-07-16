@@ -536,6 +536,9 @@ CollectionDetail:
     prix:
       type: double
       default: NULL
+    image:
+      type: string(255)
+      default: NULL
   relations:
     Collection:
       local: collection_id
