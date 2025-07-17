@@ -5,10 +5,8 @@
               <tr>
                   <th><label>Image</label></th>
                   <th><label>Colori</label></th>
-                  <th><label>Type</label></th>
                   <th><label>Quantité</label></th>
                   <th><label>Prix</label></th>
-                  <th><label>&nbsp;</label></th>
                   <th><label>&nbsp;</label></th>
               </tr>
               <tbody id="form_details_container">

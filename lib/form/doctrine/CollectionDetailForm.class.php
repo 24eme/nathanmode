@@ -28,12 +28,10 @@ class CollectionDetailForm extends BaseCollectionDetailForm
           'image' => 'Ajouter une image'
         ));
 
-        $this->setWidget('piece_categorie', new sfWidgetFormChoice(array('choices' => $this->getPieceCategories())));
-        $this->setValidator('piece_categorie', new sfValidatorChoice(
-            array('choices' => array_keys($this->getPieceCategories()),
-                  'required' => $this->getValidator('piece_categorie')->getOption('required'),
-                )
-            ));
+        $this->setWidget('devise_id', new sfWidgetFormInputHidden());
+        $this->setValidator('devise_id', new sfValidatorPass(array('required' => false)));
+        $this->setWidget('piece_categorie', new sfWidgetFormInputHidden());
+        $this->setValidator('piece_categorie', new sfValidatorPass(array('required' => false)));
 
         $this->setWidget('image', new sfWidgetFormInputFileEditable(array(
             'file_src' => CollectionDetailTable::getInstance()->getUploadPath(false).$this->getObject()->image,
@@ -70,10 +68,5 @@ class CollectionDetailForm extends BaseCollectionDetailForm
         $values['metrage'] = null;
       }
       parent::doUpdateObject($values);
-    }
-
-    public function getPieceCategories() {
-
-        return array_merge(array("METRAGE" => "Métrage"), PieceCategories::getListe());
     }
 }
