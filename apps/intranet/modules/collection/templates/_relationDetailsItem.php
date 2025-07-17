@@ -1,7 +1,7 @@
 <tr class="relation_item_form">
 
     <td class="uploadFile">
-        <?php echo $form['image']->render(array('class' => 'input production-images', 'style' => 'width: 70px')) ?>
+        <?php echo $form['image']->render(array('class' => 'input production-images')) ?>
         <?php echo $form['image']->renderError() ?>
     </td>
     <td>
