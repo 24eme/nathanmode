@@ -139,22 +139,25 @@ class CollectionForm extends BaseCollectionForm
         $this->setValidator('fiche_technique_delete', new sfValidatorPass());
         $this->setValidator('fichier_confirmation_delete', new sfValidatorPass());
 
+        $this->setWidget('qualite', new sfWidgetFormInput());
+        $this->setValidator('qualite', new sfValidatorString(array('required' => true)));
+
         $this->getWidgetSchema()->setLabels(array(
            //Infos Generales
            'saison_id' => 'Saison',
            'fournisseur_id' => 'Fournisseur',
            'commercial_id' => 'Commercial',
            'client_id' => 'Client',
-           'paiement' => 'Paiement',
+           'paiement' => 'Conditions paiement',
            'num_commande' => 'Commande n°',
            'date_commande' => 'Date commande',
            'fichier' => 'Joindre',
            'situation' => 'Situation',
-           'prix_fournisseur' => 'Prix du fournisseur',
-           'prix_commercial' => 'Prix du commercial',
+           'prix_fournisseur' => 'Com fournisseur',
+           'prix_commercial' => 'Com commercial',
            'devise_fournisseur_id' => 'Devise du fournisseur',
            'devise_commercial_id' => 'Devise du commerciale',
-           'qualite' => 'Qualité',
+           'qualite' => 'Référence',
            'ecru' => 'Ecru à désigner',
            'observation_general' => 'Observation',
 
@@ -184,8 +187,6 @@ class CollectionForm extends BaseCollectionForm
            'commande_soldee' => 'Commande soldée',
         ));
 
-        $this->setWidget('qualite', new sfWidgetFormInput());
-        $this->setValidator('qualite', new sfValidatorString(array('required' => true)));
         $this->getWidget('reste_a_livrer')->setAttribute('readonly', 'readonly');
 
         $this->getValidator('saison_id')->setOption('required', true);
