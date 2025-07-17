@@ -199,6 +199,12 @@ class CollectionForm extends BaseCollectionForm
         $this->getWidget('prix_commercial')->setAttribute('class', 'input-float');
 
         $this->setWidget('saison_id', new sfWidgetFormChoice(array('choices' => $this->getSaisons())));
+
+        $this->setWidget('devise_id', new sfWidgetFormDoctrineChoice(array('model' => 'Devise', 'add_empty' => false)));
+        $this->setValidator('devise_id', new sfValidatorDoctrineChoice(array('model' => 'Devise')));
+
+        $this->setWidget('piece_categorie', new sfWidgetFormChoice(array('choices' => PieceCategories::getListe())));
+        $this->setValidator('piece_categorie', new sfValidatorChoice(['choices' => array_keys(PieceCategories::getListe()), 'required' => true]));
     }
 
     public function updateDefaultsFromObject() {
@@ -232,6 +238,10 @@ class CollectionForm extends BaseCollectionForm
     }
 
     public function doUpdateObject($values) {
+        foreach ($values['details'] as $key => $detail) {
+          $values['details'][$key]['devise_id'] = $values['devise_id'];
+          $values['details'][$key]['piece_categorie'] = $values['piece_categorie'];
+        }
         $nbRetardPrev = count($this->getObject()->getCollectionRetards());
         parent::doUpdateObject($values);
 		    $nbRetardAfter = count($this->getObject()->getCollectionRetards());
