@@ -86,27 +86,28 @@ class Collection extends BaseCollection
             unlink($path);
         }
     }
+
     public function save(Doctrine_Connection $conn = null)
     {
-	$dateRetardMax = null;
+	    $dateRetardMax = null;
     	foreach ($this->getCollectionRetards() as $collectionRetard) {
     		if ($date = $collectionRetard->getDate()) {
-			if (!$dateRetardMax) {
-				$dateRetardMax = $date;
-			}
-			else {
-				if ($date > $dateRetardMax) {
-					$dateRetardMax = $date;
-				}
-			}
+    			if (!$dateRetardMax) {
+    				$dateRetardMax = $date;
+    			}
+    			else {
+    				if ($date > $dateRetardMax) {
+    					$dateRetardMax = $date;
+    				}
+    			}
     		}
     	}
-	$this->date_retard = $dateRetardMax;
-        parent::save($conn);
-        $montantFacture = 0;
-        $montantCommande = 0;
-        $deviseId = null;
-        $hasFacture = false;
+	    $this->date_retard = $dateRetardMax;
+      parent::save($conn);
+      $montantFacture = 0;
+      $montantCommande = 0;
+      $deviseId = null;
+      $hasFacture = false;
     	foreach ($this->getCollectionLivraisons() as $collectionLivraison) {
     		if ($facture = $collectionLivraison->getFacture()) {
           $hasFacture = true;
