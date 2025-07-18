@@ -67,7 +67,7 @@
                 <a style="min-width: 120px" class="py-2 px-3 border btn btn-light<?php if (sfContext::getInstance()->getModuleName() == 'coupe'): ?> active<?php endif; ?>" href="<?php echo url_for('@coupe') ?>"><i class="bi bi-scissors fs-4"></i><br /><small>Coupe</small></a>
               </li>
               <li class="nav-item me-1">
-                  <a style="min-width: 120px" class="py-2 px-3 border btn btn-light<?php if (sfContext::getInstance()->getModuleName() == 'production'): ?> active<?php endif; ?>" href="<?php echo url_for('@collection_production') ?>"><i class="bi bi-asterisk fs-4"></i><br /><small>Production</small></a>
+                  <a style="min-width: 120px" class="py-2 px-3 border btn btn-light<?php if (in_array(sfContext::getInstance()->getModuleName(), ['production', 'productiondetails'])): ?> active<?php endif; ?>" href="<?php echo url_for('@collection_detail') ?>"><i class="bi bi-asterisk fs-4"></i><br /><small>Production</small></a>
               </li>
               <li class="nav-item me-1">
                 <a style="min-width: 120px" class="py-2 px-3 border btn btn-light<?php if (sfContext::getInstance()->getModuleName() == 'facure' || sfContext::getInstance()->getModuleName() == 'facure_payee'): ?> active<?php endif; ?>" href="<?php echo url_for('@facture') ?>"><i class="bi bi-file-earmark-text fs-4"></i><br /><small>Factures</small></a>
