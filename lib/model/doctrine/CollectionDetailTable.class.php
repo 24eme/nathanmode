@@ -36,7 +36,11 @@ class CollectionDetailTable extends Doctrine_Table
     public function queryProductions() {
 
         return $this->createQuery('d')
+                    ->leftJoin('d.Devise de')
                     ->leftJoin('d.Collection c')
+                    ->leftJoin('c.Saison s')
+                    ->leftJoin('c.Fournisseur f')
+                    ->leftJoin('c.Client cl')
                     ->addWhere('c.production = ?', true);
     }
 
