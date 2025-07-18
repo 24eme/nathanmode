@@ -237,11 +237,16 @@ class CollectionForm extends BaseCollectionForm
         return SaisonTable::getInstance()->getListeTriee();
     }
 
-    public function doUpdateObject($values) {
-        foreach ($values['details'] as $key => $detail) {
-          $values['details'][$key]['devise_id'] = $values['devise_id'];
-          $values['details'][$key]['piece_categorie'] = $values['piece_categorie'];
+    public function bind(array $taintedValues = null, array $taintedFiles = null)
+    {
+        foreach ($taintedValues['details'] as $key => $detail) {
+          $taintedValues['details'][$key]['devise_id'] = $taintedValues['devise_id'];
+          $taintedValues['details'][$key]['piece_categorie'] = $taintedValues['piece_categorie'];
         }
+        parent::bind($taintedValues, $taintedFiles);
+    }
+
+    public function doUpdateObject($values) {
         $nbRetardPrev = count($this->getObject()->getCollectionRetards());
         parent::doUpdateObject($values);
 		    $nbRetardAfter = count($this->getObject()->getCollectionRetards());
