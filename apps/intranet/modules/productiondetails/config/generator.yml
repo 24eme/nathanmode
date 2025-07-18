@@ -16,7 +16,10 @@ generator:
       fields:
         date_commande: { date_format: dd/MM/yyyy }
         date_livraison: { date_format: dd/MM/yyyy }
+        qualite: {label: Référence}
+        piece_categorie: {label: Catégorie}
       list:
+        sort: [date_livraison, desc]
         max_per_page: 30
         table_method: queryProductions
         table_count_method: queryProductions
@@ -24,7 +27,7 @@ generator:
         actions:
           _new: ~
         title: "Liste des commandes de production"
-        display: [saison, fournisseur, client, date_commande, num_commande, date_livraison, colori, piece_categorie, piece, prix, Devise]
+        display: [saison, fournisseur, client, date_commande, num_commande, date_livraison, situation, _categorie, qualite, _image, colori, _quantite, prix, Devise]
       filter:  ~
       form:    ~
       edit:    ~

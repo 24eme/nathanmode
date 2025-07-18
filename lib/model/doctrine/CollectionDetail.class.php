@@ -129,4 +129,12 @@ class CollectionDetail extends BaseCollectionDetail
   public function getDateLivraison() {
     return $this->getCollection()->getDateLivraison();
   }
+
+  public function getSituation() {
+    return $this->getCollection()->getSituation();
+  }
+
+  public function getQualite() {
+    return $this->getCollection()->getQualite();
+  }
 }
