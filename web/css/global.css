@@ -461,6 +461,12 @@ input[type=date]{
   padding:3px;
 	width: 90%;
 }
+
+.tableau img.production-images {
+	width: auto;
+	height: 60px;
+}
+
 #signin_password {
 	margin-top: 5px;
 }

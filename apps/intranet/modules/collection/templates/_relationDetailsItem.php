@@ -1,7 +1,9 @@
 <tr class="relation_item_form">
-
+    <td>
+        <img height="50" src="<?php echo CollectionDetailTable::getInstance()->getUploadPath(false).$form['image']->getValue() ?>" />
+    </td>
     <td class="uploadFile">
-        <?php echo $form['image']->render(array('class' => 'input production-images')) ?>
+        <?php echo $form['image']->render(array('class' => 'input')) ?>
         <?php echo $form['image']->renderError() ?>
     </td>
     <td>

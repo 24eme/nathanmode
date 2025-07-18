@@ -38,7 +38,8 @@ class CollectionDetailForm extends BaseCollectionDetailForm
             'is_image' => true,
             'edit_mode' => $this->getObject()->image,
             'with_delete' => true,
-            'delete_label' => 'Supprimer la photo'
+            'delete_label' => 'Supprimer la photo',
+            'template' => '%input%<br />%delete% %delete_label%'
             )));
 
         $this->setValidator('image', new sfValidatorFile(array(
