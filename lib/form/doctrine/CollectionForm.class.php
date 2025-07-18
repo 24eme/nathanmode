@@ -258,13 +258,17 @@ class CollectionForm extends BaseCollectionForm
         $quantiteEntree = 0;
         if(is_array($values['details'])) {
 	        foreach ($values['details'] as $detail) {
-	        	$quantiteEntree += $detail['metrage'];
+            if (isset($detail['metrage'])) {
+	        	    $quantiteEntree += $detail['metrage'];
+            }
 	        }
         }
         $quantiteSortie = 0;
         if (is_array($values['livraisons'])) {
 	        foreach ($values['livraisons'] as $livraison) {
-	        	$quantiteSortie += $livraison['metrage'];
+            if (isset($livraison['metrage'])) {
+	        	    $quantiteSortie += $livraison['metrage'];
+            }
 	        }
         }
         $resteALivrer = $quantiteEntree - $quantiteSortie;
