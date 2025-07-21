@@ -633,8 +633,31 @@ $(document).ready(function() {
       event.preventDefault();
   });
 
-	//$(':text').addClass('input');
+
+  const lignes = document.querySelectorAll('.ligne_calcul_marges');
+  lignes.forEach(ligne => {
+    const inputAchat = ligne.querySelector('.prix_achat');
+    const inputVente = ligne.querySelector('.prix_vente');
+    if (inputAchat && inputVente) {
+        inputAchat.addEventListener('input', () => calculeMarge(ligne));
+        inputVente.addEventListener('input', () => calculeMarge(ligne));
+        calculeMarge(ligne);
+      }
+  });
+
 });
+
+function calculeMarge(tr) {
+  const inputAchat = tr.querySelector('.prix_achat');
+  const inputVente = tr.querySelector('.prix_vente');
+  const spanMarge = tr.querySelector('.marge_euro');
+
+  const prixAchat = parseFloat(inputAchat.value) || 0;
+  const prixVente = parseFloat(inputVente.value) || 0;
+
+  const marge = prixVente - prixAchat;
+  spanMarge.textContent = marge.toFixed();
+}
 
 $.initTemplateLigne = function() {
     $('.lien_ajouter_ligne').live('click', function() {
