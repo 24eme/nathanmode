@@ -7,7 +7,11 @@
                   <th><label>Image</label></th>
                   <th><label>Colori</label></th>
                   <th><label>Quantité</label></th>
-                  <th><label>Prix</label></th>
+                  <th><label>Prix d'achat</label></th>
+                  <th><label>Prix de vente</label></th>
+                  <th><label>Factory&nbsp;montant</label></th>
+                  <th><label>Factory&nbsp;coef&nbsp;/&nbsp;%</label></th>
+                  <th><label>Client&nbsp;coef&nbsp;/&nbsp;%</label></th>
                   <th><label>&nbsp;</label></th>
               </tr>
               <tbody id="form_details_container">
@@ -16,7 +20,7 @@
                   <?php endforeach; ?>
               </tbody>
               <tr>
-                  <td colspan="7">
+                  <td colspan="10" class="px-0">
                       <a class="btPlus right lien_ajouter_ligne" data-template="#template_details" data-container="#form_details_container" href="#">+</a>
                   </td>
               </tr>

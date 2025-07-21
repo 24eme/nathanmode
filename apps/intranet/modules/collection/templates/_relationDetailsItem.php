@@ -15,10 +15,17 @@
         <?php echo $form['piece']->renderError(); ?>
     </td>
     <td>
+        <?php echo $form['prix_achat']->render(array('class' => 'input-float')); ?>
+        <?php echo $form['prix_achat']->renderError(); ?>
+    </td>
+    <td>
         <?php echo $form['prix']->render(array('class' => 'input-float')); ?>
         <?php echo $form['prix']->renderError(); ?>
     </td>
-    <td>
+    <td><span>10 $</span> / <span>9 €</span></td>
+    <td><span>1.43</span> / <span>27.21 %</span></td>
+    <td><span>1.43</span> / <span>27.21 %</span></td>
+    <td class="px-1">
         <a class="lien_supprimer_ligne" href="#">X</a>
     </td>
 </tr>

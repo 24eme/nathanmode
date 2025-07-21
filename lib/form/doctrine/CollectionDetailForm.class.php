@@ -16,6 +16,7 @@ class CollectionDetailForm extends BaseCollectionDetailForm
                                'colori',
                                'piece_categorie',
                                'piece',
+                               'prix_achat',
                                'prix',
                                'image'));
 
@@ -24,6 +25,7 @@ class CollectionDetailForm extends BaseCollectionDetailForm
           'colori' => 'Colori',
           'piece' => 'Quantité Type',
           'piece' => 'Quantité',
+          'prix_achat' => 'Prix d\'achat',
           'prix' => 'Prix',
           'image' => 'Ajouter une image'
         ));
