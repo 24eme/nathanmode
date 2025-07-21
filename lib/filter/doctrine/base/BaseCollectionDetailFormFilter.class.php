@@ -22,6 +22,11 @@ abstract class BaseCollectionDetailFormFilter extends BaseFormFilterDoctrine
       'piece'           => new sfWidgetFormFilterInput(),
       'prix'            => new sfWidgetFormFilterInput(),
       'image'           => new sfWidgetFormFilterInput(),
+      'prix_achat'      => new sfWidgetFormFilterInput(),
+      'prix_public'     => new sfWidgetFormFilterInput(),
+      'part_frais'      => new sfWidgetFormFilterInput(),
+      'part_marge'      => new sfWidgetFormFilterInput(),
+      'part_commission' => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
@@ -34,6 +39,11 @@ abstract class BaseCollectionDetailFormFilter extends BaseFormFilterDoctrine
       'piece'           => new sfValidatorPass(array('required' => false)),
       'prix'            => new sfValidatorPass(array('required' => false)),
       'image'           => new sfValidatorPass(array('required' => false)),
+      'prix_achat'      => new sfValidatorPass(array('required' => false)),
+      'prix_public'     => new sfValidatorPass(array('required' => false)),
+      'part_frais'      => new sfValidatorPass(array('required' => false)),
+      'part_marge'      => new sfValidatorPass(array('required' => false)),
+      'part_commission' => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('collection_detail_filters[%s]');
@@ -63,6 +73,11 @@ abstract class BaseCollectionDetailFormFilter extends BaseFormFilterDoctrine
       'piece'           => 'Text',
       'prix'            => 'Text',
       'image'           => 'Text',
+      'prix_achat'      => 'Text',
+      'prix_public'     => 'Text',
+      'part_frais'      => 'Text',
+      'part_marge'      => 'Text',
+      'part_commission' => 'Text',
     );
   }
 }

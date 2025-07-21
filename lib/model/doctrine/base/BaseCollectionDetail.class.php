@@ -27,6 +27,11 @@
  * @method string           getPiece()           Returns the current record's "piece" value
  * @method double           getPrix()            Returns the current record's "prix" value
  * @method string           getImage()           Returns the current record's "image" value
+ * @method double           getPrixAchat()       Returns the current record's "prix achat" value
+ * @method double           getPrixPublic()      Returns the current record's "prix public" value
+ * @method double           getPartFrais()       Returns the current record's "part frais" value
+ * @method double           getPartMarge()       Returns the current record's "part marge" value
+ * @method double           getPartCommission()  Returns the current record's "part commission" value
  * @method Collection       getCollection()      Returns the current record's "Collection" value
  * @method Devise           getDevise()          Returns the current record's "Devise" value
  * @method Commande         getCommande()        Returns the current record's "Commande" value
@@ -39,10 +44,15 @@
  * @method CollectionDetail setPiece()           Sets the current record's "piece" value
  * @method CollectionDetail setPrix()            Sets the current record's "prix" value
  * @method CollectionDetail setImage()           Sets the current record's "image" value
+ * @method CollectionDetail setPrixAchat()       Sets the current record's "prix achat" value
+ * @method CollectionDetail setPrixPublic()      Sets the current record's "prix public" value
+ * @method CollectionDetail setPartFrais()       Sets the current record's "part frais" value
+ * @method CollectionDetail setPartMarge()       Sets the current record's "part marge" value
+ * @method CollectionDetail setPartCommission()  Sets the current record's "part commission" value
  * @method CollectionDetail setCollection()      Sets the current record's "Collection" value
  * @method CollectionDetail setDevise()          Sets the current record's "Devise" value
  * @method CollectionDetail setCommande()        Sets the current record's "Commande" value
- * 
+ *
  * @package    nathanmode
  * @subpackage model
  * @author     Your name here
@@ -87,6 +97,21 @@ abstract class BaseCollectionDetail extends sfDoctrineRecord
         $this->hasColumn('image', 'string', 255, array(
              'type' => 'string',
              'length' => 255,
+             ));
+        $this->hasColumn('prix_achat', 'double', null, array(
+             'type' => 'double',
+             ));
+        $this->hasColumn('prix_public', 'double', null, array(
+             'type' => 'double',
+             ));
+        $this->hasColumn('part_frais', 'double', null, array(
+             'type' => 'double',
+             ));
+        $this->hasColumn('part_marge', 'double', null, array(
+             'type' => 'double',
+             ));
+        $this->hasColumn('part_commission', 'double', null, array(
+             'type' => 'double',
              ));
     }
 

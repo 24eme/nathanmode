@@ -539,6 +539,21 @@ CollectionDetail:
     image:
       type: string(255)
       default: NULL
+    prix_achat:
+      type: double
+      default: NULL
+    prix_public:
+      type: double
+      default: NULL
+    part_frais:
+      type: double
+      default: NULL
+    part_marge:
+      type: double
+      default: NULL
+    part_commission:
+      type: double
+      default: NULL
   relations:
     Collection:
       local: collection_id
