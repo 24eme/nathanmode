@@ -117,11 +117,40 @@
             <tr>
               <td><?php echo $form['prix_commercial']->renderLabel() ?>&nbsp;:</td>
               <td>
-                  <?php echo $form['prix_commercial']->render(array('class' => 'small input-float')) ?>
-                  <?php echo $form['devise_commercial_id']->render(array('class' => 'small')) ?>
-                  <?php echo $form['prix_commercial']->renderError() ?>
-                  </td>
-              </tr>
+                <?php echo $form['prix_commercial']->render(array('class' => 'small input-float')) ?>
+                <?php echo $form['devise_commercial_id']->render(array('class' => 'small')) ?>
+                <?php echo $form['prix_commercial']->renderError() ?>
+              </td>
+            </tr>
+
+            <tr>
+              <td><?php echo $form['prix_public']->renderLabel() ?>&nbsp;:</td>
+              <td>
+                <?php echo $form['prix_public']->render(array('class' => 'input-float')) ?>
+                <?php echo $form['prix_public']->renderError() ?>
+              </td>
+            </tr>
+            <tr>
+              <td><?php echo $form['part_frais']->renderLabel() ?>&nbsp;:</td>
+              <td>
+                <?php echo $form['part_frais']->render(array('class' => 'input-float')) ?>
+                <?php echo $form['part_frais']->renderError() ?>
+              </td>
+            </tr>
+            <tr>
+              <td><?php echo $form['part_marge']->renderLabel() ?>&nbsp;:</td>
+              <td>
+                <?php echo $form['part_marge']->render(array('class' => 'input-float')) ?>
+                <?php echo $form['part_marge']->renderError() ?>
+              </td>
+            </tr>
+            <tr>
+              <td><?php echo $form['part_commission']->renderLabel() ?>&nbsp;:</td>
+              <td>
+                <?php echo $form['part_commission']->render(array('class' => 'input-float')) ?>
+                <?php echo $form['part_commission']->renderError() ?>
+              </td>
+            </tr>
           </table>
 
           <table width="100%" border="0" cellpadding="0" cellspacing="0">

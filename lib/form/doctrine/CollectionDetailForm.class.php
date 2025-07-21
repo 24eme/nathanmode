@@ -32,6 +32,14 @@ class CollectionDetailForm extends BaseCollectionDetailForm
         $this->setValidator('devise_id', new sfValidatorPass(array('required' => false)));
         $this->setWidget('piece_categorie', new sfWidgetFormInputHidden());
         $this->setValidator('piece_categorie', new sfValidatorPass(array('required' => false)));
+        $this->setWidget('prix_public', new sfWidgetFormInputHidden());
+        $this->setValidator('prix_public', new sfValidatorPass(array('required' => false)));
+        $this->setWidget('part_frais', new sfWidgetFormInputHidden());
+        $this->setValidator('part_frais', new sfValidatorPass(array('required' => false)));
+        $this->setWidget('part_marge', new sfWidgetFormInputHidden());
+        $this->setValidator('part_marge', new sfValidatorPass(array('required' => false)));
+        $this->setWidget('part_commission', new sfWidgetFormInputHidden());
+        $this->setValidator('part_commission', new sfValidatorPass(array('required' => false)));
 
         $this->setWidget('image', new sfWidgetFormInputFileEditable(array(
             'file_src' => CollectionDetailTable::getInstance()->getUploadPath(false).$this->getObject()->image,

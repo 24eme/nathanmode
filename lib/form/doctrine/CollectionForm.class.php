@@ -142,6 +142,26 @@ class CollectionForm extends BaseCollectionForm
         $this->setWidget('qualite', new sfWidgetFormInput());
         $this->setValidator('qualite', new sfValidatorString(array('required' => true)));
 
+        $this->setWidget('saison_id', new sfWidgetFormChoice(array('choices' => $this->getSaisons())));
+
+        $this->setWidget('devise_id', new sfWidgetFormDoctrineChoice(array('model' => 'Devise', 'add_empty' => false)));
+        $this->setValidator('devise_id', new sfValidatorDoctrineChoice(array('model' => 'Devise')));
+
+        $this->setWidget('piece_categorie', new sfWidgetFormChoice(array('choices' => PieceCategories::getListe())));
+        $this->setValidator('piece_categorie', new sfValidatorChoice(['choices' => array_keys(PieceCategories::getListe()), 'required' => true]));
+
+        $this->setWidget('prix_public', new sfWidgetFormInputText());
+        $this->setValidator('prix_public', new sfValidatorPass(array('required' => false)));
+
+        $this->setWidget('part_frais', new sfWidgetFormInputText());
+        $this->setValidator('part_frais', new sfValidatorPass(array('required' => false)));
+
+        $this->setWidget('part_marge', new sfWidgetFormInputText());
+        $this->setValidator('part_marge', new sfValidatorPass(array('required' => false)));
+
+        $this->setWidget('part_commission', new sfWidgetFormInputText());
+        $this->setValidator('part_commission', new sfValidatorPass(array('required' => false)));
+
         $this->getWidgetSchema()->setLabels(array(
            //Infos Generales
            'saison_id' => 'Saison',
@@ -185,6 +205,11 @@ class CollectionForm extends BaseCollectionForm
            'reste_a_livrer' => 'Reste à livrer',
            'observation_livraison' => 'Observation',
            'commande_soldee' => 'Commande soldée',
+
+           'prix_public' => 'Prix public TTC',
+           'part_frais' => 'Frais d\'approche (%)',
+           'part_marge' => 'Part de marge (%)',
+           'part_commission' => 'Part de commission (%)',
         ));
 
         $this->getWidget('reste_a_livrer')->setAttribute('readonly', 'readonly');
@@ -197,14 +222,6 @@ class CollectionForm extends BaseCollectionForm
 
         $this->getWidget('prix_fournisseur')->setAttribute('class', 'input-float');
         $this->getWidget('prix_commercial')->setAttribute('class', 'input-float');
-
-        $this->setWidget('saison_id', new sfWidgetFormChoice(array('choices' => $this->getSaisons())));
-
-        $this->setWidget('devise_id', new sfWidgetFormDoctrineChoice(array('model' => 'Devise', 'add_empty' => false)));
-        $this->setValidator('devise_id', new sfValidatorDoctrineChoice(array('model' => 'Devise')));
-
-        $this->setWidget('piece_categorie', new sfWidgetFormChoice(array('choices' => PieceCategories::getListe())));
-        $this->setValidator('piece_categorie', new sfValidatorChoice(['choices' => array_keys(PieceCategories::getListe()), 'required' => true]));
     }
 
     public function updateDefaultsFromObject() {
@@ -242,6 +259,10 @@ class CollectionForm extends BaseCollectionForm
         foreach ($taintedValues['details'] as $key => $detail) {
           $taintedValues['details'][$key]['devise_id'] = $taintedValues['devise_id'];
           $taintedValues['details'][$key]['piece_categorie'] = $taintedValues['piece_categorie'];
+          $taintedValues['details'][$key]['prix_public'] = $taintedValues['prix_public'];
+          $taintedValues['details'][$key]['part_frais'] = $taintedValues['part_frais'];
+          $taintedValues['details'][$key]['part_marge'] = $taintedValues['part_marge'];
+          $taintedValues['details'][$key]['part_commission'] = $taintedValues['part_commission'];
         }
         parent::bind($taintedValues, $taintedFiles);
     }
