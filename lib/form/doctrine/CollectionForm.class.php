@@ -238,6 +238,15 @@ class CollectionForm extends BaseCollectionForm
       if (!$this->getObject()->saison_id) {
         $this->defaults['saison_id'] = SaisonTable::getInstance()->getIgByLibelle('ETE '.date('Y'));
       }
+
+      foreach ($this->getObject()->getCollectionDetails() as $detail) {
+        $this->defaults['devise_id'] = $detail->getDeviseId();
+        $this->defaults['piece_categorie'] = $detail->getPieceCategorie();
+        $this->defaults['prix_public'] = $detail->getPrixPublic();
+        $this->defaults['part_frais'] = $detail->getPartFrais();
+        $this->defaults['part_marge'] = $detail->getPartMarge();
+        $this->defaults['part_commission'] = $detail->getPartCommission();
+      }
     }
 
     public function getPaiements() {
