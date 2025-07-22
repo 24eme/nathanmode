@@ -81,6 +81,10 @@
               <li class="nav-item me-1">
                 <a style="min-width: 120px" class="py-2 px-3 border btn btn-light<?php if (sfContext::getInstance()->getModuleName() == 'commande'): ?> active<?php endif; ?>" href="<?php echo url_for('@commande') ?>"><i class="bi bi-bar-chart-fill fs-4"></i><br /><small class="mt-2">Statistiques Com.</small></a>
               </li>
+              <li class="nav-item me-1">
+                <span style="min-height: 63px" class=" pt-3 px-3 border btn btn-light" title="<?php echo Change::getInfos() ?>"><i class="bi bi-currency-exchange fs-2"></i></span>
+              </li>
+
             </ul>
             <?php endif; ?>
           </div>
