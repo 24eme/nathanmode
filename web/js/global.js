@@ -633,30 +633,53 @@ $(document).ready(function() {
       event.preventDefault();
   });
 
+  updateIndicateurs();
+  $("#collection_devise_id").on("change", function () { updateIndicateurs() });
 
+
+});
+
+function updateIndicateurs() {
   const lignes = document.querySelectorAll('.ligne_calcul_marges');
   lignes.forEach(ligne => {
     const inputAchat = ligne.querySelector('.prix_achat');
     const inputVente = ligne.querySelector('.prix_vente');
     if (inputAchat && inputVente) {
-        inputAchat.addEventListener('input', () => calculeMarge(ligne));
-        inputVente.addEventListener('input', () => calculeMarge(ligne));
-        calculeMarge(ligne);
+        inputAchat.addEventListener('input', () => calculeIndicateurs(ligne));
+        inputVente.addEventListener('input', () => calculeIndicateurs(ligne));
+        calculeIndicateurs(ligne);
       }
   });
+}
 
-});
+function calculeIndicateurs(tr) {
+  const usdRate = document.getElementById('collection_usd_rate').value;
+  const eurRate = document.getElementById('collection_eur_rate').value;
+  const devise = document.getElementById('collection_devise_id').value;
 
-function calculeMarge(tr) {
   const inputAchat = tr.querySelector('.prix_achat');
   const inputVente = tr.querySelector('.prix_vente');
-  const spanMarge = tr.querySelector('.marge_euro');
+  const spanMargeEur = tr.querySelector('.marge_eur');
+  const spanMargeUsd = tr.querySelector('.marge_usd');
+  const spanCoef = tr.querySelector('.marge_coef');
+  const spanPart = tr.querySelector('.marge_part');
 
   const prixAchat = parseFloat(inputAchat.value) || 0;
   const prixVente = parseFloat(inputVente.value) || 0;
 
   const marge = prixVente - prixAchat;
-  spanMarge.textContent = marge.toFixed();
+  const coef = prixAchat !== 0 ? prixVente / prixAchat : 0;
+  const part = prixVente !== 0 ? marge / prixVente * 100 : 0;
+
+  if (devise == 1) {
+    spanMargeEur.textContent = marge.toFixed();
+    spanMargeUsd.textContent = (marge*usdRate).toFixed();
+  } else if (devise == 2) {
+    spanMargeUsd.textContent = marge.toFixed();
+    spanMargeEur.textContent = (marge*eurRate).toFixed();
+  }
+  spanCoef.textContent = coef.toFixed(2);
+  spanPart.textContent = part.toFixed(2);
 }
 
 $.initTemplateLigne = function() {
@@ -667,6 +690,7 @@ $.initTemplateLigne = function() {
         var content = template.html().replace(/var---nbItem---/g, UUID.generate());
         container.append(content);
         $('.chosen').chosen();
+        updateIndicateurs();
         return false;
     });
 
