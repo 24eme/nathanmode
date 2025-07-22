@@ -222,6 +222,11 @@ class CollectionForm extends BaseCollectionForm
 
         $this->getWidget('prix_fournisseur')->setAttribute('class', 'input-float');
         $this->getWidget('prix_commercial')->setAttribute('class', 'input-float');
+
+        $this->setWidget('usd_rate', new sfWidgetFormInputHidden());
+        $this->setValidator('usd_rate', new sfValidatorPass(array('required' => false)));
+        $this->setWidget('eur_rate', new sfWidgetFormInputHidden());
+        $this->setValidator('eur_rate', new sfValidatorPass(array('required' => false)));
     }
 
     public function updateDefaultsFromObject() {
@@ -247,6 +252,8 @@ class CollectionForm extends BaseCollectionForm
         $this->defaults['part_marge'] = $detail->getPartMarge();
         $this->defaults['part_commission'] = $detail->getPartCommission();
       }
+      $this->defaults['usd_rate'] = Change::getInstance()->getUSDRate();
+      $this->defaults['eur_rate'] = Change::getInstance()->getEURRate();
     }
 
     public function getPaiements() {
