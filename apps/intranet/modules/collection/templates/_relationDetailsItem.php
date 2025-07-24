@@ -7,11 +7,11 @@
         <?php echo $form['image']->renderError() ?>
     </td>
     <td>
-        <?php echo $form['colori']->render(); ?>
+        <?php echo $form['colori']->render(array('class' => 'colori')); ?>
         <?php echo $form['colori']->renderError(); ?>
     </td>
     <td>
-        <?php echo $form['piece']->render(); ?>
+        <?php echo $form['piece']->render(array('class' => 'quantite')); ?>
         <?php echo $form['piece']->renderError(); ?>
     </td>
     <td>

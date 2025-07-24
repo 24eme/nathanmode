@@ -637,6 +637,19 @@ $(document).ready(function() {
   updateIndicateurs();
   $("#collection_devise_id").on("change", function () { updateIndicateurs() });
 
+  $('.lien_ajouter_ligne_livraison').live('click', function() {
+      document.getElementById("ajouter_livraison").click();
+      const colori = $(this).closest('tr').find('.colori').val();
+      const quantite = $(this).closest('tr').find('.quantite').val();
+      const prixVente = $(this).closest('tr').find('.prix_vente').val();
+      const ligne = $('#form_livraisons_container tr:last');
+      ligne.find('.colori').val(colori);
+      ligne.find('.quantite').val(quantite);
+      ligne.find('.prix_vente').val(prixVente);
+      document.getElementById("ajouter_livraison").scrollIntoView({ behavior: "smooth" });
+      event.preventDefault();
+  });
+
 
 });
 
