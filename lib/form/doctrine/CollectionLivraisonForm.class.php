@@ -14,17 +14,16 @@ class CollectionLivraisonForm extends BaseCollectionLivraisonForm
     {
         $this->useFields(array('devise_id',
         					   'colori',
-                               'metrage',
-                               'piece_categorie',
-                               'piece',
-          					   'prix',
-          					   'escompte',
-          					   'escompte_devise_id',
-                               'adresse_livraison',
-                               'date',
-                               'num_facture',
-                               'fichier',
-                               'packing_list'));
+                     'piece_categorie',
+                     'piece',
+          					 'prix',
+          					 'escompte',
+          					 'escompte_devise_id',
+                     'adresse_livraison',
+                     'date',
+                     'num_facture',
+                     'fichier',
+                     'packing_list'));
 
         $this->setWidget('date', new WidgetFormInputDate());
         $this->setValidator('date', new sfValidatorDate(array('required' => false)));
@@ -54,20 +53,17 @@ class CollectionLivraisonForm extends BaseCollectionLivraisonForm
         $this->setValidator('fichier_delete', new sfValidatorPass());
         $this->setValidator('packing_list_delete', new sfValidatorPass());
 
-        $this->setWidget('piece_categorie', new sfWidgetFormChoice(array('choices' => $this->getPieceCategories())));
-        $this->setValidator('piece_categorie', new sfValidatorChoice(
-            array('choices' => array_keys($this->getPieceCategories()),
-                  'required' => $this->getValidator('piece_categorie')->getOption('required'),
-                )
-            ));
+        $this->setWidget('piece_categorie', new sfWidgetFormInputHidden());
+        $this->setValidator('piece_categorie', new sfValidatorPass(array('required' => false)));
+
+        $this->setWidget('devise_id', new sfWidgetFormInputHidden());
+        $this->setValidator('devise_id', new sfValidatorPass(array('required' => false)));
 
         $this->getWidgetSchema()->setLabels(array(
           'colori' => 'Colori',
           'devise_id' => 'Devise',
           'escompte_devise_id' => 'Escompte devise',
-          'piece_categorie' => 'PF Type',
-          'piece' => 'Produit Fini',
-          'metrage' => 'Métrage',
+          'piece' => 'Quantité',
           'prix' => 'Prix',
           'escompte' => 'Escompte',
           'adresse_livraison' => 'Adresse de livraison',
@@ -77,40 +73,31 @@ class CollectionLivraisonForm extends BaseCollectionLivraisonForm
           'packing_list' => 'Packing list',
         ));
         $this->getWidget('prix')->setAttribute('class', 'input-float');
-        $this->mergePostValidator(new sfValidatorCallback(array('callback' => array($this, 'fctValidatorCallback'))));
     }
 
-    public function getPieceCategories() {
-
-        return array_merge(array("" => ""), PieceCategories::getListe());
-    }
-
-    public function fctValidatorCallback($validator, $values, $arguments)
-    {
-    	if ($values['metrage'] && $values['piece'])
-    	{
-    		throw new sfValidatorErrorSchema($validator, array('piece' => new sfValidatorError($validator, "Métrage ou pièce")));
-    	}
-    	return $values;
-    }
-    
 
     protected function doUpdateObject($values)
     {
     	if (!$values['escompte']) {
     		$values['escompte'] = 0.00;
     	}
+      if($values['piece_categorie'] == "METRAGE") {
+          $values['metrage'] = $values['piece'];
+          $values['piece_categorie'] = null;
+          $values['piece'] = null;
+      } else {
+        $values['metrage'] = null;
+      }
     	parent::doUpdateObject($values);
     }
 
     public function updateDefaultsFromObject() {
       parent::updateDefaultsFromObject();
-
       if (!$this->getObject()->escompte_devise_id) {
         $this->defaults['escompte_devise_id'] = Devise::POURCENTAGE_ID;
       }
-
-
-
+      if ($this->getObject()->metrage) {
+        $this->defaults['piece'] = $this->getObject()->metrage;
+      }
     }
 }

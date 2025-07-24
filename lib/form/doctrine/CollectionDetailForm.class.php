@@ -23,7 +23,6 @@ class CollectionDetailForm extends BaseCollectionDetailForm
         $this->getWidgetSchema()->setLabels(array(
           'devise_id' => 'Devise',
           'colori' => 'Colori',
-          'piece' => 'Quantité Type',
           'piece' => 'Quantité',
           'prix_achat' => 'Prix d\'achat',
           'prix' => 'Prix',

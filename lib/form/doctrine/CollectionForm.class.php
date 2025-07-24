@@ -280,6 +280,10 @@ class CollectionForm extends BaseCollectionForm
           $taintedValues['details'][$key]['part_marge'] = $taintedValues['part_marge'];
           $taintedValues['details'][$key]['part_commission'] = $taintedValues['part_commission'];
         }
+        foreach ($taintedValues['livraisons'] as $key => $livraison) {
+          $taintedValues['livraisons'][$key]['devise_id'] = $taintedValues['devise_id'];
+          $taintedValues['livraisons'][$key]['piece_categorie'] = $taintedValues['piece_categorie'];
+        }
         parent::bind($taintedValues, $taintedFiles);
     }
 
