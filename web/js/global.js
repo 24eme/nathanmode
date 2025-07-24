@@ -656,6 +656,10 @@ function calculeIndicateurs(tr) {
   const usdRate = document.getElementById('collection_usd_rate').value;
   const eurRate = document.getElementById('collection_eur_rate').value;
   const devise = document.getElementById('collection_devise_id').value;
+  const frais = parseFloat(document.getElementById('collection_part_frais').value) || 0;
+
+  const prixPublicTTC = parseFloat(document.getElementById('collection_prix_public').value) || 0;
+  const prixPublicHT = (prixPublicTTC / 1.2).toFixed(2);
 
   const inputAchat = tr.querySelector('.prix_achat');
   const inputVente = tr.querySelector('.prix_vente');
@@ -663,6 +667,8 @@ function calculeIndicateurs(tr) {
   const spanMargeUsd = tr.querySelector('.marge_usd');
   const spanCoef = tr.querySelector('.marge_coef');
   const spanPart = tr.querySelector('.marge_part');
+  const spanCoefClient = tr.querySelector('.marge_client_coef');
+  const spanPartClient = tr.querySelector('.marge_client_part');
 
   const prixAchat = parseFloat(inputAchat.value) || 0;
   const prixVente = parseFloat(inputVente.value) || 0;
@@ -670,6 +676,7 @@ function calculeIndicateurs(tr) {
   const marge = prixVente - prixAchat;
   const coef = prixAchat !== 0 ? prixVente / prixAchat : 0;
   const part = prixVente !== 0 ? marge / prixVente * 100 : 0;
+  let prixVenteEur  = prixVente;
 
   if (devise == 1) {
     spanMargeEur.textContent = marge.toFixed();
@@ -677,9 +684,19 @@ function calculeIndicateurs(tr) {
   } else if (devise == 2) {
     spanMargeUsd.textContent = marge.toFixed();
     spanMargeEur.textContent = (marge*eurRate).toFixed();
+    prixVenteEur *= eurRate;
   }
+
   spanCoef.textContent = coef.toFixed(2);
   spanPart.textContent = part.toFixed(2);
+
+  const prixClient = prixVenteEur * (1+frais/100);
+  const coefClient = prixClient !== 0 ? prixPublicTTC / prixClient : 0;
+  const partClient = prixPublicHT !== 0 ? (prixPublicHT - prixClient) / prixPublicHT * 100 : 0;
+
+  spanCoefClient.textContent = coefClient.toFixed(2);
+  spanPartClient.textContent = partClient.toFixed(2);
+
 }
 
 $.initTemplateLigne = function() {
