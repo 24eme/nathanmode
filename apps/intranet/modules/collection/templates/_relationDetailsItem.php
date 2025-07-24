@@ -28,4 +28,7 @@
     <td class="px-1">
         <a class="lien_supprimer_ligne" href="#">X</a>
     </td>
+    <td class="px-1">
+      <a class="lien_ajouter_ligne_livraison" href="#"><i class="bi bi-truck"></i></a>
+    </td>
 </tr>

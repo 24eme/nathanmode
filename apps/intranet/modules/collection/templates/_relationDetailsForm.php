@@ -13,6 +13,7 @@
                   <th><label>Factory&nbsp;coef&nbsp;/&nbsp;%</label></th>
                   <th><label>Client&nbsp;coef&nbsp;/&nbsp;%</label></th>
                   <th><label>&nbsp;</label></th>
+                  <th><label>&nbsp;</label></th>
               </tr>
               <tbody id="form_details_container">
                   <?php foreach($form['details'] as $item_form): ?>
