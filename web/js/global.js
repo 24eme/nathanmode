@@ -296,6 +296,7 @@ $(document).ready(function() {
 
 	// COLLECTION & PRODUCTION CHOSEN
   $('.chosen').chosen({width: "90%"});
+  $('.smallchosen').chosen({width: "35%"});
 	$('#collection_saison_id').chosen({width: "90%"});
 	$('#collection_fournisseur_id').sortSelect().chosen({width: "90%"});
 	$('#collection_commercial_id').sortSelect().chosen({width: "90%"});
@@ -706,7 +707,8 @@ $.initTemplateLigne = function() {
 
         var content = template.html().replace(/var---nbItem---/g, UUID.generate());
         container.append(content);
-        $('.chosen').chosen();
+        $('.chosen').chosen({width: "90%"});
+        $('.smallchosen').chosen({width: "35%"});
         updateIndicateurs();
         return false;
     });
