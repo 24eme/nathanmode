@@ -3,7 +3,7 @@
         <a href="<?php echo CollectionDetailTable::getInstance()->getUploadPath(false).$form['image']->getValue() ?>" target="_blank"><img height="50" src="<?php echo CollectionDetailTable::getInstance()->getUploadPath(false).$form['image']->getValue() ?>" /></a>
     </td>
     <td class="uploadFile">
-        <?php echo $form['image']->render(array('class' => 'input')) ?>
+        <?php echo $form['image']->render(array('class' => 'input', 'style' => 'margin-top:20px')) ?>
         <?php echo $form['image']->renderError() ?>
     </td>
     <td>
