@@ -435,6 +435,13 @@ a:hover.logOut{
 	border: none;
 }
 
+.subTab td,
+.subTab th{
+	border: 1px solid #bfbfbf;
+	padding: 0 5px;
+	text-align: center;
+}
+
 .tableau label{
 	line-height:23px;
 	padding:0 5px 0 5px;
@@ -563,10 +570,6 @@ a:visited.btPlus.right{
 	background:#d6d6d6;
 	font-weight:bold;
 	text-align:left;
-}
-.subTab td{
-	text-align:left;
-	padding:5px 0 0 0;
 }
 
 .setAdd{
