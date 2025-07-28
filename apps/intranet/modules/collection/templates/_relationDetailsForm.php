@@ -9,8 +9,8 @@
                   <th><label>Quantité</label></th>
                   <th><label>Prix d'achat</label></th>
                   <th><label>Prix de vente</label></th>
-                  <th><label>Factory&nbsp;montant</label></th>
-                  <th><label>Factory&nbsp;coef&nbsp;/&nbsp;%</label></th>
+                  <th><label>Marge&nbsp;montant</label></th>
+                  <th><label>Marge&nbsp;coef&nbsp;/&nbsp;%</label></th>
                   <th><label>Client&nbsp;coef&nbsp;/&nbsp;%</label></th>
                   <th><label>&nbsp;</label></th>
                   <th><label>&nbsp;</label></th>
