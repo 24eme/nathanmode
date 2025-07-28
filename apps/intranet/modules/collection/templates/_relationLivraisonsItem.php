@@ -4,7 +4,7 @@
       <?php echo $form['colori']->renderError() ?>
   </td>
   <td>
-      <?php echo $form['piece']->render(array('class' => 'quantite')) ?>
+      <?php echo $form['piece']->render(array('class' => 'quantite input-float')) ?>
       <?php echo $form['piece']->renderError() ?>
   </td>
   <td>
