@@ -1,4 +1,4 @@
-<div class="tableau col-8">
+<div class="tableau col-11">
     <div class="titre"><span>Infos générales</span></div>
     <div id="alertBox" class="bg-danger" style="float:left;width:100%; margin-top: -10px;"></div>
     <div class="px-2">

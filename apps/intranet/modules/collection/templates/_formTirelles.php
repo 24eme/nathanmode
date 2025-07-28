@@ -1,4 +1,4 @@
-<div class="tableau col-8">
+<div class="tableau col-11">
     <div class="titre"><span>Tirelle</span></div>
     <div class="px-2">
         <?php include_partial('collection/relationTirellesForm', array('form' => $form)) ?>
