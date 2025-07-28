@@ -1,6 +1,6 @@
 <tr class="relation_item_form ligne_calcul_marges">
     <td>
-        <img height="50" src="<?php echo CollectionDetailTable::getInstance()->getUploadPath(false).$form['image']->getValue() ?>" />
+        <a href="<?php echo CollectionDetailTable::getInstance()->getUploadPath(false).$form['image']->getValue() ?>" target="_blank"><img height="50" src="<?php echo CollectionDetailTable::getInstance()->getUploadPath(false).$form['image']->getValue() ?>" /></a>
     </td>
     <td class="uploadFile">
         <?php echo $form['image']->render(array('class' => 'input')) ?>
