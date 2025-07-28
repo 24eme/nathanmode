@@ -435,6 +435,13 @@ a:hover.logOut{
 	border: none;
 }
 
+.subTab td,
+.subTab th{
+	border: 1px solid #bfbfbf;
+	padding: 0 5px;
+	text-align: center;
+}
+
 .tableau label{
 	line-height:23px;
 	padding:0 5px 0 5px;
@@ -459,7 +466,7 @@ input[type=date]{
   font-family:Arial,Helvetica,sans-serif;
   font-size:12px;
   padding:3px;
-	width: 90%;
+	width: 100%;
 }
 
 .tableau img.production-images {
@@ -476,7 +483,7 @@ input[type=date]{
 .tableau .input.small,
 .tableau input[type=text].small,
 .tableau input[type=password].small {
-	width:60px !important;
+	width:65% !important;
 }
 .tableau .input.vSmall,
 .tableau input[type=text].vSmall,
@@ -563,10 +570,6 @@ a:visited.btPlus.right{
 	background:#d6d6d6;
 	font-weight:bold;
 	text-align:left;
-}
-.subTab td{
-	text-align:left;
-	padding:5px 0 0 0;
 }
 
 .setAdd{

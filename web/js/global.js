@@ -295,7 +295,7 @@ $(document).ready(function() {
     $('.input-float').inputNumberFormat();
 
 	// COLLECTION & PRODUCTION CHOSEN
-  $('.chosen').chosen({width: "90%"});
+  $('.chosen').chosen({width: "100%"});
   $('.smallchosen').chosen({width: "35%"});
 	$('#collection_saison_id').chosen({width: "90%"});
 	$('#collection_fournisseur_id').sortSelect().chosen({width: "90%"});
@@ -636,6 +636,8 @@ $(document).ready(function() {
 
   updateIndicateurs();
   $("#collection_devise_id").on("change", function () { updateIndicateurs() });
+  $("#collection_part_frais").on("change", function () { updateIndicateurs() });
+  $("#collection_prix_public").on("change", function () { updateIndicateurs() });
 
   $('.lien_ajouter_ligne_livraison').live('click', function() {
       document.getElementById("ajouter_livraison").click();

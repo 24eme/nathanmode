@@ -1,7 +1,7 @@
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
     <tr>
         <td>
-          <table width="100%" border="0" cellpadding="0" cellspacing="0" class="subTab">
+          <table width="100%" cellpadding="0" cellspacing="0" class="subTab">
               <tr>
                   <th></th>
                   <th><label>Image</label></th>
@@ -9,8 +9,8 @@
                   <th><label>Quantité</label></th>
                   <th><label>Prix d'achat</label></th>
                   <th><label>Prix de vente</label></th>
-                  <th><label>Factory&nbsp;montant</label></th>
-                  <th><label>Factory&nbsp;coef&nbsp;/&nbsp;%</label></th>
+                  <th><label>Marge&nbsp;montant</label></th>
+                  <th><label>Marge&nbsp;coef&nbsp;/&nbsp;%</label></th>
                   <th><label>Client&nbsp;coef&nbsp;/&nbsp;%</label></th>
                   <th><label>&nbsp;</label></th>
                   <th><label>&nbsp;</label></th>
