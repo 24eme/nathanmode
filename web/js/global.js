@@ -636,6 +636,8 @@ $(document).ready(function() {
 
   updateIndicateurs();
   $("#collection_devise_id").on("change", function () { updateIndicateurs() });
+  $("#collection_part_frais").on("change", function () { updateIndicateurs() });
+  $("#collection_prix_public").on("change", function () { updateIndicateurs() });
 
   $('.lien_ajouter_ligne_livraison').live('click', function() {
       document.getElementById("ajouter_livraison").click();
