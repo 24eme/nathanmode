@@ -15,7 +15,7 @@
       <?php echo $form['prix']->render(array('class' => 'input-float prix_vente')) ?>
       <?php echo $form['prix']->renderError() ?>
   </td>
-  <td style="width: ">
+  <td>
       <?php echo $form['escompte']->render(array('class' => 'small input-float')) ?>
       <?php echo $form['escompte_devise_id']->render(array('class' => 'smallchosen')) ?>
       <?php echo $form['escompte']->renderError() ?>

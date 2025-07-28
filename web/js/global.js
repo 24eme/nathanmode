@@ -295,7 +295,7 @@ $(document).ready(function() {
     $('.input-float').inputNumberFormat();
 
 	// COLLECTION & PRODUCTION CHOSEN
-  $('.chosen').chosen({width: "90%"});
+  $('.chosen').chosen({width: "100%"});
   $('.smallchosen').chosen({width: "35%"});
 	$('#collection_saison_id').chosen({width: "90%"});
 	$('#collection_fournisseur_id').sortSelect().chosen({width: "90%"});
