@@ -177,6 +177,7 @@ class CollectionForm extends BaseCollectionForm
            'prix_commercial' => 'Com commercial',
            'devise_fournisseur_id' => 'Devise du fournisseur',
            'devise_commercial_id' => 'Devise du commerciale',
+           'piece_categorie' => 'Catégorie',
            'qualite' => 'Référence',
            'ecru' => 'Ecru à désigner',
            'observation_general' => 'Observation',
