@@ -1,6 +1,6 @@
 <div class="tableau rightTab">
-    <div class="titre"><span>Livraison</span></div>   
-    <div class="contentRight">             
+    <div class="titre"><span>Livraison</span></div>
+    <div class="contentRight">
         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tabloLivraison">
             <tr>
 				<td width="30%" style="vertical-align:top;">
@@ -39,13 +39,13 @@
         <?php include_partial('collection/relationRetardsForm', array('form' => $form)) ?>
 
         <?php include_partial('collection/relationLivraisonsForm', array('form' => $form)) ?>
-        
-        <div class="subTitle">Commande soldée</div>   
+
+        <div class="subTitle">Commande soldée</div>
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
             <tr>
                 <td>
                     <?php echo $form['commande_soldee']->render() ?>
-                    <?php echo $form['commande_soldee']->renderError() ?> 
+                    <?php echo $form['commande_soldee']->renderError() ?>
                 </td>
             </tr>
         </table>
