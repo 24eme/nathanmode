@@ -12,8 +12,13 @@
       <?php echo $form['piece']->renderError() ?>
   </td>
   <td>
-      <?php echo $form['prix']->render(array('class' => 'input-float prix_vente')) ?>
-      <?php echo $form['prix']->renderError() ?>
+    <div class="input-group">
+        <?php echo $form['prix']->render(array('class' => 'input-float prix_vente form-control')) ?>
+        <?php echo $form['prix']->renderError() ?>
+        <div class="input-group-append">
+            <span class="input-group-text devise-symbol" style="font-size:13px;"></span>
+        </div>
+    </div>
   </td>
   <td>
       <?php echo $form['escompte']->render(array('class' => 'small input-float')) ?>

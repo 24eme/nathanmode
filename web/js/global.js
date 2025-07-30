@@ -635,9 +635,10 @@ $(document).ready(function() {
   });
 
   updateIndicateurs();
-  $("#collection_devise_id").on("change", function () { updateIndicateurs() });
+  $("#collection_devise_id").on("change", function () { updateIndicateurs(), updateDeviseSymbol() });
   $("#collection_part_frais").on("change", function () { updateIndicateurs() });
   $("#collection_prix_public").on("change", function () { updateIndicateurs() });
+
 
   $('.lien_ajouter_ligne_livraison').live('click', function() {
       document.getElementById("ajouter_livraison").click();
@@ -652,7 +653,7 @@ $(document).ready(function() {
       event.preventDefault();
   });
 
-
+  updateDeviseSymbol();
 });
 
 function updateIndicateurs() {
@@ -713,6 +714,19 @@ function calculeIndicateurs(tr) {
   spanCoefClient.textContent = coefClient.toFixed(2);
   spanPartClient.textContent = partClient.toFixed(2);
 
+}
+
+function updateDeviseSymbol() {
+  const spansDeviseSymbols = document.querySelectorAll('.devise-symbol');
+  const devise = document.getElementById('collection_devise_id').value;
+
+  spansDeviseSymbols.forEach(function (spanDeviseSymbol) {
+    if (devise == 1) {
+      spanDeviseSymbol.textContent = '€';
+    } else if (devise == 2) {
+      spanDeviseSymbol.textContent = '$';
+    }
+  })
 }
 
 $.initTemplateLigne = function() {

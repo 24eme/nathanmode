@@ -15,12 +15,22 @@
         <?php echo $form['piece']->renderError(); ?>
     </td>
     <td>
-        <?php echo $form['prix_achat']->render(array('class' => 'input-float prix_achat')); ?>
-        <?php echo $form['prix_achat']->renderError(); ?>
+        <div class="input-group">
+            <?php echo $form['prix_achat']->render(array('class' => 'input-float prix_achat form-control')); ?>
+            <?php echo $form['prix_achat']->renderError(); ?>
+            <div class="input-group-append">
+                <span class="input-group-text devise-symbol" style="font-size:13px;"></span>
+            </div>
+        </div>
     </td>
     <td>
-        <?php echo $form['prix']->render(array('class' => 'input-float prix_vente')); ?>
-        <?php echo $form['prix']->renderError(); ?>
+        <div class="input-group">
+            <?php echo $form['prix']->render(array('class' => 'input-float prix_vente form-control')); ?>
+            <?php echo $form['prix']->renderError(); ?>
+            <div class="input-group-append">
+                <span class="input-group-text devise-symbol" style="font-size:13px;"></span>
+            </div>
+        </div>
     </td>
     <td><span class="marge_usd">0</span>&nbsp;$ / <span class="marge_eur">0</span>&nbsp;€</td>
     <td><span class="marge_coef">0</span> / <span class="marge_part">0</span>&nbsp;%</td>
