@@ -7,8 +7,8 @@
                   <th><label>Image</label></th>
                   <th><label>Colori</label></th>
                   <th><label>Quantité</label></th>
-                  <th><label>Prix d'achat</label></th>
-                  <th><label>Prix de vente</label></th>
+                  <th><label>Prix d'achat factory</label></th>
+                  <th><label>Prix de vente factory</label></th>
                   <th><label>Marge&nbsp;montant</label></th>
                   <th><label>Marge&nbsp;coef&nbsp;/&nbsp;%</label></th>
                   <th><label>Client&nbsp;coef&nbsp;/&nbsp;%</label></th>
