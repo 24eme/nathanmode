@@ -554,6 +554,9 @@ CollectionDetail:
     part_commission:
       type: double
       default: NULL
+    date_livraison_prevue:
+      type: date
+      default: NULL
   relations:
     Collection:
       local: collection_id

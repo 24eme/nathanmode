@@ -18,7 +18,8 @@ class CollectionDetailForm extends BaseCollectionDetailForm
                                'piece',
                                'prix_achat',
                                'prix',
-                               'image'));
+                               'image',
+                               'date_livraison_prevue'));
 
         $this->getWidgetSchema()->setLabels(array(
           'devise_id' => 'Devise',
@@ -26,7 +27,8 @@ class CollectionDetailForm extends BaseCollectionDetailForm
           'piece' => 'Quantité',
           'prix_achat' => 'Prix d\'achat',
           'prix' => 'Prix',
-          'image' => 'Ajouter une image'
+          'image' => 'Ajouter une image',
+          'date_livraison_prevue' => 'Date de livraison prévue'
         ));
 
         $this->setWidget('devise_id', new sfWidgetFormInputHidden());
@@ -41,6 +43,8 @@ class CollectionDetailForm extends BaseCollectionDetailForm
         $this->setValidator('part_marge', new sfValidatorPass(array('required' => false)));
         $this->setWidget('part_commission', new sfWidgetFormInputHidden());
         $this->setValidator('part_commission', new sfValidatorPass(array('required' => false)));
+        $this->setWidget('date_livraison_prevue', new WidgetFormInputDate());
+        $this->setValidator('date_livraison_prevue', new sfValidatorDate(array('required' => false)));
 
         $this->setWidget('image', new sfWidgetFormInputFileEditable(array(
             'file_src' => CollectionDetailTable::getInstance()->getUploadPath(false).$this->getObject()->image,

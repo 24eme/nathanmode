@@ -12,6 +12,7 @@
                   <th><label>Marge&nbsp;montant</label></th>
                   <th><label>Marge&nbsp;coef&nbsp;/&nbsp;%</label></th>
                   <th><label>Client&nbsp;coef&nbsp;/&nbsp;%</label></th>
+                  <th>Date livr. prévue</th>
                   <th><label>&nbsp;</label></th>
                   <th><label>&nbsp;</label></th>
               </tr>

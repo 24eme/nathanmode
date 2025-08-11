@@ -35,6 +35,10 @@
     <td><span class="marge_usd">0</span>&nbsp;$ / <span class="marge_eur">0</span>&nbsp;€</td>
     <td><span class="marge_coef">0</span> / <span class="marge_part">0</span>&nbsp;%</td>
     <td><span class="marge_client_coef">0</span> / <span class="marge_client_part">0</span>&nbsp;%</td>
+    <td style="text-align:left;">
+        <?php echo $form['date_livraison_prevue']->render() ?>
+        <?php echo $form['date_livraison_prevue']->renderError() ?>
+    </td>
     <td class="px-1">
         <a class="lien_supprimer_ligne" href="#">X</a>
     </td>

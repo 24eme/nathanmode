@@ -113,6 +113,9 @@ abstract class BaseCollectionDetail extends sfDoctrineRecord
         $this->hasColumn('part_commission', 'double', null, array(
              'type' => 'double',
              ));
+        $this->hasColumn('date_livraison_prevue', 'date', null, array(
+             'type' => 'date',
+             ));
     }
 
     public function setUp()
