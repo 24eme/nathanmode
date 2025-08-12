@@ -101,7 +101,7 @@
           <table width="33%" border="0" cellpadding="0" cellspacing="0">
             <tr>
                 <td  width="150"><?php echo $form['devise_id']->renderLabel() ?>&nbsp;:</td>
-                <td>
+                <td <?php if (sfConfig::get('app_devise_dollar')) : ?> class="default-dollar" <?php endif ?> >
                     <?php echo $form['devise_id']->render(array('class' => 'chosen')) ?>
                     <?php echo $form['devise_id']->renderError() ?>
                 </td>

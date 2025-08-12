@@ -105,3 +105,5 @@ all:
       MAROQUINERIE: "Maroquinerie"
       PONCHOS: "Ponchos"
       PLAIDS: "Plaids"
+  devise:
+    dollar: true

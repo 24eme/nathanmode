@@ -766,3 +766,10 @@ $.fn.sortSelect = function () {
 	$.each(listitems, function(idx, itm) { mylist.append(itm); });
 	return $(this);
 }
+
+$(document).ready(function () {
+  if (".default-dollar") {
+    let champDevise = $(".default-dollar .chosen");
+    $(champDevise).val("2").trigger('chosen:updated').trigger('change');
+  }
+});
