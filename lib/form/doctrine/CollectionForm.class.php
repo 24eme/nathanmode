@@ -171,7 +171,7 @@ class CollectionForm extends BaseCollectionForm
            'paiement' => 'Conditions paiement',
            'num_commande' => 'Commande n°',
            'date_commande' => 'Date commande',
-           'fichier' => 'Joindre',
+           'fichier' => 'Doc de commande',
            'situation' => 'Situation',
            'prix_fournisseur' => 'Com fournisseur',
            'prix_commercial' => 'Com commercial',
