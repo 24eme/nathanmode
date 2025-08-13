@@ -653,7 +653,9 @@ $(document).ready(function() {
       event.preventDefault();
   });
 
-  updateDeviseSymbol();
+  document.addEventListener('click', () => {
+    updateDeviseSymbol();
+  });
 });
 
 function updateIndicateurs() {
