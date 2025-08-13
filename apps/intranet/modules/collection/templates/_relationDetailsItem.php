@@ -23,7 +23,7 @@
             <?php echo $form['prix_achat']->render(array('class' => 'input-float prix_achat form-control')); ?>
             <?php echo $form['prix_achat']->renderError(); ?>
             <div class="input-group-append">
-                <span class="input-group-text devise-symbol" style="font-size:13px;"></span>
+                <span class="input-group-text devise-symbol"></span>
             </div>
         </div>
     </td>
@@ -32,7 +32,7 @@
             <?php echo $form['prix']->render(array('class' => 'input-float prix_vente form-control')); ?>
             <?php echo $form['prix']->renderError(); ?>
             <div class="input-group-append">
-                <span class="input-group-text devise-symbol" style="font-size:13px;"></span>
+                <span class="input-group-text devise-symbol"></span>
             </div>
         </div>
     </td>

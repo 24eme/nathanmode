@@ -1253,3 +1253,10 @@ table tr.coupe_statut_expe_att_facture {
 img.production-images {
     margin-right: 10px;
 }
+
+.devise-symbol {
+    font-size: 13px;
+    color: #444;
+    padding: .145rem .75rem;
+    border: 1px solid #aaa;
+}
