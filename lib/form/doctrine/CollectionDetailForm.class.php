@@ -46,23 +46,24 @@ class CollectionDetailForm extends BaseCollectionDetailForm
         $this->setWidget('date_livraison_prevue', new WidgetFormInputDate());
         $this->setValidator('date_livraison_prevue', new sfValidatorDate(array('required' => false)));
 
-        $this->setWidget('image', new sfWidgetFormInputFileEditable(array(
-            'file_src' => CollectionDetailTable::getInstance()->getUploadPath(false).$this->getObject()->image,
-            'is_image' => true,
-            'edit_mode' => $this->getObject()->image,
-            'with_delete' => true,
-            'delete_label' => 'Supprimer la photo',
-            'template' => '%input%<br />%delete% %delete_label%'
-            )));
+        if (sfConfig::get('app_devise_dollar')) {
+            $this->setWidget('image', new sfWidgetFormInputFileEditable(array(
+                'file_src' => CollectionDetailTable::getInstance()->getUploadPath(false).$this->getObject()->image,
+                'is_image' => true,
+                'edit_mode' => $this->getObject()->image,
+                'with_delete' => true,
+                'delete_label' => 'Supprimer la photo',
+                'template' => '%input%<br />%delete% %delete_label%'
+                )));
 
-        $this->setValidator('image', new sfValidatorFile(array(
-            'mime_types' => 'web_images',
-            'required' => $this->getValidator('image')->getOption('required'),
-            'path' => CollectionDetailTable::getInstance()->getUploadPath(true))
-            ));
+            $this->setValidator('image', new sfValidatorFile(array(
+                'mime_types' => 'web_images',
+                'required' => $this->getValidator('image')->getOption('required'),
+                'path' => CollectionDetailTable::getInstance()->getUploadPath(true))
+                ));
 
-        $this->setValidator('image_delete', new sfValidatorPass());
-
+            $this->setValidator('image_delete', new sfValidatorPass());
+        }
     }
 
     public function updateDefaultsFromObject() {

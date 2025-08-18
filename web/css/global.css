@@ -1260,3 +1260,7 @@ img.production-images {
     padding: .145rem .75rem;
     border: 1px solid #aaa;
 }
+
+.lma-list :is(.sf_admin_list_td_image, .sf_admin_list_th_image, td:has(#collection_detail_filters_image)) {
+    display: none;
+}

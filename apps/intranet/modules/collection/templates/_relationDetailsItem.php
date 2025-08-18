@@ -3,13 +3,16 @@
         <?php echo $form['date_livraison_prevue']->render() ?>
         <?php echo $form['date_livraison_prevue']->renderError() ?>
     </td>
-    <td>
-        <a href="<?php echo CollectionDetailTable::getInstance()->getUploadPath(false).$form['image']->getValue() ?>" target="_blank"><img height="50" src="<?php echo CollectionDetailTable::getInstance()->getUploadPath(false).$form['image']->getValue() ?>" /></a>
-    </td>
-    <td class="uploadFile">
-        <?php echo $form['image']->render(array('class' => 'input', 'style' => 'margin-top:20px')) ?>
-        <?php echo $form['image']->renderError() ?>
-    </td>
+
+    <?php if (sfConfig::get('app_devise_dollar')) : ?>
+        <td>
+            <a href="<?php echo CollectionDetailTable::getInstance()->getUploadPath(false).$form['image']->getValue() ?>" target="_blank"><img height="50" src="<?php echo CollectionDetailTable::getInstance()->getUploadPath(false).$form['image']->getValue() ?>" /></a>
+        </td>
+        <td class="uploadFile">
+            <?php echo $form['image']->render(array('class' => 'input', 'style' => 'margin-top:20px')) ?>
+            <?php echo $form['image']->renderError() ?>
+        </td>
+    <?php endif ?>
     <td>
         <?php echo $form['colori']->render(array('class' => 'colori')); ?>
         <?php echo $form['colori']->renderError(); ?>
