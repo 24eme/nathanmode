@@ -635,7 +635,8 @@ $(document).ready(function() {
   });
 
   updateIndicateurs();
-  $("#collection_devise_id").on("change", function () { updateIndicateurs(), updateDeviseSymbol() });
+  updateDeviseSymbol();
+  $("#collection_devise_id").on("change", function () { updateIndicateurs(), updateDeviseSymbol(); });
   $("#collection_part_frais").on("change", function () { updateIndicateurs() });
   $("#collection_prix_public").on("change", function () { updateIndicateurs() });
 
@@ -653,9 +654,6 @@ $(document).ready(function() {
       event.preventDefault();
   });
 
-  document.addEventListener('click', () => {
-    updateDeviseSymbol();
-  });
 });
 
 function updateIndicateurs() {
@@ -740,7 +738,9 @@ $.initTemplateLigne = function() {
         container.append(content);
         $('.chosen').chosen({width: "90%"});
         $('.smallchosen').chosen({width: "35%"});
+
         updateIndicateurs();
+        updateDeviseSymbol();
         return false;
     });
 
