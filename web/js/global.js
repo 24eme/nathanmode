@@ -718,15 +718,17 @@ function calculeIndicateurs(tr) {
 
 function updateDeviseSymbol() {
   const spansDeviseSymbols = document.querySelectorAll('.devise-symbol');
-  const devise = document.getElementById('collection_devise_id').value;
 
-  spansDeviseSymbols.forEach(function (spanDeviseSymbol) {
-    if (devise == 1) {
-      spanDeviseSymbol.textContent = '€';
-    } else if (devise == 2) {
-      spanDeviseSymbol.textContent = '$';
-    }
-  })
+  if (document.getElementById('collection_devise_id')) {
+    const devise = document.getElementById('collection_devise_id').value;
+    spansDeviseSymbols.forEach(function (spanDeviseSymbol) {
+      if (devise == 1) {
+        spanDeviseSymbol.textContent = '€';
+      } else if (devise == 2) {
+        spanDeviseSymbol.textContent = '$';
+      }
+    });
+  }
 }
 
 $.initTemplateLigne = function() {
