@@ -43,15 +43,15 @@
                 </div>
                 <?php endif; ?>
                 <div class="list-group-item">
-                    <div class="col-3 text-dark">MTS <small class="text-muted"></small></div>
+                    <div class="col-3 text-dark">MTS <small class="text-muted">mts</small></div>
                     <div class="col-9 text-end text-dark"><?php echo number_format($mvts, 2, ',', ' ') ?></div>
                 </div>
                 <div class="list-group-item">
-                    <div class="col-3 text-dark">ACCES. <small class="text-muted"></small></div>
+                    <div class="col-3 text-dark">ACCES. <small class="text-muted">pcs</small></div>
                     <div class="col-9 text-end text-dark"><?php echo number_format($pcs, 2, ',', ' ') ?></div>
                 </div>
                 <div class="list-group-item">
-                    <div class="col-3 text-dark">PF CN <small class="text-muted"></small></div>
+                    <div class="col-3 text-dark">PF CN <small class="text-muted">pcs</small></div>
                     <div class="col-9 text-end text-dark"><?php echo number_format($pcsNA, 2, ',', ' ') ?></div>
                 </div>
             </div>
@@ -103,7 +103,7 @@
                 </div>
               <?php endif; ?>
                 <div class="list-group-item">
-                    <div class="col-3 text-dark">MTS <small class="text-muted"></small></div>
+                    <div class="col-3 text-dark">MTS <small class="text-muted">mts</small></div>
                     <div class="col-3">
                         <?php
                             if ($mvts > 0 && $mvts1 > 0):
@@ -118,7 +118,7 @@
                     <div class="col-6 text-end text-dark"><?php echo number_format($mvts1, 2, ',', ' ') ?></div>
                 </div>
                 <div class="list-group-item">
-                    <div class="col-3 text-dark">ACCES. <small class="text-muted"></small></div>
+                    <div class="col-3 text-dark">ACCES. <small class="text-muted">pcs</small></div>
                     <div class="col-3">
                         <?php
                             if ($pcs > 0 && $pcs1 > 0):
@@ -133,7 +133,7 @@
                     <div class="col-6 text-end text-dark"><?php echo number_format($pcs1, 2, ',', ' ') ?></div>
                 </div>
                 <div class="list-group-item">
-                    <div class="col-3 text-dark">PF CN <small class="text-muted"></small></div>
+                    <div class="col-3 text-dark">PF CN <small class="text-muted">pcs</small></div>
                     <div class="col-3">
                         <?php
                             if ($pcsNA > 0 && $pcs1NA > 0):
@@ -193,7 +193,7 @@
                 </div>
                 <?php endif; ?>
                 <div class="list-group-item">
-                    <div class="col-3 text-dark">MTS <small class="text-muted"></small></div>
+                    <div class="col-3 text-dark">MTS <small class="text-muted">mts</small></div>
                     <div class="col-3">
                         <?php
                             if ($mvts > 0 && $mvts2 > 0):
@@ -208,7 +208,7 @@
                     <div class="col-6 text-end text-dark"><?php echo number_format($mvts2, 2, ',', ' ') ?></div>
                 </div>
                 <div class="list-group-item">
-                    <div class="col-3 text-dark">ACCES. <small class="text-muted"></small></div>
+                    <div class="col-3 text-dark">ACCES. <small class="text-muted">pcs</small></div>
                     <div class="col-3">
                         <?php
                             if ($pcs > 0 && $pcs2 > 0):
@@ -223,7 +223,7 @@
                     <div class="col-6 text-end text-dark"><?php echo number_format($pcs2, 2, ',', ' ') ?></div>
                 </div>
                 <div class="list-group-item">
-                    <div class="col-3 text-dark">PF CN <small class="text-muted"></small></div>
+                    <div class="col-3 text-dark">PF CN <small class="text-muted">pcs</small></div>
                     <div class="col-3">
                         <?php
                             if ($pcsNA > 0 && $pcs2NA > 0):
