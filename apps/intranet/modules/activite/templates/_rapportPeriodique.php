@@ -48,11 +48,7 @@
                 </div>
                 <div class="list-group-item">
                     <div class="col-3 text-dark">QTÉ. <small class="text-muted">pcs</small></div>
-                    <div class="col-9 text-end text-dark"><?php echo number_format($pcs, 2, ',', ' ') ?></div>
-                </div>
-                <div class="list-group-item">
-                    <div class="col-3 text-dark">PF CN <small class="text-muted">pcs</small></div>
-                    <div class="col-9 text-end text-dark"><?php echo number_format($pcsNA, 2, ',', ' ') ?></div>
+                    <div class="col-9 text-end text-dark"><?php echo number_format($pcs + $pcsNA, 2, ',', ' ') ?></div>
                 </div>
             </div>
         </div>
@@ -121,8 +117,8 @@
                     <div class="col-3 text-dark">QTÉ. <small class="text-muted">pcs</small></div>
                     <div class="col-3">
                         <?php
-                            if ($pcs > 0 && $pcs1 > 0):
-                                $diff = $pcs / $pcs1;
+                            if (($pcs + $pcsNA) > 0 && ($pcs1 + $pcs1NA) > 0):
+                                $diff = ($pcs + $pcsNA) / ($pcs1 + $pcs1NA);
                                 if ($diff > 1):
                         ?>
                             <small class="text-success font-italic fw-bold">+&nbsp;<?php echo number_format(($diff - 1) * 100, 0, ',', '&nbsp;') ?>%</small>
@@ -130,22 +126,7 @@
                             <small class="text-danger font-italic fw-bold">-&nbsp;<?php echo number_format(($diff - 1) * -100, 0, ',', '&nbsp;') ?>%</small>
                         <?php endif; endif; ?>
                     </div>
-                    <div class="col-6 text-end text-dark"><?php echo number_format($pcs1, 2, ',', ' ') ?></div>
-                </div>
-                <div class="list-group-item">
-                    <div class="col-3 text-dark">PF CN <small class="text-muted">pcs</small></div>
-                    <div class="col-3">
-                        <?php
-                            if ($pcsNA > 0 && $pcs1NA > 0):
-                                $diff = $pcsNA / $pcs1NA;
-                                if ($diff > 1):
-                        ?>
-                            <small class="text-success font-italic fw-bold">+&nbsp;<?php echo number_format(($diff - 1) * 100, 0, ',', '&nbsp;') ?>%</small>
-                        <?php else: ?>
-                            <small class="text-danger font-italic fw-bold">-&nbsp;<?php echo number_format(($diff - 1) * -100, 0, ',', '&nbsp;') ?>%</small>
-                        <?php endif; endif; ?>
-                    </div>
-                    <div class="col-6 text-end text-dark"><?php echo number_format($pcs1NA, 2, ',', ' ') ?></div>
+                    <div class="col-6 text-end text-dark"><?php echo number_format($pcs1 + $pcs1NA, 2, ',', ' ') ?></div>
                 </div>
             </div>
         </div>
@@ -211,8 +192,8 @@
                     <div class="col-3 text-dark">QTÉ. <small class="text-muted">pcs</small></div>
                     <div class="col-3">
                         <?php
-                            if ($pcs > 0 && $pcs2 > 0):
-                                $diff = $pcs / $pcs2;
+                            if (($pcs + $pcsNA) > 0 && ($pcs2 + $pcsNA) > 0):
+                                $diff = ($pcs + $pcsNA) / ($pcs2 + $pcs2NA);
                                 if ($diff > 1):
                         ?>
                             <small class="text-success font-italic fw-bold">+&nbsp;<?php echo number_format(($diff - 1) * 100, 0, ',', '&nbsp;') ?>%</small>
@@ -220,22 +201,7 @@
                             <small class="text-danger font-italic fw-bold">-&nbsp;<?php echo number_format(($diff - 1) * -100, 0, ',', '&nbsp;') ?>%</small>
                         <?php endif; endif; ?>
                     </div>
-                    <div class="col-6 text-end text-dark"><?php echo number_format($pcs2, 2, ',', ' ') ?></div>
-                </div>
-                <div class="list-group-item">
-                    <div class="col-3 text-dark">PF CN <small class="text-muted">pcs</small></div>
-                    <div class="col-3">
-                        <?php
-                            if ($pcsNA > 0 && $pcs2NA > 0):
-                                $diff = $pcsNA / $pcs2NA;
-                                if ($diff > 1):
-                        ?>
-                            <small class="text-success font-italic fw-bold">+&nbsp;<?php echo number_format(($diff - 1) * 100, 0, ',', '&nbsp;') ?>%</small>
-                        <?php else: ?>
-                            <small class="text-danger font-italic fw-bold">-&nbsp;<?php echo number_format(($diff - 1) * -100, 0, ',', '&nbsp;') ?>%</small>
-                        <?php endif; endif; ?>
-                    </div>
-                    <div class="col-6 text-end text-dark"><?php echo number_format($pcs2NA, 2, ',', ' ') ?></div>
+                    <div class="col-6 text-end text-dark"><?php echo number_format($pcs2 + $pcs2NA, 2, ',', ' ') ?></div>
                 </div>
             </div>
         </div>
@@ -244,7 +210,7 @@
 
 <p class="text-center mt-3 mb-0 details">
   <a class="btn btn-light btn-sm text-uppercase" data-toggle="collapse" href="#details<?php if(isset($annuel)): ?>Annee<?php else: ?>Periode<?php endif; ?>" role="button" aria-expanded="false">
-    Voir le détail par produit fini <span class="bi bi-chevron-down"></span>
+    Voir le détail par catégorie <span class="bi bi-chevron-down"></span>
   </a>
 </p>
 
@@ -253,69 +219,24 @@
       <div class="col-sm-4">
         <?php $itemsBloc1 = $activites->getDetailledPcs($devise, $clientId, $fournisseurId); ?>
         <div class="card border-info">
-          <div class="card-header bg-info text-white"><h5>ACCES. <small><?php if(isset($annuel)): ?><?php echo $from->format('Y') ?><?php else: ?>du <?php echo $from->format('d/m/Y') ?> au <?php echo $to->format('d/m/Y') ?><?php endif; ?></small></h5></div>
           <div class="list-group list-group-flush">
             <?php
               foreach(PieceCategories::getListe(true) as $id => $libelle) :
-                if (!in_array($id,Activite::$ACCESSOIRES_CATEGORIES)) continue;
             ?>
             <div class="list-group-item">
-                <div class="col-8 text-dark small"><?php echo $libelle ?></div>
+                <div class="col-8 text-dark small"><?php if($libelle): ?><?php echo $libelle ?><?php else: ?><span class="text-muted">Sans catégorie</span><?php endif; ?></div>
                 <div class="col-4 text-end text-dark"><?php echo number_format((isset($itemsBloc1[$id]) && $itemsBloc1[$id])? $itemsBloc1[$id] : 0, 2, ',', ' ') ?></div>
             </div>
             <?php endforeach; ?>
-          </div>
-        </div>
-        <div class="card border-info mt-2">
-          <div class="card-header bg-info text-white"><h5>PF CN. <small><?php if(isset($annuel)): ?><?php echo $from->format('Y') ?><?php else: ?>du <?php echo $from->format('d/m/Y') ?> au <?php echo $to->format('d/m/Y') ?><?php endif; ?></small></h5></div>
-          <div class="list-group list-group-flush">
-              <?php
-                foreach(PieceCategories::getListe(true) as $id => $libelle) :
-                  if (in_array($id,Activite::$ACCESSOIRES_CATEGORIES)) continue;
-              ?>
-              <div class="list-group-item">
-                  <div class="col-8 text-dark small"><?php if($libelle): ?><?php echo $libelle ?><?php else: ?><span class="text-muted">Sans catégorie</span><?php endif; ?></div>
-                  <div class="col-4 text-end text-dark"><?php echo number_format((isset($itemsBloc1[$id]) && $itemsBloc1[$id])? $itemsBloc1[$id] : 0, 2, ',', ' ') ?></div>
-              </div>
-              <?php endforeach; ?>
           </div>
         </div>
       </div>
       <div class="col-sm-4">
         <?php $itemsBloc2 = $activites1->getDetailledPcs($devise, $clientId, $fournisseurId);  ?>
         <div class="card border-secondary">
-          <div class="card-header bg-secondary text-white"><h5>ACCES. <small><?php if(isset($annuel)): ?><?php echo $from->format('Y')-1 ?><?php else: ?><strong>N-1</strong> du <?php echo DateTime::createFromFormat("Y-m-d", $activites1->from)->format('d/m/Y'); ?> au <?php echo DateTime::createFromFormat("Y-m-d", $activites1->to)->format('d/m/Y'); ?><?php endif; ?></small></h5></div>
           <div class="list-group list-group-flush">
               <?php
                 foreach(PieceCategories::getListe(true) as $id => $libelle) :
-                  if (!in_array($id,Activite::$ACCESSOIRES_CATEGORIES)) continue;
-              ?>
-              <div class="list-group-item">
-                  <div class="col-6 text-dark small"><?php if($libelle): ?><?php echo $libelle ?><?php else: ?><span class="text-muted">Sans catégorie</span><?php endif; ?></div>
-                  <div class="col-2 small">
-                    <?php
-                        $val1 = (isset($itemsBloc1[$id]) && $itemsBloc1[$id])? $itemsBloc1[$id] : 0;
-                        $val2 = (isset($itemsBloc2[$id]) && $itemsBloc2[$id])? $itemsBloc2[$id] : 0;
-                        if ($val1 > 0 && $val2 > 0):
-                            $diff = $val1 / $val2;
-                            if ($diff > 1):
-                    ?>
-                        <small class="text-success font-italic fw-bold">+&nbsp;<?php echo number_format(($diff - 1) * 100, 0, ',', '&nbsp;') ?>%</small>
-                    <?php else: ?>
-                        <small class="text-danger font-italic fw-bold">-&nbsp;<?php echo number_format(($diff - 1) * -100, 0, ',', '&nbsp;') ?>%</small>
-                    <?php endif; endif; ?>
-                  </div>
-                  <div class="col-4 text-end text-dark"><?php echo number_format((isset($itemsBloc2[$id]) && $itemsBloc2[$id])? $itemsBloc2[$id] : 0, 2, ',', ' ') ?></div>
-              </div>
-              <?php endforeach; ?>
-          </div>
-        </div>
-        <div class="card border-secondary mt-2">
-          <div class="card-header bg-secondary text-white"><h5>PF CN. <small><?php if(isset($annuel)): ?><?php echo $from->format('Y')-1 ?><?php else: ?><strong>N-1</strong> du <?php echo DateTime::createFromFormat("Y-m-d", $activites1->from)->format('d/m/Y'); ?> au <?php echo DateTime::createFromFormat("Y-m-d", $activites1->to)->format('d/m/Y'); ?><?php endif; ?></small></h5></div>
-          <div class="list-group list-group-flush">
-              <?php
-              foreach(PieceCategories::getListe(true) as $id => $libelle) :
-                if (in_array($id,Activite::$ACCESSOIRES_CATEGORIES)) continue;
               ?>
               <div class="list-group-item">
                   <div class="col-6 text-dark small"><?php if($libelle): ?><?php echo $libelle ?><?php else: ?><span class="text-muted">Sans catégorie</span><?php endif; ?></div>
@@ -341,38 +262,9 @@
       <div class="col-sm-4">
         <?php $itemsBloc3 = $activites2->getDetailledPcs($devise, $clientId, $fournisseurId); ?>
         <div class="card border-secondary">
-          <div class="card-header bg-secondary text-white"><h5>ACCES. <small><?php if(isset($annuel)): ?><?php echo $from->format('Y')-2 ?><?php else: ?><strong>N-2</strong> du <?php echo DateTime::createFromFormat("Y-m-d", $activites2->from)->format('d/m/Y'); ?> au <?php echo DateTime::createFromFormat("Y-m-d", $activites2->to)->format('d/m/Y'); ?><?php endif; ?></small></h5></div>
           <div class="list-group list-group-flush">
               <?php
                 foreach(PieceCategories::getListe(true) as $id => $libelle) :
-                  if (!in_array($id,Activite::$ACCESSOIRES_CATEGORIES)) continue;
-              ?>
-              <div class="list-group-item">
-                  <div class="col-6 text-dark small"><?php echo $libelle ?></div>
-                  <div class="col-2 small">
-                    <?php
-                        $val1 = (isset($itemsBloc1[$id]) && $itemsBloc1[$id])? $itemsBloc1[$id] : 0;
-                        $val3 = (isset($itemsBloc3[$id]) && $itemsBloc3[$id])? $itemsBloc3[$id] : 0;
-                        if ($val1 > 0 && $val3 > 0):
-                            $diff = $val1 / $val3;
-                            if ($diff > 1):
-                    ?>
-                        <small class="text-success font-italic fw-bold">+&nbsp;<?php echo number_format(($diff - 1) * 100, 0, ',', '&nbsp;') ?>%</small>
-                    <?php else: ?>
-                        <small class="text-danger font-italic fw-bold">-&nbsp;<?php echo number_format(($diff - 1) * -100, 0, ',', '&nbsp;') ?>%</small>
-                    <?php endif; endif; ?>
-                  </div>
-                  <div class="col-4 text-end text-dark"><?php echo number_format((isset($itemsBloc3[$id]) && $itemsBloc3[$id])? $itemsBloc3[$id] : 0, 2, ',', ' ') ?></div>
-              </div>
-              <?php endforeach; ?>
-          </div>
-        </div>
-        <div class="card border-secondary mt-2">
-          <div class="card-header bg-secondary text-white"><h5>PF CN. <small><?php if(isset($annuel)): ?><?php echo $from->format('Y')-2 ?><?php else: ?><strong>N-2</strong> du <?php echo DateTime::createFromFormat("Y-m-d", $activites2->from)->format('d/m/Y'); ?> au <?php echo DateTime::createFromFormat("Y-m-d", $activites2->to)->format('d/m/Y'); ?><?php endif; ?></small></h5></div>
-          <div class="list-group list-group-flush">
-              <?php
-                foreach(PieceCategories::getListe(true) as $id => $libelle) :
-                  if (in_array($id,Activite::$ACCESSOIRES_CATEGORIES)) continue;
               ?>
               <div class="list-group-item">
                   <div class="col-6 text-dark small"><?php if($libelle): ?><?php echo $libelle ?><?php else: ?><span class="text-muted">Sans catégorie</span><?php endif; ?></div>
@@ -391,7 +283,7 @@
                   </div>
                   <div class="col-4 text-end text-dark"><?php echo number_format((isset($itemsBloc3[$id]) && $itemsBloc3[$id])? $itemsBloc3[$id] : 0, 2, ',', ' ') ?></div>
               </div>
-            <?php endforeach; ?>
+              <?php endforeach; ?>
           </div>
         </div>
       </div>
