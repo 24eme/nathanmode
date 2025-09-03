@@ -16,6 +16,8 @@
 <?php $pcsNA = $activites->getPcsNonAccessoires($devise, $clientId, $fournisseurId); ?>
 <?php $pcs1NA = $activites1->getPcsNonAccessoires($devise, $clientId, $fournisseurId); ?>
 <?php $pcs2NA = $activites2->getPcsNonAccessoires($devise, $clientId, $fournisseurId); ?>
+<?php $qteMetrage = $mvts || $mvts1 || $mvts2; ?>
+<?php $qtePieces = $pcs || $pcs1 || $pcs2 | $pcsNA || $pcs1NA || $pcs2NA; ?>
 
 <div class="row">
     <div class="col-sm-4">
@@ -42,14 +44,18 @@
                     <div class="col-9 text-end text-dark"><?php echo number_format($com, 2, ',', ' ') ?></div>
                 </div>
                 <?php endif; ?>
-                <div class="list-group-item">
-                    <div class="col-3 text-dark">QTÉ. <small class="text-muted">mts</small></div>
-                    <div class="col-9 text-end text-dark"><?php echo number_format($mvts, 2, ',', ' ') ?></div>
-                </div>
-                <div class="list-group-item">
-                    <div class="col-3 text-dark">QTÉ. <small class="text-muted">pcs</small></div>
-                    <div class="col-9 text-end text-dark"><?php echo number_format($pcs + $pcsNA, 2, ',', ' ') ?></div>
-                </div>
+                <?php if ($qteMetrage) :?>
+                    <div class="list-group-item">
+                        <div class="col-3 text-dark">QTÉ. <small class="text-muted">mts</small></div>
+                        <div class="col-9 text-end text-dark"><?php echo number_format($mvts, 2, ',', ' ') ?></div>
+                    </div>
+                <?php endif; ?>
+                <?php if ($qtePieces) : ?>
+                    <div class="list-group-item">
+                        <div class="col-3 text-dark">QTÉ. <small class="text-muted">pcs</small></div>
+                        <div class="col-9 text-end text-dark"><?php echo number_format($pcs + $pcsNA, 2, ',', ' ') ?></div>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -98,21 +104,24 @@
                     <div class="col-6 text-end text-dark"><?php echo number_format($com1, 2, ',', ' ') ?></div>
                 </div>
               <?php endif; ?>
-                <div class="list-group-item">
-                    <div class="col-3 text-dark">QTÉ. <small class="text-muted">mts</small></div>
-                    <div class="col-3">
-                        <?php
-                            if ($mvts > 0 && $mvts1 > 0):
-                                $diff = $mvts / $mvts1;
-                                if ($diff > 1):
-                        ?>
-                            <small class="text-success font-italic fw-bold">+&nbsp;<?php echo number_format(($diff - 1) * 100, 0, ',', '&nbsp;') ?>%</small>
-                        <?php else: ?>
-                            <small class="text-danger font-italic fw-bold">-&nbsp;<?php echo number_format(($diff - 1) * -100, 0, ',', '&nbsp;') ?>%</small>
-                        <?php endif; endif; ?>
+                <?php if ($qteMetrage) : ?>
+                    <div class="list-group-item">
+                        <div class="col-3 text-dark">QTÉ. <small class="text-muted">mts</small></div>
+                        <div class="col-3">
+                            <?php
+                                if ($mvts > 0 && $mvts1 > 0):
+                                    $diff = $mvts / $mvts1;
+                                    if ($diff > 1):
+                            ?>
+                                <small class="text-success font-italic fw-bold">+&nbsp;<?php echo number_format(($diff - 1) * 100, 0, ',', '&nbsp;') ?>%</small>
+                            <?php else: ?>
+                                <small class="text-danger font-italic fw-bold">-&nbsp;<?php echo number_format(($diff - 1) * -100, 0, ',', '&nbsp;') ?>%</small>
+                            <?php endif; endif; ?>
+                        </div>
+                        <div class="col-6 text-end text-dark"><?php echo number_format($mvts1, 2, ',', ' ') ?></div>
                     </div>
-                    <div class="col-6 text-end text-dark"><?php echo number_format($mvts1, 2, ',', ' ') ?></div>
-                </div>
+                <?php endif; ?>
+                <?php if ($qtePieces) : ?>
                 <div class="list-group-item">
                     <div class="col-3 text-dark">QTÉ. <small class="text-muted">pcs</small></div>
                     <div class="col-3">
@@ -128,6 +137,7 @@
                     </div>
                     <div class="col-6 text-end text-dark"><?php echo number_format($pcs1 + $pcs1NA, 2, ',', ' ') ?></div>
                 </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -173,36 +183,40 @@
                     <div class="col-6 text-end text-dark"><?php echo number_format($com2, 2, ',', ' ') ?></div>
                 </div>
                 <?php endif; ?>
-                <div class="list-group-item">
-                    <div class="col-3 text-dark">QTÉ. <small class="text-muted">mts</small></div>
-                    <div class="col-3">
-                        <?php
-                            if ($mvts > 0 && $mvts2 > 0):
-                                $diff = $mvts / $mvts2;
-                                if ($diff > 1):
-                        ?>
-                            <small class="text-success font-italic fw-bold">+&nbsp;<?php echo number_format(($diff - 1) * 100, 0, ',', '&nbsp;') ?>%</small>
-                        <?php else: ?>
-                            <small class="text-danger font-italic fw-bold">-&nbsp;<?php echo number_format(($diff - 1) * -100, 0, ',', '&nbsp;') ?>%</small>
-                        <?php endif; endif; ?>
+                <?php if ($qteMetrage) : ?>
+                    <div class="list-group-item">
+                        <div class="col-3 text-dark">QTÉ. <small class="text-muted">mts</small></div>
+                        <div class="col-3">
+                            <?php
+                                if ($mvts > 0 && $mvts2 > 0):
+                                    $diff = $mvts / $mvts2;
+                                    if ($diff > 1):
+                            ?>
+                                <small class="text-success font-italic fw-bold">+&nbsp;<?php echo number_format(($diff - 1) * 100, 0, ',', '&nbsp;') ?>%</small>
+                            <?php else: ?>
+                                <small class="text-danger font-italic fw-bold">-&nbsp;<?php echo number_format(($diff - 1) * -100, 0, ',', '&nbsp;') ?>%</small>
+                            <?php endif; endif; ?>
+                        </div>
+                        <div class="col-6 text-end text-dark"><?php echo number_format($mvts2, 2, ',', ' ') ?></div>
                     </div>
-                    <div class="col-6 text-end text-dark"><?php echo number_format($mvts2, 2, ',', ' ') ?></div>
-                </div>
-                <div class="list-group-item">
-                    <div class="col-3 text-dark">QTÉ. <small class="text-muted">pcs</small></div>
-                    <div class="col-3">
-                        <?php
-                            if (($pcs + $pcsNA) > 0 && ($pcs2 + $pcsNA) > 0):
-                                $diff = ($pcs + $pcsNA) / ($pcs2 + $pcs2NA);
-                                if ($diff > 1):
-                        ?>
-                            <small class="text-success font-italic fw-bold">+&nbsp;<?php echo number_format(($diff - 1) * 100, 0, ',', '&nbsp;') ?>%</small>
-                        <?php else: ?>
-                            <small class="text-danger font-italic fw-bold">-&nbsp;<?php echo number_format(($diff - 1) * -100, 0, ',', '&nbsp;') ?>%</small>
-                        <?php endif; endif; ?>
+                <?php endif; ?>
+                <?php if ($qtePieces) : ?>
+                    <div class="list-group-item">
+                        <div class="col-3 text-dark">QTÉ. <small class="text-muted">pcs</small></div>
+                        <div class="col-3">
+                            <?php
+                                if (($pcs + $pcsNA) > 0 && ($pcs2 + $pcsNA) > 0):
+                                    $diff = ($pcs + $pcsNA) / ($pcs2 + $pcs2NA);
+                                    if ($diff > 1):
+                            ?>
+                                <small class="text-success font-italic fw-bold">+&nbsp;<?php echo number_format(($diff - 1) * 100, 0, ',', '&nbsp;') ?>%</small>
+                            <?php else: ?>
+                                <small class="text-danger font-italic fw-bold">-&nbsp;<?php echo number_format(($diff - 1) * -100, 0, ',', '&nbsp;') ?>%</small>
+                            <?php endif; endif; ?>
+                        </div>
+                        <div class="col-6 text-end text-dark"><?php echo number_format($pcs2 + $pcs2NA, 2, ',', ' ') ?></div>
                     </div>
-                    <div class="col-6 text-end text-dark"><?php echo number_format($pcs2 + $pcs2NA, 2, ',', ' ') ?></div>
-                </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
