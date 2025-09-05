@@ -219,13 +219,10 @@ class CollectionForm extends BaseCollectionForm
         $this->getValidator('fournisseur_id')->setOption('required', true);
         $this->getValidator('client_id')->setOption('required', true);
         $this->getValidator('num_commande')->setOption('required', true);
+        $this->getValidator('prix_fournisseur')->setOption('required', true);
 
-        if (sfConfig::get('app_devise_dollar')) {
-            $this->getValidator('prix_fournisseur')->setOption('required', true);
-
-            $this->getWidget('prix_fournisseur')->setAttribute('class', 'input-float');
-            $this->getWidget('prix_commercial')->setAttribute('class', 'input-float');
-        }
+        $this->getWidget('prix_fournisseur')->setAttribute('class', 'input-float');
+        $this->getWidget('prix_commercial')->setAttribute('class', 'input-float');
 
         $this->setWidget('usd_rate', new sfWidgetFormInputHidden());
         $this->setValidator('usd_rate', new sfValidatorPass(array('required' => false)));

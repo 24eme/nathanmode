@@ -106,25 +106,23 @@
                     <?php echo $form['devise_id']->renderError() ?>
                 </td>
             </tr>
-
-            <?php if (! sfConfig::get('app_devise_dollar')) : ?>
-                <tr>
-                    <td><?php echo $form['prix_fournisseur']->renderLabel() ?>&nbsp;:</td>
-                    <td>
-                    <?php echo $form['prix_fournisseur']->render(array('class' => 'small input-float', 'required' => 'required')) ?>
-                    <?php echo $form['devise_fournisseur_id']->render(array('class' => 'small')) ?>
-                    <?php echo $form['prix_fournisseur']->renderError() ?>
-                    </td>
-                </tr>
-                <tr>
-                <td><?php echo $form['prix_commercial']->renderLabel() ?>&nbsp;:</td>
+            <tr>
+                <td><?php echo $form['prix_fournisseur']->renderLabel() ?>&nbsp;:</td>
                 <td>
-                    <?php echo $form['prix_commercial']->render(array('class' => 'small input-float')) ?>
-                    <?php echo $form['devise_commercial_id']->render(array('class' => 'small')) ?>
-                    <?php echo $form['prix_commercial']->renderError() ?>
+                  <?php echo $form['prix_fournisseur']->render(array('class' => 'small input-float', 'required' => 'required')) ?>
+                  <?php echo $form['devise_fournisseur_id']->render(array('class' => 'small')) ?>
+                  <?php echo $form['prix_fournisseur']->renderError() ?>
                 </td>
-                </tr>
-            <?php endif; ?>
+            </tr>
+            <tr>
+              <td><?php echo $form['prix_commercial']->renderLabel() ?>&nbsp;:</td>
+              <td>
+                <?php echo $form['prix_commercial']->render(array('class' => 'small input-float')) ?>
+                <?php echo $form['devise_commercial_id']->render(array('class' => 'small')) ?>
+                <?php echo $form['prix_commercial']->renderError() ?>
+              </td>
+            </tr>
+
             <tr>
               <td><?php echo $form['prix_public']->renderLabel() ?>&nbsp;:</td>
               <td>
