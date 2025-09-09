@@ -3,6 +3,14 @@
     <div class="px-2">
         <div class="subTitle">Livraisons</div>
 
+
+        <table width="20%" border="0" style="margin:10px 0px;">
+            <tr style="font-size:14px; display:flex; justify-content:space-between;">
+                <td><?php echo $form['reste_a_livrer']->renderLabel() ?>&nbsp;:</td>
+                <td><?php echo $form['reste_a_livrer']->render() ?>
+                    <?php echo $form['reste_a_livrer']->renderError() ?></td>
+            </tr>
+        </table>
         <?php include_partial('collection/relationLivraisonsForm', array('form' => $form)) ?>
 
         <div class="subTitle">Retards</div>
