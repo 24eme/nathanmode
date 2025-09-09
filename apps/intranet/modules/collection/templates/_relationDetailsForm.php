@@ -10,7 +10,11 @@
                   <?php endif ?>
                   <th><label>Colori</label></th>
                   <th><label>Quantité</label></th>
-                  <th><label>Reste à livrer produit</label></th>
+                  <?php if (sfConfig::get('app_devise_dollar')) : ?>
+                    <th><label>Reste à livrer pcs.</label></th>
+                  <?php else: ?>
+                    <th><label>Reste à livrer mts.</label></th>
+                  <?php endif ?>
                   <th><label>Prix d'achat factory</label></th>
                   <th><label>Prix de vente factory</label></th>
                   <th><label>Marge&nbsp;montant</label></th>
