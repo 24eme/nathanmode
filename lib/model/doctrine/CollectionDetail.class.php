@@ -137,4 +137,21 @@ class CollectionDetail extends BaseCollectionDetail
   public function getQualite() {
     return $this->getCollection()->getQualite();
   }
+
+
+  public function updateResteALivrerProduit($collection) {
+        $livraisons = $collection->getCollectionLivraisons();
+
+        $resteALivrerProduit = $this->getPiece() ?: $this->getMetrage();
+
+        if ($livraisons) {
+            foreach ($livraisons as $livraison) {
+                if ($livraison->getColori() === $this->getColori()){
+                    $quantiteLivraison = $livraison->getPiece() ?: $livraison->getMetrage();
+                    $resteALivrerProduit -= $quantiteLivraison;
+                }
+            }
+        }
+        $this->setResteALivrerProduit($resteALivrerProduit);
+   }
 }

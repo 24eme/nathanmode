@@ -557,6 +557,9 @@ CollectionDetail:
     date_livraison_prevue:
       type: date
       default: NULL
+    reste_a_livrer_produit:
+      type: double
+      default: NULL
   relations:
     Collection:
       local: collection_id

@@ -22,6 +22,10 @@
         <?php echo $form['piece']->renderError(); ?>
     </td>
     <td>
+        <?php echo $form['reste_a_livrer_produit']->render(array('class' => 'quantite input-float')); ?>
+        <?php echo $form['reste_a_livrer_produit']->renderError(); ?>
+    </td>
+    <td>
         <div class="input-group">
             <?php echo $form['prix_achat']->render(array('class' => 'input-float prix_achat form-control')); ?>
             <?php echo $form['prix_achat']->renderError(); ?>

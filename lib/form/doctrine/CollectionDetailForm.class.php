@@ -19,7 +19,8 @@ class CollectionDetailForm extends BaseCollectionDetailForm
                                'prix_achat',
                                'prix',
                                'image',
-                               'date_livraison_prevue'));
+                               'date_livraison_prevue',
+                               'reste_a_livrer_produit'));
 
         $this->getWidgetSchema()->setLabels(array(
           'devise_id' => 'Devise',
@@ -28,7 +29,8 @@ class CollectionDetailForm extends BaseCollectionDetailForm
           'prix_achat' => 'Prix d\'achat',
           'prix' => 'Prix',
           'image' => 'Ajouter une image',
-          'date_livraison_prevue' => 'Date de livraison prévue'
+          'date_livraison_prevue' => 'Date de livraison prévue',
+          'reste_a_livrer_produit' => 'Reste à livrer produit'
         ));
 
         $this->setWidget('devise_id', new sfWidgetFormInputHidden());
@@ -64,6 +66,10 @@ class CollectionDetailForm extends BaseCollectionDetailForm
 
             $this->setValidator('image_delete', new sfValidatorPass());
         }
+
+    $this->getWidget('reste_a_livrer_produit')->setAttribute('class', 'input-float');
+    $this->setValidator('reste_a_livrer_produit', new sfValidatorNumber(array('required' => false)));
+
     }
 
     public function updateDefaultsFromObject() {

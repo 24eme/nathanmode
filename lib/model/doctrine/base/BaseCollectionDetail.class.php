@@ -14,45 +14,56 @@
  * @property string $piece
  * @property double $prix
  * @property string $image
+ * @property double $prix_achat
+ * @property double $prix_public
+ * @property double $part_frais
+ * @property double $part_marge
+ * @property double $part_commission
+ * @property date $date_livraison_prevue
+ * @property double $reste_a_livrer_produit
  * @property Collection $Collection
  * @property Devise $Devise
  * @property Commande $Commande
  * 
- * @method integer          getCollectionId()    Returns the current record's "collection_id" value
- * @method integer          getDeviseId()        Returns the current record's "devise_id" value
- * @method integer          getCommandeId()      Returns the current record's "commande_id" value
- * @method string           getColori()          Returns the current record's "colori" value
- * @method string           getMetrage()         Returns the current record's "metrage" value
- * @method string           getPieceCategorie()  Returns the current record's "piece_categorie" value
- * @method string           getPiece()           Returns the current record's "piece" value
- * @method double           getPrix()            Returns the current record's "prix" value
- * @method string           getImage()           Returns the current record's "image" value
- * @method double           getPrixAchat()       Returns the current record's "prix achat" value
- * @method double           getPrixPublic()      Returns the current record's "prix public" value
- * @method double           getPartFrais()       Returns the current record's "part frais" value
- * @method double           getPartMarge()       Returns the current record's "part marge" value
- * @method double           getPartCommission()  Returns the current record's "part commission" value
- * @method Collection       getCollection()      Returns the current record's "Collection" value
- * @method Devise           getDevise()          Returns the current record's "Devise" value
- * @method Commande         getCommande()        Returns the current record's "Commande" value
- * @method CollectionDetail setCollectionId()    Sets the current record's "collection_id" value
- * @method CollectionDetail setDeviseId()        Sets the current record's "devise_id" value
- * @method CollectionDetail setCommandeId()      Sets the current record's "commande_id" value
- * @method CollectionDetail setColori()          Sets the current record's "colori" value
- * @method CollectionDetail setMetrage()         Sets the current record's "metrage" value
- * @method CollectionDetail setPieceCategorie()  Sets the current record's "piece_categorie" value
- * @method CollectionDetail setPiece()           Sets the current record's "piece" value
- * @method CollectionDetail setPrix()            Sets the current record's "prix" value
- * @method CollectionDetail setImage()           Sets the current record's "image" value
- * @method CollectionDetail setPrixAchat()       Sets the current record's "prix achat" value
- * @method CollectionDetail setPrixPublic()      Sets the current record's "prix public" value
- * @method CollectionDetail setPartFrais()       Sets the current record's "part frais" value
- * @method CollectionDetail setPartMarge()       Sets the current record's "part marge" value
- * @method CollectionDetail setPartCommission()  Sets the current record's "part commission" value
- * @method CollectionDetail setCollection()      Sets the current record's "Collection" value
- * @method CollectionDetail setDevise()          Sets the current record's "Devise" value
- * @method CollectionDetail setCommande()        Sets the current record's "Commande" value
- *
+ * @method integer          getCollectionId()           Returns the current record's "collection_id" value
+ * @method integer          getDeviseId()               Returns the current record's "devise_id" value
+ * @method integer          getCommandeId()             Returns the current record's "commande_id" value
+ * @method string           getColori()                 Returns the current record's "colori" value
+ * @method string           getMetrage()                Returns the current record's "metrage" value
+ * @method string           getPieceCategorie()         Returns the current record's "piece_categorie" value
+ * @method string           getPiece()                  Returns the current record's "piece" value
+ * @method double           getPrix()                   Returns the current record's "prix" value
+ * @method string           getImage()                  Returns the current record's "image" value
+ * @method double           getPrixAchat()              Returns the current record's "prix_achat" value
+ * @method double           getPrixPublic()             Returns the current record's "prix_public" value
+ * @method double           getPartFrais()              Returns the current record's "part_frais" value
+ * @method double           getPartMarge()              Returns the current record's "part_marge" value
+ * @method double           getPartCommission()         Returns the current record's "part_commission" value
+ * @method date             getDateLivraisonPrevue()    Returns the current record's "date_livraison_prevue" value
+ * @method double           getResteALivrerProduit()    Returns the current record's "reste_a_livrer_produit" value
+ * @method Collection       getCollection()             Returns the current record's "Collection" value
+ * @method Devise           getDevise()                 Returns the current record's "Devise" value
+ * @method Commande         getCommande()               Returns the current record's "Commande" value
+ * @method CollectionDetail setCollectionId()           Sets the current record's "collection_id" value
+ * @method CollectionDetail setDeviseId()               Sets the current record's "devise_id" value
+ * @method CollectionDetail setCommandeId()             Sets the current record's "commande_id" value
+ * @method CollectionDetail setColori()                 Sets the current record's "colori" value
+ * @method CollectionDetail setMetrage()                Sets the current record's "metrage" value
+ * @method CollectionDetail setPieceCategorie()         Sets the current record's "piece_categorie" value
+ * @method CollectionDetail setPiece()                  Sets the current record's "piece" value
+ * @method CollectionDetail setPrix()                   Sets the current record's "prix" value
+ * @method CollectionDetail setImage()                  Sets the current record's "image" value
+ * @method CollectionDetail setPrixAchat()              Sets the current record's "prix_achat" value
+ * @method CollectionDetail setPrixPublic()             Sets the current record's "prix_public" value
+ * @method CollectionDetail setPartFrais()              Sets the current record's "part_frais" value
+ * @method CollectionDetail setPartMarge()              Sets the current record's "part_marge" value
+ * @method CollectionDetail setPartCommission()         Sets the current record's "part_commission" value
+ * @method CollectionDetail setDateLivraisonPrevue()    Sets the current record's "date_livraison_prevue" value
+ * @method CollectionDetail setResteALivrerProduit()    Sets the current record's "reste_a_livrer_produit" value
+ * @method CollectionDetail setCollection()             Sets the current record's "Collection" value
+ * @method CollectionDetail setDevise()                 Sets the current record's "Devise" value
+ * @method CollectionDetail setCommande()               Sets the current record's "Commande" value
+ * 
  * @package    nathanmode
  * @subpackage model
  * @author     Your name here
@@ -115,6 +126,9 @@ abstract class BaseCollectionDetail extends sfDoctrineRecord
              ));
         $this->hasColumn('date_livraison_prevue', 'date', null, array(
              'type' => 'date',
+             ));
+        $this->hasColumn('reste_a_livrer_produit', 'double', null, array(
+             'type' => 'double',
              ));
     }
 

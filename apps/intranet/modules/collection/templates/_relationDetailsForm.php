@@ -10,6 +10,7 @@
                   <?php endif ?>
                   <th><label>Colori</label></th>
                   <th><label>Quantité</label></th>
+                  <th><label>Reste à livrer produit</label></th>
                   <th><label>Prix d'achat factory</label></th>
                   <th><label>Prix de vente factory</label></th>
                   <th><label>Marge&nbsp;montant</label></th>

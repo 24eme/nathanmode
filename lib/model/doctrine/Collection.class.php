@@ -149,6 +149,12 @@ class Collection extends BaseCollection
         $this->setSituation(Situations::SITUATION_EN_COURS);
       }
       $this->updateResteALivrer();
+
+      $collectionDetails = $this->getCollectionDetails();
+
+      foreach ($collectionDetails as $collectionDetail) {
+        $collectionDetail->updateResteALivrerProduit($this);
+      }
     }
 
     public function updateResteALivrer() {
