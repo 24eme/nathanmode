@@ -70,6 +70,11 @@ class CollectionDetailForm extends BaseCollectionDetailForm
     $this->getWidget('reste_a_livrer_produit')->setAttribute('class', 'input-float');
     $this->setValidator('reste_a_livrer_produit', new sfValidatorNumber(array('required' => false)));
 
+        if($this->getObject()->reste_a_livrer_produit === null) {
+            $collection = $this->getObject()->getCollection();
+            $this->getObject()->updateResteALivrerProduit($collection);
+        }
+
     }
 
     public function updateDefaultsFromObject() {
