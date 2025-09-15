@@ -3,7 +3,6 @@
         <td>
           <table width="100%" cellpadding="0" cellspacing="0" class="subTab">
               <tr>
-                  <th>Date livr. prévue</th>
                   <?php if (sfConfig::get('app_devise_dollar')) : ?>
                     <th></th>
                     <th><label>Image</label></th>
@@ -20,6 +19,7 @@
                   <th><label>Marge&nbsp;montant</label></th>
                   <th><label>Marge&nbsp;coef&nbsp;/&nbsp;%</label></th>
                   <th><label>Client&nbsp;coef&nbsp;/&nbsp;%</label></th>
+                  <th>Date livr. prévue</th>
                   <th><label>&nbsp;</label></th>
                   <th><label>&nbsp;</label></th>
               </tr>

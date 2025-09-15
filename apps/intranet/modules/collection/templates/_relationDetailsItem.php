@@ -1,9 +1,4 @@
 <tr class="relation_item_form ligne_calcul_marges">
-    <td style="text-align:left;">
-        <?php echo $form['date_livraison_prevue']->render() ?>
-        <?php echo $form['date_livraison_prevue']->renderError() ?>
-    </td>
-
     <?php if (sfConfig::get('app_devise_dollar')) : ?>
         <td>
             <a href="<?php echo CollectionDetailTable::getInstance()->getUploadPath(false).$form['image']->getValue() ?>" target="_blank"><img height="50" src="<?php echo CollectionDetailTable::getInstance()->getUploadPath(false).$form['image']->getValue() ?>" /></a>
@@ -46,6 +41,10 @@
     <td><span class="marge_usd">0</span>&nbsp;$ / <span class="marge_eur">0</span>&nbsp;€</td>
     <td><span class="marge_coef">0</span> / <span class="marge_part">0</span>&nbsp;%</td>
     <td><span class="marge_client_coef">0</span> / <span class="marge_client_part">0</span>&nbsp;%</td>
+    <td style="text-align:left;">
+        <?php echo $form['date_livraison_prevue']->render() ?>
+        <?php echo $form['date_livraison_prevue']->renderError() ?>
+    </td>
     <td class="px-1">
         <a class="lien_supprimer_ligne" href="#">X</a>
     </td>
