@@ -4,8 +4,7 @@
           <table width="100%" cellpadding="0" cellspacing="0" class="subTab">
               <tr>
                   <?php if (sfConfig::get('app_devise_dollar')) : ?>
-                    <th></th>
-                    <th><label>Image</label></th>
+                    <th colspan="2"><label>Image</label></th>
                   <?php endif ?>
                   <th><label>Colori</label></th>
                   <th><label>Quantité</label></th>
