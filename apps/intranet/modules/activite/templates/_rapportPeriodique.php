@@ -224,7 +224,7 @@
 
 <p class="text-center mt-3 mb-0 details">
   <a class="btn btn-light btn-sm text-uppercase" data-toggle="collapse" href="#details<?php if(isset($annuel)): ?>Annee<?php else: ?>Periode<?php endif; ?>" role="button" aria-expanded="false">
-    Voir le détail par catégorie <span class="bi bi-chevron-down"></span>
+    Voir le détail des quantités par catégorie <span class="bi bi-chevron-down"></span>
   </a>
 </p>
 
