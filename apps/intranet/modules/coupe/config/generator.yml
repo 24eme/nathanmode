@@ -18,7 +18,7 @@ generator:
         tissu: { label: "Qualité" }
         date_commande: { date_format: dd/MM/yyyy }
         livre_le: { date_format: dd/MM/yyyy, label: "Date livraison" }
-        piece_categorie: { label: "PF Type" }
+        piece_categorie: { label: "PF Catégorie" }
         piece: { label: "Produit Fini" }
         nbrelance: {label: Relances}
       list:

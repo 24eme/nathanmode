@@ -2,7 +2,7 @@
     <tr>
         <th><label>Colori</label></th>
         <th><label>Métrage</label></th>
-        <th><label>PF Type</label></th>
+        <th><label>PF Catégorie</label></th>
         <th><label>PF</label></th>
         <th><label>Prix</label></th>
         <th><label>&nbsp;</label></th>

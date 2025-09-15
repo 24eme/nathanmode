@@ -64,14 +64,14 @@
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 							</tr>
-							
+
 				  			<tr>
 				  				<th>Saison</th>
 				  				<th>N° cde</th>
 				  				<th>Client</th>
 				  				<th>Commercial(CC)</th>
 				  				<th>Date cde</th>
-				  				<th>Type</th>
+				  				<th>Catégorie</th>
 				  				<th>Qualité</th>
 				  				<th>Colori</th>
 				  				<th>Métrage</th>
@@ -408,7 +408,7 @@
   				<th>Client</th>
   				<th>Commercial(CC)</th>
   				<th>Date cde</th>
-  				<th>Type</th>
+  				<th>Catégorie</th>
   				<th>Qualité</th>
   				<th>Colori</th>
   				<th>Métrage</th>

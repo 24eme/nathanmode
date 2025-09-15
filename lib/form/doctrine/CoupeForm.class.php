@@ -67,7 +67,7 @@ class CoupeForm extends BaseCoupeForm
 
       $this->getWidget('piece')->setLabel("Produit Fini");
       $this->setWidget('piece_categorie', new sfWidgetFormChoice(array('choices' => $this->getPieceCategories())));
-      $this->getWidget('piece_categorie')->setLabel("PF Type");
+      $this->getWidget('piece_categorie')->setLabel("PF Catégorie");
       $this->setValidator('piece_categorie', new sfValidatorChoice(
           array('choices' => array_keys($this->getPieceCategories()),
                 'required' => $this->getValidator('piece_categorie')->getOption('required'),

@@ -30,7 +30,7 @@
                 <th>Client</th>
                 <th>Qualité</th>
                 <th>Colori</th>
-                <th>Quantité Type</th>
+                <th>Quantité Catégorie</th>
                 <th>Quantité</th>
                 <th>Prix</th>
                 <th>Date livraison</th>
