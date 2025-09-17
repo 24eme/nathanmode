@@ -24,18 +24,14 @@
         <div class="input-group">
             <?php echo $form['prix_achat']->render(array('class' => 'input-float prix_achat form-control')); ?>
             <?php echo $form['prix_achat']->renderError(); ?>
-            <div class="input-group-append">
-                <span class="input-group-text devise-symbol"></span>
-            </div>
+            <span class="input-group-text devise-symbol"></span>
         </div>
     </td>
     <td>
         <div class="input-group">
             <?php echo $form['prix']->render(array('class' => 'input-float prix_vente form-control')); ?>
             <?php echo $form['prix']->renderError(); ?>
-            <div class="input-group-append">
-                <span class="input-group-text devise-symbol"></span>
-            </div>
+            <span class="input-group-text devise-symbol"></span>
         </div>
     </td>
     <td><span class="marge_usd">0</span>&nbsp;$ / <span class="marge_eur">0</span>&nbsp;€</td>

@@ -129,9 +129,7 @@
                   <div class="input-group">
                       <?php echo $form['prix_public']->render(array('class' => 'input-float form-control')) ?>
                       <?php echo $form['prix_public']->renderError() ?>
-                      <div class="input-group-append">
-                          <span class="input-group-text" style="font-size:13px;">€</span>
-                      </div>
+                      <span class="input-group-text" style="font-size:13px;">€</span>
                   </div>
 
               </td>
