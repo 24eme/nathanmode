@@ -15,9 +15,7 @@
     <div class="input-group">
         <?php echo $form['prix']->render(array('class' => 'input-float prix_vente form-control')) ?>
         <?php echo $form['prix']->renderError() ?>
-        <div class="input-group-append">
-            <span class="input-group-text devise-symbol"></span>
-        </div>
+       <span class="input-group-text devise-symbol"></span>
     </div>
   </td>
   <td>

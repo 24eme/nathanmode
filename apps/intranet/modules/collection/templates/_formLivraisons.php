@@ -49,7 +49,7 @@
 
         <?php include_partial('collection/relationRetardsForm', array('form' => $form)) ?>
 
-        <div class="subTitle"><?php echo $form['observation_livraison']->renderLabel() ?></td></div>
+        <div class="subTitle"><?php echo $form['observation_livraison']->renderLabel() ?></div>
 
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
           <tr>
