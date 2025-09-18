@@ -676,7 +676,7 @@ function calculeIndicateurs(tr) {
   const frais = parseFloat(document.getElementById('collection_part_frais').value) || 0;
 
   const prixPublicTTC = parseFloat(document.getElementById('collection_prix_public').value) || 0;
-  const prixPublicHT = (prixPublicTTC / 1.2).toFixed(2);
+  const prixPublicHT = prixPublicTTC ? (prixPublicTTC / 1.2).toFixed(2) : 0;
 
   const inputAchat = tr.querySelector('.prix_achat');
   const inputVente = tr.querySelector('.prix_vente');
