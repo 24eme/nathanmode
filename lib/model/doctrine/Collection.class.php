@@ -103,6 +103,12 @@ class Collection extends BaseCollection
     		}
     	}
 	    $this->date_retard = $dateRetardMax;
+
+      $this->updateResteALivrer();
+      if ($this->getFichierConfirmation() && $this->getSituation() == Situations::SITUATION_ATT_CONFIRMATION) {
+        $this->setSituation(Situations::SITUATION_EN_COURS);
+      }
+      
       parent::save($conn);
       $montantFacture = 0;
       $montantCommande = 0;
@@ -145,16 +151,8 @@ class Collection extends BaseCollection
       } elseif ($cc = CreditCommandeTable::getInstance()->getByCollectionId($this->getId())) {
         $cc->delete();
       }
-      if ($this->getFichierConfirmation() && $this->getSituation() == Situations::SITUATION_ATT_CONFIRMATION) {
-        $this->setSituation(Situations::SITUATION_EN_COURS);
-      }
-      $this->updateResteALivrer();
 
-      $collectionDetails = $this->getCollectionDetails();
 
-      foreach ($collectionDetails as $collectionDetail) {
-        $collectionDetail->updateResteALivrerProduit($this);
-      }
     }
 
     public function updateResteALivrer() {

@@ -26,16 +26,19 @@ class CollectionDetail extends BaseCollectionDetail
     	}
         parent::delete($conn);
     }
-    
+
   public function save(Doctrine_Connection $conn = null)
   {
   	$commande = $this->updateCommande();
  	$commande->save();
  	$this->setCommandeId($commande->getId());
  	$this->setCommande($commande);
+
+
+    $this->updateResteALivrerProduit();
     return parent::save($conn);
   }
-  
+
   public function updateCommande()
   {
   	$commande = ($this->isNew())? new Commande() : $this->getCommande();
@@ -139,7 +142,8 @@ class CollectionDetail extends BaseCollectionDetail
   }
 
 
-  public function updateResteALivrerProduit($collection) {
+  public function updateResteALivrerProduit() {
+      $collection = $this->getCollection();
         $livraisons = $collection->getCollectionLivraisons();
 
         $resteALivrerProduit = $this->getPiece() ?: $this->getMetrage();
