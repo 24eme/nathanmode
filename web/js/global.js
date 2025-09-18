@@ -708,7 +708,7 @@ function calculeIndicateurs(tr) {
   spanPart.textContent = part.toFixed(2);
 
   const prixClient = prixVenteEur * (1+frais/100);
-  const coefClient = prixClient !== 0 ? prixPublicTTC / prixClient : 0;
+  const coefClient = prixClient !== 0 ? prixPublicHT / prixClient : 0;
   const partClient = prixPublicHT !== 0 ? (prixPublicHT - prixClient) / prixPublicHT * 100 : 0;
 
   spanCoefClient.textContent = coefClient.toFixed(2);
