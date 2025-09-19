@@ -35,6 +35,10 @@ class CollectionDetail extends BaseCollectionDetail
  	$this->setCommande($commande);
 
 
+  if($this->getDeviseFournisseurId() == Devise::POURCENTAGE_AUTOMATIQUE_MARGE_ID) {
+    $this->getCollection()->setPrixFournisseur($this->getPrixFournisseur());
+  }
+
 
 
     $this->updateResteALivrerProduit();
@@ -48,6 +52,11 @@ class CollectionDetail extends BaseCollectionDetail
     }
 
     return $this->getCollection()->getDeviseFournisseurId();
+  }
+
+  public function getPrixVente() {
+
+      return $this->getPrix();
   }
 
   public function getPrixFournisseur() {

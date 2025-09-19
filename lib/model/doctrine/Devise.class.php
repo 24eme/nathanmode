@@ -20,6 +20,11 @@ class Devise extends BaseDevise
 		public function __toString()
     {
 
-        return $this->symbole;
+        return $this->symbole . " (".strtolower($this->libelle).")";
+    }
+
+    public function isPourcentage() {
+
+        return $this->is_pourcentage;
     }
 }

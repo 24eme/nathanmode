@@ -127,32 +127,30 @@
               <td><?php echo $form['prix_public']->renderLabel() ?>&nbsp;:</td>
               <td>
                   <div class="input-group">
-                      <?php echo $form['prix_public']->render(array('class' => 'input-float form-control')) ?>
+                      <?php echo $form['prix_public']->render(array('class' => 'input-float form-control form-control-sm')) ?>
                       <?php echo $form['prix_public']->renderError() ?>
-                      <span class="input-group-text" style="font-size:13px;">€</span>
+                      <span class="input-group-text" style="font-size:13px; width: 36px;">€</span>
                   </div>
-
               </td>
             </tr>
             <tr>
               <td><?php echo $form['part_frais']->renderLabel() ?>&nbsp;:</td>
               <td>
-                <?php echo $form['part_frais']->render(array('class' => 'input-float')) ?>
-                <?php echo $form['part_frais']->renderError() ?>
+                <div class="input-group">
+                    <?php echo $form['part_frais']->render(array('class' => 'input-float form-control form-control-sm')) ?>
+                    <?php echo $form['part_frais']->renderError() ?>
+                    <span class="input-group-text" style="font-size:13px; width: 36px;">%</span>
+                </div>
               </td>
             </tr>
             <tr>
               <td><?php echo $form['part_marge']->renderLabel() ?>&nbsp;:</td>
               <td>
-                <?php echo $form['part_marge']->render(array('class' => 'input-float')) ?>
-                <?php echo $form['part_marge']->renderError() ?>
-              </td>
-            </tr>
-            <tr>
-              <td><?php echo $form['part_commission']->renderLabel() ?>&nbsp;:</td>
-              <td>
-                <?php echo $form['part_commission']->render(array('class' => 'input-float')) ?>
-                <?php echo $form['part_commission']->renderError() ?>
+                <div class="input-group">
+                    <?php echo $form['part_marge']->render(array('class' => 'input-float form-control form-control-sm')) ?>
+                    <?php echo $form['part_marge']->renderError() ?>
+                    <span class="input-group-text" style="font-size:13px; width: 36px;">%</span>
+                </div>
               </td>
             </tr>
           </table>
