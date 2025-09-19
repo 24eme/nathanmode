@@ -35,8 +35,33 @@ class CollectionDetail extends BaseCollectionDetail
  	$this->setCommande($commande);
 
 
+
+
     $this->updateResteALivrerProduit();
     return parent::save($conn);
+  }
+
+  public function getDeviseFournisseurId() {
+    if ($this->getCollection()->getPrixFournisseur() == "" && $this->getCollection()->getDeviseFournisseurId() == Devise::POURCENTAGE_ID) {
+
+      return $this->getCollection()->getFournisseur()->getDeviseId();
+    }
+
+    return $this->getCollection()->getDeviseFournisseurId();
+  }
+
+  public function getPrixFournisseur() {
+    if($this->getCollection()->getDeviseFournisseurId() == Devise::POURCENTAGE_AUTOMATIQUE_MARGE_ID) {
+
+        return round(100 - ($this->getPrixAchat() * 100 / $this->getPrixVente()), 2);
+    }
+
+    if ($this->getCollection()->getPrixFournisseur() == "" && $this->getCollection()->getDeviseFournisseurId() == Devise::POURCENTAGE_ID) {
+
+      return $this->getCollection()->getFournisseur()->getCommission();
+    }
+
+    return $this->getCollection()->getPrixFournisseur();
   }
 
   public function updateCommande()
@@ -47,17 +72,13 @@ class CollectionDetail extends BaseCollectionDetail
     $commande->setCommercialId($this->getCollection()->getCommercialId());
     $commande->setClientId($this->getCollection()->getClientId());
     $commande->setDeviseMontantId($this->getDeviseId());
-    $commande->setDeviseFournisseurId($this->getCollection()->getDeviseFournisseurId());
+    $commande->setDeviseFournisseurId($this->getDeviseFournisseurId());
     $commande->setDeviseCommercialId($this->getCollection()->getDeviseCommercialId());
-  	if ($this->getCollection()->getPrixFournisseur() != "" || $this->getCollection()->getDeviseFournisseurId() != Devise::POURCENTAGE_ID)
-    	$commande->setPrixFournisseur($this->getCollection()->getPrixFournisseur());
-    else {
-    	$commande->setPrixFournisseur($this->getCollection()->getFournisseur()->getCommission());
-    	$commande->setDeviseFournisseurId($this->getCollection()->getFournisseur()->getDeviseId());
-    }
-    if ($this->getCollection()->getPrixCommercial() != "" || $this->getCollection()->getDeviseCommercialId() != Devise::POURCENTAGE_ID)
+    $commande->setPrixFournisseur($this->getPrixFournisseur());
+
+    if ($this->getCollection()->getPrixCommercial() != "" || $this->getCollection()->getDeviseCommercialId() != Devise::POURCENTAGE_ID) {
     	$commande->setPrixCommercial($this->getCollection()->getPrixCommercial());
-    else {
+    } else {
     	$commande->setPrixCommercial($this->getCollection()->getCommercial()->getCommission());
     	$commande->setDeviseCommercialId($this->getCollection()->getCommercial()->getDeviseId());
     }
@@ -78,8 +99,8 @@ class CollectionDetail extends BaseCollectionDetail
     	$commande->setRelation(Commande::TYPE_PRODUCTION);
     else
     	$commande->setRelation(Commande::TYPE_COLLECTION);
-    
-    if ($this->getCollection()->getDeviseFournisseur() == Devise::POURCENTAGE) {
+
+    if ($this->getCollection()->getDeviseFournisseur()->isPourcentage()) {
     	try {
     		if ($this->getPiece()) {
     			$commande->setTotalFournisseur($this->getPiece() * $this->getPrix() * $commande->getPrixFournisseur() / 100);
@@ -92,8 +113,8 @@ class CollectionDetail extends BaseCollectionDetail
     } else {
     	$commande->setTotalFournisseur($this->getCollection()->getPrixFournisseur());
     }
-    
-    if ($this->getCollection()->getDeviseCommercial() == Devise::POURCENTAGE) {
+
+    if ($this->getCollection()->getDeviseCommercial()->isPourcentage()) {
     	try {
     		if ($this->getPiece()) {
     			$commande->setTotalCommercial($this->getPiece() * $this->getPrix() * $commande->getPrixCommercial() / 100);
@@ -143,8 +164,7 @@ class CollectionDetail extends BaseCollectionDetail
 
 
   public function updateResteALivrerProduit() {
-      $collection = $this->getCollection();
-        $livraisons = $collection->getCollectionLivraisons();
+        $livraisons = $this->getCollection()->getCollectionLivraisons();
 
         $resteALivrerProduit = $this->getPiece() ?: $this->getMetrage();
 

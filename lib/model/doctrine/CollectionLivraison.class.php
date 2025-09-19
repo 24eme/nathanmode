@@ -101,7 +101,7 @@ class CollectionLivraison extends BaseCollectionLivraison
     	$facture->setEscompte($escompte);
     	$facture->setDeviseEscompte($this->getEscompteDevise());
     	$facture->setDeviseEscompteId($this->getEscompteDeviseId());
-    	if ($this->getEscompteDevise() && $this->getEscompteDevise()->getSymbole() == Devise::POURCENTAGE) {
+      if ($this->getEscompteDevise() && $this->getEscompteDevise()->isPourcentage()) {
     		try {
     			$montant = $montant - $montant * $escompte / 100;
     		} catch (Exception $e) {}
@@ -119,8 +119,8 @@ class CollectionLivraison extends BaseCollectionLivraison
     	$facture->setRelation(Facture::TYPE_PRODUCTION);
     else
     	$facture->setRelation(Facture::TYPE_COLLECTION);
-    
-    if ($this->getCollection()->getDeviseFournisseur() && $this->getCollection()->getDeviseFournisseur()->getSymbole() == Devise::POURCENTAGE) {
+
+    if ($this->getCollection()->getDeviseFournisseur() && $this->getCollection()->getDeviseFournisseur()->isPourcentage()) {
     	try {
     		if ($this->getPiece()) {
     			$facture->setTotalFournisseur($this->getPiece() * $this->getPrix() * $facture->getPrixFournisseur() / 100);
@@ -133,15 +133,15 @@ class CollectionLivraison extends BaseCollectionLivraison
     } else {
     	$facture->setTotalFournisseur($this->getCollection()->getPrixFournisseur());
     }
-    
-    if ($this->getCollection()->getDeviseCommercial() && $this->getCollection()->getDeviseCommercial()->getSymbole() == Devise::POURCENTAGE) {
+
+    if ($this->getCollection()->getDeviseCommercial() && $this->getCollection()->getDeviseCommercial()->isPourcentage()) {
     	try {
     		if ($this->getPiece()) {
     			$facture->setTotalCommercial($this->getPiece() * $this->getPrix() * $facture->getPrixCommercial() / 100);
     		} else {
     			$facture->setTotalCommercial($this->getMetrage() * $this->getPrix() * $facture->getPrixCommercial() / 100);
     		}
-    		
+
     	} catch (Exception $e) {
     		$facture->setTotalCommercial(0);
     	}

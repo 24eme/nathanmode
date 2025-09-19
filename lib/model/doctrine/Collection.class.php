@@ -207,7 +207,7 @@ class Collection extends BaseCollection
       else
       	$creditCommande->setRelation(Facture::TYPE_COLLECTION);
 
-      if ($this->getDeviseFournisseur() && $this->getDeviseFournisseur()->getSymbole() == Devise::POURCENTAGE) {
+      if ($this->getDeviseFournisseur() && $this->getDeviseFournisseur()->isPourcentage()) {
       	try {
       			$creditCommande->setTotalFournisseur($montant * $creditCommande->getPrixFournisseur() / 100);
       	} catch (Exception $e) {
@@ -215,7 +215,7 @@ class Collection extends BaseCollection
       	}
       }
 
-      if ($this->getDeviseCommercial() && $this->getDeviseCommercial()->getSymbole() == Devise::POURCENTAGE) {
+      if ($this->getDeviseCommercial() && $this->getDeviseFournisseur()->isPourcentage()) {
       	try {
       			$creditCommande->setTotalCommercial($montant * $creditCommande->getPrixCommercial() / 100);
       	} catch (Exception $e) {
