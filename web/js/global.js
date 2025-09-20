@@ -676,7 +676,7 @@ function calculeIndicateurs(tr) {
   const frais = parseFloat(document.getElementById('collection_part_frais').value) || 0;
 
   const prixPublicTTC = parseFloat(document.getElementById('collection_prix_public').value) || 0;
-  const prixPublicHT = (prixPublicTTC / 1.2).toFixed(2);
+  const prixPublicHT = prixPublicTTC ? (prixPublicTTC / 1.2).toFixed(2) : 0;
 
   const inputAchat = tr.querySelector('.prix_achat');
   const inputVente = tr.querySelector('.prix_vente');
@@ -708,7 +708,7 @@ function calculeIndicateurs(tr) {
   spanPart.textContent = part.toFixed(2);
 
   const prixClient = prixVenteEur * (1+frais/100);
-  const coefClient = prixClient !== 0 ? prixPublicTTC / prixClient : 0;
+  const coefClient = prixClient !== 0 ? prixPublicHT / prixClient : 0;
   const partClient = prixPublicHT !== 0 ? (prixPublicHT - prixClient) / prixPublicHT * 100 : 0;
 
   spanCoefClient.textContent = coefClient.toFixed(2);

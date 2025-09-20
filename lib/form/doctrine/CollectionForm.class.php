@@ -159,9 +159,6 @@ class CollectionForm extends BaseCollectionForm
         $this->setWidget('part_marge', new sfWidgetFormInputText());
         $this->setValidator('part_marge', new sfValidatorPass(array('required' => false)));
 
-        $this->setWidget('part_commission', new sfWidgetFormInputText());
-        $this->setValidator('part_commission', new sfValidatorPass(array('required' => false)));
-
         $this->getWidgetSchema()->setLabels(array(
            //Infos Generales
            'saison_id' => 'Saison',
@@ -208,9 +205,8 @@ class CollectionForm extends BaseCollectionForm
            'commande_soldee' => 'Commande soldée',
 
            'prix_public' => 'Prix public TTC',
-           'part_frais' => 'Frais d\'approche (%)',
-           'part_marge' => 'Part de marge (%)',
-           'part_commission' => 'Part de commission (%)',
+           'part_frais' => 'Frais d\'approche',
+           'part_marge' => 'Part de marge',
         ));
 
         $this->getWidget('reste_a_livrer')->setAttribute('readonly', 'readonly');
@@ -244,14 +240,13 @@ class CollectionForm extends BaseCollectionForm
       if (!$this->getObject()->saison_id) {
         $this->defaults['saison_id'] = SaisonTable::getInstance()->getIgByLibelle('ETE '.date('Y'));
       }
-
+      $this->defaults['part_marge'] = 100;
       foreach ($this->getObject()->getCollectionDetails() as $detail) {
         $this->defaults['devise_id'] = $detail->getDeviseId();
         $this->defaults['piece_categorie'] = $detail->getPieceCategorie();
         $this->defaults['prix_public'] = $detail->getPrixPublic();
         $this->defaults['part_frais'] = $detail->getPartFrais();
         $this->defaults['part_marge'] = $detail->getPartMarge();
-        $this->defaults['part_commission'] = $detail->getPartCommission();
       }
       $this->defaults['usd_rate'] = Change::getInstance()->getUSDRate();
       $this->defaults['eur_rate'] = Change::getInstance()->getEURRate();
@@ -279,7 +274,6 @@ class CollectionForm extends BaseCollectionForm
           $taintedValues['details'][$key]['prix_public'] = $taintedValues['prix_public'];
           $taintedValues['details'][$key]['part_frais'] = $taintedValues['part_frais'];
           $taintedValues['details'][$key]['part_marge'] = $taintedValues['part_marge'];
-          $taintedValues['details'][$key]['part_commission'] = $taintedValues['part_commission'];
         }
         foreach ($taintedValues['livraisons'] as $key => $livraison) {
           $taintedValues['livraisons'][$key]['devise_id'] = $taintedValues['devise_id'];

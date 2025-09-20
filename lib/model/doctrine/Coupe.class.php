@@ -151,10 +151,10 @@ class Coupe extends BaseCoupe
     if ($facture->isNew())
     	$facture->setStatut(StatutsFacture::KEY_NON_PAYEE);
     $facture->setRelation(Facture::TYPE_COUPE);
-    
-  
-    
-    if ($this->getDeviseFournisseur() == Devise::POURCENTAGE) {
+
+
+
+    if ($this->getDeviseFournisseur()->isPourcentage()) {
     	try {
     		$facture->setTotalFournisseur($this->getMontantFacture() * $facture->getPrixFournisseur() / 100);
     	} catch (Exception $e) {
@@ -163,8 +163,8 @@ class Coupe extends BaseCoupe
     } else {
     	$facture->setTotalFournisseur($facture->getPrixFournisseur());
     }
-    
-    if ($this->getDeviseCommercial() == Devise::POURCENTAGE) {
+
+    if ($this->getDeviseCommercial()->isPourcentage()) {
     	try {
     		$facture->setTotalCommercial($this->getMontantFacture() * $facture->getPrixCommercial() / 100);
     	} catch (Exception $e) {
@@ -211,7 +211,7 @@ class Coupe extends BaseCoupe
     $commande->setPiece($this->getPiece());
     $commande->setQualite($this->getTissu());
     $commande->setColori($this->getColori());
-    if ($this->getDeviseFournisseur() == Devise::POURCENTAGE) {
+    if ($this->getDeviseFournisseur()->isPourcentage()) {
     	try {
     		$commande->setTotalFournisseur($this->getMontantFacture() * $commande->getPrixFournisseur() / 100);
     	} catch (Exception $e) {
@@ -220,7 +220,7 @@ class Coupe extends BaseCoupe
     } else {
     	$commande->setTotalFournisseur($commande->getPrixFournisseur());
     }
-    if ($this->getDeviseCommercial() == Devise::POURCENTAGE) {
+    if ($this->getDeviseCommercial()->isPourcentage()) {
     	try {
     		$commande->setTotalCommercial($this->getMontantFacture() * $commande->getPrixCommercial() / 100);
     	} catch (Exception $e) {

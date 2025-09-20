@@ -13,17 +13,17 @@
 class Credit extends BaseCredit
 {
 
-    
+
   public function save(Doctrine_Connection $conn = null)
   {
-  	
+
     if (!$this->getPrixFournisseur()) {
     	$this->setPrixFournisseur($this->getFournisseur()->getCommission());
     }
     if (!$this->getPrixCommercial()) {
     	$this->setPrixCommercial($this->getCommercial()->getCommission());
     }
-  	if ($this->getDeviseFournisseur() == Devise::POURCENTAGE) {
+    if ($this->getDeviseFournisseur()->isPourcentage()) {
     	try {
     		$this->setTotalFournisseur($this->getMontant() * $this->getPrixFournisseur() / 100);
     	} catch (Exception $e) {
@@ -32,8 +32,8 @@ class Credit extends BaseCredit
     } else {
     	$this->setTotalFournisseur($this->getPrixFournisseur());
     }
-    
-    if ($this->getDeviseCommercial() == Devise::POURCENTAGE) {
+
+    if ($this->getDeviseCommercial()->isPourcentage()) {
     	try {
     		$this->setTotalCommercial($this->getMontant() * $this->getPrixCommercial() / 100);
     	} catch (Exception $e) {

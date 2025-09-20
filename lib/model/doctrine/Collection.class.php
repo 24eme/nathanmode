@@ -103,6 +103,12 @@ class Collection extends BaseCollection
     		}
     	}
 	    $this->date_retard = $dateRetardMax;
+
+      $this->updateResteALivrer();
+      if ($this->getFichierConfirmation() && $this->getSituation() == Situations::SITUATION_ATT_CONFIRMATION) {
+        $this->setSituation(Situations::SITUATION_EN_COURS);
+      }
+      
       parent::save($conn);
       $montantFacture = 0;
       $montantCommande = 0;
@@ -145,16 +151,8 @@ class Collection extends BaseCollection
       } elseif ($cc = CreditCommandeTable::getInstance()->getByCollectionId($this->getId())) {
         $cc->delete();
       }
-      if ($this->getFichierConfirmation() && $this->getSituation() == Situations::SITUATION_ATT_CONFIRMATION) {
-        $this->setSituation(Situations::SITUATION_EN_COURS);
-      }
-      $this->updateResteALivrer();
 
-      $collectionDetails = $this->getCollectionDetails();
 
-      foreach ($collectionDetails as $collectionDetail) {
-        $collectionDetail->updateResteALivrerProduit($this);
-      }
     }
 
     public function updateResteALivrer() {
@@ -209,7 +207,7 @@ class Collection extends BaseCollection
       else
       	$creditCommande->setRelation(Facture::TYPE_COLLECTION);
 
-      if ($this->getDeviseFournisseur() && $this->getDeviseFournisseur()->getSymbole() == Devise::POURCENTAGE) {
+      if ($this->getDeviseFournisseur() && $this->getDeviseFournisseur()->isPourcentage()) {
       	try {
       			$creditCommande->setTotalFournisseur($montant * $creditCommande->getPrixFournisseur() / 100);
       	} catch (Exception $e) {
@@ -217,7 +215,7 @@ class Collection extends BaseCollection
       	}
       }
 
-      if ($this->getDeviseCommercial() && $this->getDeviseCommercial()->getSymbole() == Devise::POURCENTAGE) {
+      if ($this->getDeviseCommercial() && $this->getDeviseFournisseur()->isPourcentage()) {
       	try {
       			$creditCommande->setTotalCommercial($montant * $creditCommande->getPrixCommercial() / 100);
       	} catch (Exception $e) {

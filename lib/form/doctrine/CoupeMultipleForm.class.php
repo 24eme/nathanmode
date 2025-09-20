@@ -117,7 +117,7 @@ class CoupeMultipleForm extends BaseForm
                 $coupe->setPieceCategorie($itemValues['quantite_type']);
             }
             $coupe->setPrix($itemValues['prix']);
-            $coupe->setDeviseId(Devise::EUROS_ID);
+            $coupe->setDeviseId(Devise::EURO_ID);
             $coupe->setNumFacture($itemValues['num_facture']);
 
             if($itemValues['fichier']) {
