@@ -36,8 +36,15 @@ protected function buildQuerySoldees()
     	  ->leftJoin($rootAlias.'.Commercial co');
     $query->whereIn($rootAlias.'.situation', array(Situations::SITUATION_SOLDEE, Situations::SITUATION_ECRU_DESIGNER));
    return $query;
-    
+
   }
+
+  public function executeIndex(sfWebRequest $request)
+  {
+
+    return $this->redirect('productiondetails/index');
+  }
+
   public function executeCommandesSoldees(sfWebRequest $request)
   {
 
