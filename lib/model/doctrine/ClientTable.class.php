@@ -90,4 +90,19 @@ class ClientTable extends Doctrine_Table
     	}
     	return $ids;
     }
+
+    public function getListeTriee() {
+        $result = array();
+        $clients = $this->findAll();
+        foreach ($clients as $client) {
+            $result[$client->id] = $client->raison_sociale;
+        }
+
+        uasort($result, function ($a, $b) {
+            $aA = ($a[0] == 'E')? substr($a, -4) : '20'.substr($a, -2);
+            $aB = ($b[0] == 'E')? substr($b, -4) : '20'.substr($b, -2);
+            return $aA <=> $aB;
+        });
+        return $result;
+    }
 }
