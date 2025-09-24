@@ -89,6 +89,7 @@
                     </datalist>
                 </td>
             </tr>
+            <?php if(isset($form['ecru'])): ?>
             <tr>
                 <td><?php echo $form['ecru']->renderLabel() ?>&nbsp;:</td>
                 <td>
@@ -96,6 +97,7 @@
                     <?php echo $form['ecru']->renderError() ?>
                 </td>
               </tr>
+            <?php endif; ?>
           </table>
 
           <table width="33%" border="0" cellpadding="0" cellspacing="0">

@@ -107,3 +107,4 @@ all:
       PLAIDS: "Plaids"
   devise:
     dollar: true
+  no_metrage: true
