@@ -40,6 +40,6 @@
       <?php echo $form['packing_list']->renderError() ?>
   </td>
   <td class="px-1">
-      <a class="lien_supprimer_ligne" href="#">X</a>
+      <a class="lien_supprimer_ligne" href="#"><i class="bi bi-trash3"></i></a>
   </td>
 </tr>

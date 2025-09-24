@@ -1264,3 +1264,9 @@ img.production-images {
 .lma-list :is(.sf_admin_list_td_image, .sf_admin_list_th_image, td:has(#collection_detail_filters_image)) {
     display: none;
 }
+
+.input-group-sm > .btn, .input-group-sm > .form-control, .input-group-sm > .form-select, .input-group-sm > .input-group-text {
+	padding-top: 0.15rem;
+	padding-bottom: 0.15rem;
+	font-size:12px;
+}

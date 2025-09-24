@@ -15,12 +15,11 @@ class Devise extends BaseDevise
     const EURO_ID = 1;
 		const DOLLAR_ID = 2;
 		const POURCENTAGE_ID = 3;
-    const POURCENTAGE_AUTOMATIQUE_MARGE_ID = 4;
 
 		public function __toString()
     {
 
-        return $this->symbole . " (".strtolower($this->libelle).")";
+        return $this->symbole;
     }
 
     public function isPourcentage() {

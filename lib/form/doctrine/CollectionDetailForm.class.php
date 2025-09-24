@@ -41,8 +41,6 @@ class CollectionDetailForm extends BaseCollectionDetailForm
         $this->setValidator('prix_public', new sfValidatorPass(array('required' => false)));
         $this->setWidget('part_frais', new sfWidgetFormInputHidden());
         $this->setValidator('part_frais', new sfValidatorPass(array('required' => false)));
-        $this->setWidget('part_marge', new sfWidgetFormInputHidden());
-        $this->setValidator('part_marge', new sfValidatorPass(array('required' => false)));
         $this->setWidget('part_commission', new sfWidgetFormInputHidden());
         $this->setValidator('part_commission', new sfValidatorPass(array('required' => false)));
         $this->setWidget('date_livraison_prevue', new WidgetFormInputDate());

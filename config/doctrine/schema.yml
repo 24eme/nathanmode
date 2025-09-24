@@ -403,6 +403,9 @@ Collection:
     prix_fournisseur:
       type: double
       default: NULL
+    part_marge:
+      type: double
+      default: NULL
     prix_commercial:
       type: double
       default: NULL

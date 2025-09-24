@@ -15,8 +15,8 @@ class CollectionDetail extends BaseCollectionDetail
 
     public function __toString()
     {
-        
-        return sprintf("%s / %s / %s", $this->colori, $this->metrage, $this->prix); 
+
+        return sprintf("%s / %s / %s", $this->colori, $this->metrage, $this->prix);
     }
 
     public function delete(Doctrine_Connection $conn = null)
@@ -33,13 +33,6 @@ class CollectionDetail extends BaseCollectionDetail
  	$commande->save();
  	$this->setCommandeId($commande->getId());
  	$this->setCommande($commande);
-
-
-  if($this->getDeviseFournisseurId() == Devise::POURCENTAGE_AUTOMATIQUE_MARGE_ID) {
-    $this->getCollection()->setPrixFournisseur($this->getPrixFournisseur());
-  }
-
-
 
     $this->updateResteALivrerProduit();
     return parent::save($conn);
@@ -60,9 +53,9 @@ class CollectionDetail extends BaseCollectionDetail
   }
 
   public function getPrixFournisseur() {
-    if($this->getCollection()->getDeviseFournisseurId() == Devise::POURCENTAGE_AUTOMATIQUE_MARGE_ID) {
+    if($this->getCollection()->getPartMarge()) {
 
-        return round(100 - ($this->getPrixAchat() * 100 / $this->getPrixVente()), 2);
+        return round((100 - ($this->getPrixAchat() * 100 / $this->getPrixVente()) * $this->getCollection()->getPartMarge() / 100), 2);
     }
 
     if ($this->getCollection()->getPrixFournisseur() == "" && $this->getCollection()->getDeviseFournisseurId() == Devise::POURCENTAGE_ID) {

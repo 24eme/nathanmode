@@ -24,9 +24,8 @@ class CollectionForm extends BaseCollectionForm
                        'fichier',
                        'situation',
                        'prix_fournisseur',
-                       'prix_commercial',
+                       'part_marge',
                        'devise_fournisseur_id',
-                       'devise_commercial_id',
                        'qualite',
                        'ecru',
                        'observation_general',
@@ -156,9 +155,6 @@ class CollectionForm extends BaseCollectionForm
         $this->setWidget('part_frais', new sfWidgetFormInputText());
         $this->setValidator('part_frais', new sfValidatorPass(array('required' => false)));
 
-        $this->setWidget('part_marge', new sfWidgetFormInputText());
-        $this->setValidator('part_marge', new sfValidatorPass(array('required' => false)));
-
         $this->getWidgetSchema()->setLabels(array(
            //Infos Generales
            'saison_id' => 'Saison',
@@ -170,10 +166,8 @@ class CollectionForm extends BaseCollectionForm
            'date_commande' => 'Date commande',
            'fichier' => 'Doc de commande',
            'situation' => 'Situation',
-           'prix_fournisseur' => 'Com fournisseur',
-           'prix_commercial' => 'Com commercial',
-           'devise_fournisseur_id' => 'Devise du fournisseur',
-           'devise_commercial_id' => 'Devise du commerciale',
+           'prix_fournisseur' => 'Commission',
+           'devise_fournisseur_id' => 'Devise de la commission',
            'piece_categorie' => 'Catégorie',
            'qualite' => 'Référence',
            'ecru' => 'Ecru à désigner',
@@ -218,35 +212,28 @@ class CollectionForm extends BaseCollectionForm
         $this->getValidator('prix_fournisseur')->setOption('required', true);
 
         $this->getWidget('prix_fournisseur')->setAttribute('class', 'input-float');
-        $this->getWidget('prix_commercial')->setAttribute('class', 'input-float');
 
         $this->setWidget('usd_rate', new sfWidgetFormInputHidden());
         $this->setValidator('usd_rate', new sfValidatorPass(array('required' => false)));
         $this->setWidget('eur_rate', new sfWidgetFormInputHidden());
         $this->setValidator('eur_rate', new sfValidatorPass(array('required' => false)));
+
+        if(sfConfig::get('app_no_metrage')) {
+            unset($this['ecru']);
+        }
     }
 
     public function updateDefaultsFromObject() {
       parent::updateDefaultsFromObject();
 
-      if (!$this->getObject()->devise_commercial_id) {
-        $this->defaults['devise_commercial_id'] = Devise::POURCENTAGE_ID;
-      }
-
-      if (!$this->getObject()->devise_fournisseur_id) {
-        $this->defaults['devise_fournisseur_id'] = Devise::POURCENTAGE_ID;
-      }
-
       if (!$this->getObject()->saison_id) {
         $this->defaults['saison_id'] = SaisonTable::getInstance()->getIgByLibelle('ETE '.date('Y'));
       }
-      $this->defaults['part_marge'] = 100;
       foreach ($this->getObject()->getCollectionDetails() as $detail) {
         $this->defaults['devise_id'] = $detail->getDeviseId();
         $this->defaults['piece_categorie'] = $detail->getPieceCategorie();
         $this->defaults['prix_public'] = $detail->getPrixPublic();
         $this->defaults['part_frais'] = $detail->getPartFrais();
-        $this->defaults['part_marge'] = $detail->getPartMarge();
       }
       $this->defaults['usd_rate'] = Change::getInstance()->getUSDRate();
       $this->defaults['eur_rate'] = Change::getInstance()->getEURRate();
@@ -273,11 +260,12 @@ class CollectionForm extends BaseCollectionForm
           $taintedValues['details'][$key]['piece_categorie'] = $taintedValues['piece_categorie'];
           $taintedValues['details'][$key]['prix_public'] = $taintedValues['prix_public'];
           $taintedValues['details'][$key]['part_frais'] = $taintedValues['part_frais'];
-          $taintedValues['details'][$key]['part_marge'] = $taintedValues['part_marge'];
         }
+        if(isset($taintedValues['livraisons'])) {
         foreach ($taintedValues['livraisons'] as $key => $livraison) {
           $taintedValues['livraisons'][$key]['devise_id'] = $taintedValues['devise_id'];
           $taintedValues['livraisons'][$key]['piece_categorie'] = $taintedValues['piece_categorie'];
+        }
         }
         parent::bind($taintedValues, $taintedFiles);
     }
@@ -291,12 +279,18 @@ class CollectionForm extends BaseCollectionForm
           $this->getObject()->nb_relance = 0;
         }
 
+        if (!$this->getObject()->devise_commercial_id) {
+            $this->getObject()->devise_commercial_id = Devise::POURCENTAGE_ID;
+        }
+
         $quantiteEntree = 0;
+        $marge = 0;
         if(is_array($values['details'])) {
 	        foreach ($values['details'] as $detail) {
             if (isset($detail['metrage'])) {
 	        	    $quantiteEntree += $detail['metrage'];
             }
+            $marge = round((100 - ($detail['prix_achat'] * 100 / $detail['prix']) * $values['part_marge'] / 100), 2);
 	        }
         }
         $quantiteSortie = 0;
@@ -309,5 +303,8 @@ class CollectionForm extends BaseCollectionForm
         }
         $resteALivrer = $quantiteEntree - $quantiteSortie;
         $this->getObject()->setResteALivrer($resteALivrer);
+        if($this->getObject()->getPartMarge()) {
+            $this->getObject()->setPrixFournisseur($marge);
+        }
     }
 }

@@ -48,7 +48,8 @@ abstract class BaseCollectionFormFilter extends BaseFormFilterDoctrine
       'tm_observation'            => new sfWidgetFormFilterInput(),
       'production'                => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'date_retard'               => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
-      'nb_relance'            => new sfWidgetFormFilterInput(),
+      'nb_relance'                => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'part_marge'                => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
@@ -87,7 +88,8 @@ abstract class BaseCollectionFormFilter extends BaseFormFilterDoctrine
       'tm_observation'            => new sfValidatorPass(array('required' => false)),
       'production'                => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'date_retard'               => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
-      'nb_relance'            => new sfValidatorPass(array('required' => false)),
+      'nb_relance'                => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'part_marge'                => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('collection_filters[%s]');
@@ -143,7 +145,8 @@ abstract class BaseCollectionFormFilter extends BaseFormFilterDoctrine
       'tm_observation'            => 'Text',
       'production'                => 'Boolean',
       'date_retard'               => 'Date',
-      'nb_relance' => 'Text'
+      'nb_relance'                => 'Number',
+      'part_marge'                => 'Text',
     );
   }
 }
