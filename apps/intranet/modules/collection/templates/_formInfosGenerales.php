@@ -162,7 +162,7 @@
               <td width="150"><?php echo $form['observation_general']->renderLabel() ?> :</td>
               <td>
                 <?php echo $form['observation_general']->renderError() ?>
-                <?php echo $form['observation_general']->render(array('class' => 'txtArea')) ?>
+                <?php echo $form['observation_general']->render(array('class' => 'txtAreaSmall')) ?>
               </td>
             </tr>
           </table>

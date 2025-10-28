@@ -551,6 +551,18 @@ a:visited.btPlus.right{
 	margin:10px 0 0 0;
 }
 
+.txtAreaSmall {
+    border:1px solid #bfbfbf;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:12px;
+    height:45px;
+    width: 100%;
+    padding:0 0 0 0;
+    resize:none;
+    margin:10px 0 0 0;
+    overflow-y: auto;
+}
+
 .txtAreaBig{
     border:1px solid #bfbfbf;
 	font-family:Arial, Helvetica, sans-serif;
