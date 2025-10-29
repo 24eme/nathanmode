@@ -6,9 +6,12 @@
           <img height="50" width="1" />
         <?php endif; ?>
     </td>
-    <td class="uploadFile pt-1" style="width:85px;">
-        <?php echo $form['image']->render() ?>
-        <?php echo $form['image']->renderError() ?>
+    <td class="uploadFile pt-1">
+	<label for=<?php echo $form['image']->renderId() ?> style="padding:8px 5px;">
+		<span class="btn btn-sm btn-outline-secondary"> <i class="bi bi-upload"></i></span>
+	</label>
+	<?php echo $form['image']->render() ?>
+	<?php echo $form['image']->renderError() ?>
     </td>
     <td class="">
         <?php echo $form['colori']->render(array('class' => 'colori form-control-sm')); ?>

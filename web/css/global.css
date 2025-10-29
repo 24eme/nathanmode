@@ -909,6 +909,10 @@ td.uploadFile a{
   float:right !important;
 }
 
+td.uploadFile.pt-1 > input[id^="collection_details_"] {
+	display: none !important;
+}
+
 td.sf_admin_list_td_qualite,
 input#collection_qualite,
 input#collection_filters_qualite{

@@ -51,9 +51,8 @@ class CollectionDetailForm extends BaseCollectionDetailForm
                 'file_src' => CollectionDetailTable::getInstance()->getUploadPath(false).$this->getObject()->image,
                 'is_image' => true,
                 'edit_mode' => $this->getObject()->image,
-                'with_delete' => true,
-                'delete_label' => 'Supprimer la photo',
-                'template' => '%input%<br />%delete% %delete_label%'
+                'with_delete' => false,
+                'template' => '%input%<br />'
                 )));
 
             $this->setValidator('image', new sfValidatorFile(array(
