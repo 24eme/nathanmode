@@ -1,5 +1,9 @@
 <tr class="relation_item_form ligne_calcul_marges">
     <td>
+        <?php echo $form['qualite']->render(array('class' => 'form-control-sm')); ?>
+        <?php echo $form['qualite']->renderError(); ?>
+    </td>
+    <td>
         <?php if($form['image']->getValue()): ?>
         <a href="<?php echo CollectionDetailTable::getInstance()->getUploadPath(false).$form['image']->getValue() ?>" target="_blank"><img height="50" src="<?php echo CollectionDetailTable::getInstance()->getUploadPath(false).$form['image']->getValue() ?>" /></a>
         <?php else: ?>

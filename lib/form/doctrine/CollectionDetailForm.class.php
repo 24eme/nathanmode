@@ -20,7 +20,8 @@ class CollectionDetailForm extends BaseCollectionDetailForm
                                'prix',
                                'image',
                                'date_livraison_prevue',
-                               'reste_a_livrer_produit'));
+			       'reste_a_livrer_produit',
+			       'qualite'));
 
         $this->getWidgetSchema()->setLabels(array(
           'devise_id' => 'Devise',
@@ -30,7 +31,8 @@ class CollectionDetailForm extends BaseCollectionDetailForm
           'prix' => 'Prix',
           'image' => 'Ajouter une image',
           'date_livraison_prevue' => 'Date de livraison prévue',
-          'reste_a_livrer_produit' => 'Reste à livrer produit'
+	  'reste_a_livrer_produit' => 'Reste à livrer produit',
+	  'qualite' => 'Référence'
         ));
 
         $this->setWidget('devise_id', new sfWidgetFormInputHidden());
@@ -70,7 +72,9 @@ class CollectionDetailForm extends BaseCollectionDetailForm
         if($this->getObject()->reste_a_livrer_produit === null) {
             $collection = $this->getObject()->getCollection();
             $this->getObject()->updateResteALivrerProduit($collection);
-        }
+	}
+    $this->setWidget('qualite', new sfWidgetFormInput());
+    $this->setValidator('qualite', new sfValidatorString(array('required' => true)));
 
     }
 

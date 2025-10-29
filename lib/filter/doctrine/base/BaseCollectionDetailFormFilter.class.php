@@ -29,6 +29,7 @@ abstract class BaseCollectionDetailFormFilter extends BaseFormFilterDoctrine
       'part_commission'        => new sfWidgetFormFilterInput(),
       'date_livraison_prevue'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'reste_a_livrer_produit' => new sfWidgetFormFilterInput(),
+      'qualite'                => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
@@ -48,6 +49,7 @@ abstract class BaseCollectionDetailFormFilter extends BaseFormFilterDoctrine
       'part_commission'        => new sfValidatorPass(array('required' => false)),
       'date_livraison_prevue'  => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
       'reste_a_livrer_produit' => new sfValidatorPass(array('required' => false)),
+      'qualite'                => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('collection_detail_filters[%s]');
@@ -84,6 +86,7 @@ abstract class BaseCollectionDetailFormFilter extends BaseFormFilterDoctrine
       'part_commission'        => 'Text',
       'date_livraison_prevue'  => 'Date',
       'reste_a_livrer_produit' => 'Text',
+      'qualite'                => 'Text',
     );
   }
 }

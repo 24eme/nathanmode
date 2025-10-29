@@ -21,6 +21,7 @@
  * @property double $part_commission
  * @property date $date_livraison_prevue
  * @property double $reste_a_livrer_produit
+ * @property string $qualite
  * @property Collection $Collection
  * @property Devise $Devise
  * @property Commande $Commande
@@ -41,6 +42,7 @@
  * @method double           getPartCommission()         Returns the current record's "part_commission" value
  * @method date             getDateLivraisonPrevue()    Returns the current record's "date_livraison_prevue" value
  * @method double           getResteALivrerProduit()    Returns the current record's "reste_a_livrer_produit" value
+ * @method string           getQualite()                Returns the current record's "qualite" value
  * @method Collection       getCollection()             Returns the current record's "Collection" value
  * @method Devise           getDevise()                 Returns the current record's "Devise" value
  * @method Commande         getCommande()               Returns the current record's "Commande" value
@@ -60,6 +62,7 @@
  * @method CollectionDetail setPartCommission()         Sets the current record's "part_commission" value
  * @method CollectionDetail setDateLivraisonPrevue()    Sets the current record's "date_livraison_prevue" value
  * @method CollectionDetail setResteALivrerProduit()    Sets the current record's "reste_a_livrer_produit" value
+ * @method CollectionDetail setQualite()                Sets the current record's "qualite" value
  * @method CollectionDetail setCollection()             Sets the current record's "Collection" value
  * @method CollectionDetail setDevise()                 Sets the current record's "Devise" value
  * @method CollectionDetail setCommande()               Sets the current record's "Commande" value
@@ -129,6 +132,10 @@ abstract class BaseCollectionDetail extends sfDoctrineRecord
              ));
         $this->hasColumn('reste_a_livrer_produit', 'double', null, array(
              'type' => 'double',
+             ));
+        $this->hasColumn('qualite', 'string', 128, array(
+             'type' => 'string',
+             'length' => 128,
              ));
     }
 

@@ -563,6 +563,9 @@ CollectionDetail:
     reste_a_livrer_produit:
       type: double
       default: NULL
+    qualite:
+      type: string(128)
+      default: NULL
   relations:
     Collection:
       local: collection_id
