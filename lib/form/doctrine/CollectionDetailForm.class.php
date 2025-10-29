@@ -57,7 +57,7 @@ class CollectionDetailForm extends BaseCollectionDetailForm
                 )));
 
             $this->setValidator('image', new sfValidatorFile(array(
-                'mime_types' => array('web_images','image/webp'),
+                'mime_types' => array('image/jpeg', 'image/pjpeg', 'image/png', 'image/x-png', 'image/gif','image/webp'),
                 'required' => $this->getValidator('image')->getOption('required'),
                 'path' => CollectionDetailTable::getInstance()->getUploadPath(true))
                 ));

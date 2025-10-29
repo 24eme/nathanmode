@@ -6,7 +6,7 @@
           <img height="50" width="1" />
         <?php endif; ?>
     </td>
-    <td class="uploadFile pt-1">
+    <td class="uploadFile pt-1" style="width:85px;">
         <?php echo $form['image']->render() ?>
         <?php echo $form['image']->renderError() ?>
     </td>
