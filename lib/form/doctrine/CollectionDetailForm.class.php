@@ -21,7 +21,9 @@ class CollectionDetailForm extends BaseCollectionDetailForm
                                'image',
                                'date_livraison_prevue',
 			       'reste_a_livrer_produit',
-			       'qualite'));
+			       'piece_categorie',
+			       'qualite',
+			      ));
 
         $this->getWidgetSchema()->setLabels(array(
           'devise_id' => 'Devise',
@@ -29,16 +31,16 @@ class CollectionDetailForm extends BaseCollectionDetailForm
           'piece' => 'Quantité',
           'prix_achat' => 'Prix d\'achat',
           'prix' => 'Prix',
+	  'prix_public' => 'Prix public TTC',
           'image' => 'Ajouter une image',
           'date_livraison_prevue' => 'Date de livraison prévue',
 	  'reste_a_livrer_produit' => 'Reste à livrer produit',
+          'piece_categorie' => 'Catégorie',
 	  'qualite' => 'Référence'
         ));
 
         $this->setWidget('devise_id', new sfWidgetFormInputHidden());
         $this->setValidator('devise_id', new sfValidatorPass(array('required' => false)));
-        $this->setWidget('piece_categorie', new sfWidgetFormInputHidden());
-        $this->setValidator('piece_categorie', new sfValidatorPass(array('required' => false)));
         $this->setWidget('prix_public', new sfWidgetFormInputHidden());
         $this->setValidator('prix_public', new sfValidatorPass(array('required' => false)));
         $this->setWidget('part_frais', new sfWidgetFormInputHidden());
@@ -73,6 +75,10 @@ class CollectionDetailForm extends BaseCollectionDetailForm
             $collection = $this->getObject()->getCollection();
             $this->getObject()->updateResteALivrerProduit($collection);
 	}
+
+    $this->setWidget('piece_categorie', new sfWidgetFormChoice(array('choices' => PieceCategories::getListe())));
+    $this->setValidator('piece_categorie', new sfValidatorChoice(['choices' => array_keys(PieceCategories::getListe()), 'required' => true]));
+
     $this->setWidget('qualite', new sfWidgetFormInput());
     $this->setValidator('qualite', new sfValidatorString(array('required' => true)));
 

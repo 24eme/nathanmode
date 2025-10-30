@@ -13,7 +13,18 @@
 	<?php echo $form['image']->render() ?>
 	<?php echo $form['image']->renderError() ?>
     </td>
-    <td class="">
+    <td>
+        <?php echo $form['piece_categorie']->render(array('class' => 'chosen')) ?>
+        <?php echo $form['piece_categorie']->renderError() ?>
+    </td>
+    <td>
+        <?php echo $form['qualite']->render(array('class' => 'form-control-sm')); ?>
+        <?php echo $form['qualite']->renderError(); ?>
+    </td>
+
+
+
+    <td>
         <?php echo $form['colori']->render(array('class' => 'colori form-control-sm')); ?>
         <?php echo $form['colori']->renderError(); ?>
     </td>
