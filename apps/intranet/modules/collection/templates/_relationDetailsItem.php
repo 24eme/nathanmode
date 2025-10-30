@@ -48,6 +48,13 @@
             <span class="input-group-text devise-symbol"></span>
         </div>
     </td>
+     <td>
+        <div class="input-group input-group-sm">
+             <?php echo $form['prix_public']->render(array('class' => 'input-float form-control')) ?>
+             <?php echo $form['prix_public']->renderError() ?>
+             <span class="input-group-text" style="font-size:13px;color: #444;border: 1px solid #aaa">€</span>
+         </div>
+     </td>
     <td><span class="marge_usd">0</span>&nbsp;$ / <span class="marge_eur">0</span>&nbsp;€</td>
     <td><span class="marge_coef">0</span> / <span class="marge_part">0</span>&nbsp;%</td>
     <td><span class="marge_client_coef">0</span> / <span class="marge_client_part">0</span>&nbsp;%</td>

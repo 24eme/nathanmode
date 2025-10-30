@@ -18,6 +18,7 @@ class CollectionDetailForm extends BaseCollectionDetailForm
                                'piece',
                                'prix_achat',
                                'prix',
+                               'prix_public',
                                'image',
                                'date_livraison_prevue',
 			       'reste_a_livrer_produit',
@@ -41,14 +42,15 @@ class CollectionDetailForm extends BaseCollectionDetailForm
 
         $this->setWidget('devise_id', new sfWidgetFormInputHidden());
         $this->setValidator('devise_id', new sfValidatorPass(array('required' => false)));
-        $this->setWidget('prix_public', new sfWidgetFormInputHidden());
-        $this->setValidator('prix_public', new sfValidatorPass(array('required' => false)));
         $this->setWidget('part_frais', new sfWidgetFormInputHidden());
         $this->setValidator('part_frais', new sfValidatorPass(array('required' => false)));
         $this->setWidget('part_commission', new sfWidgetFormInputHidden());
         $this->setValidator('part_commission', new sfValidatorPass(array('required' => false)));
         $this->setWidget('date_livraison_prevue', new WidgetFormInputDate());
         $this->setValidator('date_livraison_prevue', new sfValidatorDate(array('required' => false)));
+
+        $this->setWidget('prix_public', new sfWidgetFormInputText());
+        $this->setValidator('prix_public', new sfValidatorPass(array('required' => false)));
 
         if (sfConfig::get('app_devise_dollar')) {
             $this->setWidget('image', new sfWidgetFormInputFileEditable(array(

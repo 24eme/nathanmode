@@ -17,6 +17,7 @@
                   <?php endif ?>
                   <th><label>Prix d'achat factory</label></th>
                   <th><label>Prix de vente factory</label></th>
+                  <th><label>Prix public TTC</label></th>
                   <th><label>Marge&nbsp;montant</label></th>
                   <th><label>Marge&nbsp;coef&nbsp;/&nbsp;%</label></th>
                   <th><label>Client&nbsp;coef&nbsp;/&nbsp;%</label></th>
