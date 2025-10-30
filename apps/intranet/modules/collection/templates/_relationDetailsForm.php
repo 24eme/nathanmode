@@ -3,7 +3,6 @@
         <td>
           <table width="100%" cellpadding="0" cellspacing="0" class="subTab">
 	      <tr>
-                  <th><label>Référence</label></th>
                   <?php if (sfConfig::get('app_devise_dollar')) : ?>
                     <th colspan="2"><label>Image</label></th>
                   <?php endif ?>
