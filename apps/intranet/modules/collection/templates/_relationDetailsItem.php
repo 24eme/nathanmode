@@ -32,6 +32,10 @@
         <?php echo $form['piece']->render(array('class' => 'quantite input-float form-control form-control-sm')); ?>
         <?php echo $form['piece']->renderError(); ?>
     </td>
+    <td>
+        <?php echo $form['reste_a_livrer_produit']->render(array('class' => 'input-float form-control form-control-sm')); ?>
+        <?php echo $form['reste_a_livrer_produit']->renderError(); ?>
+    </td>
     <?php if(isset($form['prix_achat'])): ?>
     <td>
         <div class="input-group input-group-sm">
@@ -62,10 +66,7 @@
         <?php echo $form['date_livraison_prevue']->render(array('class' => 'form-control form-control-sm')) ?>
         <?php echo $form['date_livraison_prevue']->renderError() ?>
     </td>
-    <td>
-        <?php echo $form['reste_a_livrer_produit']->render(array('class' => 'quantite input-float form-control form-control-sm')); ?>
-        <?php echo $form['reste_a_livrer_produit']->renderError(); ?>
-    </td>
+
     <td class="px-1">
         <a class="lien_supprimer_ligne" href="#"><i class="bi bi-trash3"></i></a>
     </td>
