@@ -86,6 +86,75 @@ class CollectionDetailForm extends BaseCollectionDetailForm
 
     }
 
+
+    public function processValues($values) {
+	if($values['image'] instanceof sfValidatedFile) {
+		$imageOrig =  $values['image'];
+		$imageTempName = $imageOrig->getTempName();
+		$imageType = $imageOrig->getType();
+		$width = 1000;
+		$height = 1000;
+
+		$path =  ltrim(CollectionDetailTable::getInstance()->getUploadPath(), '/');
+
+		list($width_orig, $height_orig) = getimagesize($imageTempName);
+		$ratio_orig = $width_orig/$height_orig;
+
+		if ($width/$height > $ratio_orig) {
+			$width = $height*$ratio_orig;
+		} else {
+			$height = $width/$ratio_orig;
+		}
+
+		if ($imageType === 'image/jpeg' || $imageType === 'image/pjpeg') {
+			$imageRessource = imagecreatefromjpeg($imageTempName);
+		}elseif($imageType === 'image/png' || $imageType === 'image/x-png') {
+			$imageRessource = imagecreatefrompng($imageTempName);
+		} elseif($imageType === 'image/gif') {
+			$imageRessource = imagecreatefromgif($imageTempName);
+		} elseif($imageType === 'image/webp') {
+			$imageRessource = imagecreatefromwebp($imageTempName);
+		}
+
+		$imageNew = imagecreatetruecolor($width, $height);
+
+		if($imageType === 'image/png' || $imageType === 'image/x-png' || $imageType === 'image/gif' || $imageType === 'image/webp') {
+			$transparencyIndex = imagecolortransparent($imageRessource);
+			$transparencyColor = array('red' => 255, 'green' => 255, 'blue' => 255);
+			if ($transparencyIndex >= 0) {
+				$transparencyColor = imagecolorsforindex($imageOrig, $transparencyIndex);
+			}
+			$transparencyIndex = imagecolorallocatealpha($imageNew, $transparencyColor['red'], $transparencyColor['green'], $transparencyColor['blue'], 127);
+			imagefill($imageNew, 0, 0, $transparencyIndex);
+			imagesavealpha($imageNew, true);
+			imagecolortransparent($imageNew, $transparencyIndex);
+		}
+
+		imagecopyresampled($imageNew,$imageRessource , 0, 0, 0, 0, $width, $height, $width_orig, $height_orig);
+		if ($imageType === 'image/jpeg' || $imageType === 'image/pjpeg') {
+			imagejpeg($imageNew, 'uploads/tmp_images/'.$this->getObject()->image);
+		} elseif($imageType === 'image/png' || $imageType === 'image/x-png') {
+			imagepng($imageNew, 'uploads/tmp_images/'.$this->getObject()->image);
+		} elseif($imageType === 'image/gif') {
+			imagegif($imageNew, 'uploads/tmp_images/'.$this->getObject()->image);
+		} elseif($imageType === 'image/webp') {
+			imagewebp($imageNew, 'uploads/tmp_images/'.$this->getObject()->image);
+		}
+
+		$finalImage = new sfValidatedFile($imageOrig->getOriginalName(), $imageType, 'uploads/tmp_images/'.$this->getObject()->image, filesize('uploads/tmp_images/'.$this->getObject()->image), $path);
+		if ($this->getObject()->image) {
+			unlink('uploads/production_images/'.$this->getObject()->image);
+		}
+		$this->getObject()->setImage($finalImage);
+		$values['image'] = $finalImage;
+
+		imagedestroy($imageNew);
+		imagedestroy($imageRessource);
+
+		return parent::processValues($values);
+	    }
+    }
+
     public function updateDefaultsFromObject() {
       parent::updateDefaultsFromObject();
 
@@ -102,6 +171,11 @@ class CollectionDetailForm extends BaseCollectionDetailForm
       } else {
         $values['metrage'] = null;
       }
+
+      if (scandir('uploads/tmp_images/')){
+	      array_map('unlink', glob('uploads/tmp_images/*'));
+      }
+
       parent::doUpdateObject($values);
     }
 }
