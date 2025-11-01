@@ -71,13 +71,6 @@
               </td>
           </tr>
             <tr>
-                <td><?php echo $form['piece_categorie']->renderLabel() ?>&nbsp;:</td>
-                <td>
-                    <?php echo $form['piece_categorie']->render(array('class' => 'chosen')) ?>
-                    <?php echo $form['piece_categorie']->renderError() ?>
-                </td>
-            </tr>
-            <tr>
                 <td><?php echo $form['qualite']->renderLabel() ?>&nbsp;:</td>
                 <td>
                     <?php echo $form['qualite']->render(array('list' => "qualites", 'required' => 'required')) ?>
@@ -134,26 +127,6 @@
                   <?php echo $form['devise_fournisseur_id']->render(array('class' => 'small')) ?>
                   <?php echo $form['prix_fournisseur']->renderError() ?>
                 </td>
-            </tr>
-            <tr>
-              <td><?php echo $form['prix_public']->renderLabel() ?>&nbsp;:</td>
-              <td>
-                  <div class="input-group input-group-sm">
-                      <?php echo $form['prix_public']->render(array('class' => 'input-float form-control')) ?>
-                      <?php echo $form['prix_public']->renderError() ?>
-                      <span class="input-group-text" style="font-size:13px; width: 36px;">€</span>
-                  </div>
-              </td>
-            </tr>
-            <tr>
-              <td><?php echo $form['part_frais']->renderLabel() ?>&nbsp;:</td>
-              <td>
-                <div class="input-group input-group-sm">
-                    <?php echo $form['part_frais']->render(array('class' => 'input-float form-control')) ?>
-                    <?php echo $form['part_frais']->renderError() ?>
-                    <span class="input-group-text" style="font-size:13px; width: 36px;">%</span>
-                </div>
-              </td>
             </tr>
           </table>
 

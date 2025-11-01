@@ -146,15 +146,6 @@ class CollectionForm extends BaseCollectionForm
         $this->setWidget('devise_id', new sfWidgetFormDoctrineChoice(array('model' => 'Devise', 'add_empty' => false)));
         $this->setValidator('devise_id', new sfValidatorDoctrineChoice(array('model' => 'Devise')));
 
-        $this->setWidget('piece_categorie', new sfWidgetFormChoice(array('choices' => PieceCategories::getListe())));
-        $this->setValidator('piece_categorie', new sfValidatorChoice(['choices' => array_keys(PieceCategories::getListe()), 'required' => true]));
-
-        $this->setWidget('prix_public', new sfWidgetFormInputText());
-        $this->setValidator('prix_public', new sfValidatorPass(array('required' => false)));
-
-        $this->setWidget('part_frais', new sfWidgetFormInputText());
-        $this->setValidator('part_frais', new sfValidatorPass(array('required' => false)));
-
         $this->getWidgetSchema()->setLabels(array(
            //Infos Generales
            'saison_id' => 'Saison',
@@ -198,8 +189,6 @@ class CollectionForm extends BaseCollectionForm
            'observation_livraison' => 'Observation',
            'commande_soldee' => 'Commande soldée',
 
-           'prix_public' => 'Prix public TTC',
-           'part_frais' => 'Frais d\'approche',
            'part_marge' => 'Part de marge',
         ));
 
@@ -231,9 +220,6 @@ class CollectionForm extends BaseCollectionForm
       }
       foreach ($this->getObject()->getCollectionDetails() as $detail) {
         $this->defaults['devise_id'] = $detail->getDeviseId();
-        $this->defaults['piece_categorie'] = $detail->getPieceCategorie();
-        $this->defaults['prix_public'] = $detail->getPrixPublic();
-        $this->defaults['part_frais'] = $detail->getPartFrais();
       }
       $this->defaults['usd_rate'] = Change::getInstance()->getUSDRate();
       $this->defaults['eur_rate'] = Change::getInstance()->getEURRate();
@@ -257,14 +243,10 @@ class CollectionForm extends BaseCollectionForm
     {
         foreach ($taintedValues['details'] as $key => $detail) {
           $taintedValues['details'][$key]['devise_id'] = $taintedValues['devise_id'];
-          $taintedValues['details'][$key]['piece_categorie'] = $taintedValues['piece_categorie'];
-          $taintedValues['details'][$key]['prix_public'] = $taintedValues['prix_public'];
-          $taintedValues['details'][$key]['part_frais'] = $taintedValues['part_frais'];
         }
         if(isset($taintedValues['livraisons'])) {
         foreach ($taintedValues['livraisons'] as $key => $livraison) {
           $taintedValues['livraisons'][$key]['devise_id'] = $taintedValues['devise_id'];
-          $taintedValues['livraisons'][$key]['piece_categorie'] = $taintedValues['piece_categorie'];
         }
         }
         parent::bind($taintedValues, $taintedFiles);
