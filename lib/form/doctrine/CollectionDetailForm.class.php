@@ -151,9 +151,8 @@ class CollectionDetailForm extends BaseCollectionDetailForm
 
 		imagedestroy($imageNew);
 		imagedestroy($imageRessource);
-
-		return parent::processValues($values);
-	    }
+	}
+	return parent::processValues($values);
     }
 
     public function updateDefaultsFromObject() {
