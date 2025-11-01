@@ -661,9 +661,11 @@ function updateIndicateurs() {
   lignes.forEach(ligne => {
     const inputAchat = ligne.querySelector('.prix_achat');
     const inputVente = ligne.querySelector('.prix_vente');
+    const inputFrais = ligne.querySelector('.part_frais');
     if (inputAchat && inputVente) {
         inputAchat.addEventListener('input', () => calculeIndicateurs(ligne));
         inputVente.addEventListener('input', () => calculeIndicateurs(ligne));
+	inputFrais.addEventListener('input', () => calculeIndicateurs(ligne))
         calculeIndicateurs(ligne);
       }
   });
@@ -673,46 +675,53 @@ function calculeIndicateurs(tr) {
   const usdRate = document.getElementById('collection_usd_rate').value;
   const eurRate = document.getElementById('collection_eur_rate').value;
   const devise = document.getElementById('collection_devise_id').value;
-  const frais = parseFloat(document.getElementById('collection_part_frais').value) || 0;
 
-  const prixPublicTTC = parseFloat(document.getElementById('collection_prix_public').value) || 0;
-  const prixPublicHT = prixPublicTTC ? (prixPublicTTC / 1.2).toFixed(2) : 0;
+  document.querySelectorAll('.ligne_calcul_marges').forEach(calcMargesLigne => {
 
-  const inputAchat = tr.querySelector('.prix_achat');
-  const inputVente = tr.querySelector('.prix_vente');
-  const spanMargeEur = tr.querySelector('.marge_eur');
-  const spanMargeUsd = tr.querySelector('.marge_usd');
-  const spanCoef = tr.querySelector('.marge_coef');
-  const spanPart = tr.querySelector('.marge_part');
-  const spanCoefClient = tr.querySelector('.marge_client_coef');
-  const spanPartClient = tr.querySelector('.marge_client_part');
+    const pxPublicId = calcMargesLigne.querySelector('[id^="collection_details_"][id$="_prix_public"]');
+    const prixPublicTTC = parseFloat(pxPublicId.value) || 0;
+    const prixPublicHT = prixPublicTTC ? (prixPublicTTC / 1.2).toFixed(2) : 0;
+    console.log(prixPublicHT);
 
-  const prixAchat = parseFloat(inputAchat.value) || 0;
-  const prixVente = parseFloat(inputVente.value) || 0;
+    const inputAchat = calcMargesLigne.querySelector('.prix_achat');
+    const inputVente = calcMargesLigne.querySelector('.prix_vente');
+    const spanMargeEur = calcMargesLigne.querySelector('.marge_eur');
+    const spanMargeUsd = calcMargesLigne.querySelector('.marge_usd');
+    const spanCoef = calcMargesLigne.querySelector('.marge_coef');
+    const spanPart = calcMargesLigne.querySelector('.marge_part');
+    const spanCoefClient = calcMargesLigne.querySelector('.marge_client_coef');
+    const spanPartClient = calcMargesLigne.querySelector('.marge_client_part');
 
-  const marge = prixVente - prixAchat;
-  const coef = prixAchat !== 0 ? prixVente / prixAchat : 0;
-  const part = prixVente !== 0 ? marge / prixVente * 100 : 0;
-  let prixVenteEur  = prixVente;
+    const prixAchat = parseFloat(inputAchat.value) || 0;
+    const prixVente = parseFloat(inputVente.value) || 0;
 
-  if (devise == 1) {
-    spanMargeEur.textContent = marge.toFixed();
-    spanMargeUsd.textContent = (marge*usdRate).toFixed();
-  } else if (devise == 2) {
-    spanMargeUsd.textContent = marge.toFixed();
-    spanMargeEur.textContent = (marge*eurRate).toFixed();
-    prixVenteEur *= eurRate;
-  }
+    const marge = prixVente - prixAchat;
+    const coef = prixAchat !== 0 ? prixVente / prixAchat : 0;
+    const part = prixVente !== 0 ? marge / prixVente * 100 : 0;
+    let prixVenteEur  = prixVente;
 
-  spanCoef.textContent = coef.toFixed(2);
-  spanPart.textContent = part.toFixed(2);
+    if (devise == 1) {
+      spanMargeEur.textContent = marge.toFixed();
+      spanMargeUsd.textContent = (marge*usdRate).toFixed();
+    } else if (devise == 2) {
+      spanMargeUsd.textContent = marge.toFixed();
+      spanMargeEur.textContent = (marge*eurRate).toFixed();
+      prixVenteEur *= eurRate;
+    }
 
-  const prixClient = prixVenteEur * (1+frais/100);
-  const coefClient = prixClient !== 0 ? prixPublicHT / prixClient : 0;
-  const partClient = prixPublicHT !== 0 ? (prixPublicHT - prixClient) / prixPublicHT * 100 : 0;
+    spanCoef.textContent = coef.toFixed(2);
+    spanPart.textContent = part.toFixed(2);
 
-  spanCoefClient.textContent = coefClient.toFixed(2);
-  spanPartClient.textContent = partClient.toFixed(2);
+    const partFraisId = calcMargesLigne.querySelector('[id^="collection_details_"][id$="_part_frais"]');
+
+    const frais = parseFloat(partFraisId.value) || 0;
+    const prixClient = prixVenteEur * (1+frais/100);
+    const coefClient = prixClient !== 0 ? prixPublicHT / prixClient : 0;
+    const partClient = prixPublicHT !== 0 ? (prixPublicHT - prixClient) / prixPublicHT * 100 : 0;
+
+    spanCoefClient.textContent = coefClient.toFixed(2);
+    spanPartClient.textContent = partClient.toFixed(2);
+  });
 
 }
 

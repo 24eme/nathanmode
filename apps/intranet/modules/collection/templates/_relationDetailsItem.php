@@ -61,7 +61,7 @@
      </td>
      <td>
 	<div class="input-group input-group-sm">
-		<?php echo $form['part_frais']->render(array('class' => 'input-float form-control')) ?>
+		<?php echo $form['part_frais']->render(array('class' => 'input-float form-control part_frais')) ?>
 		<?php echo $form['part_frais']->renderError() ?>
 		<span class="input-group-text" style="font-size:13px; width: 36px;">%</span>
 	</div>

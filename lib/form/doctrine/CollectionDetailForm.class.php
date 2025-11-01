@@ -161,6 +161,10 @@ class CollectionDetailForm extends BaseCollectionDetailForm
       if ($this->getObject()->metrage) {
         $this->defaults['piece'] = $this->getObject()->metrage;
       }
+
+      if ($this->getObject()->part_frais == null ) {
+	      $this->defaults['part_frais'] = 30;
+      }
     }
 
     public function doUpdateObject($values) {
