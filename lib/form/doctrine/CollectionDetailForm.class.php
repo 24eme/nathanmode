@@ -19,6 +19,7 @@ class CollectionDetailForm extends BaseCollectionDetailForm
                                'prix_achat',
                                'prix',
                                'prix_public',
+			       'part_frais',
                                'image',
                                'date_livraison_prevue',
 			       'reste_a_livrer_produit',
@@ -33,8 +34,9 @@ class CollectionDetailForm extends BaseCollectionDetailForm
           'prix_achat' => 'Prix d\'achat',
           'prix' => 'Prix',
 	  'prix_public' => 'Prix public TTC',
-          'image' => 'Ajouter une image',
-          'date_livraison_prevue' => 'Date de livraison prévue',
+	  'part_frais' => 'Frais d\'approche',
+	  'image' => 'Ajouter une image',
+	  'date_livraison_prevue' => 'Date de livraison prévue',
 	  'reste_a_livrer_produit' => 'Reste à livrer produit',
           'piece_categorie' => 'Catégorie',
 	  'qualite' => 'Référence'
@@ -42,8 +44,6 @@ class CollectionDetailForm extends BaseCollectionDetailForm
 
         $this->setWidget('devise_id', new sfWidgetFormInputHidden());
         $this->setValidator('devise_id', new sfValidatorPass(array('required' => false)));
-        $this->setWidget('part_frais', new sfWidgetFormInputHidden());
-        $this->setValidator('part_frais', new sfValidatorPass(array('required' => false)));
         $this->setWidget('part_commission', new sfWidgetFormInputHidden());
         $this->setValidator('part_commission', new sfValidatorPass(array('required' => false)));
         $this->setWidget('date_livraison_prevue', new WidgetFormInputDate());
@@ -51,6 +51,8 @@ class CollectionDetailForm extends BaseCollectionDetailForm
 
         $this->setWidget('prix_public', new sfWidgetFormInputText());
         $this->setValidator('prix_public', new sfValidatorPass(array('required' => false)));
+	$this->setWidget('part_frais', new sfWidgetFormInputText());
+	$this->setValidator('part_frais', new sfValidatorPass(array('required' => false)));
 
         if (sfConfig::get('app_devise_dollar')) {
             $this->setWidget('image', new sfWidgetFormInputFileEditable(array(

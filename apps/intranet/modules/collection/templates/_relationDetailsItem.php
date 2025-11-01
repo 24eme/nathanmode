@@ -59,6 +59,13 @@
              <span class="input-group-text" style="font-size:13px;color: #444;border: 1px solid #aaa">€</span>
          </div>
      </td>
+     <td>
+	<div class="input-group input-group-sm">
+		<?php echo $form['part_frais']->render(array('class' => 'input-float form-control')) ?>
+		<?php echo $form['part_frais']->renderError() ?>
+		<span class="input-group-text" style="font-size:13px; width: 36px;">%</span>
+	</div>
+     </td>
     <td><span class="marge_usd">0</span>&nbsp;$ / <span class="marge_eur">0</span>&nbsp;€</td>
     <td><span class="marge_coef coef-ind">0</span>&nbsp;&nbsp;&nbsp;<span class="marge_part coef-prct">0</span>&nbsp;%</td>
     <td><span class="marge_client_coef coef-ind">0</span>&nbsp;&nbsp;&nbsp;<span class="marge_client_part coef-prct">0</span>&nbsp;%</td>
