@@ -1286,3 +1286,11 @@ img.production-images {
 	padding-bottom: 0.15rem;
 	font-size:12px;
 }
+
+.coef-prct {
+	font-weight: bold;
+}
+
+.coef-ind {
+	color: #626262f2;
+}

@@ -60,8 +60,8 @@
          </div>
      </td>
     <td><span class="marge_usd">0</span>&nbsp;$ / <span class="marge_eur">0</span>&nbsp;€</td>
-    <td><span class="marge_coef">0</span> / <span class="marge_part">0</span>&nbsp;%</td>
-    <td><span class="marge_client_coef">0</span> / <span class="marge_client_part">0</span>&nbsp;%</td>
+    <td><span class="marge_coef coef-ind">0</span>&nbsp;&nbsp;&nbsp;<span class="marge_part coef-prct">0</span>&nbsp;%</td>
+    <td><span class="marge_client_coef coef-ind">0</span>&nbsp;&nbsp;&nbsp;<span class="marge_client_part coef-prct">0</span>&nbsp;%</td>
     <td style="text-align:left;">
         <?php echo $form['date_livraison_prevue']->render(array('class' => 'form-control form-control-sm')) ?>
         <?php echo $form['date_livraison_prevue']->renderError() ?>
