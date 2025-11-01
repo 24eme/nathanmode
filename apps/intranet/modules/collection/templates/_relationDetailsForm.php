@@ -1,7 +1,7 @@
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
     <tr>
         <td>
-          <table width="100%" cellpadding="0" cellspacing="0" class="subTab">
+          <table width="100%" cellpadding="0" cellspacing="0" class="subTab collection-tables">
 	      <tr>
                   <?php if (sfConfig::get('app_devise_dollar')) : ?>
                     <th colspan="2"><label>Image</label></th>

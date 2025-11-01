@@ -72,20 +72,19 @@ class CollectionDetailForm extends BaseCollectionDetailForm
             $this->setValidator('image_delete', new sfValidatorPass());
         }
 
-    $this->getWidget('reste_a_livrer_produit')->setAttribute('class', 'input-float');
-    $this->setValidator('reste_a_livrer_produit', new sfValidatorNumber(array('required' => false)));
+	$this->getWidget('reste_a_livrer_produit')->setAttribute('class', 'input-float');
+	$this->setValidator('reste_a_livrer_produit', new sfValidatorNumber(array('required' => false)));
 
-        if($this->getObject()->reste_a_livrer_produit === null) {
-            $collection = $this->getObject()->getCollection();
-            $this->getObject()->updateResteALivrerProduit($collection);
+	if($this->getObject()->reste_a_livrer_produit === null) {
+		$collection = $this->getObject()->getCollection();
+		$this->getObject()->updateResteALivrerProduit($collection);
 	}
 
-    $this->setWidget('piece_categorie', new sfWidgetFormChoice(array('choices' => PieceCategories::getListe())));
-    $this->setValidator('piece_categorie', new sfValidatorChoice(['choices' => array_keys(PieceCategories::getListe()), 'required' => true]));
+	$this->setWidget('piece_categorie', new sfWidgetFormChoice(array('choices' => PieceCategories::getListe())));
+	$this->setValidator('piece_categorie', new sfValidatorChoice(['choices' => array_keys(PieceCategories::getListe()), 'required' => true]));
 
-    $this->setWidget('qualite', new sfWidgetFormInput());
-    $this->setValidator('qualite', new sfValidatorString(array('required' => true)));
-
+	$this->setWidget('qualite', new sfWidgetFormInput());
+	$this->setValidator('qualite', new sfValidatorString(array('required' => true)));
     }
 
 

@@ -1294,3 +1294,7 @@ img.production-images {
 .coef-ind {
 	color: #626262f2;
 }
+
+.collection-tables label {
+	text-align: center;
+}
