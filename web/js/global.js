@@ -647,6 +647,7 @@ $(document).ready(function() {
       const colori = $(this).closest('tr').find('.colori').val();
       const quantite = $(this).closest('tr').find('.quantite').val();
       const prixVente = $(this).closest('tr').find('.prix_vente').val();
+      const resteALivrer = $(this).closest('tr').find('.reste-a-livrer').val();
       const ligne = $('#form_livraisons_container tr:last');
       ligne.find('.reference').val(reference);
       ligne.find('.colori').val(colori);

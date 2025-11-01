@@ -31,7 +31,7 @@
         <?php echo $form['piece']->renderError(); ?>
     </td>
     <td>
-        <?php echo $form['reste_a_livrer_produit']->render(array('class' => 'input-float form-control form-control-sm')); ?>
+        <?php echo $form['reste_a_livrer_produit']->render(array('class' => 'input-float form-control form-control-sm reste-a-livrer')); ?>
         <?php echo $form['reste_a_livrer_produit']->renderError(); ?>
     </td>
     <?php if(isset($form['prix_achat'])): ?>

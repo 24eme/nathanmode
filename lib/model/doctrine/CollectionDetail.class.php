@@ -172,7 +172,7 @@ class CollectionDetail extends BaseCollectionDetail
 
         if ($livraisons) {
             foreach ($livraisons as $livraison) {
-                if ($livraison->getColori() === $this->getColori()){
+                if (($livraison->getQualite() === $this->getQualite()) && ($livraison->getColori() === $this->getColori())){
                     $quantiteLivraison = $livraison->getPiece() ?: $livraison->getMetrage();
                     $resteALivrerProduit -= $quantiteLivraison;
                 }
