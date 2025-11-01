@@ -23,7 +23,8 @@ class CollectionLivraisonForm extends BaseCollectionLivraisonForm
                      'date',
                      'num_facture',
                      'fichier',
-                     'packing_list'));
+		     'packing_list',
+		     'qualite'));
 
         $this->setWidget('date', new WidgetFormInputDate());
         $this->setValidator('date', new sfValidatorDate(array('required' => false)));
@@ -71,6 +72,7 @@ class CollectionLivraisonForm extends BaseCollectionLivraisonForm
           'num_facture' => 'Facture n°',
           'fichier' => 'Joindre',
           'packing_list' => 'Packing list',
+	  'qualite' => 'Référence'
         ));
         $this->getWidget('prix')->setAttribute('class', 'input-float');
     }

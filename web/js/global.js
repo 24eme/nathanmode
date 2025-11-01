@@ -643,12 +643,14 @@ $(document).ready(function() {
 
   $('.lien_ajouter_ligne_livraison').live('click', function() {
       document.getElementById("ajouter_livraison").click();
+      const reference = $(this).closest('tr').find('.reference').val();
       const colori = $(this).closest('tr').find('.colori').val();
       const quantite = $(this).closest('tr').find('.quantite').val();
       const prixVente = $(this).closest('tr').find('.prix_vente').val();
       const ligne = $('#form_livraisons_container tr:last');
+      ligne.find('.reference').val(reference);
       ligne.find('.colori').val(colori);
-      ligne.find('.quantite').val(quantite);
+      ligne.find('.quantite').val(resteALivrer);
       ligne.find('.prix_vente').val(prixVente);
       document.getElementById("ajouter_livraison").scrollIntoView({ behavior: "smooth" });
       event.preventDefault();

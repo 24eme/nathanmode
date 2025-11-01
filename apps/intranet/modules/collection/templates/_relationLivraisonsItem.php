@@ -3,6 +3,10 @@
       <?php echo $form['date']->render() ?>
       <?php echo $form['date']->renderError() ?>
   </td>
+    <td>
+        <?php echo $form['qualite']->render(array('class' => 'form-control-sm reference')); ?>
+        <?php echo $form['qualite']->renderError(); ?>
+    </td>
   <td>
       <?php echo $form['colori']->render(array('class' => 'colori')) ?>
       <?php echo $form['colori']->renderError() ?>

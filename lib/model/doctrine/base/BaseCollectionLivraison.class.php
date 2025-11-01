@@ -20,6 +20,7 @@
  * @property string $num_facture
  * @property string $fichier
  * @property string $packing_list
+ * @property string $qualite
  * @property Collection $Collection
  * @property Devise $Devise
  * @property Devise $EscompteDevise
@@ -40,6 +41,7 @@
  * @method string              getNumFacture()         Returns the current record's "num_facture" value
  * @method string              getFichier()            Returns the current record's "fichier" value
  * @method string              getPackingList()        Returns the current record's "packing_list" value
+ * @method string              getQualite()            Returns the current record's "qualite" value
  * @method Collection          getCollection()         Returns the current record's "Collection" value
  * @method Devise              getDevise()             Returns the current record's "Devise" value
  * @method Devise              getEscompteDevise()     Returns the current record's "EscompteDevise" value
@@ -59,6 +61,7 @@
  * @method CollectionLivraison setNumFacture()         Sets the current record's "num_facture" value
  * @method CollectionLivraison setFichier()            Sets the current record's "fichier" value
  * @method CollectionLivraison setPackingList()        Sets the current record's "packing_list" value
+ * @method CollectionLivraison setQualite()            Sets the current record's "qualite" value
  * @method CollectionLivraison setCollection()         Sets the current record's "Collection" value
  * @method CollectionLivraison setDevise()             Sets the current record's "Devise" value
  * @method CollectionLivraison setEscompteDevise()     Sets the current record's "EscompteDevise" value
@@ -130,6 +133,10 @@ abstract class BaseCollectionLivraison extends sfDoctrineRecord
         $this->hasColumn('packing_list', 'string', 255, array(
              'type' => 'string',
              'length' => 255,
+             ));
+        $this->hasColumn('qualite', 'string', 128, array(
+             'type' => 'string',
+             'length' => 128,
              ));
     }
 

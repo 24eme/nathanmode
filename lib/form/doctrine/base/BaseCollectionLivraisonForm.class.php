@@ -31,6 +31,7 @@ abstract class BaseCollectionLivraisonForm extends BaseFormDoctrine
       'num_facture'        => new sfWidgetFormInputText(),
       'fichier'            => new sfWidgetFormInputText(),
       'packing_list'       => new sfWidgetFormInputText(),
+      'qualite'            => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
@@ -50,6 +51,7 @@ abstract class BaseCollectionLivraisonForm extends BaseFormDoctrine
       'num_facture'        => new sfValidatorString(array('max_length' => 128, 'required' => false)),
       'fichier'            => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'packing_list'       => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'qualite'            => new sfValidatorString(array('max_length' => 128, 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('collection_livraison[%s]');

@@ -28,6 +28,7 @@ abstract class BaseCollectionLivraisonFormFilter extends BaseFormFilterDoctrine
       'num_facture'        => new sfWidgetFormFilterInput(),
       'fichier'            => new sfWidgetFormFilterInput(),
       'packing_list'       => new sfWidgetFormFilterInput(),
+      'qualite'            => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
@@ -46,6 +47,7 @@ abstract class BaseCollectionLivraisonFormFilter extends BaseFormFilterDoctrine
       'num_facture'        => new sfValidatorPass(array('required' => false)),
       'fichier'            => new sfValidatorPass(array('required' => false)),
       'packing_list'       => new sfValidatorPass(array('required' => false)),
+      'qualite'            => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('collection_livraison_filters[%s]');
@@ -81,6 +83,7 @@ abstract class BaseCollectionLivraisonFormFilter extends BaseFormFilterDoctrine
       'num_facture'        => 'Text',
       'fichier'            => 'Text',
       'packing_list'       => 'Text',
+      'qualite'            => 'Text',
     );
   }
 }
