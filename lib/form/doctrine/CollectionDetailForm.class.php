@@ -80,9 +80,9 @@ class CollectionDetailForm extends BaseCollectionDetailForm
 		$this->getObject()->updateResteALivrerProduit($collection);
 	}
 
-	$this->setWidget('piece_categorie', new sfWidgetFormChoice(array('choices' => PieceCategories::getListe())));
-	$this->setValidator('piece_categorie', new sfValidatorChoice(['choices' => array_keys(PieceCategories::getListe()), 'required' => true]));
-
+	 $this->setWidget('piece_categorie', new sfWidgetFormChoice(array('choices' => $this->getPieceCategories())));
+        $this->setValidator('piece_categorie', new sfValidatorChoice(array('choices' => array_keys($this->getPieceCategories()),'required' => $this->getValidator('piece_categorie')->getOption('required'),
+)));
 	$this->setWidget('qualite', new sfWidgetFormInput());
 	$this->setValidator('qualite', new sfValidatorString(array('required' => true)));
     }
@@ -178,5 +178,10 @@ class CollectionDetailForm extends BaseCollectionDetailForm
       }
 
       parent::doUpdateObject($values);
+    }
+
+
+    public function getPieceCategories() {
+        return  PieceCategories::getListe();
     }
 }
