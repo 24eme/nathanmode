@@ -788,4 +788,8 @@ $(document).ready(function () {
     let champDevise = $(".default-dollar .chosen");
     $(champDevise).val("2").trigger('chosen:updated').trigger('change');
   }
+
+document.querySelectorAll('.read-only-livraison > input').forEach(input => {
+  input.readOnly = true;
+});
 });

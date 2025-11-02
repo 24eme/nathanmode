@@ -1298,3 +1298,7 @@ img.production-images {
 .collection-tables label {
 	text-align: center;
 }
+
+.read-only-livraison > input {
+	background-color:#e6e6e6a1;
+}
