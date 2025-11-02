@@ -164,11 +164,18 @@ class CollectionDetail extends BaseCollectionDetail
   public function updateResteALivrerProduit() {
         $livraisons = $this->getCollection()->getCollectionLivraisons();
 
-        $resteALivrerProduit = $this->getPiece() ?: $this->getMetrage();
+	$resteALivrerProduit = $this->getPiece() ?: $this->getMetrage();
 
         if ($livraisons) {
-            foreach ($livraisons as $livraison) {
-                if (($livraison->getQualite() === $this->getQualite()) && ($livraison->getColori() === $this->getColori())){
+	    foreach ($livraisons as $livraison) {
+	if (sfConfig::get('app_no_metrage')) {
+		$detailsQualite = $this->getQualite();
+		$livraisonQualite = $livraison->getQualite();
+	} else {
+		$detailsQualite = $this->getCollection()->getQualite();
+		$livraisonQualite = $detailsQualite;
+	}
+                if (($livraisonQualite === $detailsQualite ) && ($livraison->getColori() === $this->getColori())){
                     $quantiteLivraison = $livraison->getPiece() ?: $livraison->getMetrage();
                     $resteALivrerProduit -= $quantiteLivraison;
                 }

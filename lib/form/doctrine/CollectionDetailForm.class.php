@@ -83,8 +83,11 @@ class CollectionDetailForm extends BaseCollectionDetailForm
 	 $this->setWidget('piece_categorie', new sfWidgetFormChoice(array('choices' => $this->getPieceCategories())));
         $this->setValidator('piece_categorie', new sfValidatorChoice(array('choices' => array_keys($this->getPieceCategories()),'required' => $this->getValidator('piece_categorie')->getOption('required'),
 )));
+
+  if (sfConfig::get('app_no_metrage')) {
 	$this->setWidget('qualite', new sfWidgetFormInput());
 	$this->setValidator('qualite', new sfValidatorString(array('required' => true)));
+  }
     }
 
 

@@ -1,4 +1,5 @@
 <tr class="relation_item_form ligne_calcul_marges">
+<?php if (sfConfig::get('app_no_metrage')) : ?>
     <td>
 	<?php if($form['image']->getValue()): ?>
 	<a href="<?php echo CollectionDetailTable::getInstance()->getUploadPath(false).$form['image']->getValue() ?>" target="_blank"><img height="50" src="<?php echo CollectionDetailTable::getInstance()->getUploadPath(false).$form['image']->getValue() ?>" /></a>
@@ -13,15 +14,17 @@
 	<?php echo $form['image']->render() ?>
 	<?php echo $form['image']->renderError() ?>
     </td>
+<?php endif; ?>
     <td>
         <?php echo $form['piece_categorie']->render(array('class' => 'chosen')) ?>
         <?php echo $form['piece_categorie']->renderError() ?>
     </td>
+<?php if (sfConfig::get('app_no_metrage')) : ?>
     <td>
         <?php echo $form['qualite']->render(array('class' => 'form-control-sm reference')); ?>
         <?php echo $form['qualite']->renderError(); ?>
     </td>
-
+<?php endif; ?>
     <td>
         <?php echo $form['colori']->render(array('class' => 'colori form-control-sm')); ?>
         <?php echo $form['colori']->renderError(); ?>
