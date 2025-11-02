@@ -70,6 +70,7 @@
                   <?php echo $form['fichier']->renderError() ?>
               </td>
           </tr>
+<?php if (! sfConfig::get('app_no_metrage')) : ?>
             <tr>
                 <td><?php echo $form['qualite']->renderLabel() ?>&nbsp;:</td>
                 <td>
@@ -82,6 +83,7 @@
                     </datalist>
                 </td>
             </tr>
+ <?php endif ?>
             <?php if(isset($form['ecru'])): ?>
             <tr>
                 <td><?php echo $form['ecru']->renderLabel() ?>&nbsp;:</td>
@@ -96,7 +98,7 @@
           <table width="33%" border="0" cellpadding="0" cellspacing="0">
             <tr>
                 <td  width="150"><?php echo $form['devise_id']->renderLabel() ?>&nbsp;:</td>
-                <td <?php if (sfConfig::get('app_devise_dollar')) : ?> class="default-dollar" <?php endif ?> >
+                <td <?php if (sfConfig::get('app_no_metrage')): ?> class="default-dollar" <?php endif ?> >
                     <?php echo $form['devise_id']->render(array('class' => 'chosen')) ?>
                     <?php echo $form['devise_id']->renderError() ?>
                 </td>

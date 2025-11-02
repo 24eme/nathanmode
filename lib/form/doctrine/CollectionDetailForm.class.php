@@ -54,7 +54,7 @@ class CollectionDetailForm extends BaseCollectionDetailForm
 	$this->setWidget('part_frais', new sfWidgetFormInputText());
 	$this->setValidator('part_frais', new sfValidatorPass(array('required' => false)));
 
-        if (sfConfig::get('app_devise_dollar')) {
+       if (sfConfig::get('app_no_metrage')) {
             $this->setWidget('image', new sfWidgetFormInputFileEditable(array(
                 'file_src' => CollectionDetailTable::getInstance()->getUploadPath(false).$this->getObject()->image,
                 'is_image' => true,

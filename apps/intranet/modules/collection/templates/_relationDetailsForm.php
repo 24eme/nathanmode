@@ -3,14 +3,14 @@
         <td>
           <table width="100%" cellpadding="0" cellspacing="0" class="subTab collection-tables">
 	      <tr>
-                  <?php if (sfConfig::get('app_devise_dollar')) : ?>
+                  <?php if (sfConfig::get('app_no_metrage')) : ?>
                     <th colspan="2"><label>Image</label></th>
                   <?php endif ?>
                   <th><label>Catégorie</label></th>
                   <th><label>Référence</label></th>
                   <th><label>Colori</label></th>
                   <th><label>Quantité</label></th>
-                  <?php if (sfConfig::get('app_devise_dollar')) : ?>
+                  <?php if (sfConfig::get('app_no_metrage')) : ?>
                     <th><label>Reste à livrer pcs.</label></th>
                   <?php else: ?>
                     <th><label>Reste à livrer mts.</label></th>

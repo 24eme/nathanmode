@@ -137,9 +137,11 @@ class CollectionForm extends BaseCollectionForm
         $this->setValidator('fiche_client_delete', new sfValidatorPass());
         $this->setValidator('fiche_technique_delete', new sfValidatorPass());
         $this->setValidator('fichier_confirmation_delete', new sfValidatorPass());
-
-        $this->setWidget('qualite', new sfWidgetFormInput());
-        $this->setValidator('qualite', new sfValidatorString(array('required' => true)));
+	
+	if (! sfConfig::get('app_no_metrage')) {
+		$this->setWidget('qualite', new sfWidgetFormInput());
+		$this->setValidator('qualite', new sfValidatorString(array('required' => true)));
+	}
 
         $this->setWidget('saison_id', new sfWidgetFormChoice(array('choices' => $this->getSaisons())));
 

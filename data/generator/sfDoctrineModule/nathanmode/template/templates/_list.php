@@ -1,4 +1,4 @@
-<div class="sf_admin_list <?php if (! sfConfig::get('app_devise_dollar')): ?> lma-list <?php endif ?> ">
+<div class="sf_admin_list <?php if (! sfConfig::get('app_no_metrage')): ?> lma-list <?php endif ?> ">
   	<form action="[?php echo url_for('<?php echo $this->getUrlForAction('collection') ?>', array('action' => 'filter')) ?]" method="post">
     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableNm">
       <thead>
