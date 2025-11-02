@@ -160,10 +160,6 @@ class CollectionDetail extends BaseCollectionDetail
     return $this->getCollection()->getSituation();
   }
 
-  public function getQualite() {
-    return $this->getCollection()->getQualite();
-  }
-
 
   public function updateResteALivrerProduit() {
         $livraisons = $this->getCollection()->getCollectionLivraisons();
