@@ -307,27 +307,32 @@ $(document).ready(function() {
   $('#collection_devise_commercial_id').sortSelect().chosen({width: "35%"});
   $('#sf_guard_user_commercial_id').sortSelect().chosen({allow_single_deselect:true,width: "90%"});
 
-	$('#collection_filters_saison_id').sortSelect().chosen({
+	$('#collection_detail_filters_saison_id').sortSelect().chosen({
     	placeholder_text_single: "-",
 		allow_single_deselect:true,
    	 	width: "100%"
   	});
-	$('#collection_filters_fournisseur_id').sortSelect().chosen({
+	$('#collection_detail_filters_fournisseur_id').sortSelect().chosen({
     	placeholder_text_single: "-",
 		allow_single_deselect:true,
    	 	width: "100%"
   	});
-	$('#collection_filters_client_id').sortSelect().chosen({
+	$('#collection_detail_filters_client_id').sortSelect().chosen({
     	placeholder_text_single: "-",
 		allow_single_deselect:true,
    	 	width: "100%"
   	});
-	$('#collection_filters_situation').sortSelect().chosen({
+	$('#collection_detail_filters_situation').sortSelect().chosen({
     	placeholder_text_single: "-",
 		allow_single_deselect:true,
    	 	width: "100%"
   	});
-	$('#collection_filters_qualite').sortSelect().chosen({
+	$('#collection_detail_filters_devise_id').sortSelect().chosen({
+    	placeholder_text_single: "-",
+		allow_single_deselect:true,
+   	 	width: "100%"
+  	});
+	$('#collection_detail_filters_piece_categorie').sortSelect().chosen({
     	placeholder_text_single: "-",
 		allow_single_deselect:true,
    	 	width: "100%"
