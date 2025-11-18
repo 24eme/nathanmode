@@ -1,1 +1,1 @@
-<?php echo ($collection_detail->getPieceCategorie())? $collection_detail->getPieceCategorie() : 'MTS' ?>
+<?php echo ($collection_detail->getPieceCategorie())? PieceCategories::getLibelle($collection_detail->getPieceCategorie()) : 'MTS' ?>
