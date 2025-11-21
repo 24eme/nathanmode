@@ -41,11 +41,11 @@
     </div>
     <div class="px-2">
         <div class="subTitle">Livraison par produit</div>
-        <?php include_partial('collection/relationLivraisonsForm', array('form' => $form)) ?>
+        <?php include_partial('production/relationLivraisonsForm', array('form' => $form)) ?>
 
         <div class="subTitle">Retards</div>
 
-        <?php include_partial('collection/relationRetardsForm', array('form' => $form)) ?>
+        <?php include_partial('production/relationRetardsForm', array('form' => $form)) ?>
 
         <div class="subTitle"><?php echo $form['observation_livraison']->renderLabel() ?></div>
 
