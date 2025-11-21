@@ -12,11 +12,7 @@
                   <?php endif;?>
                   <th><label>Colori</label></th>
                   <th><label>Quantité</label></th>
-                  <?php if (sfConfig::get('app_no_metrage')) : ?>
-                    <th><label>Reste à livrer pcs.</label></th>
-                  <?php else: ?>
-                    <th><label>Reste à livrer mts.</label></th>
-                  <?php endif ?>
+                    <th><label>Reste à livrer</label></th>
                   <?php if (sfConfig::get('app_no_metrage')) : ?>
                     <th><label>Prix d'achat factory</label></th>
                   <?php endif;  ?>
