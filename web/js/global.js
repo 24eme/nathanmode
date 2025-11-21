@@ -689,7 +689,6 @@ function calculeIndicateurs(tr) {
     const pxPublicId = calcMargesLigne.querySelector('[id^="collection_details_"][id$="_prix_public"]');
     const prixPublicTTC = parseFloat(pxPublicId.value) || 0;
     const prixPublicHT = prixPublicTTC ? (prixPublicTTC / 1.2).toFixed(2) : 0;
-    console.log(prixPublicHT);
 
     const inputAchat = calcMargesLigne.querySelector('.prix_achat');
     const inputVente = calcMargesLigne.querySelector('.prix_vente');
