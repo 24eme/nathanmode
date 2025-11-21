@@ -7,9 +7,7 @@
                     <th colspan="2"><label>Image</label></th>
                   <?php endif ?>
                   <th><label>Catégorie</label></th>
-                   <?php if (sfConfig::get('app_no_metrage')) : ?>
-                    <th><label>Référence</label></th>
-                  <?php endif;?>
+                  <th><label>Référence</label></th>
                   <th><label>Colori</label></th>
                   <th><label>Quantité</label></th>
                   <?php if (sfConfig::get('app_no_metrage')) : ?>
