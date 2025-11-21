@@ -55,9 +55,11 @@ class CollectionForm extends BaseCollectionForm
                        'observation_livraison',
                        'commande_soldee',
                        ));
-    
+
         $this->embedRelation('CollectionDetails as details');
-        $this->embedRelation('CollectionTirelles as tirelles');
+        if (!sfConfig::get('app_no_metrage')) {
+          $this->embedRelation('CollectionTirelles as tirelles');
+        }
         $this->embedRelation('CollectionRetards as retards');
         $this->embedRelation('CollectionLivraisons as livraisons');
 

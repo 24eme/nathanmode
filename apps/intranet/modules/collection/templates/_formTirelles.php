@@ -1,3 +1,4 @@
+<?php if (isset($form['tirelles'])): ?>
 <div class="tableau col-11">
     <div class="titre"><span>Tirelle</span></div>
     <div class="px-2">
@@ -14,3 +15,4 @@
         </table>
     </div>
 </div>
+<?php endif; ?>
