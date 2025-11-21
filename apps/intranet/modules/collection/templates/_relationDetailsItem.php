@@ -53,6 +53,7 @@
             <span class="input-group-text devise-symbol"></span>
         </div>
     </td>
+    <?php if(isset($form['prix_public'])): ?>
      <td>
         <div class="input-group input-group-sm">
              <?php echo $form['prix_public']->render(array('class' => 'input-float form-control')) ?>
@@ -60,16 +61,21 @@
              <span class="input-group-text" style="font-size:13px;color: #444;border: 1px solid #aaa">€</span>
          </div>
      </td>
-     <td>
-	<div class="input-group input-group-sm">
-		<?php echo $form['part_frais']->render(array('class' => 'input-float form-control part_frais')) ?>
-		<?php echo $form['part_frais']->renderError() ?>
-		<span class="input-group-text" style="font-size:13px; width: 36px;">%</span>
-	</div>
+     <?php endif; ?>
+     <?php if(isset($form['part_frais'])): ?>
+      <td>
+    	<div class="input-group input-group-sm">
+    		<?php echo $form['part_frais']->render(array('class' => 'input-float form-control part_frais')) ?>
+    		<?php echo $form['part_frais']->renderError() ?>
+    		<span class="input-group-text" style="font-size:13px; width: 36px;">%</span>
+    	</div>
      </td>
+     <?php endif; ?>
+     <?php if (sfConfig::get('app_no_metrage')) : ?>
     <td><span class="marge_usd">0</span>&nbsp;$ / <span class="marge_eur">0</span>&nbsp;€</td>
     <td><span class="marge_coef coef-ind">0</span>&nbsp;&nbsp;&nbsp;<span class="marge_part coef-prct">0</span>&nbsp;%</td>
     <td><span class="marge_client_coef coef-ind">0</span>&nbsp;&nbsp;&nbsp;<span class="marge_client_part coef-prct">0</span>&nbsp;%</td>
+    <?php endif; ?>
     <td style="text-align:left;">
         <?php echo $form['date_livraison_prevue']->render(array('class' => 'form-control form-control-sm')) ?>
         <?php echo $form['date_livraison_prevue']->renderError() ?>
