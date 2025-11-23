@@ -14,7 +14,7 @@
                 </tr>
                 <tbody id="form_tirelles_container">
                     <?php foreach($form['tirelles'] as $item_form): ?>
-                        <?php echo include_partial('collection/relationTirellesItem', array('form' => $item_form)); ?>
+                        <?php echo include_partial('production/relationTirellesItem', array('form' => $item_form)); ?>
                     <?php endforeach; ?>
                 </tbody>
                 <tr>
@@ -28,5 +28,5 @@
 </table>
 
 <script id="template_tirelles" type="text/x-jquery-tmpl">
-    <?php echo include_partial('collection/relationTirellesItem', array('form' => $form->getTemplate('tirelles'))); ?>
+    <?php echo include_partial('production/relationTirellesItem', array('form' => $form->getTemplate('tirelles'))); ?>
 </script>

@@ -1,7 +1,7 @@
 
 <div id="form_retards_container">
     <?php foreach($form['retards'] as $item_form): ?>
-        <?php echo include_partial('collection/relationRetardsItem', array('form' => $item_form)); ?>
+        <?php echo include_partial('production/relationRetardsItem', array('form' => $item_form)); ?>
     <?php endforeach; ?>
 </div>
 <div class="setAdd">
@@ -9,5 +9,5 @@
 </div>
 
 <script id="template_retards" type="text/x-jquery-tmpl">
-    <?php echo include_partial('collection/relationRetardsItem', array('form' => $form->getTemplate('retards'))); ?>
+    <?php echo include_partial('production/relationRetardsItem', array('form' => $form->getTemplate('retards'))); ?>
 </script>

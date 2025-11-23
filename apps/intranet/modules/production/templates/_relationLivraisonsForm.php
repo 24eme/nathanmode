@@ -19,7 +19,7 @@
               </tr>
               <tbody id="form_livraisons_container">
                   <?php foreach($form['livraisons'] as $item_form): ?>
-                          <?php echo include_partial('collection/relationLivraisonsItem', array('form' => $item_form)); ?>
+                          <?php echo include_partial('production/relationLivraisonsItem', array('form' => $item_form)); ?>
                   <?php endforeach; ?>
               </tbody>
               <tr>
@@ -33,5 +33,5 @@
   </table>
 
 <script id="template_livraisons" type="text/x-jquery-tmpl">
-    <?php echo include_partial('collection/relationLivraisonsItem', array('form' => $form->getTemplate('livraisons'))); ?>
+    <?php echo include_partial('production/relationLivraisonsItem', array('form' => $form->getTemplate('livraisons'))); ?>
 </script>

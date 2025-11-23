@@ -70,20 +70,6 @@
                   <?php echo $form['fichier']->renderError() ?>
               </td>
           </tr>
-<?php if (! sfConfig::get('app_no_metrage')) : ?>
-            <tr>
-                <td><?php echo $form['qualite']->renderLabel() ?>&nbsp;:</td>
-                <td>
-                    <?php echo $form['qualite']->render(array('list' => "qualites", 'required' => 'required')) ?>
-                    <?php echo $form['qualite']->renderError() ?>
-                    <datalist id="qualites">
-                      <?php $items = CollectionTable::getInstance()->getQualites(); foreach ($items as $item): ?>
-                      <option value="<?php echo $item['qualite'] ?>"></option>
-                      <?php endforeach ?>
-                    </datalist>
-                </td>
-            </tr>
- <?php endif ?>
             <?php if(isset($form['ecru'])): ?>
             <tr>
                 <td><?php echo $form['ecru']->renderLabel() ?>&nbsp;:</td>

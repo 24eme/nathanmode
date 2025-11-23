@@ -26,7 +26,6 @@ class CollectionForm extends BaseCollectionForm
                        'prix_fournisseur',
                        'part_marge',
                        'devise_fournisseur_id',
-                       'qualite',
                        'ecru',
                        'observation_general',
 
@@ -139,11 +138,6 @@ class CollectionForm extends BaseCollectionForm
         $this->setValidator('fiche_client_delete', new sfValidatorPass());
         $this->setValidator('fiche_technique_delete', new sfValidatorPass());
         $this->setValidator('fichier_confirmation_delete', new sfValidatorPass());
-	
-	if (! sfConfig::get('app_no_metrage')) {
-		$this->setWidget('qualite', new sfWidgetFormInput());
-		$this->setValidator('qualite', new sfValidatorString(array('required' => true)));
-	}
 
         $this->setWidget('saison_id', new sfWidgetFormChoice(array('choices' => $this->getSaisons())));
 
@@ -164,7 +158,6 @@ class CollectionForm extends BaseCollectionForm
            'prix_fournisseur' => 'Commission',
            'devise_fournisseur_id' => 'Devise de la commission',
            'piece_categorie' => 'Catégorie',
-           'qualite' => 'Référence',
            'ecru' => 'Ecru à désigner',
            'observation_general' => 'Observation',
 
