@@ -5,12 +5,6 @@
 
         <div style="display:inline-block; width:100%; margin:20px 0;">
             <table width="40%" border="0" cellpadding="0" cellspacing="0" class="tabloLivraison">
-                <tr>
-                    <td width="150"><?php echo $form['reste_a_livrer']->renderLabel() ?>&nbsp;:</td>
-                    <td><?php echo $form['reste_a_livrer']->render() ?>
-                        <?php echo $form['reste_a_livrer']->renderError() ?></td>
-                </tr>
-
                 <?php if (! empty($form['date_livraison']->getValue()) || ! empty($form['adresse_livraison']->getValue()) || ! empty($form['fichier_confirmation']->getValue())): ?>
                             <tr>
                                 <td width="150"><?php echo $form['date_livraison']->renderLabel() ?>&nbsp;:</td>
@@ -47,15 +41,16 @@
 
         <?php include_partial('production/relationRetardsForm', array('form' => $form)) ?>
 
-        <div class="subTitle"><?php echo $form['observation_livraison']->renderLabel() ?></div>
-
-        <table width="100%" border="0" cellpadding="0" cellspacing="0">
-          <tr>
-            <td>
-              <?php echo $form['observation_livraison']->renderError() ?>
-              <?php echo $form['observation_livraison']->render(array('class' => 'txtArea')) ?>
-            </td>
-          </tr>
-        </table>
+        <?php if (! empty($form['observation_livraison']->getValue())) : ?>
+            <div class="subTitle"><?php echo $form['observation_livraison']->renderLabel() ?></div>
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td>
+                    <?php echo $form['observation_livraison']->renderError() ?>
+                    <?php echo $form['observation_livraison']->render(array('class' => 'txtArea')) ?>
+                    </td>
+                </tr>
+            </table>
+        <?php endif;?>
     </div>
 </div>
