@@ -13,6 +13,8 @@ class CollectionRetardForm extends BaseCollectionRetardForm
     public function configure()
     {
         $this->useFields(array('date',
+                               'qualite',
+                               'colori',
                                'observation'));
 
         $this->setWidget('date', new WidgetFormInputDate());

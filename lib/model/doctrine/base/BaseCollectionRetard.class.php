@@ -39,6 +39,14 @@ abstract class BaseCollectionRetard extends sfDoctrineRecord
         $this->hasColumn('observation', 'text', null, array(
              'type' => 'text',
              ));
+        $this->hasColumn('qualite', 'string', 128, array(
+             'type' => 'string',
+             'length' => 128,
+             ));
+        $this->hasColumn('colori', 'string', 128, array(
+             'type' => 'string',
+             'length' => 128,
+             ));
     }
 
     public function setUp()

@@ -18,6 +18,8 @@ abstract class BaseCollectionRetardForm extends BaseFormDoctrine
       'id'            => new sfWidgetFormInputHidden(),
       'collection_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Collection'), 'add_empty' => false)),
       'date'          => new sfWidgetFormDate(),
+      'colori'             => new sfWidgetFormInputText(),
+      'qualite'            => new sfWidgetFormInputText(),
       'observation'   => new sfWidgetFormInputText(),
     ));
 
@@ -26,6 +28,8 @@ abstract class BaseCollectionRetardForm extends BaseFormDoctrine
       'collection_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Collection'))),
       'date'          => new sfValidatorDate(array('required' => false)),
       'observation'   => new sfValidatorPass(array('required' => false)),
+      'qualite'            => new sfValidatorString(array('max_length' => 128, 'required' => false)),
+      'colori'             => new sfValidatorString(array('max_length' => 128, 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('collection_retard[%s]');

@@ -661,6 +661,16 @@ $(document).ready(function() {
       document.getElementById("ajouter_livraison").scrollIntoView({ behavior: "smooth" });
       event.preventDefault();
   });
+  $('.lien_ajouter_ligne_retard').live('click', function() {
+      document.getElementById("ajouter_retard").click();
+      const reference = $(this).closest('tr').find('.reference').val();
+      const colori = $(this).closest('tr').find('.colori').val();
+      const ligne = $('#form_retards_container tr:last');
+      ligne.find('.reference').val(reference);
+      ligne.find('.colori').val(colori);
+      document.getElementById("ajouter_retard").scrollIntoView({ behavior: "smooth" });
+      event.preventDefault();
+  });
 
 });
 
