@@ -1,7 +1,7 @@
 <?php use_helper('I18N', 'Date') ?>
 
 <?php echo form_tag_for($form, '@collection_production') ?>
-<div class="productName row justify-content-center float-none p-0 w-auto">
+<div id="sticky-banner" class="productName row justify-content-center float-none p-0 w-auto">
   <div class="tableau col-11 border-0">
         <span><?php echo $collection->Fournisseur ?> - <?php echo $collection->Client ?> - <?php echo $collection->Saison ?></span>
         <?php include_partial('production/form_actions', array('collection' => $collection, 'form' => $form, 'configuration' => $configuration, 'helper' => $helper)) ?>
@@ -69,6 +69,16 @@
         event.returnValue = message;
         return message;
       }
+    }
+  });
+
+  window.addEventListener('scroll', (event) => {
+    const stickyBanner = document.getElementById('sticky-banner');
+    console.log(window.scrollY);
+    if (window.scrollY >= 145) {
+      stickyBanner.setAttribute("style", "border: 2px solid #164066;position:sticky; top:20px; z-index:1000;background-color:#ffffff; height:60px; padding:15px 0 !important;")
+    }else if (window.scrollY < 145) {
+      stickyBanner.removeAttribute('style');
     }
   });
 </script>

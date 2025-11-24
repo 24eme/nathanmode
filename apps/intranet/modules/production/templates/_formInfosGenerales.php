@@ -31,13 +31,6 @@
                     <?php echo $form['client_id']->renderError() ?>
                 </td>
             </tr>
-            <tr>
-              <td><?php echo $form['paiement']->renderLabel() ?>&nbsp;:</td>
-              <td>
-                  <?php echo $form['paiement']->render(['required' => 'required']) ?>
-                  <?php echo $form['paiement']->renderError() ?>
-              </td>
-            </tr>
         </table>
         <table width="33%" border="0" cellpadding="0" cellspacing="0">
           <tr>
@@ -99,6 +92,15 @@
                 </td>
             </tr>
             <?php endif; ?>
+            <tr>
+                <td style="vertical-align:top;">
+                    <?php echo $form['fichier_confirmation']->renderLabel() ?><img src="/css/img/pdf.gif" width="18" height="19" alt="" align="absbottom" />&nbsp;:
+                </td>
+                <td class="uploadFile">
+                    <?php echo $form['fichier_confirmation']->render(array('class' => 'input')) ?>
+                    <?php echo $form['fichier_confirmation']->renderError() ?>
+                </td>
+            </tr>
             <tr>
                 <td><?php echo $form['situation']->renderLabel() ?>&nbsp;:</td>
                 <td>
