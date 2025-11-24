@@ -17,7 +17,7 @@
                   <?php if (sfConfig::get('app_no_metrage')) : ?>
                     <th class="medium-column"><label>Prix public TTC</label></th>
                     <th class="medium-column"><label>Frais d'approche</label></th>
-                    <th class="medium-column"><label>Marge&nbsp;montant</label></th>
+                    <th class="medium-column"><label>Marge<br>montant</label></th>
                     <th class="medium-column"><label>Marge&nbsp;coef&nbsp;/&nbsp;%</label></th>
                     <th class="medium-column"><label>Client&nbsp;coef&nbsp;/&nbsp;%</label></th>
                     <?php endif;  ?>
