@@ -729,18 +729,19 @@ function calculeIndicateurs(tr) {
     let part = 0;
 
     if(commissionUnite.value == 3) {
-      part = 10;
+      part = parseFloat(commission.value);
       marge = prixVente !== 0 ? prixVente * part / 100 : 0;
       coef = prixVente !== 0 ? prixVente / 10 : 0;
     }
 
     if(commissionUnite.value == 4) {
-      marge = prixVente - prixAchat;
-      coef = prixAchat !== 0 ? prixVente / prixAchat : 0;
-      part = prixVente !== 0 ? marge / prixVente * 100 : 0;
+      partMargeCoef = parseFloat(commission.value) / 100;
+      marge = (prixVente - prixAchat) * partMargeCoef;
+      coef = prixAchat !== 0 ? (prixVente / prixAchat) * partMargeCoef : 0;
+      part = prixVente !== 0 ? (marge / prixVente * 100) * partMargeCoef: 0;
     }
 
-    let prixVenteEur  = prixVente;
+    let prixVenteEur = prixVente;
     if (devise == 1) {
       spanMargeEur.textContent = marge.toFixed();
       spanMargeUsd.textContent = (marge*usdRate).toFixed();
