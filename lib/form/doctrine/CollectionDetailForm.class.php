@@ -90,12 +90,13 @@ class CollectionDetailForm extends BaseCollectionDetailForm
           unset($this['part_frais'], $this['prix_public'], $this['prix_achat']);
       }
 
-   	  $this->setWidget('qualite', new sfWidgetFormInput());
- 	  $this->setValidator('qualite', new sfValidatorString(array('required' => true)));
+      $this->setWidget('qualite', new sfWidgetFormInput());
+      $this->setValidator('qualite', new sfValidatorString());
     }
 
 
     public function processValues($values) {
+
 	if($values['image'] instanceof sfValidatedFile) {
 		$imageOrig =  $values['image'];
 		$imageTempName = $imageOrig->getTempName();

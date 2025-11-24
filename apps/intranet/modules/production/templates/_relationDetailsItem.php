@@ -20,7 +20,7 @@
         <?php echo $form['piece_categorie']->renderError() ?>
     </td>
     <td>
-        <?php echo $form['qualite']->render(array('class' => 'form-control-sm reference')); ?>
+        <?php echo $form['qualite']->render(array('class' => 'form-control-sm reference', 'required' => 'required')); ?>
         <?php echo $form['qualite']->renderError(); ?>
     </td>
     <td>
