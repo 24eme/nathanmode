@@ -110,7 +110,7 @@ class CollectionLivraison extends BaseCollectionLivraison
     	}
     }
     $facture->setMontant($montant);
-    $facture->setQualite($this->getCollection()->getQualite());
+    $facture->setQualite($this->getQualite());
     $facture->setFichier($this->getFichier());
     if ($this->isNew()) {
 		$facture->setStatut(StatutsFacture::KEY_NON_PAYEE);

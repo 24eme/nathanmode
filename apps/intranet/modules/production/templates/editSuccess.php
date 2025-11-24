@@ -15,7 +15,7 @@
 
     <div class="row justify-content-center">
         <?php include_partial('production/formInfosGenerales', array('form' => $form)) ?>
-        <?php include_partial('production/formDetails', array('form' => $form)) ?>
+        <?php include_partial('production/formDetails', array('form' => $form, 'collection' => $collection)) ?>
         <?php include_partial('production/formLivraisons', array('form' => $form)) ?>
         <?php include_partial('production/formTirelles', array('form' => $form)) ?>
         <?php include_partial('production/formTestMatiere', array('form' => $form)) ?>

@@ -151,8 +151,10 @@ class Collection extends BaseCollection
       } elseif ($cc = CreditCommandeTable::getInstance()->getByCollectionId($this->getId())) {
         $cc->delete();
       }
+    }
 
-
+    public function isCalculCommissionFromMarge() {
+        return $this->part_marge !== null;
     }
 
     public function updateResteALivrer() {
@@ -224,5 +226,12 @@ class Collection extends BaseCollection
       }
 
       return $creditCommande;
+    }
+
+    public function getPartMarge() {
+        if($this->isNew() && sfConfig::get('app_no_metrage')) {
+            return 100;
+        }
+        return $this->_get('part_marge');
     }
 }

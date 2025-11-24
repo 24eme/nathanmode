@@ -12,6 +12,8 @@ class CollectionDetailForm extends BaseCollectionDetailForm
 {
     public function configure()
     {
+        $collection = $this->getObject()->getCollection();
+
         $this->useFields(array('devise_id',
                                'colori',
                                'piece_categorie',
@@ -84,11 +86,12 @@ class CollectionDetailForm extends BaseCollectionDetailForm
         $this->setValidator('piece_categorie', new sfValidatorChoice(array('choices' => array_keys($this->getPieceCategories()),'required' => $this->getValidator('piece_categorie')->getOption('required'),
 )));
 
+      if(!$this->getObject()->getCollection()->isCalculCommissionFromMarge()) {
+          unset($this['part_frais'], $this['prix_public'], $this['prix_achat']);
+      }
       if (sfConfig::get('app_no_metrage')) {
     	  $this->setWidget('qualite', new sfWidgetFormInput());
     	  $this->setValidator('qualite', new sfValidatorString(array('required' => true)));
-      } else {
-        unset($this['part_frais'], $this['prix_public'], $this['prix_achat']);
       }
     }
 

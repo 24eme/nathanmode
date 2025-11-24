@@ -10,12 +10,11 @@
                   <th><label>Référence</label></th>
                   <th><label>Colori</label></th>
                   <th><label>Quantité</label></th>
-                    <th><label>Reste à livrer</label></th>
-                  <?php if (sfConfig::get('app_no_metrage')) : ?>
+                  <?php if ($collection->isCalculCommissionFromMarge()) : ?>
                     <th><label>Prix d'achat factory</label></th>
                   <?php endif;  ?>
-                  <th><label>Prix<?php if (sfConfig::get('app_no_metrage')) : ?> de vente factory<?php endif;  ?></label></th>
-                  <?php if (sfConfig::get('app_no_metrage')) : ?>
+                  <th><label>Prix de vente factory</label></th>
+                  <?php if ($collection->isCalculCommissionFromMarge()) : ?>
                     <th><label>Prix public TTC</label></th>
                     <th><label>Frais d'approche</label></th>
                     <th><label>Marge&nbsp;montant</label></th>
@@ -23,12 +22,13 @@
                     <th><label>Client&nbsp;coef&nbsp;/&nbsp;%</label></th>
                   <?php endif;  ?>
                   <th>Date livr. prévue</th>
+                  <th><label>Reste à livrer</label></th>
                   <th><label>&nbsp;</label></th>
                   <th><label>&nbsp;</label></th>
               </tr>
               <tbody id="form_details_container">
                   <?php foreach($form['details'] as $item_form): ?>
-                          <?php echo include_partial('production/relationDetailsItem', array('form' => $item_form)); ?>
+                          <?php echo include_partial('production/relationDetailsItem', array('form' => $item_form, 'collection' => $collection)); ?>
                   <?php endforeach; ?>
               </tbody>
               <tr>
@@ -42,5 +42,5 @@
   </table>
 
 <script id="template_details" type="text/x-jquery-tmpl">
-    <?php echo include_partial('production/relationDetailsItem', array('form' => $form->getTemplate('details'))); ?>
+    <?php echo include_partial('production/relationDetailsItem', array('form' => $form->getTemplate('details') , 'collection' => $collection)); ?>
 </script>

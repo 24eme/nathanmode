@@ -31,10 +31,6 @@
         <?php echo $form['piece']->render(array('class' => 'quantite input-float form-control form-control-sm')); ?>
         <?php echo $form['piece']->renderError(); ?>
     </td>
-    <td>
-        <?php echo $form['reste_a_livrer_produit']->render(array('class' => 'input-float form-control form-control-sm reste-a-livrer')); ?>
-        <?php echo $form['reste_a_livrer_produit']->renderError(); ?>
-    </td>
     <?php if(isset($form['prix_achat'])): ?>
     <td>
         <div class="input-group input-group-sm">
@@ -69,7 +65,7 @@
     	</div>
      </td>
      <?php endif; ?>
-     <?php if (sfConfig::get('app_no_metrage')) : ?>
+     <?php if ($collection->isCalculCommissionFromMarge()) : ?>
     <td><span class="marge_usd">0</span>&nbsp;$ / <span class="marge_eur">0</span>&nbsp;€</td>
     <td><span class="marge_coef coef-ind">0</span>&nbsp;&nbsp;&nbsp;<span class="marge_part coef-prct">0</span>&nbsp;%</td>
     <td><span class="marge_client_coef coef-ind">0</span>&nbsp;&nbsp;&nbsp;<span class="marge_client_part coef-prct">0</span>&nbsp;%</td>
@@ -78,7 +74,10 @@
         <?php echo $form['date_livraison_prevue']->render(array('class' => 'form-control form-control-sm')) ?>
         <?php echo $form['date_livraison_prevue']->renderError() ?>
     </td>
-
+    <td>
+        <?php echo $form['reste_a_livrer_produit']->render(array('class' => 'input-float form-control form-control-sm reste-a-livrer')); ?>
+        <?php echo $form['reste_a_livrer_produit']->renderError(); ?>
+    </td>
     <td class="px-1">
         <a class="lien_supprimer_ligne" href="#"><i class="bi bi-trash3"></i></a>
     </td>

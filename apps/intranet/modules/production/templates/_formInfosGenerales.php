@@ -89,15 +89,7 @@
                     <?php echo $form['devise_id']->renderError() ?>
                 </td>
             </tr>
-            <tr>
-              <td></td>
-              <td>
-                <div class="form-check form-switch mt-2">
-                  <input id="checkbox_mode_calcul_marge" class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault" <?php if($form['part_marge']->getValue() !== null): ?>checked="checked"<?php endif; ?>>
-                  <label class="form-check-label" for="checkbox_mode_calcul_marge">Calculer la commission à partir de la marge</label>
-                </div>
-              </td>
-            </tr>
+            <?php if(isset($form['part_marge'])): ?>
             <tr>
               <td><?php echo $form['part_marge']->renderLabel() ?>&nbsp;:</td>
               <td>
@@ -108,6 +100,8 @@
                 </div>
               </td>
             </tr>
+            <?php endif; ?>
+            <?php if(isset($form['prix_fournisseur'])): ?>
             <tr>
                 <td><?php echo $form['prix_fournisseur']->renderLabel() ?>&nbsp;:</td>
                 <td>
@@ -116,6 +110,7 @@
                   <?php echo $form['prix_fournisseur']->renderError() ?>
                 </td>
             </tr>
+            <?php endif; ?>
           </table>
 
           <table width="100%" border="0" cellpadding="0" cellspacing="0">
