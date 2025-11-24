@@ -38,15 +38,15 @@
                   <?php echo $form['paiement']->renderError() ?>
               </td>
             </tr>
-            <tr>
-                <td><?php echo $form['situation']->renderLabel() ?>&nbsp;:</td>
-                <td>
-                    <?php echo $form['situation']->render() ?>
-                    <?php echo $form['situation']->renderError() ?>
-                </td>
-            </tr>
         </table>
         <table width="33%" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+              <td><?php echo $form['paiement']->renderLabel() ?>&nbsp;:</td>
+              <td>
+                  <?php echo $form['paiement']->render(['required' => 'required']) ?>
+                  <?php echo $form['paiement']->renderError() ?>
+              </td>
+          </tr>
           <tr>
               <td width="150"><?php echo $form['num_commande']->renderLabel() ?>&nbsp;:</td>
               <td colpsan="2">
@@ -111,6 +111,13 @@
                 </td>
             </tr>
             <?php endif; ?>
+            <tr>
+                <td><?php echo $form['situation']->renderLabel() ?>&nbsp;:</td>
+                <td>
+                    <?php echo $form['situation']->render() ?>
+                    <?php echo $form['situation']->renderError() ?>
+                </td>
+            </tr>
           </table>
 
           <table width="100%" border="0" cellpadding="0" cellspacing="0">
