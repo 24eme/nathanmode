@@ -20,8 +20,9 @@
                     <th class="medium-column"><label>Marge&nbsp;montant</label></th>
                     <th class="medium-column"><label>Marge&nbsp;coef&nbsp;/&nbsp;%</label></th>
                     <th class="medium-column"><label>Client&nbsp;coef&nbsp;/&nbsp;%</label></th>
-                  <?php endif;  ?>
-                  <th>Date livr. prévue</th>
+                    <?php endif;  ?>
+                  <th>ETD demandé</th>
+                  <th>ETD confirmé</th>
                   <th class="small-column"><label>Reste à livrer</label></th>
                   <th><label>&nbsp;</label></th>
                   <th><label>&nbsp;</label></th>
@@ -32,7 +33,7 @@
                   <?php endforeach; ?>
               </tbody>
               <tr>
-                  <td colspan="16" class="px-0">
+                  <td colspan="17" class="px-0">
                       <a class="btPlus right lien_ajouter_ligne" data-template="#template_details" data-container="#form_details_container" href="#">+</a>
                   </td>
               </tr>

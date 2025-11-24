@@ -24,6 +24,7 @@ class CollectionDetailForm extends BaseCollectionDetailForm
 			       'part_frais',
                                'image',
                                'date_livraison_prevue',
+                               'date_livraison_demandee',
 			       'reste_a_livrer_produit',
 			       'piece_categorie',
 			       'qualite',
@@ -39,6 +40,7 @@ class CollectionDetailForm extends BaseCollectionDetailForm
 	  'part_frais' => 'Frais d\'approche',
 	  'image' => 'Ajouter une image',
 	  'date_livraison_prevue' => 'Date de livraison prévue',
+	  'date_livraison_demandee' => 'Date de livraison demandée',
 	  'reste_a_livrer_produit' => 'Reste à livrer produit',
           'piece_categorie' => 'Catégorie',
 	  'qualite' => 'Référence'
@@ -50,6 +52,8 @@ class CollectionDetailForm extends BaseCollectionDetailForm
         $this->setValidator('part_commission', new sfValidatorPass(array('required' => false)));
         $this->setWidget('date_livraison_prevue', new WidgetFormInputDate());
         $this->setValidator('date_livraison_prevue', new sfValidatorDate(array('required' => false)));
+        $this->setWidget('date_livraison_demandee', new WidgetFormInputDate());
+        $this->setValidator('date_livraison_demandee', new sfValidatorDate(array('required' => false)));
 
         $this->setWidget('prix_public', new sfWidgetFormInputText());
         $this->setValidator('prix_public', new sfValidatorPass(array('required' => false)));
