@@ -1,7 +1,7 @@
 <?php
 class Change
 {
-  const API_URL = 'https://api.frankfurter.app/latest?from=USD&to=EUR';
+  const API_URL = 'https://api.frankfurter.app/latest?from=EUR&to=USD';
   const FILENAME = 'usd_eur.json';
 
   public $json = null;
@@ -47,12 +47,12 @@ class Change
 
   public function getUSDRate()
   {
-    return round(1 / $this->json["rates"]["EUR"],5);
+    return $this->json["rates"]["USD"];
   }
 
   public function getEURRate()
   {
-    return $this->json["rates"]["EUR"];
+    return round(1 / $this->json["rates"]["USD"],5);
   }
 
   public function convertToUSD($eur)
