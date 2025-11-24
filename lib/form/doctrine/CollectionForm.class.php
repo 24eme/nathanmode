@@ -261,13 +261,11 @@ class CollectionForm extends BaseCollectionForm
         }
 
         $quantiteEntree = 0;
-        $marge = 0;
         if(is_array($values['details'])) {
 	        foreach ($values['details'] as $detail) {
-            if (isset($detail['metrage'])) {
-	        	    $quantiteEntree += $detail['metrage'];
-            }
-            $marge = round((100 - ($detail['prix_achat'] * 100 / $detail['prix']) * $values['part_marge'] / 100), 2);
+                if (isset($detail['metrage'])) {
+    	        	    $quantiteEntree += $detail['metrage'];
+                }
 	        }
         }
         $quantiteSortie = 0;
@@ -280,8 +278,5 @@ class CollectionForm extends BaseCollectionForm
         }
         $resteALivrer = $quantiteEntree - $quantiteSortie;
         $this->getObject()->setResteALivrer($resteALivrer);
-        if($this->getObject()->getPartMarge()) {
-            $this->getObject()->setPrixFournisseur($marge);
-        }
     }
 }
