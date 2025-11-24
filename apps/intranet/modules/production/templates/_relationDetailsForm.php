@@ -10,11 +10,11 @@
                   <th><label>Référence</label></th>
                   <th><label>Colori</label></th>
                   <th><label>Quantité</label></th>
-                  <?php if ($collection->isCalculCommissionFromMarge()) : ?>
+                  <?php if (sfConfig::get('app_no_metrage')) : ?>
                     <th><label>Prix d'achat factory</label></th>
                   <?php endif;  ?>
                   <th><label>Prix de vente factory</label></th>
-                  <?php if ($collection->isCalculCommissionFromMarge()) : ?>
+                  <?php if (sfConfig::get('app_no_metrage')) : ?>
                     <th><label>Prix public TTC</label></th>
                     <th><label>Frais d'approche</label></th>
                     <th><label>Marge&nbsp;montant</label></th>

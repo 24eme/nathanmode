@@ -208,10 +208,7 @@ class CollectionForm extends BaseCollectionForm
             unset($this['ecru']);
         }
 
-        if($this->getObject()->isCalculCommissionFromMarge() && $this->getObject()->getPrixFournisseur() === null) {
-            unset($this['prix_fournisseur']);
-        }
-        if(!$this->getObject()->isCalculCommissionFromMarge()) {
+        if(!sfConfig::get('app_no_metrage')) {
             unset($this['part_marge']);
         }
     }
