@@ -52,6 +52,22 @@ class CollectionDetail extends BaseCollectionDetail
       return $this->getPrix();
   }
 
+  public function getTheoreticalMontantCommission() {
+      if ($this->getCollection()->getDeviseFournisseur()->isPourcentage() ||$this->getCollection()->getPartMarge()) {
+      	try {
+      		if ($this->getPiece()) {
+      			return round(($this->getPiece() * $this->getPrixVente() * $this->getPrixFournisseur() / 100), 2);
+      		} else {
+      			return round(($this->getMetrage() * $this->getPrixVente() * $this->getPrixFournisseur() / 100), 2);
+      		}
+      	} catch (Exception $e) {
+         		return 0;
+      	}
+      }
+
+      return $this->getCollection()->getPrixFournisseur();
+  }
+
   public function getPrixFournisseur() {
     if($this->getCollection()->getPartMarge()) {
 
@@ -102,19 +118,7 @@ class CollectionDetail extends BaseCollectionDetail
     else
     	$commande->setRelation(Commande::TYPE_COLLECTION);
 
-    if ($this->getCollection()->getDeviseFournisseur()->isPourcentage()) {
-    	try {
-    		if ($this->getPiece()) {
-    			$commande->setTotalFournisseur($this->getPiece() * $this->getPrix() * $commande->getPrixFournisseur() / 100);
-    		} else {
-    			$commande->setTotalFournisseur($this->getMetrage() * $this->getPrix() * $commande->getPrixFournisseur() / 100);
-    		}
-    	} catch (Exception $e) {
-    		$commande->setTotalFournisseur(0);
-    	}
-    } else {
-    	$commande->setTotalFournisseur($this->getCollection()->getPrixFournisseur());
-    }
+    $commande->setTotalFournisseur($this->getTheoreticalMontantCommission());
 
     if ($this->getCollection()->getDeviseCommercial()->isPourcentage()) {
     	try {

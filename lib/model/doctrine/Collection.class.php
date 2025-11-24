@@ -87,6 +87,14 @@ class Collection extends BaseCollection
         }
     }
 
+    public function getTheoreticalMontantCommission() {
+        $montant = 0;
+        foreach ($this->getCollectionDetails() as $collectionDetail) {
+            $montant += $collectionDetail->getTheoreticalMontantCommission();
+        }
+        return $montant;
+    }
+
     public function save(Doctrine_Connection $conn = null)
     {
 	    $dateRetardMax = null;
