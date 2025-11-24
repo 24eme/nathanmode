@@ -6,23 +6,23 @@
                   <?php if (sfConfig::get('app_no_metrage')) : ?>
                     <th colspan="2"><label>Image</label></th>
                   <?php endif ?>
-                  <th><label>Catégorie</label></th>
-                  <th><label>Référence</label></th>
-                  <th><label>Colori</label></th>
-                  <th><label>Quantité</label></th>
+                  <th class="large-column"><label>Catégorie</label></th>
+                  <th class="large-column"><label>Référence</label></th>
+                  <th class="large-column"><label>Colori</label></th>
+                  <th class="small-column"><label>Quantité</label></th>
                   <?php if (sfConfig::get('app_no_metrage')) : ?>
-                    <th><label>Prix d'achat factory</label></th>
+                    <th class="medium-column"><label>Prix d'achat factory</label></th>
                   <?php endif;  ?>
-                  <th><label>Prix de vente factory</label></th>
+                  <th class="medium-column"><label>Prix de vente factory</label></th>
                   <?php if (sfConfig::get('app_no_metrage')) : ?>
-                    <th><label>Prix public TTC</label></th>
-                    <th><label>Frais d'approche</label></th>
-                    <th><label>Marge&nbsp;montant</label></th>
-                    <th><label>Marge&nbsp;coef&nbsp;/&nbsp;%</label></th>
-                    <th><label>Client&nbsp;coef&nbsp;/&nbsp;%</label></th>
+                    <th class="medium-column"><label>Prix public TTC</label></th>
+                    <th class="medium-column"><label>Frais d'approche</label></th>
+                    <th class="medium-column"><label>Marge&nbsp;montant</label></th>
+                    <th class="medium-column"><label>Marge&nbsp;coef&nbsp;/&nbsp;%</label></th>
+                    <th class="medium-column"><label>Client&nbsp;coef&nbsp;/&nbsp;%</label></th>
                   <?php endif;  ?>
                   <th>Date livr. prévue</th>
-                  <th><label>Reste à livrer</label></th>
+                  <th class="small-column"><label>Reste à livrer</label></th>
                   <th><label>&nbsp;</label></th>
                   <th><label>&nbsp;</label></th>
               </tr>
