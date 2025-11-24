@@ -4,9 +4,7 @@
           <table width="100%" border="0" cellpadding="0" cellspacing="0" class="subTab">
             <tr>
                   <th style="width: 10%;"><label>Date livraison</label></th>
-                  <?php if (sfConfig::get('app_no_metrage')) : ?>
-                     <th style="width: 10%;"><label>Référence</label></th>
-                  <?php endif; ?>
+                  <th style="width: 10%;"><label>Référence</label></th>
                   <th style="width: 12%;"><label>Colori</label></th>
                   <th style="width: 8%;"><label>Quantité</label></th>
                   <th style="width: 8%;"><label>Prix de vente</label></th>

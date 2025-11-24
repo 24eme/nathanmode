@@ -26,6 +26,7 @@
                   <th class="small-column"><label>Reste à livrer</label></th>
                   <th><label>&nbsp;</label></th>
                   <th><label>&nbsp;</label></th>
+                  <th><label>&nbsp;</label></th>
               </tr>
               <tbody id="form_details_container">
                   <?php foreach($form['details'] as $item_form): ?>

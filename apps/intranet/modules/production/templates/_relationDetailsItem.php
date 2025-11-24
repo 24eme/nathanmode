@@ -86,6 +86,9 @@
         <a class="lien_supprimer_ligne" href="#"><i class="bi bi-trash3"></i></a>
     </td>
     <td class="px-1">
-      <a class="lien_ajouter_ligne_livraison" href="#"><i class="bi bi-truck"></i></a>
+      <a class="lien_ajouter_ligne_livraison" href="#" title="ajouter une livraison pour ce produit"><i class="bi bi-truck"></i></a>
+    </td>
+    <td class="px-1">
+      <a class="lien_ajouter_ligne_retard" href="#" title="ajouter un retard de livraison pour ce produit"><i class="bi bi-clock-history"></i></a>
     </td>
 </tr>
