@@ -47,12 +47,18 @@ class Change
 
   public function getUSDRate()
   {
+      if(!isset($this->json["rates"]["USD"])) {
+          return;
+      }
     return $this->json["rates"]["USD"];
   }
 
   public function getEURRate()
   {
-    return round(1 / $this->json["rates"]["USD"],5);
+      if(!$this->getUSDRate()) {
+          return;
+      }
+    return round(1 / $this->getUSDRate(),5);
   }
 
   public function convertToUSD($eur)

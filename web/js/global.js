@@ -666,14 +666,21 @@ $(document).ready(function() {
 
 function updateIndicateurs() {
   const lignes = document.querySelectorAll('.ligne_calcul_marges');
+  const inputPartMarge = document.getElementById('collection_part_marge');
+  if(inputPartMarge) {
+      inputPartMarge.addEventListener('input', function(e) { lignes.forEach(ligne => { calculeIndicateurs(ligne) }); });
+      document.getElementById('checkbox_mode_calcul_marge').addEventListener('change', function(e) { lignes.forEach(ligne => { calculeIndicateurs(ligne) }); });
+  }
   lignes.forEach(ligne => {
     const inputAchat = ligne.querySelector('.prix_achat');
     const inputVente = ligne.querySelector('.prix_vente');
     const inputFrais = ligne.querySelector('.part_frais');
+    const inputPrixPublic = ligne.querySelector('.prix_public');
     if (inputAchat && inputVente) {
         inputAchat.addEventListener('input', () => calculeIndicateurs(ligne));
         inputVente.addEventListener('input', () => calculeIndicateurs(ligne));
-	inputFrais.addEventListener('input', () => calculeIndicateurs(ligne))
+        inputFrais.addEventListener('input', () => calculeIndicateurs(ligne))
+        inputPrixPublic.addEventListener('input', () => calculeIndicateurs(ligne))
         calculeIndicateurs(ligne);
       }
   });
@@ -697,6 +704,8 @@ function calculeIndicateurs(tr) {
     const spanPart = calcMargesLigne.querySelector('.marge_part');
     const spanCoefClient = calcMargesLigne.querySelector('.marge_client_coef');
     const spanPartClient = calcMargesLigne.querySelector('.marge_client_part');
+
+    inputAchat.disabled = document.getElementById('collection_part_marge').value === "";
 
     const prixAchat = parseFloat(inputAchat.value) || 0;
     const prixVente = parseFloat(inputVente.value) || 0;

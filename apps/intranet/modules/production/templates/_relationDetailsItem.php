@@ -20,7 +20,7 @@
         <?php echo $form['piece_categorie']->renderError() ?>
     </td>
     <td>
-        <?php echo $form['qualite']->render(array('class' => 'form-control-sm reference')); ?>
+        <?php echo $form['qualite']->render(array('class' => 'form-control-sm reference', 'required' => 'required')); ?>
         <?php echo $form['qualite']->renderError(); ?>
     </td>
     <td>
@@ -50,7 +50,7 @@
     <?php if(isset($form['prix_public'])): ?>
      <td>
         <div class="input-group input-group-sm">
-             <?php echo $form['prix_public']->render(array('class' => 'input-float form-control')) ?>
+             <?php echo $form['prix_public']->render(array('class' => 'input-float form-control prix_public')) ?>
              <?php echo $form['prix_public']->renderError() ?>
              <span class="input-group-text" style="font-size:13px;color: #444;border: 1px solid #aaa">€</span>
          </div>
@@ -65,7 +65,7 @@
     	</div>
      </td>
      <?php endif; ?>
-     <?php if ($collection->isCalculCommissionFromMarge()) : ?>
+     <?php if (sfConfig::get('app_no_metrage')) : ?>
     <td><span class="marge_usd">0</span>&nbsp;$ / <span class="marge_eur">0</span>&nbsp;€</td>
     <td><span class="marge_coef coef-ind">0</span>&nbsp;&nbsp;&nbsp;<span class="marge_part coef-prct">0</span>&nbsp;%</td>
     <td><span class="marge_client_coef coef-ind">0</span>&nbsp;&nbsp;&nbsp;<span class="marge_client_part coef-prct">0</span>&nbsp;%</td>

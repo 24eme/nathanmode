@@ -1302,3 +1302,15 @@ img.production-images {
 .read-only-livraison > input {
 	background-color:#e6e6e6a1;
 }
+
+.large-column {
+    width: 150px;
+}
+
+.medium-column {
+    width: 110px;
+}
+
+.small-column {
+    width: 80px;
+}
