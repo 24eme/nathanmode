@@ -88,7 +88,7 @@
                     <?php echo $form['devise_id']->render(array('class' => 'chosen')) ?>
                     <?php echo $form['devise_id']->renderError() ?>
                 </td>
-        </tr>
+            </tr>
             <?php if(isset($form['prix_fournisseur'])): ?>
             <tr>
                 <td><?php echo $form['prix_fournisseur']->renderLabel() ?>&nbsp;:</td>

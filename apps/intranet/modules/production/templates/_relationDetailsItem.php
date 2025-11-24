@@ -71,6 +71,10 @@
     <td><span class="marge_client_coef coef-ind">0</span>&nbsp;&nbsp;&nbsp;<span class="marge_client_part coef-prct">0</span>&nbsp;%</td>
     <?php endif; ?>
     <td style="text-align:left;">
+        <?php echo $form['date_livraison_demandee']->render(array('class' => 'form-control form-control-sm')) ?>
+        <?php echo $form['date_livraison_demandee']->renderError() ?>
+    </td>
+    <td style="text-align:left;">
         <?php echo $form['date_livraison_prevue']->render(array('class' => 'form-control form-control-sm')) ?>
         <?php echo $form['date_livraison_prevue']->renderError() ?>
     </td>
