@@ -13,13 +13,15 @@
 class Devise extends BaseDevise
 {
     const EURO_ID = 1;
-		const DOLLAR_ID = 2;
-		const POURCENTAGE_ID = 3;
+	const DOLLAR_ID = 2;
+	const POURCENTAGE_ID = 3;
+	const POURCENTAGE_PRIX_VENTE_ID = 3;
+	const POURCENTAGE_PART_MARGE_ID = 4;
 
-		public function __toString()
+	public function __toString()
     {
 
-        return $this->symbole;
+        return $this->libelle;
     }
 
     public function isPourcentage() {

@@ -303,8 +303,8 @@ $(document).ready(function() {
 	$('#collection_client_id').sortSelect().chosen({width: "90%"});
 	$('#collection_paiement').sortSelect().chosen({width: "90%"});
 	$('#collection_situation').sortSelect().chosen({width: "90%"});
-  $('#collection_devise_fournisseur_id').sortSelect().chosen({width: "35%"});
-  $('#collection_devise_commercial_id').sortSelect().chosen({width: "35%"});
+  $('#collection_devise_fournisseur_id').sortSelect().chosen({width: "60%"});
+  $('#collection_devise_commercial_id').sortSelect().chosen({width: "60%"});
   $('#sf_guard_user_commercial_id').sortSelect().chosen({allow_single_deselect:true,width: "90%"});
 
 	$('#collection_detail_filters_saison_id').sortSelect().chosen({
@@ -666,11 +666,8 @@ $(document).ready(function() {
 
 function updateIndicateurs() {
   const lignes = document.querySelectorAll('.ligne_calcul_marges');
-  const inputPartMarge = document.getElementById('collection_part_marge');
-  if(inputPartMarge) {
-      inputPartMarge.addEventListener('input', function(e) { lignes.forEach(ligne => { calculeIndicateurs(ligne) }); });
-      document.getElementById('checkbox_mode_calcul_marge').addEventListener('change', function(e) { lignes.forEach(ligne => { calculeIndicateurs(ligne) }); });
-  }
+    document.getElementById('collection_prix_fournisseur').addEventListener('input', function(e) { lignes.forEach(ligne => { calculeIndicateurs(ligne) }); });
+    document.getElementById('collection_devise_fournisseur_id').addEventListener('change', function(e) { lignes.forEach(ligne => { calculeIndicateurs(ligne) }); });
   lignes.forEach(ligne => {
     const inputAchat = ligne.querySelector('.prix_achat');
     const inputVente = ligne.querySelector('.prix_vente');
@@ -705,7 +702,10 @@ function calculeIndicateurs(tr) {
     const spanCoefClient = calcMargesLigne.querySelector('.marge_client_coef');
     const spanPartClient = calcMargesLigne.querySelector('.marge_client_part');
 
-    inputAchat.disabled = document.getElementById('collection_part_marge').value === "";
+    inputAchat.disabled = (document.getElementById('collection_devise_fournisseur_id').value != 4);
+    if(inputAchat.disabled) {
+      inputAchat.value = null;
+    }
 
     const prixAchat = parseFloat(inputAchat.value) || 0;
     const prixVente = parseFloat(inputVente.value) || 0;

@@ -185,8 +185,6 @@ class CollectionForm extends BaseCollectionForm
            'reste_a_livrer' => 'Reste à livrer',
            'observation_livraison' => 'Observation',
            'commande_soldee' => 'Commande soldée',
-
-           'part_marge' => 'Part de marge',
         ));
 
         $this->getWidget('reste_a_livrer')->setAttribute('readonly', 'readonly');
@@ -206,10 +204,6 @@ class CollectionForm extends BaseCollectionForm
 
         if(sfConfig::get('app_no_metrage')) {
             unset($this['ecru']);
-        }
-
-        if(!sfConfig::get('app_no_metrage')) {
-            unset($this['part_marge']);
         }
     }
 

@@ -89,33 +89,11 @@
                     <?php echo $form['devise_id']->renderError() ?>
                 </td>
             </tr>
-            <?php if(isset($form['part_marge'])): ?>
-            <tr>
-                <td></td>
-                <td>
-                    <div class="form-check form-switch mt-2">
-                        <input id="checkbox_mode_calcul_marge" class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault" <?php if($form['part_marge']->getValue() !== null
-                    ): ?>checked="checked"<?php endif; ?>>
-                        <label class="form-check-label" for="checkbox_mode_calcul_marge">Calculer la commission en part de marge</label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-              <td><?php echo $form['part_marge']->renderLabel() ?>&nbsp;:</td>
-              <td>
-                <div class="input-group input-group-sm">
-                    <?php echo $form['part_marge']->render(array('class' => 'input-float form-control')) ?>
-                    <?php echo $form['part_marge']->renderError() ?>
-                    <span class="input-group-text" style="font-size:13px; width: 36px;">%</span>
-                </div>
-              </td>
-            </tr>
-            <?php endif; ?>
             <?php if(isset($form['prix_fournisseur'])): ?>
             <tr>
                 <td><?php echo $form['prix_fournisseur']->renderLabel() ?>&nbsp;:</td>
                 <td>
-                  <?php echo $form['prix_fournisseur']->render(array('class' => 'small input-float', 'required' => 'required')) ?>
+                  <?php echo $form['prix_fournisseur']->render(array('class' => 'small input-float', 'required' => 'required', 'style' => 'width: 40% !important;')) ?>
                   <?php echo $form['devise_fournisseur_id']->render(array('class' => 'small')) ?>
                   <?php echo $form['prix_fournisseur']->renderError() ?>
                 </td>
@@ -143,26 +121,4 @@
 </div>
 <script id="dependent_select_url_template" type="text/x-jquery-tmpl">
 	<?php echo url_for('client/paiement?id=var---id---'); ?>
-</script>
-
-<script>
-  function updateStatutCommission() {
-    document.querySelector('#collection_prix_fournisseur').readonly = document.querySelector('#checkbox_mode_calcul_marge').checked;
-    document.querySelector('#collection_prix_fournisseur').required = !document.querySelector('#checkbox_mode_calcul_marge').checked;
-    document.querySelector('#collection_part_marge').disabled = !document.querySelector('#checkbox_mode_calcul_marge').checked;
-
-    if(document.querySelector('#checkbox_mode_calcul_marge').checked && !document.querySelector('#collection_part_marge').value) {
-      document.querySelector('#collection_part_marge').value = 100.0
-    } else if(!document.querySelector('#checkbox_mode_calcul_marge').checked) {
-      document.querySelector('#collection_part_marge').value = null;
-    }
-
-    document.querySelector('#collection_prix_fournisseur').parentNode.classList.toggle('opacity-50', document.querySelector('#checkbox_mode_calcul_marge').checked);
-    document.querySelector('#collection_part_marge').parentNode.classList.toggle('opacity-50', !document.querySelector('#checkbox_mode_calcul_marge').checked);
-  }
-
-  updateStatutCommission();
-  document.querySelector('#checkbox_mode_calcul_marge').addEventListener('change', function(e) {
-    updateStatutCommission();
-  });
 </script>
