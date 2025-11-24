@@ -41,15 +41,16 @@
 
         <?php include_partial('production/relationRetardsForm', array('form' => $form)) ?>
 
-        <div class="subTitle"><?php echo $form['observation_livraison']->renderLabel() ?></div>
-
-        <table width="100%" border="0" cellpadding="0" cellspacing="0">
-          <tr>
-            <td>
-              <?php echo $form['observation_livraison']->renderError() ?>
-              <?php echo $form['observation_livraison']->render(array('class' => 'txtArea')) ?>
-            </td>
-          </tr>
-        </table>
+        <?php if (! empty($form['observation_livraison']->getValue())) : ?>
+            <div class="subTitle"><?php echo $form['observation_livraison']->renderLabel() ?></div>
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td>
+                    <?php echo $form['observation_livraison']->renderError() ?>
+                    <?php echo $form['observation_livraison']->render(array('class' => 'txtArea')) ?>
+                    </td>
+                </tr>
+            </table>
+        <?php endif;?>
     </div>
 </div>
