@@ -20,15 +20,6 @@
                                     <?php echo $form['adresse_livraison']->renderError() ?>
                                 </td>
                             </tr>
-                            <tr>
-                                <td width="150" style="vertical-align:top;">
-                                    <?php echo $form['fichier_confirmation']->renderLabel() ?><img src="/css/img/pdf.gif" width="18" height="19" alt="" align="absbottom" />&nbsp;:
-                                </td>
-                                <td class="uploadFile">
-                                    <?php echo $form['fichier_confirmation']->render(array('class' => 'input')) ?>
-                                    <?php echo $form['fichier_confirmation']->renderError() ?>
-                                </td>
-                            </tr>
                 <?php endif; ?>
             </table>
         </div>
