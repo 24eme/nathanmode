@@ -689,8 +689,10 @@ function calculeIndicateurs(tr) {
   const devise = document.getElementById('collection_devise_id').value;
 
   document.querySelectorAll('.ligne_calcul_marges').forEach(calcMargesLigne => {
-
     const pxPublicId = calcMargesLigne.querySelector('[id^="collection_details_"][id$="_prix_public"]');
+    if(!pxPublicId) {
+      return;
+    }
     const prixPublicTTC = parseFloat(pxPublicId.value) || 0;
     const prixPublicHT = prixPublicTTC ? (prixPublicTTC / 1.2).toFixed(2) : 0;
     const inputAchat = calcMargesLigne.querySelector('.prix_achat');
@@ -701,8 +703,10 @@ function calculeIndicateurs(tr) {
     const spanPart = calcMargesLigne.querySelector('.marge_part');
     const spanCoefClient = calcMargesLigne.querySelector('.marge_client_coef');
     const spanPartClient = calcMargesLigne.querySelector('.marge_client_part');
+    const commission = document.getElementById('collection_prix_fournisseur');
+    const commissionUnite = document.getElementById('collection_devise_fournisseur_id');
 
-    inputAchat.disabled = (document.getElementById('collection_devise_fournisseur_id').value != 4);
+    inputAchat.disabled = (commissionUnite.value != 4);
     if(inputAchat.disabled) {
       inputAchat.value = null;
     }
@@ -710,11 +714,23 @@ function calculeIndicateurs(tr) {
     const prixAchat = parseFloat(inputAchat.value) || 0;
     const prixVente = parseFloat(inputVente.value) || 0;
 
-    const marge = prixVente - prixAchat;
-    const coef = prixAchat !== 0 ? prixVente / prixAchat : 0;
-    const part = prixVente !== 0 ? marge / prixVente * 100 : 0;
-    let prixVenteEur  = prixVente;
+    let marge = 0;
+    let coef = 0;
+    let part = 0;
 
+    if(commissionUnite.value == 3) {
+      part = 10;
+      marge = prixVente !== 0 ? prixVente * part / 100 : 0;
+      coef = prixVente !== 0 ? prixVente / 10 : 0;
+    }
+
+    if(commissionUnite.value == 4) {
+      marge = prixVente - prixAchat;
+      coef = prixAchat !== 0 ? prixVente / prixAchat : 0;
+      part = prixVente !== 0 ? marge / prixVente * 100 : 0;
+    }
+
+    let prixVenteEur  = prixVente;
     if (devise == 1) {
       spanMargeEur.textContent = marge.toFixed();
       spanMargeUsd.textContent = (marge*usdRate).toFixed();
