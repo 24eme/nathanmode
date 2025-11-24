@@ -19,6 +19,37 @@
         <?php include_partial('production/formLivraisons', array('form' => $form)) ?>
         <?php include_partial('production/formTirelles', array('form' => $form)) ?>
         <?php include_partial('production/formTestMatiere', array('form' => $form)) ?>
+
+        <div class="tableau col-11">
+            <div class="titre"><span>Factures</span></div>
+            <div class="px-2">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0" class="subTab">
+                <thead>
+                    <tr>
+                        <th>Numéro</th>
+                        <th>Montant</th>
+                        <th>Commission</th>
+                        <th>Date de paiement</th>
+                        <th>Statut</th>
+                        <th>PDF</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php foreach($collection->getCollectionLivraisons() as $livraison): ?>
+                <?php if($livraison->getFacture()->isNew()): continue; endif; ?>
+                <tr>
+                <td><?php echo $livraison->getFacture()->getNumero(); ?></td>
+                <td><?php echo $livraison->getFacture()->getMontant(); ?></td>
+                <td><?php echo $livraison->getFacture()->getTotalFournisseur(); ?></td>
+                <td><?php echo $livraison->getFacture()->getDateDebit(); ?></td>
+                <td><a href="<?php echo url_for('facture_edit', $livraison->getFacture()) ?>"><?php echo $livraison->getFacture()->getStatut(); ?></a></td>
+                <td><a href="">PDF</a></td>
+                </tr>
+                <?php endforeach; ?>
+                </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
 </form>
