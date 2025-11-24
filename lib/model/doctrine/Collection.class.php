@@ -237,9 +237,11 @@ class Collection extends BaseCollection
     }
 
     public function getPartMarge() {
-        if($this->isNew() && sfConfig::get('app_no_metrage')) {
-            return 100;
+        if($this->getDeviseFournisseurId() == Devise::POURCENTAGE_PART_MARGE_ID) {
+
+            return $this->getPrixFournisseur();
         }
-        return $this->_get('part_marge');
+
+        return null;
     }
 }

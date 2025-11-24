@@ -13,6 +13,7 @@ class FournisseurForm extends BaseFournisseurForm
   public function configure()
   {
     $this->getWidget('commission')->setAttribute('class', 'input-float');
+    $this->getWidget('devise_id')->setLabel('Unité');
   }
 
   protected function updateDefaultsFromObject()
