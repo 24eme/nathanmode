@@ -201,11 +201,15 @@ class CollectionDetailFormFilter extends BaseCollectionDetailFormFilter
 
   public function addDateCommandeColumnQuery($query, $field, $values)
   {
+    if (!isset($values['from'])) return;
+    if (!isset($values['to'])) return;
     $query->addWhere(sprintf('%s BETWEEN ? AND ?', 'date_commande'), array_values($values));
   }
 
   public function addDateLivraisonColumnQuery($query, $field, $values)
   {
+    if (!isset($values['from'])) return;
+    if (!isset($values['to'])) return;
     $query->addWhere(sprintf('%s BETWEEN ? AND ?', 'date_livraison'), array_values($values));
   }
 
