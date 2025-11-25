@@ -1307,6 +1307,10 @@ img.production-images {
     width: 150px;
 }
 
+.large-column .chosen-container {
+    max-width: 135px !important;
+}
+
 .medium-column {
     width: 110px;
 }

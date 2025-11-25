@@ -4,7 +4,7 @@
           <table width="100%" cellpadding="0" cellspacing="0" class="subTab collection-tables">
 	      <tr>
                   <?php if (sfConfig::get('app_no_metrage')) : ?>
-                    <th colspan="2"><label>Image</label></th>
+                    <th><label>Image</label></th>
                   <?php endif ?>
                   <th class="large-column"><label>Catégorie</label></th>
                   <th class="large-column"><label>Référence</label></th>
@@ -17,12 +17,11 @@
                   <?php if (sfConfig::get('app_no_metrage')) : ?>
                     <th class="medium-column"><label>Prix public TTC</label></th>
                     <th class="medium-column"><label>Frais d'approche</label></th>
-                    <th class="medium-column"><label>Marge<br>montant</label></th>
-                    <th class="medium-column"><label>Marge&nbsp;coef&nbsp;/&nbsp;%</label></th>
-                    <th class="medium-column"><label>Client&nbsp;coef&nbsp;/&nbsp;%</label></th>
+                    <th class="small-column"><label>Marge<br /><small>(coef,&nbsp;%)</small></label></th>
+                    <th class="small-column"><label>Client<br /><small>(coef,&nbsp;%)</small></label></th>
                     <?php endif;  ?>
-                  <th>ETD demandé</th>
-                  <th>ETD confirmé</th>
+                  <th class="small-column">ETD demandé</th>
+                  <th class="small-column">ETD confirmé</th>
                   <th class="small-column"><label>Reste à livrer</label></th>
                   <th><label>&nbsp;</label></th>
                   <th><label>&nbsp;</label></th>

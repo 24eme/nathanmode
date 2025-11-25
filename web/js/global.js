@@ -708,7 +708,6 @@ function calculeIndicateurs(tr) {
     const inputAchat = calcMargesLigne.querySelector('.prix_achat');
     const inputVente = calcMargesLigne.querySelector('.prix_vente');
     const spanMargeEur = calcMargesLigne.querySelector('.marge_eur');
-    const spanMargeUsd = calcMargesLigne.querySelector('.marge_usd');
     const spanCoef = calcMargesLigne.querySelector('.marge_coef');
     const spanPart = calcMargesLigne.querySelector('.marge_part');
     const spanCoefClient = calcMargesLigne.querySelector('.marge_client_coef');
@@ -743,11 +742,10 @@ function calculeIndicateurs(tr) {
 
     let prixVenteEur = prixVente;
     if (devise == 1) {
-      spanMargeEur.textContent = marge.toFixed();
-      spanMargeUsd.textContent = (marge*usdRate).toFixed();
+      spanMargeEur.textContent = marge.toFixed(2);
     } else if (devise == 2) {
-      spanMargeUsd.textContent = marge.toFixed();
-      spanMargeEur.textContent = (marge*eurRate).toFixed();
+      spanMargeEur.title = marge.toFixed(2) + ' $';
+      spanMargeEur.textContent = (marge*eurRate).toFixed(2);
       prixVenteEur *= eurRate;
     }
 

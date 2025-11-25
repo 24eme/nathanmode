@@ -1,21 +1,18 @@
 <tr class="relation_item_form ligne_calcul_marges">
 <?php if (sfConfig::get('app_no_metrage')) : ?>
-    <td>
-	<?php if($form['image']->getValue()): ?>
-	<a href="<?php echo CollectionDetailTable::getInstance()->getUploadPath(false).$form['image']->getValue() ?>" target="_blank"><img height="50" src="<?php echo CollectionDetailTable::getInstance()->getUploadPath(false).$form['image']->getValue() ?>" /></a>
-	<?php else: ?>
-	  <img height="50" width="1" />
-	<?php endif; ?>
-    </td>
     <td class="uploadFile pt-1">
-	<label for=<?php echo $form['image']->renderId() ?> style="padding:8px 5px;">
+    <label for="<?php echo $form['image']->renderId() ?>"  style="padding:8px 2px;">
+	<?php if($form['image']->getValue()): ?>
+	<img height="50" src="<?php echo CollectionDetailTable::getInstance()->getUploadPath(false).$form['image']->getValue() ?>" />
+	<?php else: ?>
 		<span class="btn btn-sm btn-outline-secondary"> <i class="bi bi-upload"></i></span>
+	<?php endif; ?>
 	</label>
 	<?php echo $form['image']->render() ?>
 	<?php echo $form['image']->renderError() ?>
     </td>
 <?php endif; ?>
-    <td>
+    <td class="large-column">
         <?php echo $form['piece_categorie']->render(array('class' => 'chosen')) ?>
         <?php echo $form['piece_categorie']->renderError() ?>
     </td>
@@ -52,7 +49,7 @@
         <div class="input-group input-group-sm">
              <?php echo $form['prix_public']->render(array('class' => 'input-float form-control prix_public')) ?>
              <?php echo $form['prix_public']->renderError() ?>
-             <span class="input-group-text" style="font-size:13px;color: #444;border: 1px solid #aaa">€</span>
+             <span class="input-group-text" style="font-size:13px;color: #444;border: 1px solid #aaa;">€</span>
          </div>
      </td>
      <?php endif; ?>
@@ -61,21 +58,20 @@
     	<div class="input-group input-group-sm">
     		<?php echo $form['part_frais']->render(array('class' => 'input-float form-control part_frais')) ?>
     		<?php echo $form['part_frais']->renderError() ?>
-    		<span class="input-group-text" style="font-size:13px; width: 36px;">%</span>
+    		<span class="input-group-text" style="font-size:13px;color: #444;border: 1px solid #aaa;">%</span>
     	</div>
      </td>
      <?php endif; ?>
      <?php if (sfConfig::get('app_no_metrage')) : ?>
-    <td><span class="marge_usd">0</span>&nbsp;$ / <span class="marge_eur">0</span>&nbsp;€</td>
-    <td><span class="marge_coef coef-ind">0</span>&nbsp;&nbsp;&nbsp;<span class="marge_part coef-prct">0</span>&nbsp;%</td>
-    <td><span class="marge_client_coef coef-ind">0</span>&nbsp;&nbsp;&nbsp;<span class="marge_client_part coef-prct">0</span>&nbsp;%</td>
+    <td><span class="marge_coef coef-ind">0</span>&nbsp;&nbsp;<span class="marge_part coef-prct">0</span>&nbsp;%<br /><span class="marge_usd" style="display: none;">0</span><strong class="marge_eur">0</strong>&nbsp;€</td>
+    <td><span class="marge_client_coef coef-ind">0</span>&nbsp;&nbsp;<span class="marge_client_part coef-prct">0</span>&nbsp;%<br />&nbsp;</td>
     <?php endif; ?>
     <td style="text-align:left;">
-        <?php echo $form['date_livraison_demandee']->render(array('class' => 'form-control form-control-sm')) ?>
+        <?php echo $form['date_livraison_demandee']->render(array('class' => 'form-control form-control-sm', 'style' => 'width: 80px;')) ?>
         <?php echo $form['date_livraison_demandee']->renderError() ?>
     </td>
     <td style="text-align:left;">
-        <?php echo $form['date_livraison_prevue']->render(array('class' => 'form-control form-control-sm')) ?>
+        <?php echo $form['date_livraison_prevue']->render(array('class' => 'form-control form-control-sm', 'style' => 'width: 80px;')) ?>
         <?php echo $form['date_livraison_prevue']->renderError() ?>
     </td>
     <td>
