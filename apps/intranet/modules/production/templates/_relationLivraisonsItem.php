@@ -43,7 +43,7 @@
       <?php echo $form['packing_list']->render(array('class' => 'input')) ?>
       <?php echo $form['packing_list']->renderError() ?>
   </td>
-  <td class="px-1">
-      <a class="lien_supprimer_ligne" href="#"><i class="bi bi-trash3"></i></a>
+  <td class="p-2">
+      <a class="lien_supprimer_ligne fs-6 text-muted" href="#"><i class="bi bi-trash3"></i></a>
   </td>
 </tr>

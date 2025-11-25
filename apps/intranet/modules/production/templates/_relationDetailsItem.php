@@ -1,7 +1,7 @@
 <tr class="relation_item_form ligne_calcul_marges">
 <?php if (sfConfig::get('app_no_metrage')) : ?>
-    <td class="uploadFile pt-1">
-    <label for="<?php echo $form['image']->renderId() ?>"  style="padding:8px 2px;">
+    <td class="uploadFile pt-1" style="padding: 0;">
+    <label for="<?php echo $form['image']->renderId() ?>"  style="cursor: pointer;">
 	<?php if($form['image']->getValue()): ?>
 	<img height="50" src="<?php echo CollectionDetailTable::getInstance()->getUploadPath(false).$form['image']->getValue() ?>" />
 	<?php else: ?>
@@ -67,24 +67,24 @@
     <td><span class="marge_client_coef coef-ind">0</span>&nbsp;&nbsp;<span class="marge_client_part coef-prct">0</span>&nbsp;%<br />&nbsp;</td>
     <?php endif; ?>
     <td style="text-align:left;">
-        <?php echo $form['date_livraison_demandee']->render(array('class' => 'form-control form-control-sm', 'style' => 'width: 80px;')) ?>
+        <?php echo $form['date_livraison_demandee']->render(array('class' => 'form-control form-control-sm', 'style' => 'width: 100px;')) ?>
         <?php echo $form['date_livraison_demandee']->renderError() ?>
     </td>
     <td style="text-align:left;">
-        <?php echo $form['date_livraison_prevue']->render(array('class' => 'form-control form-control-sm', 'style' => 'width: 80px;')) ?>
+        <?php echo $form['date_livraison_prevue']->render(array('class' => 'form-control form-control-sm', 'style' => 'width: 100px;')) ?>
         <?php echo $form['date_livraison_prevue']->renderError() ?>
     </td>
     <td>
         <?php echo $form['reste_a_livrer_produit']->render(array('class' => 'input-float form-control form-control-sm reste-a-livrer')); ?>
         <?php echo $form['reste_a_livrer_produit']->renderError(); ?>
     </td>
-    <td class="px-1">
-        <a class="lien_supprimer_ligne" href="#"><i class="bi bi-trash3"></i></a>
+    <td class="py-2">
+        <a class="lien_supprimer_ligne fs-6 text-muted" href="#"><i class="bi bi-trash3"></i></a>
     </td>
-    <td class="px-1">
-      <a class="lien_ajouter_ligne_livraison" href="#" title="ajouter une livraison pour ce produit"><i class="bi bi-truck"></i></a>
+    <td class="py-2">
+      <a class="lien_ajouter_ligne_livraison fs-6" href="#" title="ajouter une livraison pour ce produit"><i class="bi bi-truck"></i></a>
     </td>
-    <td class="px-1">
-      <a class="lien_ajouter_ligne_retard" href="#" title="ajouter un retard de livraison pour ce produit"><i class="bi bi-clock-history"></i></a>
+    <td class="py-2">
+      <a class="lien_ajouter_ligne_retard fs-6" href="#" title="ajouter un retard de livraison pour ce produit"><i class="bi bi-clock-history"></i></a>
     </td>
 </tr>

@@ -13,7 +13,7 @@
                   <th style="width: 8%;"><label>Num facture</label></th>
                   <th style="width: 10%;"><label>PDF facture</label></th>
                   <th style="width: 10%;"><label>Packing list</label></th>
-                  <th style="width: 1%;"><label>&nbsp;</label></th>
+                  <th style="width: 0;"><label>&nbsp;</label></th>
               </tr>
               <tbody id="form_livraisons_container">
                   <?php foreach($form['livraisons'] as $item_form): ?>

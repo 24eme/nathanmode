@@ -12,10 +12,10 @@
         <?php echo $form['colori']->renderError() ?>
     </td>
     <td>
-        <?php echo $form['observation']->render(array('style' => 'height:40px;margin-bottom:10px;', 'class' => 'txtArea')) ?>
+        <?php echo $form['observation']->render(array('style' => 'height:30px;margin-bottom:5px; margin-top: 5px;', 'class' => 'txtArea')) ?>
         <?php echo $form['observation']->renderError() ?>
     </td>
-    <td class="px-1">
-        <a class="lien_supprimer_ligne" href="#"><i class="bi bi-trash3"></i></a>
+    <td class="p-2">
+      <a class="lien_supprimer_ligne fs-6 text-muted" href="#"><i class="bi bi-trash3"></i></a>
     </td>
 </tr>
