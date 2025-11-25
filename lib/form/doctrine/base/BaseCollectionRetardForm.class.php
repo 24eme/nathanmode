@@ -21,6 +21,7 @@ abstract class BaseCollectionRetardForm extends BaseFormDoctrine
       'colori'             => new sfWidgetFormInputText(),
       'qualite'            => new sfWidgetFormInputText(),
       'observation'   => new sfWidgetFormInputText(),
+      'piece_categorie'    => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
@@ -30,6 +31,7 @@ abstract class BaseCollectionRetardForm extends BaseFormDoctrine
       'observation'   => new sfValidatorPass(array('required' => false)),
       'qualite'            => new sfValidatorString(array('max_length' => 128, 'required' => false)),
       'colori'             => new sfValidatorString(array('max_length' => 128, 'required' => false)),
+      'piece_categorie'    => new sfValidatorString(array('max_length' => 128, 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('collection_retard[%s]');

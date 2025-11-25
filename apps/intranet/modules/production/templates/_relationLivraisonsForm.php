@@ -3,16 +3,17 @@
         <td>
           <table width="100%" border="0" cellpadding="0" cellspacing="0" class="subTab">
             <tr>
-                  <th style="width: 10%;"><label>Date livraison</label></th>
+                  <th style="width: 8%;"><label>Date livraison</label></th>
+                  <th style="width: 8%;"><label>Catégorie</label></th>
                   <th style="width: 10%;"><label>Référence</label></th>
-                  <th style="width: 12%;"><label>Colori</label></th>
+                  <th style="width: 10%;"><label>Colori</label></th>
                   <th style="width: 8%;"><label>Quantité</label></th>
                   <th style="width: 8%;"><label>Prix de vente</label></th>
-                  <th style="width: 12%;"><label>Escompte</label></th>
+                  <th style="width: 6%;"><label>Escompte</label></th>
                   <th><label>Adresse de livraison</label></th>
                   <th style="width: 8%;"><label>Num facture</label></th>
-                  <th style="width: 10%;"><label>PDF facture</label></th>
-                  <th style="width: 10%;"><label>Packing list</label></th>
+                  <th style="width: 6%;"><label>PDF facture</label></th>
+                  <th style="width: 6%;"><label>Packing list</label></th>
                   <th style="width: 0;"><label>&nbsp;</label></th>
               </tr>
               <tbody id="form_livraisons_container">

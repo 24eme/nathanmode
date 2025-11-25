@@ -54,11 +54,14 @@ class CollectionLivraisonForm extends BaseCollectionLivraisonForm
         $this->setValidator('fichier_delete', new sfValidatorPass());
         $this->setValidator('packing_list_delete', new sfValidatorPass());
 
-        $this->setWidget('piece_categorie', new sfWidgetFormInputHidden());
-        $this->setValidator('piece_categorie', new sfValidatorPass(array('required' => false)));
+      	$this->setWidget('piece_categorie', new sfWidgetFormChoice(array('choices' => $this->getPieceCategories())));
+        $this->setValidator('piece_categorie', new sfValidatorChoice(array('choices' => array_keys($this->getPieceCategories()),'required' => $this->getValidator('piece_categorie')->getOption('required'))));
 
         $this->setWidget('devise_id', new sfWidgetFormInputHidden());
         $this->setValidator('devise_id', new sfValidatorPass(array('required' => false)));
+
+        $this->setWidget('piece_categorie_value', new sfWidgetFormInputHidden());
+        $this->setValidator('piece_categorie_value', new sfValidatorPass(array('required' => false)));
 
         $this->getWidgetSchema()->setLabels(array(
           'colori' => 'Colori',
@@ -83,6 +86,7 @@ class CollectionLivraisonForm extends BaseCollectionLivraisonForm
     	if (!$values['escompte']) {
     		$values['escompte'] = 0.00;
     	}
+      $values['piece_categorie'] = $values['piece_categorie_value'];
       if($values['piece_categorie'] == "METRAGE") {
           $values['metrage'] = $values['piece'];
           $values['piece_categorie'] = null;
@@ -101,5 +105,10 @@ class CollectionLivraisonForm extends BaseCollectionLivraisonForm
       if ($this->getObject()->metrage) {
         $this->defaults['piece'] = $this->getObject()->metrage;
       }
+      $this->defaults['piece_categorie_value'] = $this->defaults['piece_categorie'];
+    }
+
+    public function getPieceCategories() {
+        return  PieceCategories::getListe();
     }
 }
