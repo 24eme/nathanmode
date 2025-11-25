@@ -33,7 +33,7 @@
                   <?php endforeach; ?>
               </tbody>
               <tr>
-                  <td colspan="17" class="px-0">
+                  <td colspan="15" class="px-0">
                       <a class="btPlus right lien_ajouter_ligne" data-template="#template_details" data-container="#form_details_container" href="#">+</a>
                   </td>
               </tr>
