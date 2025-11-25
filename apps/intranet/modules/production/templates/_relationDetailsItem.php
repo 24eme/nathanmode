@@ -17,7 +17,7 @@
         <?php echo $form['piece_categorie']->renderError() ?>
     </td>
     <td>
-        <?php echo $form['qualite']->render(array('class' => 'form-control-sm reference', 'required' => 'required')); ?>
+        <?php echo $form['qualite']->render(array('list' => "liste_qualite", 'class' => 'form-control-sm reference', 'required' => 'required')); ?>
         <?php echo $form['qualite']->renderError(); ?>
     </td>
     <td>
