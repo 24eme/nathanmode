@@ -13,7 +13,7 @@
     </td>
 <?php endif; ?>
     <td class="large-column">
-        <?php echo $form['piece_categorie']->render(array('class' => 'chosen')) ?>
+        <?php echo $form['piece_categorie']->render(array('class' => 'chosen piece_categorie')) ?>
         <?php echo $form['piece_categorie']->renderError() ?>
     </td>
     <td>
@@ -71,7 +71,7 @@
         <?php echo $form['date_livraison_demandee']->renderError() ?>
     </td>
     <td style="text-align:left;">
-        <?php echo $form['date_livraison_prevue']->render(array('class' => 'form-control form-control-sm', 'style' => 'width: 100px;')) ?>
+        <?php echo $form['date_livraison_prevue']->render(array('class' => 'form-control form-control-sm date_livraison_prevue', 'style' => 'width: 100px;')) ?>
         <?php echo $form['date_livraison_prevue']->renderError() ?>
     </td>
     <td>

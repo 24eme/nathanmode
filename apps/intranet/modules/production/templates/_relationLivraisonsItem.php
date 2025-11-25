@@ -1,6 +1,6 @@
 <tr class="relation_item_form">
   <td style="text-align:left;">
-      <?php echo $form['date']->render() ?>
+      <?php echo $form['date']->render(array('class' => 'date_livraison_prevue')) ?>
       <?php echo $form['date']->renderError() ?>
   </td>
     <td class='read-only-livraison'>
