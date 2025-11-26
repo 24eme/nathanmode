@@ -403,9 +403,6 @@ Collection:
     prix_fournisseur:
       type: double
       default: NULL
-    part_marge:
-      type: double
-      default: NULL
     prix_commercial:
       type: double
       default: NULL
@@ -551,9 +548,6 @@ CollectionDetail:
     part_frais:
       type: double
       default: NULL
-    part_marge:
-      type: double
-      default: NULL
     part_commission:
       type: double
       default: NULL
@@ -565,6 +559,9 @@ CollectionDetail:
       default: NULL
     qualite:
       type: string(128)
+      default: NULL
+    date_livraison_demandee:
+      type: date
       default: NULL
   relations:
     Collection:
@@ -624,6 +621,15 @@ CollectionRetard:
       default: NULL
     observation:
       type: text
+      default: NULL
+    qualite:
+      type: string(128)
+      default: NULL
+    piece_categorie:
+      type: string(128)
+      default: NULL
+    colori:
+      type: string(128)
       default: NULL
   relations:
     Collection:

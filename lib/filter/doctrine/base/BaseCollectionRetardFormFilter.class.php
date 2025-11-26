@@ -13,15 +13,21 @@ abstract class BaseCollectionRetardFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'collection_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Collection'), 'add_empty' => true)),
-      'date'          => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
-      'observation'   => new sfWidgetFormFilterInput(),
+      'collection_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Collection'), 'add_empty' => true)),
+      'date'            => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
+      'observation'     => new sfWidgetFormFilterInput(),
+      'qualite'         => new sfWidgetFormFilterInput(),
+      'piece_categorie' => new sfWidgetFormFilterInput(),
+      'colori'          => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
-      'collection_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Collection'), 'column' => 'id')),
-      'date'          => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
-      'observation'   => new sfValidatorPass(array('required' => false)),
+      'collection_id'   => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Collection'), 'column' => 'id')),
+      'date'            => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
+      'observation'     => new sfValidatorPass(array('required' => false)),
+      'qualite'         => new sfValidatorPass(array('required' => false)),
+      'piece_categorie' => new sfValidatorPass(array('required' => false)),
+      'colori'          => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('collection_retard_filters[%s]');
@@ -41,10 +47,13 @@ abstract class BaseCollectionRetardFormFilter extends BaseFormFilterDoctrine
   public function getFields()
   {
     return array(
-      'id'            => 'Number',
-      'collection_id' => 'ForeignKey',
-      'date'          => 'Date',
-      'observation'   => 'Text',
+      'id'              => 'Number',
+      'collection_id'   => 'ForeignKey',
+      'date'            => 'Date',
+      'observation'     => 'Text',
+      'qualite'         => 'Text',
+      'piece_categorie' => 'Text',
+      'colori'          => 'Text',
     );
   }
 }
