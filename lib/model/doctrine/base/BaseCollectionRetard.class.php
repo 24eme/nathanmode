@@ -47,6 +47,10 @@ abstract class BaseCollectionRetard extends sfDoctrineRecord
              'type' => 'string',
              'length' => 128,
              ));
+        $this->hasColumn('piece_categorie', 'string', 128, array(
+             'type' => 'string',
+             'length' => 128,
+             ));
     }
 
     public function setUp()

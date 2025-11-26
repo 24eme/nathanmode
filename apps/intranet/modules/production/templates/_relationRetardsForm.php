@@ -3,11 +3,12 @@
         <td>
           <table width="100%" border="0" cellpadding="0" cellspacing="0" class="subTab">
             <tr>
-                  <th style="width: 10%;"><label>Date retard</label></th>
+                  <th style="width: 8%;"><label>Date retard</label></th>
+                  <th style="width: 8%;"><label>Catégorie</label></th>
                   <th style="width: 10%;"><label>Référence</label></th>
-                  <th style="width: 12%;"><label>Colori</label></th>
+                  <th style="width: 10%;"><label>Colori</label></th>
                   <th><label>Observation</label></th>
-                  <th style="width: 1%;"><label>&nbsp;</label></th>
+                  <th style="width: 0;"><label>&nbsp;</label></th>
               </tr>
               <tbody id="form_retards_container">
                   <?php foreach($form['retards'] as $item_form): ?>

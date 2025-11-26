@@ -1,8 +1,13 @@
 <tr class="relation_item_form">
   <td style="text-align:left;">
-      <?php echo $form['date']->render() ?>
+      <?php echo $form['date']->render(array('class' => 'date_livraison_prevue')) ?>
       <?php echo $form['date']->renderError() ?>
   </td>
+    <td class='read-only-livraison'>
+        <?php echo $form['piece_categorie']->render(array('class' => 'chosen piece_categorie')); ?>
+        <?php echo $form['piece_categorie_value']->render(array('class' => 'piece_categorie')); ?>
+        <?php echo $form['piece_categorie']->renderError(); ?>
+    </td>
     <td class='read-only-livraison'>
         <?php echo $form['qualite']->render(array('class' => 'form-control-sm reference')); ?>
         <?php echo $form['qualite']->renderError(); ?>

@@ -52,7 +52,11 @@
           </td>
         </tr>
   </table>
-
+<datalist id="liste_qualite">
+    <?php foreach(CollectionTable::getInstance()->getQualites() as $libelle): ?>
+    <option value="<?php echo $libelle['qualite'] ?>">
+    <?php endforeach; ?>
+</datalist>
 <script id="template_details" type="text/x-jquery-tmpl">
     <?php echo include_partial('production/relationDetailsItem', array('form' => $form->getTemplate('details') , 'collection' => $collection)); ?>
 </script>

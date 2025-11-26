@@ -652,12 +652,16 @@ $(document).ready(function() {
       const colori = $(this).closest('tr').find('.colori').val();
       const quantite = $(this).closest('tr').find('.quantite').val();
       const prixVente = $(this).closest('tr').find('.prix_vente').val();
-      const resteALivrer = $(this).closest('tr').find('.reste-a-livrer').val();
+      const pieceCategorie = $(this).closest('tr').find('.piece_categorie').val();
+      const dateLivraison = $(this).closest('tr').find('.date_livraison_prevue').val();
       const ligne = $('#form_livraisons_container tr:last');
       ligne.find('.reference').val(reference);
       ligne.find('.colori').val(colori);
-      ligne.find('.quantite').val(resteALivrer);
+      ligne.find('.quantite').val(quantite);
       ligne.find('.prix_vente').val(prixVente);
+      ligne.find('.date_livraison_prevue').val(dateLivraison);
+      ligne.find('.piece_categorie').val(pieceCategorie).trigger("chosen:updated");
+      processInputsReadonly();
       document.getElementById("ajouter_livraison").scrollIntoView({ behavior: "smooth" });
       event.preventDefault();
   });
@@ -665,10 +669,13 @@ $(document).ready(function() {
       document.getElementById("ajouter_retard").click();
       const reference = $(this).closest('tr').find('.reference').val();
       const colori = $(this).closest('tr').find('.colori').val();
+      const pieceCategorie = $(this).closest('tr').find('.piece_categorie').val();
       const ligne = $('#form_retards_container tr:last');
       ligne.find('.reference').val(reference);
       ligne.find('.colori').val(colori);
+      ligne.find('.piece_categorie').val(pieceCategorie).trigger("chosen:updated");
       document.getElementById("ajouter_retard").scrollIntoView({ behavior: "smooth" });
+      processInputsReadonly();
       event.preventDefault();
   });
 
@@ -831,13 +838,20 @@ $.fn.sortSelect = function () {
 	return $(this);
 }
 
+function processInputsReadonly() {
+  document.querySelectorAll('.read-only-livraison > input').forEach(input => {
+    input.readOnly = true;
+  });
+  document.querySelectorAll('.read-only-livraison > select').forEach(select => {
+    select.disabled = true;
+    $('#'+select.id).trigger('chosen:updated');
+  });
+}
+
 $(document).ready(function () {
   if (".default-dollar") {
     let champDevise = $(".default-dollar .chosen");
     $(champDevise).val("2").trigger('chosen:updated').trigger('change');
   }
-
-document.querySelectorAll('.read-only-livraison > input').forEach(input => {
-  input.readOnly = true;
-});
+  processInputsReadonly();
 });
