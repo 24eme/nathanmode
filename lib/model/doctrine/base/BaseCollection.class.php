@@ -41,7 +41,6 @@
  * @property boolean $production
  * @property date $date_retard
  * @property integer $nb_relance
- * @property double $part_marge
  * @property Saison $Saison
  * @property Fournisseur $Fournisseur
  * @property Commercial $Commercial
@@ -89,7 +88,6 @@
  * @method boolean             getProduction()                Returns the current record's "production" value
  * @method date                getDateRetard()                Returns the current record's "date_retard" value
  * @method integer             getNbRelance()                 Returns the current record's "nb_relance" value
- * @method double              getPartMarge()                 Returns the current record's "part_marge" value
  * @method Saison              getSaison()                    Returns the current record's "Saison" value
  * @method Fournisseur         getFournisseur()               Returns the current record's "Fournisseur" value
  * @method Commercial          getCommercial()                Returns the current record's "Commercial" value
@@ -136,7 +134,6 @@
  * @method Collection          setProduction()                Sets the current record's "production" value
  * @method Collection          setDateRetard()                Sets the current record's "date_retard" value
  * @method Collection          setNbRelance()                 Sets the current record's "nb_relance" value
- * @method Collection          setPartMarge()                 Sets the current record's "part_marge" value
  * @method Collection          setSaison()                    Sets the current record's "Saison" value
  * @method Collection          setFournisseur()               Sets the current record's "Fournisseur" value
  * @method Collection          setCommercial()                Sets the current record's "Commercial" value
@@ -291,9 +288,6 @@ abstract class BaseCollection extends sfDoctrineRecord
              'type' => 'integer',
              'notnull' => true,
              'default' => 0,
-             ));
-        $this->hasColumn('part_marge', 'double', null, array(
-             'type' => 'double',
              ));
     }
 

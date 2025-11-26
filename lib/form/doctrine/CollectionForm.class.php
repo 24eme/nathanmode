@@ -24,7 +24,6 @@ class CollectionForm extends BaseCollectionForm
                        'fichier',
                        'situation',
                        'prix_fournisseur',
-                       'part_marge',
                        'devise_fournisseur_id',
                        'ecru',
                        'observation_general',

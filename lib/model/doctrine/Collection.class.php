@@ -161,10 +161,6 @@ class Collection extends BaseCollection
       }
     }
 
-    public function isCalculCommissionFromMarge() {
-        return $this->part_marge !== null;
-    }
-
     public function updateResteALivrer() {
       $reste = $this->getMetrageRestantALivrer() + $this->getPFRestantALivrer();
       $this->setResteALivrer($reste);

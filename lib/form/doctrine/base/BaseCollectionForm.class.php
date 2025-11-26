@@ -52,7 +52,6 @@ abstract class BaseCollectionForm extends BaseFormDoctrine
       'production'                => new sfWidgetFormInputCheckbox(),
       'date_retard'               => new sfWidgetFormDate(),
       'nb_relance'                => new sfWidgetFormInputText(),
-      'part_marge'                => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
@@ -93,7 +92,6 @@ abstract class BaseCollectionForm extends BaseFormDoctrine
       'production'                => new sfValidatorBoolean(array('required' => false)),
       'date_retard'               => new sfValidatorDate(array('required' => false)),
       'nb_relance'                => new sfValidatorInteger(array('required' => false)),
-      'part_marge'                => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('collection[%s]');
