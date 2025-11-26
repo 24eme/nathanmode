@@ -1318,3 +1318,7 @@ img.production-images {
 .small-column {
     width: 80px;
 }
+
+.sf_admin_list thead td input[type=date] {
+    width: 100px;
+}
