@@ -63,11 +63,9 @@
             </a>
             <?php if ($sf_user->isAuthenticated()): ?>
             <ul class="nav col-12 col-lg-auto">
-              <?php if (!sfConfig::get('app_no_metrage')) : ?>
               <li class="nav-item me-1">
                 <a style="min-width: 120px" class="py-2 px-3 border btn btn-light<?php if (sfContext::getInstance()->getModuleName() == 'coupe'): ?> active<?php endif; ?>" href="<?php echo url_for('@coupe') ?>"><i class="bi bi-scissors fs-4"></i><br /><small>Coupe</small></a>
               </li>
-              <?php endif; ?>
               <li class="nav-item me-1">
                   <a style="min-width: 120px" class="py-2 px-3 border btn btn-light<?php if (in_array(sfContext::getInstance()->getModuleName(), ['production', 'productiondetails'])): ?> active<?php endif; ?>" href="<?php echo url_for('@collection_detail') ?>"><i class="bi bi-asterisk fs-4"></i><br /><small>Production</small></a>
               </li>
