@@ -62,9 +62,12 @@
     	</div>
      </td>
      <?php endif; ?>
+     <td><strong class="marge_eur">0</strong></td>
+    <td><span class="marge_coef coef-ind">0</span></td>
+    <td><span class="marge_part coef-prct">0</span></td>
      <?php if (sfConfig::get('app_no_metrage')) : ?>
-    <td><span class="marge_coef coef-ind">0</span>&nbsp;&nbsp;<span class="marge_part coef-prct">0</span>&nbsp;%<br /><span class="marge_usd" style="display: none;">0</span><strong class="marge_eur">0</strong>&nbsp;€</td>
-    <td><span class="marge_client_coef coef-ind">0</span>&nbsp;&nbsp;<span class="marge_client_part coef-prct">0</span>&nbsp;%<br />&nbsp;</td>
+    <td><span class="marge_client_coef coef-ind">0</span></td>
+    <td><span class="marge_client_part coef-prct">0</span>&nbsp;%</td>
     <?php endif; ?>
     <td style="text-align:left;">
         <?php echo $form['date_livraison_demandee']->render(array('class' => 'form-control form-control-sm', 'style' => 'width: 100px;')) ?>
@@ -78,13 +81,13 @@
         <?php echo $form['reste_a_livrer_produit']->render(array('class' => 'input-float form-control form-control-sm reste-a-livrer')); ?>
         <?php echo $form['reste_a_livrer_produit']->renderError(); ?>
     </td>
-    <td class="py-2">
+    <td class="p-2">
         <a class="lien_supprimer_ligne fs-6 text-muted" href="#"><i class="bi bi-trash3"></i></a>
     </td>
-    <td class="py-2">
+    <td class="p-2">
       <a class="lien_ajouter_ligne_livraison fs-6" href="#" title="ajouter une livraison pour ce produit"><i class="bi bi-truck"></i></a>
     </td>
-    <td class="py-2">
+    <td class="p-2">
       <a class="lien_ajouter_ligne_retard fs-6" href="#" title="ajouter un retard de livraison pour ce produit"><i class="bi bi-clock-history"></i></a>
     </td>
 </tr>

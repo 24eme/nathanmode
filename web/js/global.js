@@ -683,44 +683,45 @@ function updateIndicateurs() {
     const inputVente = ligne.querySelector('.prix_vente');
     const inputFrais = ligne.querySelector('.part_frais');
     const inputPrixPublic = ligne.querySelector('.prix_public');
-    if (inputAchat && inputVente) {
-        inputAchat.addEventListener('input', () => calculeIndicateurs(ligne));
+    if (inputVente) {
         inputVente.addEventListener('input', () => calculeIndicateurs(ligne));
+    }
+    if (inputAchat) {
+        inputAchat.addEventListener('input', () => calculeIndicateurs(ligne));
+    }
+    if (inputFrais) {
         inputFrais.addEventListener('input', () => calculeIndicateurs(ligne))
+    }
+    if (inputPrixPublic) {
         inputPrixPublic.addEventListener('input', () => calculeIndicateurs(ligne))
-        calculeIndicateurs(ligne);
-      }
+    }
+    calculeIndicateurs(ligne);
   });
 }
 
 function calculeIndicateurs(tr) {
+console.log(tr);
   const usdRate = document.getElementById('collection_usd_rate').value;
   const eurRate = document.getElementById('collection_eur_rate').value;
   const devise = document.getElementById('collection_devise_id').value;
 
   document.querySelectorAll('.ligne_calcul_marges').forEach(calcMargesLigne => {
-    const pxPublicId = calcMargesLigne.querySelector('[id^="collection_details_"][id$="_prix_public"]');
-    if(!pxPublicId) {
-      return;
-    }
-    const prixPublicTTC = parseFloat(pxPublicId.value) || 0;
-    const prixPublicHT = prixPublicTTC ? (prixPublicTTC / 1.2).toFixed(2) : 0;
     const inputAchat = calcMargesLigne.querySelector('.prix_achat');
     const inputVente = calcMargesLigne.querySelector('.prix_vente');
     const spanMargeEur = calcMargesLigne.querySelector('.marge_eur');
     const spanCoef = calcMargesLigne.querySelector('.marge_coef');
     const spanPart = calcMargesLigne.querySelector('.marge_part');
-    const spanCoefClient = calcMargesLigne.querySelector('.marge_client_coef');
-    const spanPartClient = calcMargesLigne.querySelector('.marge_client_part');
     const commission = document.getElementById('collection_prix_fournisseur');
     const commissionUnite = document.getElementById('collection_devise_fournisseur_id');
 
-    inputAchat.disabled = (commissionUnite.value != 4);
-    if(inputAchat.disabled) {
-      inputAchat.value = null;
+    if(inputAchat) {
+      inputAchat.disabled = (commissionUnite.value != 4);
+      if(inputAchat.disabled) {
+        inputAchat.value = null;
+      }
     }
 
-    const prixAchat = parseFloat(inputAchat.value) || 0;
+    const prixAchat = inputAchat && parseFloat(inputAchat.value) || 0;
     const prixVente = parseFloat(inputVente.value) || 0;
 
     let marge = 0;
@@ -742,19 +743,29 @@ function calculeIndicateurs(tr) {
 
     let prixVenteEur = prixVente;
     if (devise == 1) {
-      spanMargeEur.textContent = marge.toFixed(2);
+      spanMargeEur.innerHTML = marge.toFixed(2) + '&nbsp;€';
     } else if (devise == 2) {
-      spanMargeEur.title = marge.toFixed(2) + ' $';
-      spanMargeEur.textContent = (marge*eurRate).toFixed(2);
+      spanMargeEur.title = (marge*eurRate).toFixed(2) + ' €';
+      spanMargeEur.innerHTML = marge.toFixed(2) + '&nbsp;$';
       prixVenteEur *= eurRate;
     }
 
     spanCoef.textContent = coef.toFixed(2);
     spanPart.textContent = part.toFixed(2);
 
-    const partFraisId = calcMargesLigne.querySelector('[id^="collection_details_"][id$="_part_frais"]');
+    const pxPublicId = calcMargesLigne.querySelector('[id^="collection_details_"][id$="_prix_public"]');
+    if(!pxPublicId) {
+      return;
+    }
 
+    const partFraisId = calcMargesLigne.querySelector('[id^="collection_details_"][id$="_part_frais"]');
     const frais = parseFloat(partFraisId.value) || 0;
+
+    const spanCoefClient = calcMargesLigne.querySelector('.marge_client_coef');
+    const spanPartClient = calcMargesLigne.querySelector('.marge_client_part');
+    const prixPublicTTC = parseFloat(pxPublicId.value) || 0;
+    const prixPublicHT = prixPublicTTC ? (prixPublicTTC / 1.2).toFixed(2) : 0;
+
     const prixClient = prixVenteEur * (1+frais/100);
     const coefClient = prixClient !== 0 ? prixPublicTTC / prixClient : 0;
     const partClient = prixPublicHT !== 0 ? (prixPublicHT - prixClient) / prixPublicHT * 100 : 0;
