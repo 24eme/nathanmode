@@ -23,6 +23,10 @@ class FournisseurForm extends BaseFournisseurForm
     if ($this->isNew()) {
       $defaults['devise_id'] = 3;
     }
+    if (sfConfig::get('app_no_metrage')) {
+      $defaults['devise_id'] = 4;
+      $defaults['commission'] = 100;
+    }
     $this->setDefaults($defaults);
   }
 }
