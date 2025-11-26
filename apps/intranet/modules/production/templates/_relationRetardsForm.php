@@ -15,7 +15,7 @@
                           <?php echo include_partial('production/relationRetardsItem', array('form' => $item_form)); ?>
                   <?php endforeach; ?>
               </tbody>
-              <tr style="visibility: hidden;">
+              <tr style="display: none;">
                   <td colspan="11" class="px-0">
                       <a id="ajouter_retard" class="btPlus right lien_ajouter_ligne" data-template="#template_retards" data-container="#form_retards_container" href="#">+</a>
                   </td>

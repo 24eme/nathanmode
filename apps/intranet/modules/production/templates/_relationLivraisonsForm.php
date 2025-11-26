@@ -21,8 +21,8 @@
                           <?php echo include_partial('production/relationLivraisonsItem', array('form' => $item_form)); ?>
                   <?php endforeach; ?>
               </tbody>
-              <tr style="visibility: hidden;">
-                  <td colspan="11" class="px-0">
+              <tr style="display: none;">
+                  <td colspan="12" class="px-0">
                       <a id="ajouter_livraison" class="btPlus right lien_ajouter_ligne" data-template="#template_livraisons" data-container="#form_livraisons_container" href="#">+</a>
                   </td>
               </tr>
