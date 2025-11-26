@@ -141,7 +141,7 @@ class CollectionForm extends BaseCollectionForm
 
         $this->setWidget('saison_id', new sfWidgetFormChoice(array('choices' => $this->getSaisons())));
 
-        $this->setWidget('devise_id', new sfWidgetFormDoctrineChoice(array('model' => 'Devise', 'add_empty' => false)));
+        $this->setWidget('devise_id', new sfWidgetFormDoctrineChoice(array('model' => 'Devise', 'add_empty' => false, 'table_method' => 'getOnlyMoneyDevise')));
         $this->setValidator('devise_id', new sfValidatorDoctrineChoice(array('model' => 'Devise')));
 
         $this->getWidgetSchema()->setLabels(array(

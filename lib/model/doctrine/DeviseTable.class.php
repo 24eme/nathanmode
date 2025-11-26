@@ -16,4 +16,9 @@ class DeviseTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Devise');
     }
+
+    public function getOnlyMoneyDevise() {
+
+        return self::createQuery()->addWhere('is_pourcentage = 0');
+    }
 }
