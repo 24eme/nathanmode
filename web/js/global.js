@@ -639,7 +639,9 @@ $(document).ready(function() {
       event.preventDefault();
   });
 
-  updateIndicateurs();
+  if(document.getElementById('collection_prix_fournisseur')) {
+    updateIndicateurs();
+  }
   updateDeviseSymbol();
   $("#collection_devise_id").on("change", function () { updateIndicateurs(), updateDeviseSymbol(); });
   $("#collection_part_frais").on("change", function () { updateIndicateurs() });
@@ -854,4 +856,5 @@ $(document).ready(function () {
     $(champDevise).val("2").trigger('chosen:updated').trigger('change');
   }
   processInputsReadonly();
+  $('[data-toggle="tooltip"]').tooltip()
 });
