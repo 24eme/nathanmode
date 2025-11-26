@@ -622,6 +622,15 @@ CollectionRetard:
     observation:
       type: text
       default: NULL
+    qualite:
+      type: string(128)
+      default: NULL
+    piece_categorie:
+      type: string(128)
+      default: NULL
+    colori:
+      type: string(128)
+      default: NULL
   relations:
     Collection:
       local: collection_id

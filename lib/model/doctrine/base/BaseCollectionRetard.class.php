@@ -8,16 +8,25 @@
  * @property integer $collection_id
  * @property date $date
  * @property text $observation
+ * @property string $qualite
+ * @property string $piece_categorie
+ * @property string $colori
  * @property Collection $Collection
  * 
- * @method integer          getCollectionId()  Returns the current record's "collection_id" value
- * @method date             getDate()          Returns the current record's "date" value
- * @method text             getObservation()   Returns the current record's "observation" value
- * @method Collection       getCollection()    Returns the current record's "Collection" value
- * @method CollectionRetard setCollectionId()  Sets the current record's "collection_id" value
- * @method CollectionRetard setDate()          Sets the current record's "date" value
- * @method CollectionRetard setObservation()   Sets the current record's "observation" value
- * @method CollectionRetard setCollection()    Sets the current record's "Collection" value
+ * @method integer          getCollectionId()    Returns the current record's "collection_id" value
+ * @method date             getDate()            Returns the current record's "date" value
+ * @method text             getObservation()     Returns the current record's "observation" value
+ * @method string           getQualite()         Returns the current record's "qualite" value
+ * @method string           getPieceCategorie()  Returns the current record's "piece_categorie" value
+ * @method string           getColori()          Returns the current record's "colori" value
+ * @method Collection       getCollection()      Returns the current record's "Collection" value
+ * @method CollectionRetard setCollectionId()    Sets the current record's "collection_id" value
+ * @method CollectionRetard setDate()            Sets the current record's "date" value
+ * @method CollectionRetard setObservation()     Sets the current record's "observation" value
+ * @method CollectionRetard setQualite()         Sets the current record's "qualite" value
+ * @method CollectionRetard setPieceCategorie()  Sets the current record's "piece_categorie" value
+ * @method CollectionRetard setColori()          Sets the current record's "colori" value
+ * @method CollectionRetard setCollection()      Sets the current record's "Collection" value
  * 
  * @package    nathanmode
  * @subpackage model
@@ -43,11 +52,11 @@ abstract class BaseCollectionRetard extends sfDoctrineRecord
              'type' => 'string',
              'length' => 128,
              ));
-        $this->hasColumn('colori', 'string', 128, array(
+        $this->hasColumn('piece_categorie', 'string', 128, array(
              'type' => 'string',
              'length' => 128,
              ));
-        $this->hasColumn('piece_categorie', 'string', 128, array(
+        $this->hasColumn('colori', 'string', 128, array(
              'type' => 'string',
              'length' => 128,
              ));
