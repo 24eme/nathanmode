@@ -27,9 +27,9 @@ generator:
           _edit: ~
           _delete: ~
         title: "Liste des factures"
-        display: [Fournisseur, Saison, relation, numero, date, Client, montant, total_fournisseur, Commercial, total_commercial, _statut, _fichier]
-      filter: 
-        display: [fournisseur_id, saison_id, relation, numero, date, client_id, montant, total_fournisseur, commercial_id, total_commercial, statut, fichier]
+        display: [Fournisseur, Saison, relation, numero, date, Client, montant, total_fournisseur, Commercial, _statut, _fichier]
+      filter:
+        display: [fournisseur_id, saison_id, relation, numero, date, client_id, montant, total_fournisseur, commercial_id, statut, fichier]
       form:    ~
       edit:
         title: "Modification de la facture %%numero%%"
