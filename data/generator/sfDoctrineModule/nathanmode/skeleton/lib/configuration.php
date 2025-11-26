@@ -10,4 +10,8 @@
  */
 class ##MODULE_NAME##GeneratorConfiguration extends Base##UC_MODULE_NAME##GeneratorConfiguration
 {
+    public function getListExport() {
+
+        return $this->getListDisplay();
+    }
 }

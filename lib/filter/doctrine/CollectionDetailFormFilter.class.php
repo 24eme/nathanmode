@@ -56,7 +56,7 @@ class CollectionDetailFormFilter extends BaseCollectionDetailFormFilter
         $this->getWidget('num_commande')->setOption('with_empty', false);
 
 
-        $this->setWidget('date_livraison',
+        $this->setWidget('date_livraison_demandee',
           new sfWidgetFormFilterDate(
             array(
               'from_date' => new sfWidgetFormInput(array('type' => 'date')),
@@ -65,8 +65,8 @@ class CollectionDetailFormFilter extends BaseCollectionDetailFormFilter
             )
           )
         );
-        $this->setValidator('date_livraison', new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))));
-        $this->getWidget('date_livraison')->setOption('with_empty', false);
+        $this->setValidator('date_livraison_demandee', new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))));
+        $this->getWidget('date_livraison_demandee')->setOption('with_empty', false);
 
 
         $this->setWidget('piece_categorie', new sfWidgetFormChoice(array('choices' => $this->getPieceCategories(), 'multiple' => false)));

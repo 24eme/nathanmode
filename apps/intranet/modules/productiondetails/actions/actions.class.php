@@ -61,28 +61,6 @@ class productiondetailsActions extends autoProductiondetailsActions
     return $this->renderText($export->output());
   }
 
-  public function executeListCsv(sfWebRequest $request)
-  {
-    $query = $this->buildQuery();
-    $items = $query->execute();
-    $headers = $this->configuration->getListDisplay();
-    $export = new ExportCsv("export-".$this->getModuleName().".csv", array_values($headers));
-    foreach ($items as $item) {
-    	$line = array();
-    	foreach($headers as $field) {
-    		$field = str_replace('_', '', $field);
-    		try{
-    			$line[$field] = $item->$field;
-    		} catch (Exception $e) {
-    			$line[$field] = null;
-    		}
-    	}
-    	$export->add($line);
-    }
-    $export->configureResponse($this->getResponse());
-    return $this->renderText($export->output());
-  }
-
   protected function getPagerSoldees()
   {
     $pager = $this->configuration->getPager('productiondetails');
@@ -91,6 +69,7 @@ class productiondetailsActions extends autoProductiondetailsActions
     $pager->init();
     return $pager;
   }
+
   public function executeFilter(sfWebRequest $request)
   {
     $this->setPage(1);

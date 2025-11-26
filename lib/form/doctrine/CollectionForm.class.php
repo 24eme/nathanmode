@@ -10,7 +10,7 @@
  */
 class CollectionForm extends BaseCollectionForm
 {
-    
+
     public function configure() {
         $this->useFields(array(
                        //Infos Generales

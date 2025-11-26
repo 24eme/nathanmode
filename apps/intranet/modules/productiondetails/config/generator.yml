@@ -15,11 +15,11 @@ generator:
       actions: ~
       fields:
         date_commande: { date_format: dd/MM/yyyy }
-        date_livraison: { date_format: dd/MM/yyyy }
+        date_livraison_demandee: { date_format: dd/MM/yyyy }
         qualite: {label: Référence}
         piece_categorie: {label: Catégorie}
       list:
-        sort: [date_livraison, desc]
+        sort: [date_livraison_demandee, desc]
         max_per_page: 30
         table_method: queryProductions
         table_count_method: queryProductions
@@ -27,9 +27,9 @@ generator:
         actions:
           _new: ~
         title: "Liste des commandes de production"
-        display: [saison, fournisseur, client, date_commande, num_commande, date_livraison, _situation, _categorie, qualite, _image, colori, _quantite, prix, Devise, _nbrelance]
+        display: [saison, fournisseur, client, date_commande, num_commande, date_livraison_demandee, situation, categorie, qualite, _image, colori, quantite, prix, Devise, nbrelance]
       filter:
-        display: [saison_id, fournisseur_id, client_id, date_commande, num_commande, date_livraison, situation, piece_categorie, qualite, image, colori, piece, prix, devise_id, nb_relance]
+        display: [saison_id, fournisseur_id, client_id, date_commande, num_commande, date_livraison_demandee, situation, piece_categorie, qualite, image, colori, piece, prix, devise_id, nb_relance]
       form:    ~
       edit:    ~
       new:     ~
