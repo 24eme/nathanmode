@@ -12,7 +12,7 @@
 	<?php echo $form['image']->renderError() ?>
     </td>
 <?php endif; ?>
-    <td class="large-column">
+    <td class="large-column" style="text-align:left;">
         <?php echo $form['piece_categorie']->render(array('class' => 'chosen piece_categorie')) ?>
         <?php echo $form['piece_categorie']->renderError() ?>
     </td>
