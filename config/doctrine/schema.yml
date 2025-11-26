@@ -560,6 +560,9 @@ CollectionDetail:
     qualite:
       type: string(128)
       default: NULL
+    date_livraison_demandee:
+      type: date
+      default: NULL
   relations:
     Collection:
       local: collection_id

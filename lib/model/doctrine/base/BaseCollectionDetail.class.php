@@ -21,6 +21,7 @@
  * @property date $date_livraison_prevue
  * @property double $reste_a_livrer_produit
  * @property string $qualite
+ * @property date $date_livraison_demandee
  * @property Collection $Collection
  * @property Devise $Devise
  * @property Commande $Commande
@@ -41,6 +42,7 @@
  * @method date             getDateLivraisonPrevue()     Returns the current record's "date_livraison_prevue" value
  * @method double           getResteALivrerProduit()     Returns the current record's "reste_a_livrer_produit" value
  * @method string           getQualite()                 Returns the current record's "qualite" value
+ * @method date             getDateLivraisonDemandee()   Returns the current record's "date_livraison_demandee" value
  * @method Collection       getCollection()              Returns the current record's "Collection" value
  * @method Devise           getDevise()                  Returns the current record's "Devise" value
  * @method Commande         getCommande()                Returns the current record's "Commande" value
@@ -60,6 +62,7 @@
  * @method CollectionDetail setDateLivraisonPrevue()     Sets the current record's "date_livraison_prevue" value
  * @method CollectionDetail setResteALivrerProduit()     Sets the current record's "reste_a_livrer_produit" value
  * @method CollectionDetail setQualite()                 Sets the current record's "qualite" value
+ * @method CollectionDetail setDateLivraisonDemandee()   Sets the current record's "date_livraison_demandee" value
  * @method CollectionDetail setCollection()              Sets the current record's "Collection" value
  * @method CollectionDetail setDevise()                  Sets the current record's "Devise" value
  * @method CollectionDetail setCommande()                Sets the current record's "Commande" value
