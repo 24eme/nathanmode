@@ -1323,6 +1323,10 @@ img.production-images {
     width: 100px;
 }
 
+tr.muted {
+	opacity:50% !important;
+}
+
 th[class*="sf_admin_list_th_"] > a {
     text-decoration:none !important;
 }

@@ -116,7 +116,20 @@ class Collection extends BaseCollection
       if ($this->getFichierConfirmation() && $this->getSituation() == Situations::SITUATION_ATT_CONFIRMATION) {
         $this->setSituation(Situations::SITUATION_EN_COURS);
       }
-      
+      $soldee = true;
+      foreach ($this->getCollectionDetails() as $collectionDetail) {
+    		if (!$collectionDetail->commande_soldee) {
+          $soldee = false;
+          break;
+        }
+    	}
+      if ($soldee) {
+        $this->commande_soldee = 1;
+        $this->situation = Situations::SITUATION_SOLDEE;
+      } else {
+        $this->commande_soldee = 0;
+        $this->situation = Situations::SITUATION_EN_COURS;
+      }
       parent::save($conn);
       $montantFacture = 0;
       $montantCommande = 0;

@@ -137,6 +137,10 @@ abstract class BaseCollectionDetail extends sfDoctrineRecord
         $this->hasColumn('date_livraison_demandee', 'date', null, array(
              'type' => 'date',
              ));
+        $this->hasColumn('commande_soldee', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => false,
+             ));
     }
 
     public function setUp()
