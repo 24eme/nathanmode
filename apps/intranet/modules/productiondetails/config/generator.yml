@@ -19,6 +19,8 @@ generator:
         qualite: {label: Référence}
         piece_categorie: {label: Catégorie}
         reste_a_livrer_produit: {label: Reste à livrer}
+        nbrelance: {label: Nb. relances}
+
       list:
         sort: [date_livraison_demandee, desc]
         max_per_page: 30
