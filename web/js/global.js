@@ -390,7 +390,7 @@ $(document).ready(function() {
       $('#coupe_paiement').trigger("chosen:updated");
     });
   });
-  if($('#coupe_client_id').length > 0 && !editUrlRegexp.test($('form').attr('action'))) {
+  if($('#coupe_client_id').length > 0 && !editUrlRegexp.test($('form').attr('action')) && !$('#coupe_client_id').val()) {
     $('#coupe_client_id').trigger( "change" );
   }
 
@@ -737,13 +737,13 @@ console.log(tr);
     let coef = 0;
     let part = 0;
 
-    if(commissionUnite.value == 3) {
+    if(commissionUnite.value == 3 && commission.value) {
       part = parseFloat(commission.value);
       marge = prixVente !== 0 ? prixVente * part / 100 : 0;
-      coef = prixVente !== 0 ? prixVente / 10 : 0;
+      coef = prixVente !== 0 ? prixVente / part : 0;
     }
 
-    if(commissionUnite.value == 4) {
+    if(commissionUnite.value == 4 && commission.value) {
       partMargeCoef = parseFloat(commission.value) / 100;
       marge = (prixVente - prixAchat) * partMargeCoef;
       coef = prixAchat !== 0 ? (prixVente / prixAchat) * partMargeCoef : 0;

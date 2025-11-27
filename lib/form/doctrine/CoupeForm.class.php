@@ -106,12 +106,16 @@ class CoupeForm extends BaseCoupeForm
     }
 
     public function getPaiements() {
-
-        return ConditionsPaiement::getListe();
+        $liste = ConditionsPaiement::getListe();
+        if(!array_key_exists($this->getObject()->paiement, $liste)) {
+            $liste[$this->getObject()->paiement] = $this->getObject()->paiement;
+        }
+        return $liste;
     }
+
   public function updateDefaultsFromObject() {
       parent::updateDefaultsFromObject();
-      
+
       if (!$this->getObject()->commercial_devise_id) {
         $this->defaults['commercial_devise_id'] = Devise::POURCENTAGE_ID;
       }
