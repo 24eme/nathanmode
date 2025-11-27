@@ -192,6 +192,7 @@ class CollectionForm extends BaseCollectionForm
         $this->getValidator('fournisseur_id')->setOption('required', true);
         $this->getValidator('client_id')->setOption('required', true);
         $this->getValidator('num_commande')->setOption('required', true);
+        $this->getValidator('paiement')->setOption('required', true);
         $this->getValidator('prix_fournisseur')->setOption('required', true);
 
         $this->getWidget('prix_fournisseur')->setAttribute('class', 'input-float');
@@ -220,8 +221,11 @@ class CollectionForm extends BaseCollectionForm
     }
 
     public function getPaiements() {
-
-        return ConditionsPaiement::getListe();
+        $liste = ConditionsPaiement::getListe();
+        if(!array_key_exists($this->getObject()->paiement, $liste)) {
+            $liste[$this->getObject()->paiement] = $this->getObject()->paiement;
+        }
+        return $liste;
     }
 
     public function getSituations() {

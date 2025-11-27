@@ -18,6 +18,9 @@ generator:
         date_livraison_demandee: { date_format: dd/MM/yyyy }
         qualite: {label: Référence}
         piece_categorie: {label: Catégorie}
+        reste_a_livrer_produit: {label: Reste à livrer}
+        nbrelance: {label: Nb. relances}
+
       list:
         sort: [date_livraison_demandee, desc]
         max_per_page: 30
@@ -27,9 +30,9 @@ generator:
         actions:
           _new: ~
         title: "Liste des commandes de production"
-        display: [saison, fournisseur, client, date_commande, num_commande, date_livraison_demandee, situation, categorie, qualite, _image, colori, quantite, prix, Devise, nbrelance]
+        display: [saison, fournisseur, client, date_commande, num_commande, date_livraison_demandee, _reste_a_livrer_produit, situation, categorie, qualite, _image, colori, quantite, prix, Devise, _nbrelance]
       filter:
-        display: [saison_id, fournisseur_id, client_id, date_commande, num_commande, date_livraison_demandee, situation, piece_categorie, qualite, image, colori, piece, prix, devise_id, nb_relance]
+        display: [saison_id, fournisseur_id, client_id, date_commande, num_commande, date_livraison_demandee, reste_a_livrer_produit, situation, piece_categorie, qualite, image, colori, piece, prix, devise_id, nb_relance]
       form:    ~
       edit:    ~
       new:     ~

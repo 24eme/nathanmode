@@ -21,7 +21,10 @@ class ClientForm extends BaseClientForm
   }
 
   public function getConditionsPaiement() {
-
-    return ConditionsPaiement::getListe();
+      $liste = ConditionsPaiement::getListe();
+      if(!array_key_exists($this->getObject()->condition_paiement, $liste)) {
+          $liste[$this->getObject()->condition_paiement] = $this->getObject()->condition_paiement;
+      }
+      return $liste;
   }
 }
