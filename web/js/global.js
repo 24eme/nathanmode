@@ -378,7 +378,7 @@ $(document).ready(function() {
       $('#collection_paiement').trigger("chosen:updated");
     });
   });
-  if($('#collection_client_id').length > 0 && !editUrlRegexp.test($('form').attr('action'))) {
+  if($('#collection_client_id').length > 0 && !editUrlRegexp.test($('form').attr('action')) && !$('#collection_paiement').val()) {
     $('#collection_client_id').trigger( "change" );
   }
 
