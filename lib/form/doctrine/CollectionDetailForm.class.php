@@ -28,6 +28,7 @@ class CollectionDetailForm extends BaseCollectionDetailForm
 			       'reste_a_livrer_produit',
 			       'piece_categorie',
 			       'qualite',
+             'commande_soldee',
 			      ));
 
         $this->getWidgetSchema()->setLabels(array(

@@ -33,6 +33,7 @@ abstract class BaseCollectionDetailForm extends BaseFormDoctrine
       'reste_a_livrer_produit'  => new sfWidgetFormInputText(),
       'qualite'                 => new sfWidgetFormInputText(),
       'date_livraison_demandee' => new sfWidgetFormDate(),
+      'commande_soldee'         => new sfWidgetFormInputCheckbox(),
     ));
 
     $this->setValidators(array(
@@ -54,6 +55,7 @@ abstract class BaseCollectionDetailForm extends BaseFormDoctrine
       'reste_a_livrer_produit'  => new sfValidatorPass(array('required' => false)),
       'qualite'                 => new sfValidatorString(array('max_length' => 128, 'required' => false)),
       'date_livraison_demandee' => new sfValidatorDate(array('required' => false)),
+      'commande_soldee'         => new sfValidatorBoolean(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('collection_detail[%s]');

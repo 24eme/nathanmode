@@ -81,6 +81,10 @@
         <?php echo $form['reste_a_livrer_produit']->render(array('class' => 'input-float form-control form-control-sm reste-a-livrer')); ?>
         <?php echo $form['reste_a_livrer_produit']->renderError(); ?>
     </td>
+    <td>
+        <?php echo $form['commande_soldee']->render(array('class' => 'commande_soldee')); ?>
+        <?php echo $form['commande_soldee']->renderError(); ?>
+    </td>
     <td class="p-2">
         <a class="lien_supprimer_ligne fs-6 text-muted" href="#"><i class="bi bi-trash3"></i></a>
     </td>
