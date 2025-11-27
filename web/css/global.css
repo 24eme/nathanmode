@@ -1322,3 +1322,13 @@ img.production-images {
 .sf_admin_list thead td input[type=date] {
     width: 100px;
 }
+
+th[class*="sf_admin_list_th_"] > a {
+    text-decoration:none !important;
+}
+
+th[class*="sf_admin_list_th_nbrelance"],
+th[class*="sf_admin_list_th_reste_a_livrer_produit"],
+th[class*="sf_admin_list_th_saison"] {
+    width:85px;
+}
