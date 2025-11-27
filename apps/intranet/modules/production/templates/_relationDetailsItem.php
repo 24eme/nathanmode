@@ -1,4 +1,4 @@
-<tr class="relation_item_form ligne_calcul_marges">
+<tr class="relation_item_form ligne_calcul_marges<?php if ($form['commande_soldee']->getValue()): ?> muted<?php endif; ?>">
 <?php if (sfConfig::get('app_no_metrage')) : ?>
     <td class="uploadFile pt-1" style="padding: 0;">
     <label for="<?php echo $form['image']->renderId() ?>"  style="cursor: pointer;">

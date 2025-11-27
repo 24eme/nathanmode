@@ -680,6 +680,13 @@ $(document).ready(function() {
       processInputsReadonly();
       event.preventDefault();
   });
+  $('.commande_soldee').live('change', function() {
+      if ($(this).prop('checked')) {
+        $(this).closest('tr').addClass('muted');
+      } else {
+        $(this).closest('tr').removeClass('muted');
+      }
+  });
 
 });
 

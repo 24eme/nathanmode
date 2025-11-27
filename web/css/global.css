@@ -1322,3 +1322,7 @@ img.production-images {
 .sf_admin_list thead td input[type=date] {
     width: 100px;
 }
+
+tr.muted {
+	opacity:50% !important;
+}
