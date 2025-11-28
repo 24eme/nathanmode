@@ -200,6 +200,10 @@ activiteGraph:
   url:   /commercial-activity/graph
   param: { module: activite, action: graph }
 
+facture_relation:
+  url:   /facture/:id/relation
+  param: { module: facure, action: relation }
+
 status:
   url:   /status
   param: { module: activite, action: status }

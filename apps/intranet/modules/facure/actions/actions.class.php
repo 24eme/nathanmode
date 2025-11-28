@@ -57,12 +57,17 @@ class facureActions extends autoFacureActions
     }
     return $filters;
   }
-  
-  public function executeTest(sfWebRequest $request)
+
+  public function executeRelation(sfWebRequest $request)
   {
-  	
+        $facture = FactureTable::getInstance()->findOneById($request->getParameter('id'));
+        if ($facture->getRelation() == Facture::TYPE_COUPE) {
+            return $this->redirect('coupe_edit', CoupeTable::getInstance()->findOneBy('facture_id', $facture->getId()));
+        } elseif ($facture->getCollectionByIdFacture()) {
+            return $this->redirect('collection_production_edit', $facture->getCollectionByIdFacture());
+        }
   }
-  
+
   public function buildCumulQuery()
   {
     $tableMethod = $this->configuration->getTableMethod();
