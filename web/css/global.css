@@ -1296,7 +1296,7 @@ img.production-images {
 }
 
 .collection-tables label {
-	text-align: center;
+	text-align: left;
 }
 
 .read-only-livraison > input {
