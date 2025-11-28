@@ -74,8 +74,8 @@ class CoupeForm extends BaseCoupeForm
               )
           ));
 
-      $this->setWidget('situation', new sfWidgetFormChoice(array('choices' => array_merge(array("" => " "), CoupeForm::getSituations()))));
-      $this->setValidator('situation', new sfValidatorChoice(array('choices' => array_keys(CoupeForm::getSituations()), 'required' => false)));
+      $this->setWidget('situation', new sfWidgetFormChoice(array('choices' => array_merge(array("" => " "), CoupeForm::getSituationsChoice()))));
+      $this->setValidator('situation', new sfValidatorChoice(array('choices' => array_keys(CoupeForm::getSituationsChoice()), 'required' => false)));
 
       $this->getWidget('prix')->setAttribute('class', 'input-float');
       $this->getWidget('commission_fournisseur')->setAttribute('class', 'input-float');
@@ -124,13 +124,21 @@ class CoupeForm extends BaseCoupeForm
         $this->defaults['fournisseur_devise_id'] = Devise::POURCENTAGE_ID;
       }
     }
-    
+
+    public function getSituationsChoice() {
+        $liste = array_filter(self::getSituations(), function($k) { return in_array($k, array('ATT_CONFIRMATION', 'EN_COURS', 'ATTENTE_LIVRAISON',  'EXPE_ATT_FACTURE', 'ATTENTE_PAIEMENT', 'SOLDEE')); }, ARRAY_FILTER_USE_KEY);
+        if(!array_key_exists($this->getObject()->situation, $liste)) {
+            $liste[$this->getObject()->situation] = $this->getObject()->situation;
+        }
+        return $liste;
+    }
+
     public static function getSituations() {
 
-        return array_filter(Situations::getListe(), function($k) { return in_array($k, array('ATT_CONFIRMATION', 'EN_COURS', 'ATTENTE_LIVRAISON',  'EXPE_ATT_FACTURE', 'ATTENTE_PAIEMENT', 'SOLDEE')); }, ARRAY_FILTER_USE_KEY);
+        return array_filter(Situations::getListe(), function($k) { return in_array($k, array('ATT_CONFIRMATION', 'EN_COURS', 'ATTENTE_LIVRAISON',  'EXPE_ATT_FACTURE', 'ATTENTE_PAIEMENT', 'SOLDEE')); }, ARRAY_FILTER_USE_KEY);;
     }
-    
-    
+
+
     public static function getQuantiteType() {
 
         return array_merge(array("METRAGE" => "Métrage"), PieceCategories::getListe());

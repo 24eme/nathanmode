@@ -8,27 +8,13 @@ all:
       Eliott: 10
   situations:
     liste:
-      ATT_CONFIRMATION:   "Att confirmation"
-      EN_COURS:           "En cours"
-      EXPE_TIRELLE:       "Expé tirelle"
-      EXPE_TIRELLE_TEST:  "Expé tirelle & att test"
-      TIRELLE_VALIDEE:    "Tirelle validée"
-      TIRELLE_REFUSEE:    "Tirelle refusée"
-      DELAI_RETRAITEMENT: "Délai de retraitement"
-      RETARD_LIVRAISON:   "Retard livraison"
-      ECRU_A_DESIGNER:    "Ecru a designer"
-      ECRU_DESIGNER:      "Ecru soldée"
-      RESTE_A_LIVRER:     "Reste à livrer"
-      INSPECTION_CCT:     "Inspection CCT"
-      INSPECTION_QUALITE: "Inspection qualité"
-      INSPECTION_PENDON:  "Inspection pendon"
-      ATTENTE_TEST:       "Attente test"
-      REFUS_TEST:         "Refus test"
-      SOLDEE:             "Soldée"
-      ATTENTE_PAIEMENT:   "Attente paiement"
-      ATTENTE_LIVRAISON:  "Attente adresse de livraison"
-      EXPE_ATT_FACTURE:   "Expédié & attente facture"
-      ON_TIME:            "On time"
+      ATT_CONFIRMATION:   "ATT PROFORMA" # Statut structurant
+      EN_COURS:           "IN PROCESS"   # Statut structurant
+      SOLDEE:             "SOLDÉE"       # Statut structurant
+      RETARD_LIVRAISON:   "RETARD"
+      ATTENTE_PAIEMENT:   "ATTENTE PAIEMENT AVT EXP"
+      DEPOSIT_EN_ATTENTE:  "DEPOSIT EN ATTENTE"
+      DEPOSIT_RECU:   "DEPOSIT REÇU"
   paiements:
     liste:
       VIREMENT_30_JOURS: "Virement 30 jours"
@@ -43,7 +29,7 @@ all:
       90_JOURS_NET: "90 JOURS NET"
       90_JOURS_FIN_DE_MOIS: "90 JOURS FIN DE MOIS"
       PAIEMENT_AVANCE: "PAIEMENT DAVANCE AVANT EXPEDITION 100 %"
-      PAIEMENT_AVANCE_30_COMMANDE_70_ENVOI: "PAIEMENT DAVANCE 30 % DEPOSIT 70 % BEFORE DEPARTURE "
+      PAIEMENT_AVANCE_30_COMMANDE_70_ENVOI: "PAIEMENT DAVANCE 30 % DEPOSIT 70 % BEFORE DEPARTURE"
       LC: "L/C"
       LC_A_30_JOURS: "L/C 30 JOURS"
       LC_A_45_JOURS: "L/C 45 JOURS"

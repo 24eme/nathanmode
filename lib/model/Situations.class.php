@@ -10,14 +10,15 @@ class Situations
 	protected static $_situations_historique = array(
 		"INSPECTION_COTECO" =>  "Inspection coteco",
 	);
-	
+
     public static function getListe() {
 
         return sfConfig::get('app_situations_liste');
     }
-    
+
     public static function getLibelle($key) {
     	$libelles = array_merge(self::getListe(), self::$_situations_historique);
-    	return (isset($libelles[$key]))? $libelles[$key] : null;
+
+        return (isset($libelles[$key]))? $libelles[$key] : $key;
     }
 }

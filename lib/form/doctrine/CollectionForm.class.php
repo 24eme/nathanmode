@@ -229,8 +229,11 @@ class CollectionForm extends BaseCollectionForm
     }
 
     public function getSituations() {
-
-      return Situations::getListe();
+        $liste = Situations::getListe();
+        if(!array_key_exists($this->getObject()->situation, $liste)) {
+            $liste[$this->getObject()->situation] = $this->getObject()->situation;
+        }
+        return $liste;
     }
 
     public function getSaisons() {
