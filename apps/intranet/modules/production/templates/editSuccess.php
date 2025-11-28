@@ -74,7 +74,6 @@
 
   window.addEventListener('scroll', (event) => {
     const stickyBanner = document.getElementById('sticky-banner');
-    console.log(window.scrollY);
     if (window.scrollY >= 145) {
       stickyBanner.setAttribute("style", "border:2px solid #164066; position:sticky; border-radius:8px; top:20px; z-index:1000; background-color:#ffffff; height:60px; padding:15px 0 !important; width:98% !important; margin: 0 auto !important;")
     }else if (window.scrollY < 145) {
