@@ -25,7 +25,7 @@
                   <th class="small-column" rowspan="2">ETD demandé</th>
                   <th class="small-column" rowspan="2">ETD confirmé</th>
                   <th class="small-column" rowspan="2"><label>Reste à livrer</label></th>
-                  <th class="small-column" rowspan="2"><label>Soldé</label></th>
+                  <th style="width: 0; writing-mode: vertical-rl; padding-top: 20px;" rowspan="2">Soldé</th>
                   <th style="width: 0;" rowspan="2"><label>&nbsp;</label></th>
                   <th style="width: 0;" rowspan="2"><label>&nbsp;</label></th>
                   <th style="width: 0;" rowspan="2"><label>&nbsp;</label></th>
@@ -45,7 +45,7 @@
                   <?php endforeach; ?>
               </tbody>
               <tr>
-                  <td colspan="19" class="px-0">
+                  <td colspan="21" class="px-0">
                       <a class="btPlus right lien_ajouter_ligne" data-template="#template_details" data-container="#form_details_container" href="#">+</a>
                   </td>
               </tr>
