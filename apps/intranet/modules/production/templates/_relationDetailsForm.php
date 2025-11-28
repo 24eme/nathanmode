@@ -25,7 +25,7 @@
                   <th class="small-column" rowspan="2">ETD demandé</th>
                   <th class="small-column" rowspan="2">ETD confirmé</th>
                   <th class="small-column" rowspan="2"><label>Reste à livrer</label></th>
-                  <th style="width: 0; writing-mode: vertical-rl; padding-top: 20px;" rowspan="2">Soldé</th>
+                  <th style="width: 0; writing-mode: vertical-rl; padding-top: 7px;" rowspan="2">Soldé</th>
                   <th style="width: 0;" rowspan="2"><label>&nbsp;</label></th>
                   <th style="width: 0;" rowspan="2"><label>&nbsp;</label></th>
                   <th style="width: 0;" rowspan="2"><label>&nbsp;</label></th>
