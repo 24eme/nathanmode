@@ -36,4 +36,11 @@ class CollectionLivraisonTable extends Doctrine_Table
                 ->leftJoin('cl.Facture f')
                 ->execute();
     }
+
+    public function getByIdFacture($idFacture) {
+        return $this->createQuery('cl')
+            ->leftJoin('cl.Collection c')
+            ->where('cl.facture_id = ?', $idFacture)
+            ->execute();
+    }
 }

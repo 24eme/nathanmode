@@ -20,4 +20,19 @@ class Facture extends BaseFacture
 		$this->date_debit = $date;
 		$this->statut = StatutsFacture::KEY_PAYEE;
 	}
+
+	public function getCollectionByIdFacture() {
+	    if ($collection = $this->getCollection() && $this->getCollection()->getId() !== null) {
+            return $collection;
+		}
+
+        $idFacture = $this->getId();
+        $collectionLivraison = CollectionLivraisonTable::getInstance()->getByIdFacture($idFacture);
+        foreach($collectionLivraison as $cl) {
+            if($cl->getCollection()) {
+                return $cl->getCollection();
+            }
+        }
+        return null;
+	}
 }

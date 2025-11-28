@@ -19,7 +19,7 @@ generator:
         total_commercial: { label: "Commission commercial" }
       list:
         sort: [date, desc]
-        max_per_page: 150
+        max_per_page: 100
         batch_actions:
           statutPayee: ~
         actions: { }
@@ -27,7 +27,7 @@ generator:
           _edit: ~
           _delete: ~
         title: "Liste des factures"
-        display: [Fournisseur, Saison, relation, numero, date, Client, montant, total_fournisseur, Commercial, _statut, _fichier]
+        display: [Fournisseur, Saison, _relation, numero, date, Client, montant, total_fournisseur, Commercial, _statut, _fichier]
       filter:
         display: [fournisseur_id, saison_id, relation, numero, date, client_id, montant, total_fournisseur, commercial_id, statut, fichier]
       form:    ~
