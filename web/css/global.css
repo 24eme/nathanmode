@@ -1351,3 +1351,7 @@ th[class*="sf_admin_list_th_reste_a_livrer_produit"],
 th[class*="sf_admin_list_th_saison"] {
     width:85px;
 }
+
+.condition-paiement > .chosen-container {
+    width:100% !important;
+}
