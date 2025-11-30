@@ -33,7 +33,8 @@ class CollectionLivraisonForm extends BaseCollectionLivraisonForm
         $this->setWidget('fichier', new sfWidgetFormInputFileEditable(array(
                                                                       'file_src' => FactureTable::getInstance()->getUploadPath(false).$this->getObject()->fichier,
                                                                        'edit_mode' => $this->getObject()->fichier,
-                                                                       'template' => '%input%<br />%delete% Suppr. le fichier<a href="%file%" target="_blank">Voir le fichier</a>'
+                                                                       'template' => '%input%<br /> <label class="pdf-delete">%delete% Suppr. fact.</label>',
+                                                                       'with_delete' => true
                                                                     )));
         $this->setValidator('fichier', new sfValidatorFile(
             array('required' => $this->getValidator('fichier')->getOption('required'),
@@ -44,7 +45,8 @@ class CollectionLivraisonForm extends BaseCollectionLivraisonForm
         $this->setWidget('packing_list', new sfWidgetFormInputFileEditable(array(
                                                                       'file_src' => CollectionLivraisonTable::getInstance()->getUploadPath(false).$this->getObject()->packing_list,
                                                                        'edit_mode' => $this->getObject()->packing_list,
-                                                                       'template' => '%input%<br />%delete% Suppr. le fichier<a href="%file%" target="_blank">Voir le fichier</a>'
+                                                                       'template' => '%input%<br /> <label class="pdf-delete">%delete% Suppr. PL</label>',
+                                                                       'with_delete' => true
                                                                     )));
         $this->setValidator('packing_list', new sfValidatorFile(
             array('required' => $this->getValidator('packing_list')->getOption('required'),
