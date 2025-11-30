@@ -716,7 +716,6 @@ function updateIndicateurs() {
 }
 
 function calculeIndicateurs(tr) {
-console.log(tr);
   const usdRate = document.getElementById('collection_usd_rate').value;
   const eurRate = document.getElementById('collection_eur_rate').value;
   const devise = document.getElementById('collection_devise_id').value;
