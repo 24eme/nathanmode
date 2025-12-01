@@ -548,9 +548,6 @@ CollectionDetail:
     part_frais:
       type: double
       default: NULL
-    part_commission:
-      type: double
-      default: NULL
     date_livraison_prevue:
       type: date
       default: NULL

@@ -49,8 +49,6 @@ class CollectionDetailForm extends BaseCollectionDetailForm
 
         $this->setWidget('devise_id', new sfWidgetFormInputHidden());
         $this->setValidator('devise_id', new sfValidatorPass(array('required' => false)));
-        $this->setWidget('part_commission', new sfWidgetFormInputHidden());
-        $this->setValidator('part_commission', new sfValidatorPass(array('required' => false)));
         $this->setWidget('date_livraison_prevue', new WidgetFormInputDate());
         $this->setValidator('date_livraison_prevue', new sfValidatorDate(array('required' => false)));
         $this->setWidget('date_livraison_demandee', new WidgetFormInputDate());

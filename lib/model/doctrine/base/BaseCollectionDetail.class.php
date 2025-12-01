@@ -17,7 +17,6 @@
  * @property double $prix_achat
  * @property double $prix_public
  * @property double $part_frais
- * @property double $part_commission
  * @property date $date_livraison_prevue
  * @property double $reste_a_livrer_produit
  * @property string $qualite
@@ -38,7 +37,6 @@
  * @method double           getPrixAchat()               Returns the current record's "prix_achat" value
  * @method double           getPrixPublic()              Returns the current record's "prix_public" value
  * @method double           getPartFrais()               Returns the current record's "part_frais" value
- * @method double           getPartCommission()          Returns the current record's "part_commission" value
  * @method date             getDateLivraisonPrevue()     Returns the current record's "date_livraison_prevue" value
  * @method double           getResteALivrerProduit()     Returns the current record's "reste_a_livrer_produit" value
  * @method string           getQualite()                 Returns the current record's "qualite" value
@@ -58,7 +56,6 @@
  * @method CollectionDetail setPrixAchat()               Sets the current record's "prix_achat" value
  * @method CollectionDetail setPrixPublic()              Sets the current record's "prix_public" value
  * @method CollectionDetail setPartFrais()               Sets the current record's "part_frais" value
- * @method CollectionDetail setPartCommission()          Sets the current record's "part_commission" value
  * @method CollectionDetail setDateLivraisonPrevue()     Sets the current record's "date_livraison_prevue" value
  * @method CollectionDetail setResteALivrerProduit()     Sets the current record's "reste_a_livrer_produit" value
  * @method CollectionDetail setQualite()                 Sets the current record's "qualite" value
@@ -119,9 +116,6 @@ abstract class BaseCollectionDetail extends sfDoctrineRecord
              'type' => 'double',
              ));
         $this->hasColumn('part_frais', 'double', null, array(
-             'type' => 'double',
-             ));
-        $this->hasColumn('part_commission', 'double', null, array(
              'type' => 'double',
              ));
         $this->hasColumn('date_livraison_prevue', 'date', null, array(
