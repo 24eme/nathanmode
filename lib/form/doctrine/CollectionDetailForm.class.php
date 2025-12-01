@@ -85,7 +85,7 @@ class CollectionDetailForm extends BaseCollectionDetailForm
 		$this->getObject()->updateResteALivrerProduit($collection);
 	}
 
-	 $this->setWidget('piece_categorie', new sfWidgetFormChoice(array('choices' => $this->getPieceCategories())));
+	 $this->setWidget('piece_categorie', new sfWidgetFormChoice(array('choices' => $this->getPieceCategoriesGrouped())));
         $this->setValidator('piece_categorie', new sfValidatorChoice(array('choices' => array_keys($this->getPieceCategories()),'required' => $this->getValidator('piece_categorie')->getOption('required'),
 )));
 
@@ -200,8 +200,17 @@ class CollectionDetailForm extends BaseCollectionDetailForm
       parent::doUpdateObject($values);
     }
 
-
     public function getPieceCategories() {
+        $liste = PieceCategories::getListe();
+        if(!array_key_exists($this->getObject()->piece_categorie, PieceCategories::getListe())) {
+            $liste[$this->getObject()->piece_categorie] = $this->getObject()->piece_categorie;
+        }
+
+        return $liste;
+    }
+
+
+    public function getPieceCategoriesGrouped() {
         $groupedListe = PieceCategories::getGroupedListe(sfConfig::get('app_no_metrage'));
 
         if(!array_key_exists($this->getObject()->piece_categorie, PieceCategories::getListe())) {
