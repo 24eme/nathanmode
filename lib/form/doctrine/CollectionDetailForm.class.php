@@ -99,10 +99,10 @@ class CollectionDetailForm extends BaseCollectionDetailForm
 
 
     public function processValues($values) {
-
 	if($values['image'] instanceof sfValidatedFile) {
 		$imageOrig =  $values['image'];
 		$imageTempName = $imageOrig->getTempName();
+		$imageTempFile = $imageOrig->generateFilename();
 		$imageType = $imageOrig->getType();
 		$width = 1000;
 		$height = 1000;
@@ -144,20 +144,21 @@ class CollectionDetailForm extends BaseCollectionDetailForm
 
 		imagecopyresampled($imageNew,$imageRessource , 0, 0, 0, 0, $width, $height, $width_orig, $height_orig);
 		if ($imageType === 'image/jpeg' || $imageType === 'image/pjpeg') {
-			imagejpeg($imageNew, 'uploads/tmp_images/'.$this->getObject()->image);
+			imagejpeg($imageNew, 'uploads/tmp_images/'.$imageTempFile);
 		} elseif($imageType === 'image/png' || $imageType === 'image/x-png') {
-			imagepng($imageNew, 'uploads/tmp_images/'.$this->getObject()->image);
+			imagepng($imageNew, 'uploads/tmp_images/'.$imageTempFile);
 		} elseif($imageType === 'image/gif') {
-			imagegif($imageNew, 'uploads/tmp_images/'.$this->getObject()->image);
+			imagegif($imageNew, 'uploads/tmp_images/'.$imageTempFile);
 		} elseif($imageType === 'image/webp') {
-			imagewebp($imageNew, 'uploads/tmp_images/'.$this->getObject()->image);
+			imagewebp($imageNew, 'uploads/tmp_images/'.$imageTempFile);
 		}
 
-		$finalImage = new sfValidatedFile($imageOrig->getOriginalName(), $imageType, 'uploads/tmp_images/'.$this->getObject()->image, filesize('uploads/tmp_images/'.$this->getObject()->image), $path);
+		$finalImage = new sfValidatedFile($imageTempFile, $imageType, 'uploads/tmp_images/'.$imageTempFile, filesize('uploads/tmp_images/'.$imageTempFile), $path);
+
 		if ($this->getObject()->image) {
 			unlink('uploads/production_images/'.$this->getObject()->image);
 		}
-		$this->getObject()->setImage($finalImage);
+		$this->getObject()->setImage($finalImage->save($imageTempFile));
 		$values['image'] = $finalImage;
 
 		imagedestroy($imageNew);
@@ -193,9 +194,10 @@ class CollectionDetailForm extends BaseCollectionDetailForm
         $values['metrage'] = null;
       }
 
-      if (scandir('uploads/tmp_images/')){
-	      array_map('unlink', glob('uploads/tmp_images/*'));
+      if ('/tmp/'.$this->getObject()->image){
+        unlink('uploads/tmp_images/' .$this->getObject()->image);
       }
+
 
       parent::doUpdateObject($values);
     }
