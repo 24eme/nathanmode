@@ -177,7 +177,7 @@ class CollectionDetailForm extends BaseCollectionDetailForm
 	      $this->defaults['part_frais'] = 30;
       }
 
-      if(!sfConfig::get('app_no_metrage')) {
+      if(!sfConfig::get('app_no_metrage') && !$this->getObject()->piece_categorie) {
           $this->defaults['piece_categorie'] = "METRAGE";
       }
 
