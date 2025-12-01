@@ -32,10 +32,10 @@
                 </td>
             </tr>
         </table>
-        <table width="33%" border="0" cellpadding="0" cellspacing="0">
+        <table width="33%" border="0" cellpadding="0" cellspacing="0" class="tabloInfoGen">
           <tr>
               <td><?php echo $form['paiement']->renderLabel() ?>&nbsp;:</td>
-              <td>
+              <td class="condition-paiement">
                   <?php echo $form['paiement']->render(['required' => 'required']) ?>
                   <?php echo $form['paiement']->renderError() ?>
               </td>
@@ -74,7 +74,7 @@
             <?php endif; ?>
           </table>
 
-          <table width="33%" border="0" cellpadding="0" cellspacing="0">
+          <table width="33%" border="0" cellpadding="0" cellspacing="0" class="tabloInfoGen">
             <tr>
                 <td  width="150"><?php echo $form['devise_id']->renderLabel() ?>&nbsp;:</td>
                 <td <?php if (sfConfig::get('app_no_metrage')): ?> class="default-dollar" <?php endif ?> >

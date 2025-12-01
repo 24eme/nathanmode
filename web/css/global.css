@@ -905,12 +905,26 @@ td.uploadFile label{
 	float:left !important;
 }
 td.uploadFile a{
-	margin-right:10% !important;
   float:right !important;
 }
 
-td.uploadFile.pt-1 > input[id^="collection_details_"] {
+td.uploadFile.pt-1 > input[id^="collection_details_"],
+td.uploadFile > input[id^="collection_livraisons_"][type='file'] {
 	display: none !important;
+}
+
+td.uploadFile > label > input[id^="collection_livraisons_"][id$='delete'] {
+    margin-bottom:10px;
+    margin-right: 2px !important;
+    clear:both;
+}
+
+td.uploadFile > label > input[id*="collection_livraisons_"][id$='fichier_delete']{
+    margin-right: 8px;
+}
+
+.pdf-delete {
+    padding:0 2px !important;
 }
 
 td.sf_admin_list_td_qualite,
@@ -1336,4 +1350,8 @@ th[class*="sf_admin_list_th_nbrelance"],
 th[class*="sf_admin_list_th_reste_a_livrer_produit"],
 th[class*="sf_admin_list_th_saison"] {
     width:85px;
+}
+
+.condition-paiement > .chosen-container {
+    width:100% !important;
 }
