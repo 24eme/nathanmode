@@ -18,7 +18,7 @@ class PieceCategories
     	return (isset($libelles[$key]))? $libelles[$key] : $key;
     }
 
-    public function getGroupedListe($withEmpty = false) {
+    public static function getGroupedListe($withEmpty = false) {
         $liste = self::getListe($withEmpty);
         $groupedListe = [];
         foreach($liste as $key => $libelle) {

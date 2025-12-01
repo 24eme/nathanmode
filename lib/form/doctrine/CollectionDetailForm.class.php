@@ -177,13 +177,15 @@ class CollectionDetailForm extends BaseCollectionDetailForm
 	      $this->defaults['part_frais'] = 30;
       }
 
-      if(count(PieceCategories::getListe()) == 1) {
-          $this->defaults['piece_categorie'] = key(PieceCategories::getListe());
+      if(!sfConfig::get('app_no_metrage')) {
+          $this->defaults['piece_categorie'] = "METRAGE";
       }
+
+
     }
 
     public function doUpdateObject($values) {
-      if($values['piece_categorie'] == "METRAGE") {
+      if($values['piece_categorie'] == "METRAGE" && !sfConfig::get('app_no_metrage')) {
           $values['metrage'] = $values['piece'];
           $values['piece_categorie'] = null;
           $values['piece'] = null;
@@ -200,7 +202,7 @@ class CollectionDetailForm extends BaseCollectionDetailForm
 
 
     public function getPieceCategories() {
-        $groupedListe = PieceCategories::getGroupedListe(true);
+        $groupedListe = PieceCategories::getGroupedListe(sfConfig::get('app_no_metrage'));
 
         if(!array_key_exists($this->getObject()->piece_categorie, PieceCategories::getListe())) {
             $groupedListe[$this->getObject()->piece_categorie] = $this->getObject()->piece_categorie;
