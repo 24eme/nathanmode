@@ -13,7 +13,7 @@
                   <th><label>Adresse de livraison</label></th>
                   <th style="width: 8%;"><label>Num facture</label></th>
                   <th style="width: 6%;"><label style="text-align:left;">PDF facture</label></th>
-                  <th style="width: 6%;"><label>Packing list</label></th>
+                  <th style="width: 6%;"><label style="text-align:left;">Packing list</label></th>
                   <th style="width: 0;"><label>&nbsp;</label></th>
               </tr>
               <tbody id="form_livraisons_container">
