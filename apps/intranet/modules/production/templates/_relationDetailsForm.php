@@ -31,12 +31,12 @@
                   <th style="width: 0;" rowspan="2"><label>&nbsp;</label></th>
               </tr>
               <tr>
-                  <th>mont.</th>
-                  <th>coef</th>
-                  <th>%</th>
+                  <th style="width: 0;">mont.</th>
+                  <th style="width: 0;">coef</th>
+                  <th style="width: 0;">%</th>
                   <?php if (sfConfig::get('app_no_metrage')) : ?>
-                  <th>coef</th>
-                  <th>%</th>
+                  <th style="width: 0;">coef</th>
+                  <th style="width: 0;">%</th>
                   <?php endif; ?>
               </tr>
               <tbody id="form_details_container">

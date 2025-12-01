@@ -12,6 +12,23 @@ class PieceCategories
     public static function getLibelle($key) {
         $libelles = self::getListe();
 
-    	return (isset($libelles[$key]))? $libelles[$key] : null;
+        if(!$key) {
+            return null;
+        }
+    	return (isset($libelles[$key]))? $libelles[$key] : $key;
+    }
+
+    public function getGroupedListe($withEmpty = false) {
+        $liste = self::getListe($withEmpty);
+        $groupedListe = [];
+        foreach($liste as $key => $libelle) {
+            $groupKey = $key;
+            if(count(explode("_", $groupKey))) {
+                $groupKey = explode("_", $groupKey)[0];
+            }
+            $groupedListe[$groupKey][$key] = $libelle;
+        }
+
+        return $groupedListe;
     }
 }

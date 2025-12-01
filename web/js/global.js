@@ -618,7 +618,9 @@ $(document).ready(function() {
   $('#fournisseur_devise_id').sortSelect().chosen();
   $('#commercial_devise_id').sortSelect().chosen();
 
-
+$('.chosen-single').live('hover', function(event) {
+    this.title = this.innerText;
+});
 
   $(document).on('submit', "#sf_admin_batch_actions_form", function(event) {
     var datasTab = $(this).serializeArray();

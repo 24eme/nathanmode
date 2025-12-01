@@ -178,6 +178,10 @@ class CollectionDetailForm extends BaseCollectionDetailForm
       if ($this->getObject()->part_frais == null ) {
 	      $this->defaults['part_frais'] = 30;
       }
+
+      if(count(PieceCategories::getListe()) == 1) {
+          $this->defaults['piece_categorie'] = key(PieceCategories::getListe());
+      }
     }
 
     public function doUpdateObject($values) {
@@ -198,6 +202,6 @@ class CollectionDetailForm extends BaseCollectionDetailForm
 
 
     public function getPieceCategories() {
-        return  PieceCategories::getListe();
+        return PieceCategories::getGroupedListe(true);
     }
 }
