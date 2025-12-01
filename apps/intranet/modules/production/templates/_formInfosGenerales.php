@@ -77,7 +77,7 @@
           <table width="33%" border="0" cellpadding="0" cellspacing="0" class="tabloInfoGen">
             <tr>
                 <td  width="150"><?php echo $form['devise_id']->renderLabel() ?>&nbsp;:</td>
-                <td <?php if (sfConfig::get('app_no_metrage')): ?> class="default-dollar" <?php endif ?> >
+                <td>
                     <?php echo $form['devise_id']->render(array('class' => 'chosen')) ?>
                     <?php echo $form['devise_id']->renderError() ?>
                 </td>

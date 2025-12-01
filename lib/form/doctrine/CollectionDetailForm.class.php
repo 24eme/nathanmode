@@ -202,6 +202,12 @@ class CollectionDetailForm extends BaseCollectionDetailForm
 
 
     public function getPieceCategories() {
-        return PieceCategories::getGroupedListe(true);
+        $groupedListe = PieceCategories::getGroupedListe(true);
+
+        if(!array_key_exists($this->getObject()->piece_categorie, PieceCategories::getListe())) {
+            $groupedListe[$this->getObject()->piece_categorie] = $this->getObject()->piece_categorie;
+        }
+
+        return $groupedListe;
     }
 }

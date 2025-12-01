@@ -859,10 +859,6 @@ function processInputsReadonly() {
 }
 
 $(document).ready(function () {
-  if (".default-dollar") {
-    let champDevise = $(".default-dollar .chosen");
-    $(champDevise).val("2").trigger('chosen:updated').trigger('change');
-  }
   processInputsReadonly();
   $('[data-toggle="tooltip"]').tooltip()
 });
