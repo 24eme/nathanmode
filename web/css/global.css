@@ -729,7 +729,10 @@ tr.inspection_pendon td {
 }
 
 tr.first label,
-input#collection_filters_qualite_is_empty{ display:none; }
+input#collection_filters_qualite_is_empty,
+input#collection_detail_filters_reste_a_livrer_produit_is_empty {
+    display:none;
+}
 
 input#collection_filters_num_commande,
 input#collection_filters_qualite {
