@@ -45,7 +45,7 @@
         <?php if($form['fichier']->getValue()): ?>
             <a style="margin-bottom:10px;" href="<?php echo FactureTable::getInstance()->getUploadPath(false).$form['fichier']->getValue(); ?>" target="_blank">Voir la facture</a>
         <?php else: ?>
-            <span class="btn btn-sm btn-outline-secondary" style="margin-left:22px;"> <i class="bi bi-upload"></i></span>
+            <span class="btn btn-sm btn-outline-secondary"><i class="bi bi-upload"></i></span>
         <?php endif; ?>
 	</label>
       <?php echo $form['fichier']->render(array('class' => 'input')) ?>
@@ -56,7 +56,7 @@
           <?php if($form['packing_list']->getValue()): ?>
           <a style="margin-bottom:10px;" href="<?php echo CollectionLivraisonTable::getInstance()->getUploadPath(false).$form['packing_list']->getValue(); ?>" target="_blank">Voir le PL</a>
           <?php else: ?>
-            <span class="btn btn-sm btn-outline-secondary" style="margin-left:22px;"><i class="bi bi-upload"></i></span>
+            <span class="btn btn-sm btn-outline-secondary"><i class="bi bi-upload"></i></span>
           <?php endif; ?>
       </label>
       <?php echo $form['packing_list']->render(array('class' => 'input')) ?>
