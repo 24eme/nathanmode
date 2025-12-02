@@ -16,7 +16,7 @@
 </div>
 
 <div class="modal-body">
-	<?php if (count($items) > 0): ?>
+	<?php if (count($items) > 0||count($itemsAll) > 0): ?>
 
 			<form action="<?php echo url_for('activiteRapport', array_merge($parameters->getRawValue(), array('from' => $parameters['ofrom'], 'to' => $parameters['oto'])))?>" method="get">
 			  	<?php foreach ($parameters as $k => $value): if ($k == strtolower($type)) continue; ?>
