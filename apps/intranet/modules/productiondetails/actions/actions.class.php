@@ -43,7 +43,7 @@ class productiondetailsActions extends autoProductiondetailsActions
   {
     $query = $this->buildQuerySoldees();
     $items = $query->execute();
-    $headers = $this->configuration->getListDisplay();
+    $headers = $this->configuration->getListExport();
     $export = new ExportCsv("export-".$this->getModuleName()."-soldees.csv", array_values($headers));
     foreach ($items as $item) {
     	$line = array();
