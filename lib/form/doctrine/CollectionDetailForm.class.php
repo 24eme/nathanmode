@@ -85,7 +85,7 @@ class CollectionDetailForm extends BaseCollectionDetailForm
 		$this->getObject()->updateResteALivrerProduit($collection);
 	}
 
-	 $this->setWidget('piece_categorie', new sfWidgetFormChoice(array('choices' => $this->getPieceCategories())));
+	 $this->setWidget('piece_categorie', new sfWidgetFormChoice(array('choices' => $this->getPieceCategoriesGrouped())));
         $this->setValidator('piece_categorie', new sfValidatorChoice(array('choices' => array_keys($this->getPieceCategories()),'required' => $this->getValidator('piece_categorie')->getOption('required'),
 )));
 
@@ -99,10 +99,10 @@ class CollectionDetailForm extends BaseCollectionDetailForm
 
 
     public function processValues($values) {
-
 	if($values['image'] instanceof sfValidatedFile) {
 		$imageOrig =  $values['image'];
 		$imageTempName = $imageOrig->getTempName();
+		$imageTempFile = $imageOrig->generateFilename();
 		$imageType = $imageOrig->getType();
 		$width = 1000;
 		$height = 1000;
@@ -144,20 +144,21 @@ class CollectionDetailForm extends BaseCollectionDetailForm
 
 		imagecopyresampled($imageNew,$imageRessource , 0, 0, 0, 0, $width, $height, $width_orig, $height_orig);
 		if ($imageType === 'image/jpeg' || $imageType === 'image/pjpeg') {
-			imagejpeg($imageNew, 'uploads/tmp_images/'.$this->getObject()->image);
+			imagejpeg($imageNew, 'uploads/tmp_images/'.$imageTempFile);
 		} elseif($imageType === 'image/png' || $imageType === 'image/x-png') {
-			imagepng($imageNew, 'uploads/tmp_images/'.$this->getObject()->image);
+			imagepng($imageNew, 'uploads/tmp_images/'.$imageTempFile);
 		} elseif($imageType === 'image/gif') {
-			imagegif($imageNew, 'uploads/tmp_images/'.$this->getObject()->image);
+			imagegif($imageNew, 'uploads/tmp_images/'.$imageTempFile);
 		} elseif($imageType === 'image/webp') {
-			imagewebp($imageNew, 'uploads/tmp_images/'.$this->getObject()->image);
+			imagewebp($imageNew, 'uploads/tmp_images/'.$imageTempFile);
 		}
 
-		$finalImage = new sfValidatedFile($imageOrig->getOriginalName(), $imageType, 'uploads/tmp_images/'.$this->getObject()->image, filesize('uploads/tmp_images/'.$this->getObject()->image), $path);
+		$finalImage = new sfValidatedFile($imageTempFile, $imageType, 'uploads/tmp_images/'.$imageTempFile, filesize('uploads/tmp_images/'.$imageTempFile), $path);
+
 		if ($this->getObject()->image) {
 			unlink('uploads/production_images/'.$this->getObject()->image);
 		}
-		$this->getObject()->setImage($finalImage);
+		$this->getObject()->setImage($finalImage->save($imageTempFile));
 		$values['image'] = $finalImage;
 
 		imagedestroy($imageNew);
@@ -177,7 +178,7 @@ class CollectionDetailForm extends BaseCollectionDetailForm
 	      $this->defaults['part_frais'] = 30;
       }
 
-      if(!sfConfig::get('app_no_metrage')) {
+      if(!sfConfig::get('app_no_metrage') && !$this->getObject()->piece_categorie) {
           $this->defaults['piece_categorie'] = "METRAGE";
       }
 
@@ -193,15 +194,25 @@ class CollectionDetailForm extends BaseCollectionDetailForm
         $values['metrage'] = null;
       }
 
-      if (scandir('uploads/tmp_images/')){
-	      array_map('unlink', glob('uploads/tmp_images/*'));
+      if ('/tmp/'.$this->getObject()->image){
+        unlink('uploads/tmp_images/' .$this->getObject()->image);
       }
+
 
       parent::doUpdateObject($values);
     }
 
-
     public function getPieceCategories() {
+        $liste = PieceCategories::getListe();
+        if(!array_key_exists($this->getObject()->piece_categorie, PieceCategories::getListe())) {
+            $liste[$this->getObject()->piece_categorie] = $this->getObject()->piece_categorie;
+        }
+
+        return $liste;
+    }
+
+
+    public function getPieceCategoriesGrouped() {
         $groupedListe = PieceCategories::getGroupedListe(sfConfig::get('app_no_metrage'));
 
         if(!array_key_exists($this->getObject()->piece_categorie, PieceCategories::getListe())) {
