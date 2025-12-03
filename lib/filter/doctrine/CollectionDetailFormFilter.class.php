@@ -89,6 +89,9 @@ class CollectionDetailFormFilter extends BaseCollectionDetailFormFilter
 
         $this->setWidget('image', new WidgetFormInputDisabled());
       	$this->setValidator('image', new sfValidatorPass(array('required' => false)));
+
+       $this->setWidget('commande_soldee', new WidgetFormInputDisabled());
+       $this->setValidator('commande_soldee', new sfValidatorPass(array('required' => false)));
   }
 
 
