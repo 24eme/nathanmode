@@ -68,6 +68,17 @@ class CollectionDetailFormFilter extends BaseCollectionDetailFormFilter
         $this->setValidator('date_livraison_demandee', new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))));
         $this->getWidget('date_livraison_demandee')->setOption('with_empty', false);
 
+        $this->setWidget('date_livraison_prevue',
+          new sfWidgetFormFilterDate(
+            array(
+              'from_date' => new sfWidgetFormInput(array('type' => 'date')),
+              'to_date' => new sfWidgetFormInput(array('type' => 'date')),
+              'template' => 'du %from_date%<br />au %to_date%'
+            )
+          )
+        );
+        $this->setValidator('date_livraison_prevue', new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))));
+        $this->getWidget('date_livraison_prevue')->setOption('with_empty', false);
 
         $this->setWidget('piece_categorie', new sfWidgetFormChoice(array('choices' => $this->getPieceCategories(), 'multiple' => false)));
         $this->setValidator('piece_categorie', new sfValidatorPass(array('required' => false)));
