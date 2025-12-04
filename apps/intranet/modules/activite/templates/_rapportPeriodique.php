@@ -238,8 +238,8 @@
               foreach(PieceCategories::getListe(true) as $id => $libelle) :
             ?>
             <div class="list-group-item">
-                <div class="col-8 text-dark small"><?php if($libelle): ?><?php echo $libelle ?><?php else: ?><span class="text-muted">Sans catégorie</span><?php endif; ?></div>
-                <div class="col-4 text-end text-dark"><?php echo number_format((isset($itemsBloc1[$id]) && $itemsBloc1[$id])? $itemsBloc1[$id] : 0, 2, ',', ' ') ?></div>
+                <div class="col-6 text-dark small" style="<?php if(!isset($itemsBloc1[$id]) || !$itemsBloc1[$id]): ?>opacity: 0.5; background: white;<?php endif; ?>"><?php if($libelle): ?><?php echo preg_replace("/\((.*)\)/", '<small class="text-muted">\1</small>', $libelle) ?><?php else: ?><span class="text-muted">Sans catégorie</span><?php endif; ?></div>
+                <div class="col-6 text-end text-dark" style="<?php if(!isset($itemsBloc1[$id]) || !$itemsBloc1[$id]): ?>opacity: 0.5; background: white;<?php endif; ?>"><?php echo number_format((isset($itemsBloc1[$id]) && $itemsBloc1[$id])? $itemsBloc1[$id] : 0, 2, ',', ' ') ?></div>
             </div>
             <?php endforeach; ?>
           </div>
@@ -252,8 +252,8 @@
               <?php
                 foreach(PieceCategories::getListe(true) as $id => $libelle) :
               ?>
-              <div class="list-group-item">
-                  <div class="col-6 text-dark small"><?php if($libelle): ?><?php echo $libelle ?><?php else: ?><span class="text-muted">Sans catégorie</span><?php endif; ?></div>
+              <div class="list-group-item" style="<?php if(!isset($itemsBloc2[$id]) || !$itemsBloc2[$id]): ?>opacity: 0.5;<?php endif; ?>">
+                  <div class="col-6 text-dark small"><?php if($libelle): ?><?php echo preg_replace("/\((.*)\)/", '<small class="text-muted">\1</small>', $libelle) ?><?php else: ?><span class="text-muted">Sans catégorie</span><?php endif; ?></div>
                   <div class="col-2 small">
                     <?php
                         $val1 = (isset($itemsBloc1[$id]) && $itemsBloc1[$id])? $itemsBloc1[$id] : 0;
@@ -280,8 +280,8 @@
               <?php
                 foreach(PieceCategories::getListe(true) as $id => $libelle) :
               ?>
-              <div class="list-group-item">
-                  <div class="col-6 text-dark small"><?php if($libelle): ?><?php echo $libelle ?><?php else: ?><span class="text-muted">Sans catégorie</span><?php endif; ?></div>
+              <div class="list-group-item" style="<?php if(!isset($itemsBloc3[$id]) || !$itemsBloc3[$id]): ?>opacity: 0.5;<?php endif; ?>">
+                  <div class="col-6 text-dark small"><?php if($libelle): ?><?php echo preg_replace("/\((.*)\)/", '<small class="text-muted">\1</small>', $libelle) ?><?php else: ?><span class="text-muted">Sans catégorie</span><?php endif; ?></div>
                   <div class="col-2 small">
                     <?php
                         $val1 = (isset($itemsBloc1[$id]) && $itemsBloc1[$id])? $itemsBloc1[$id] : 0;

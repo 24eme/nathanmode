@@ -85,3 +85,4 @@ all:
   piece_categories:
     liste:
       METRAGE: "Métrage"
+      MAILLE_ACCESSOIRE: "ACCESSOIRE (MAILLE)"

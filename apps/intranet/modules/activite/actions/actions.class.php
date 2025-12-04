@@ -85,7 +85,7 @@ class activiteActions extends sfActions
   	$to = new DateTime($to);
   	$this->from = clone $from;
   	$this->to = clone $to;
-  	$this->devise = $request->getParameter('devise', 1);
+    $this->devise = $request->getParameter('devise', sfConfig::get('app_devise_dollar') ? 2 : 1);
   	$this->client = ($cId = $request->getParameter('client'))? ClientTable::getInstance()->find($cId) : null;
   	$this->fournisseur = ($fId = $request->getParameter('fournisseur'))? FournisseurTable::getInstance()->find($fId) : null;
   	$this->commercial = ($this->commercialId)? CommercialTable::getInstance()->find($this->commercialId) : null;

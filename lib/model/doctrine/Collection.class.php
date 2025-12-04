@@ -126,9 +126,6 @@ class Collection extends BaseCollection
       if ($soldee) {
         $this->commande_soldee = 1;
         $this->situation = Situations::SITUATION_SOLDEE;
-      } else {
-        $this->commande_soldee = 0;
-        $this->situation = Situations::SITUATION_EN_COURS;
       }
       parent::save($conn);
       $montantFacture = 0;
