@@ -55,11 +55,13 @@ class CollectionDetail extends BaseCollectionDetail
   public function getTheoreticalMontantCommission() {
       if ($this->getCollection()->getDeviseFournisseur()->isPourcentage() ||$this->getCollection()->getPartMarge()) {
       	try {
-      		if ($this->getPiece()) {
+      		if ($this->getPiece() && is_numeric($this->getPiece())) {
       			return round(($this->getPiece() * $this->getPrixVente() * $this->getPrixFournisseur() / 100), 2);
-      		} else {
+      		} elseif ($this->getMetrage() && is_numeric($this->getMetrage())) {
       			return round(($this->getMetrage() * $this->getPrixVente() * $this->getPrixFournisseur() / 100), 2);
-      		}
+      		} else {
+            return 0;
+          }
       	} catch (Exception $e) {
          		return 0;
       	}
@@ -106,10 +108,12 @@ class CollectionDetail extends BaseCollectionDetail
     $commande->setMetrage($this->getMetrage());
     $commande->setPieceCategorie($this->getPieceCategorie());
     $commande->setPiece($this->getPiece());
-    if ($this->getPiece()) {
+    if ($this->getPiece() && is_numeric($this->getPiece())) {
     	$commande->setMontant($this->getPiece() * $this->getPrix());
-    } else {
+    } elseif ($this->getMetrage() && is_numeric($this->getMetrage())) {
     	$commande->setMontant($this->getMetrage() * $this->getPrix());
+    } else {
+      $commande->setMontant(0);
     }
     $commande->setQualite($this->getCollection()->getQualite());
     $commande->setSituation($this->getCollection()->getSituation());
@@ -122,11 +126,13 @@ class CollectionDetail extends BaseCollectionDetail
 
     if ($this->getCollection()->getDeviseCommercial()->isPourcentage()) {
     	try {
-    		if ($this->getPiece()) {
+    		if ($this->getPiece() && is_numeric($this->getPiece())) {
     			$commande->setTotalCommercial($this->getPiece() * $this->getPrix() * $commande->getPrixCommercial() / 100);
-    		} else {
+    		} elseif ($this->getMetrage() && is_numeric($this->getMetrage())) {
     			$commande->setTotalCommercial($this->getMetrage() * $this->getPrix() * $commande->getPrixCommercial() / 100);
-    		}
+    		} else {
+          $commande->setTotalCommercial(0);
+        }
     	} catch (Exception $e) {
     		$commande->setTotalCommercial(0);
     	}
@@ -188,6 +194,9 @@ class CollectionDetail extends BaseCollectionDetail
         $livraisons = $this->getCollection()->getCollectionLivraisons();
 
 	$resteALivrerProduit = $this->getPiece() ?: $this->getMetrage();
+  if (!$resteALivrerProduit || !is_numeric($resteALivrerProduit)) {
+      $resteALivrerProduit = 0;
+  }
 
         if ($livraisons) {
 	    foreach ($livraisons as $livraison) {
@@ -199,8 +208,11 @@ class CollectionDetail extends BaseCollectionDetail
 		$livraisonQualite = $detailsQualite;
 	}
                 if (($livraisonQualite === $detailsQualite ) && ($livraison->getColori() === $this->getColori())){
-                    $quantiteLivraison = $livraison->getPiece() ?: $livraison->getMetrage();
-                    $resteALivrerProduit -= $quantiteLivraison;
+                  $quantiteLivraison = $livraison->getPiece() ?: $livraison->getMetrage();
+                  if (!$quantiteLivraison || !is_numeric($quantiteLivraison)) {
+                      $quantiteLivraison = 0;
+                  }
+                  $resteALivrerProduit -= $quantiteLivraison;
                 }
             }
         }

@@ -91,9 +91,10 @@ class CollectionLivraison extends BaseCollectionLivraison
     $facture->setMetrage($this->getMetrage());
     $facture->setPieceCategorie($this->getPieceCategorie());
     $facture->setPiece($this->getPiece());
-    if ($this->getPiece()) {
+    $montant = 0;
+    if ($this->getPiece() && is_numeric($this->getPiece())) {
     	$montant = $this->getPiece() * $this->getPrix();
-    } else {
+    } elseif ($this->getMetrage() && is_numeric($this->getMetrage())) {
     	$montant = $this->getMetrage() * $this->getPrix();
     }
     $facture->setMontantTotal($montant);
@@ -122,9 +123,9 @@ class CollectionLivraison extends BaseCollectionLivraison
 
     if ($this->getCollection()->getDeviseFournisseur() && $this->getCollection()->getDeviseFournisseur()->isPourcentage()) {
     	try {
-    		if ($this->getPiece()) {
+    		if ($this->getPiece() && is_numeric($this->getPiece())) {
     			$facture->setTotalFournisseur($this->getPiece() * $this->getPrix() * $facture->getPrixFournisseur() / 100);
-    		} else {
+    		} elseif ($this->getMetrage() && is_numeric($this->getMetrage())) {
     			$facture->setTotalFournisseur($this->getMetrage() * $this->getPrix() * $facture->getPrixFournisseur() / 100);
     		}
     	} catch (Exception $e) {
@@ -136,9 +137,9 @@ class CollectionLivraison extends BaseCollectionLivraison
 
     if ($this->getCollection()->getDeviseCommercial() && $this->getCollection()->getDeviseCommercial()->isPourcentage()) {
     	try {
-    		if ($this->getPiece()) {
+    		if ($this->getPiece() && is_numeric($this->getPiece())) {
     			$facture->setTotalCommercial($this->getPiece() * $this->getPrix() * $facture->getPrixCommercial() / 100);
-    		} else {
+    		} elseif ($this->getMetrage() && is_numeric($this->getMetrage())) {
     			$facture->setTotalCommercial($this->getMetrage() * $this->getPrix() * $facture->getPrixCommercial() / 100);
     		}
 
