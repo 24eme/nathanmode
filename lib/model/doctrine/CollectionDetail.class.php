@@ -192,6 +192,7 @@ class CollectionDetail extends BaseCollectionDetail
 
   public function updateResteALivrerProduit() {
         $livraisons = $this->getCollection()->getCollectionLivraisons();
+        $hasAllPDFFacture = count($livraisons) > 0;
 
 	$resteALivrerProduit = $this->getPiece() ?: $this->getMetrage();
   if (!$resteALivrerProduit || !is_numeric($resteALivrerProduit)) {
@@ -213,9 +214,15 @@ class CollectionDetail extends BaseCollectionDetail
                       $quantiteLivraison = 0;
                   }
                   $resteALivrerProduit -= $quantiteLivraison;
+                  if(!$livraison->getFichier()) {
+                      $hasAllPDFFacture = false;
+                  }
                 }
             }
         }
         $this->setResteALivrerProduit($resteALivrerProduit);
+        if($this->getResteALivrerProduit() <= 0 && $hasAllPDFFacture) {
+            $this->commande_soldee = 1;
+        }
    }
 }
