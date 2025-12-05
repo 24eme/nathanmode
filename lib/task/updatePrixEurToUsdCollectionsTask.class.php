@@ -28,6 +28,36 @@ class updatePrixEurToUsdCollectionsTask extends sfBaseTask
 
     $this->complileTaux();
 
+    $coupes = CoupeTable::getInstance()->findAll();
+    foreach ($coupes as $coupe) {
+      if ($coupe->getFournisseurId() == 100) continue; // Fournisseur en euro
+      if ($coupe->getDeviseId() == 2) continue;
+      $date = $coupe->getDateCommande();
+      if (!$date) {
+        $date = $coupe->getDateLivraison();
+      }
+      if (!$date) {
+        $date = $coupe->getLivreLe();
+      }
+      if (!$date) {
+        $date = array_key_last($this->taux);
+      }
+      $taux = $this->taux[$date] ?? null;
+      if (!$taux) throw new \Exception("No entry for ".$date, 1);
+      $prix = (float)$coupe->getPrix();
+      $montant = (float)$coupe->getMontantFacture();
+      $coupe->setDeviseId(2);
+      if ($prix > 0) {
+        $coupe->setPrix(round($prix*$taux, 2));
+        echo 'COUPE '.$coupe->getId().' '.$date.' '.$taux.' '.$prix.' € => '.round($prix*$taux, 2)." $\n";
+      }
+      if ($montant > 0) {
+        $coupe->setMontantFacture(round($montant*$taux, 2));
+        echo 'COUPE '.$coupe->getId().' '.$date.' '.$montant.' '.$prix.' € => '.round($montant*$taux, 2)." $\n";
+      }
+      $coupe->save();
+    }
+
     $collections = CollectionTable::getInstance()->findAll();
     foreach ($collections as $collection) {
       if ($collection->getFournisseurId() == 100) continue; // Fournisseur en euro
