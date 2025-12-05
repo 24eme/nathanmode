@@ -80,32 +80,35 @@ class updatePrixEurToUsdCollectionsTask extends sfBaseTask
       foreach ($collection->getCollectionDetails() as $detail) {
         if ($detail->getDeviseId() == 2) continue;
         $prix = (float)$detail->getPrix();
+        $detail->setDeviseId(2);
         if ($prix > 0) {
-          $detail->setDeviseId(2);
           $detail->setPrix(round($prix*$taux, 2));
-          $detail->save();
           echo 'DETAIL '.$collection->getId().' '.$date.' '.$taux.' '.$prix.' € => '.round($prix*$taux, 2)." $\n";
-        } elseif (strpos($detail->getColori(), '$') !== false) {
-          $detail->delete();
-        } else {
-          $detail->setDeviseId(2);
-          $detail->save();
         }
+        $detail->save();
       }
       foreach ($collection->getCollectionLivraisons() as $livraison) {
         if ($livraison->getDeviseId() == 2) continue;
         $prix = (float)$livraison->getPrix();
+        $livraison->setDeviseId(2);
         if ($prix > 0) {
-          $livraison->setDeviseId(2);
           $livraison->setPrix(round($prix*$taux, 2));
-          $livraison->save();
           echo 'LIVRAISON '.$collection->getId().' '.$date.' '.$taux.' '.$prix.' € => '.round($prix*$taux, 2)." $\n";
-        } else {
-          $livraison->setDeviseId(2);
-          $livraison->save();          
         }
+        $livraison->save();
+      }
+      $collection->save();
+    }
+
+    $collections = CollectionTable::getInstance()->findAll();
+    foreach ($collections as $collection) {
+    foreach ($collection->getCollectionDetails() as $detail) {
+      if (strpos($detail->getColori(), '$') !== false) {
+        $detail->delete();
       }
     }
+  }
+
   }
 
   private function complileTaux()
