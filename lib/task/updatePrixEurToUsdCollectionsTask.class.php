@@ -109,6 +109,29 @@ class updatePrixEurToUsdCollectionsTask extends sfBaseTask
     }
   }
 
+  $bons = BonTable::getInstance()->createQuery('b')->addWhere('b.fournisseur_id != ?', 100)->addWhere('b.devise_montant_id = ?', 1)->execute();
+  foreach ($bons as $bon) {
+    $date = $bon->getDate();
+    if (!$date) {
+      $date = array_key_last($this->taux);
+    }
+    $taux = $this->taux[$date] ?? null;
+    if (!$taux) throw new \Exception("No entry for ".$date, 1);
+
+    $montant = (float)$bon->getMontantTotal();
+    $bon->setMontantTotal(round($montant*$taux, 2));
+    $bon->setDeviseMontantId(2);
+    if ($bon->getDeviseFournisseurId() == 1) {
+      $bon->setDeviseFournisseurId(2);
+    }
+    $totalFournisseur = (float)$bon->getTotalFournisseur();
+    if ($totalFournisseur > 0) {
+      $bon->setTotalFournisseur(round($totalFournisseur*$taux, 2));
+    }
+    $bon->save();
+    echo 'BON '.$bon->getId().' '.$date.' '.$taux.' '.$montant.' € => '.round($montant*$taux, 2)." $\n";
+  }
+
   }
 
   private function complileTaux()
