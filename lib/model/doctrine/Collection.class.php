@@ -250,4 +250,8 @@ class Collection extends BaseCollection
 
         return null;
     }
+
+    public function isSoldee() {
+      return $this->situation == Situations::SITUATION_SOLDEE;
+    }
 }
