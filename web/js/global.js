@@ -337,6 +337,11 @@ $(document).ready(function() {
 		allow_single_deselect:true,
    	 	width: "100%"
   	});
+  $('#collection_detail_filters_qualite').sortSelect().chosen({
+      placeholder_text_single: "-",
+    allow_single_deselect:true,
+      width: "100%"
+    });
   $('#sf_guard_user_filters_commercial_id').sortSelect().chosen({
     	placeholder_text_single: "-",
 		allow_single_deselect:true,

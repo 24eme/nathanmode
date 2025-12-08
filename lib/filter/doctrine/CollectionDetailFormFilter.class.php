@@ -86,8 +86,8 @@ class CollectionDetailFormFilter extends BaseCollectionDetailFormFilter
         $this->setWidget('situation', new sfWidgetFormChoice(array('choices' => $this->getSituations(), 'multiple' => false)));
         $this->setValidator('situation', new sfValidatorPass(array('required' => false)));
 
-        /*$this->setWidget('qualite', new sfWidgetFormChoice(array('choices' => $this->getQualites(), 'multiple' => false)));
-        $this->setValidator('qualite', new sfValidatorPass(array('required' => false)));*/
+        $this->setWidget('qualite', new sfWidgetFormChoice(array('choices' => $this->getQualites(), 'multiple' => false)));
+        $this->setValidator('qualite', new sfValidatorPass(array('required' => false)));
 
         $this->setWidget('nb_relance', new sfWidgetFormFilterInput());
         $this->setValidator('nb_relance', new sfValidatorPass(array('required' => false)));
@@ -96,7 +96,7 @@ class CollectionDetailFormFilter extends BaseCollectionDetailFormFilter
         $this->getWidget('piece')->setOption('with_empty', false);
         $this->getWidget('prix')->setOption('with_empty', false);
         $this->getWidget('nb_relance')->setOption('with_empty', false);
-        $this->getWidget('qualite')->setOption('with_empty', false);
+        //$this->getWidget('qualite')->setOption('with_empty', false);
 
         $this->setWidget('image', new WidgetFormInputDisabled());
       	$this->setValidator('image', new sfValidatorPass(array('required' => false)));
