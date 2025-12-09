@@ -63,6 +63,6 @@ class CollectionTable extends Doctrine_Table
     }
 
     public function getQualites() {
-      return Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc('select distinct qualite from collection');
+      return Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc('select distinct qualite from collection_detail');
     }
 }
