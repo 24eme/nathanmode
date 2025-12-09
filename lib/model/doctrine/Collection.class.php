@@ -254,4 +254,9 @@ class Collection extends BaseCollection
     public function isSoldee() {
       return $this->situation == Situations::SITUATION_SOLDEE;
     }
+
+    public function getCreditCommande() 
+    {
+      return CreditCommandeTable::getInstance()->getByCollectionId($this->getId());
+    }
 }
