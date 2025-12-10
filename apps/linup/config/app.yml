@@ -8,8 +8,8 @@ all:
       Eliott: 10
   situations:
     liste:
-      ATT_CONFIRMATION:   "ATT PROFORMA" # Statut structurant
       EN_COURS:           "IN PROCESS"   # Statut structurant
+      ATT_CONFIRMATION:   "ATT PROFORMA" # Statut structurant
       SOLDEE:             "SOLDÉE"       # Statut structurant
       RETARD_LIVRAISON:   "RETARD"
       ATTENTE_PAIEMENT:   "ATTENTE PAIEMENT AVT EXP"
