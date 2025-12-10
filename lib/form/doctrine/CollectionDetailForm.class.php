@@ -204,7 +204,7 @@ class CollectionDetailForm extends BaseCollectionDetailForm
 
     public function getPieceCategories() {
         $liste = PieceCategories::getListe();
-        if(!array_key_exists($this->getObject()->piece_categorie, PieceCategories::getListe())) {
+        if($this->getObject()->piece_categorie && !array_key_exists($this->getObject()->piece_categorie, PieceCategories::getListe())) {
             $liste[$this->getObject()->piece_categorie] = $this->getObject()->piece_categorie;
         }
 
@@ -215,7 +215,7 @@ class CollectionDetailForm extends BaseCollectionDetailForm
     public function getPieceCategoriesGrouped() {
         $groupedListe = PieceCategories::getGroupedListe(sfConfig::get('app_no_metrage'));
 
-        if(!array_key_exists($this->getObject()->piece_categorie, PieceCategories::getListe())) {
+        if($this->getObject()->piece_categorie && !array_key_exists($this->getObject()->piece_categorie, PieceCategories::getListe())) {
             $groupedListe[$this->getObject()->piece_categorie] = $this->getObject()->piece_categorie;
         }
 
