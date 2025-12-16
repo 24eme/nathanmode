@@ -225,7 +225,7 @@ class CollectionForm extends BaseCollectionForm
 
     public function getPaiements() {
         $liste = ConditionsPaiement::getListe();
-        if(!array_key_exists($this->getObject()->paiement, $liste)) {
+        if($this->getObject()->paiement && !array_key_exists($this->getObject()->paiement, $liste)) {
             $liste[$this->getObject()->paiement] = $this->getObject()->paiement;
         }
         return $liste;
@@ -233,7 +233,7 @@ class CollectionForm extends BaseCollectionForm
 
     public function getSituations() {
         $liste = Situations::getListe();
-        if(!array_key_exists($this->getObject()->situation, $liste)) {
+        if($this->getObject()->situation && !array_key_exists($this->getObject()->situation, $liste)) {
             $liste[$this->getObject()->situation] = $this->getObject()->situation;
         }
         return $liste;

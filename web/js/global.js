@@ -71,7 +71,7 @@ $(document).ready(function() {
 	$('#coupe_commercial_id').sortSelect().chosen({width: "90%"});
 	$('#coupe_paiement').sortSelect().chosen({width: "90%"});
 	$('#coupe_devise_id').sortSelect().chosen({width: "25%"});
-  $('#coupe_situation').sortSelect().chosen({width: "90%"});
+  $('#coupe_situation').chosen({width: "90%"});
   $('#coupe_fournisseur_devise_id').sortSelect().chosen({width: "25%"});
   $('#coupe_commercial_devise_id').sortSelect().chosen({width: "25%"});
   $('#coupe_piece_categorie').sortSelect().chosen({width: "90%"});
@@ -302,7 +302,7 @@ $(document).ready(function() {
 	$('#collection_commercial_id').sortSelect().chosen({width: "90%"});
 	$('#collection_client_id').sortSelect().chosen({width: "90%"});
 	$('#collection_paiement').sortSelect().chosen({width: "90%"});
-	$('#collection_situation').sortSelect().chosen({width: "90%"});
+	$('#collection_situation').chosen({width: "90%"});
   $('#collection_devise_fournisseur_id').sortSelect().chosen({width: "60%"});
   $('#collection_devise_commercial_id').sortSelect().chosen({width: "60%"});
   $('#sf_guard_user_commercial_id').sortSelect().chosen({allow_single_deselect:true,width: "90%"});
