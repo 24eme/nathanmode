@@ -10,4 +10,7 @@
  */
 class coupeGeneratorConfiguration extends BaseCoupeGeneratorConfiguration
 {
+    public function getListExport() {
+        return $this->getListDisplay();
+    }
 }
