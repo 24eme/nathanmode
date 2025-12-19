@@ -15,8 +15,8 @@ generator:
       actions: ~
       fields:
         date_commande: { date_format: dd/MM/yyyy }
-        date_livraison_demandee: { date_format: dd/MM/yyyy, label: ETP demandé }
-        date_livraison_prevue: { date_format: dd/MM/yyyy, label: ETP confirmé }
+        date_livraison_demandee: { date_format: dd/MM/yyyy, label: ETD demandé }
+        date_livraison_prevue: { date_format: dd/MM/yyyy, label: ETD confirmé }
         qualite: {label: Référence}
         piece_categorie: {label: Catégorie}
         reste_a_livrer_produit: {label: Reste à livrer}
@@ -31,7 +31,7 @@ generator:
         actions:
           _new: ~
         title: "Liste des commandes de production"
-        display: [saison, fournisseur, client, date_commande, num_commande, date_livraison_demandee, date_livraison_prevue, _situation_commande, categorie, qualite, _image, colori, quantite, prix, Devise, _nbrelance, _reste_a_livrer_produit, commande_soldee]
+        display: [saison, fournisseur, client, _date_commande, num_commande, date_livraison_demandee, date_livraison_prevue, _situation_commande, categorie, qualite, _image, colori, quantite, prix, Devise, _nbrelance, _reste_a_livrer_produit, commande_soldee]
       filter:
         display: [saison_id, fournisseur_id, client_id, date_commande, num_commande, date_livraison_demandee, date_livraison_prevue,  situation, piece_categorie, qualite, image, colori, piece, prix, devise_id, nb_relance, reste_a_livrer_produit, commande_soldee]
       form:    ~

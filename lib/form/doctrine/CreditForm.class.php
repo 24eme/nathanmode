@@ -27,10 +27,8 @@ class CreditForm extends BaseCreditForm
                                                                'path' => FactureTable::getInstance()->getUploadPath(true))));
       $this->setValidator('fichier_delete', new sfValidatorPass());
 
-      $this->setWidget('date', new sfWidgetFormInputText());
-      $this->setWidget('date_debit', new sfWidgetFormInputText());
-      $this->setValidator('date', new sfValidatorDate(array('date_format' => '~(?P<day>\d{2})/(?P<month>\d{2})/(?P<year>\d{4})~', 'required' => false)));
-      $this->setValidator('date_debit', new sfValidatorDate(array('date_format' => '~(?P<day>\d{2})/(?P<month>\d{2})/(?P<year>\d{4})~', 'required' => false)));
+      $this->setWidget('date', new WidgetFormInputDate());
+      $this->setWidget('date_debit', new WidgetFormInputDate());
       $this->setWidget('statut', new sfWidgetFormChoice(array('choices' => $this->getStatuts(), 'multiple' => false)));
   	  $this->setValidator('statut', new sfValidatorChoice(array('choices' => array_keys($this->getStatuts()), 'required' => true)));
 
@@ -52,14 +50,6 @@ class CreditForm extends BaseCreditForm
       }
   public function updateDefaultsFromObject() {
       parent::updateDefaultsFromObject();
-
-      if ($this->getObject()->date) {
-        $this->defaults['date'] = $this->getObject()->getDateTimeObject('date')->format('d/m/Y');
-      }
-
-      if ($this->getObject()->date_debit) {
-        $this->defaults['date_debit'] = $this->getObject()->getDateTimeObject('date_debit')->format('d/m/Y');
-      }
 
       if (!$this->getObject()->saison_id) {
         $this->defaults['saison_id'] = SaisonTable::getInstance()->getIgByLibelle('ETE '.date('Y'));

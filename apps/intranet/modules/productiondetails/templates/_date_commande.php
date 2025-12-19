@@ -1,0 +1,1 @@
+<?php echo is_string($collection_detail->getDateCommande()) && false !== strtotime($collection_detail->getDateCommande()) ? format_date($collection_detail->getDateCommande(), "dd/MM/yyyy") : '&nbsp;' ?>
