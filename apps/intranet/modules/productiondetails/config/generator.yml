@@ -15,8 +15,8 @@ generator:
       actions: ~
       fields:
         date_commande: { date_format: dd/MM/yyyy }
-        date_livraison_demandee: { date_format: dd/MM/yyyy, label: ETP demandé }
-        date_livraison_prevue: { date_format: dd/MM/yyyy, label: ETP confirmé }
+        date_livraison_demandee: { date_format: dd/MM/yyyy, label: ETD demandé }
+        date_livraison_prevue: { date_format: dd/MM/yyyy, label: ETD confirmé }
         qualite: {label: Référence}
         piece_categorie: {label: Catégorie}
         reste_a_livrer_produit: {label: Reste à livrer}
