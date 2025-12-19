@@ -11,6 +11,6 @@
 class coupeGeneratorConfiguration extends BaseCoupeGeneratorConfiguration
 {
     public function getListExport() {
-        return ["saison", "fournisseur", "client", "date_commande", "num_commande", "situation", "categorie", "qualite", "colori", "quantite", "prix", "Devise", "nbrelance", "date_livraison_demandee", "date_livraison_prevue", "paiement", "id", "collection_id"];
+        return ["date_commande", "Saison", "Fournisseur", "Client", "tissu", "colori", "piece_categorie", "piece", "metrage", "date_livraison", "num_facture", "situation", "nb_relance", "fichier", "fichier_confirmation", "id", "commande_id", "facture_id"];
     }
 }
