@@ -7,6 +7,7 @@
     	<?php echo link_to(__('Retour', array(), 'messages'), 'productiondetails/index', array()) ?>
     	<?php echo link_to(__('CSV', array(), 'messages'), 'productiondetails/ListCsvSoldees', array()) ?>
     </div>
+    <span>commandes soldées</span>
   </div>
   <?php include_partial('productiondetails/flashes') ?>
 
