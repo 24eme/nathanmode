@@ -144,16 +144,16 @@ class CollectionDetailForm extends BaseCollectionDetailForm
 
 		imagecopyresampled($imageNew,$imageRessource , 0, 0, 0, 0, $width, $height, $width_orig, $height_orig);
 		if ($imageType === 'image/jpeg' || $imageType === 'image/pjpeg') {
-			imagejpeg($imageNew, 'uploads/tmp_images/'.$imageTempFile);
+			imagejpeg($imageNew, '/tmp/'.$imageTempFile);
 		} elseif($imageType === 'image/png' || $imageType === 'image/x-png') {
-			imagepng($imageNew, 'uploads/tmp_images/'.$imageTempFile);
+			imagepng($imageNew, '/tmp/'.$imageTempFile);
 		} elseif($imageType === 'image/gif') {
-			imagegif($imageNew, 'uploads/tmp_images/'.$imageTempFile);
+			imagegif($imageNew, '/tmp/'.$imageTempFile);
 		} elseif($imageType === 'image/webp') {
-			imagewebp($imageNew, 'uploads/tmp_images/'.$imageTempFile);
+			imagewebp($imageNew, '/tmp/'.$imageTempFile);
 		}
 
-		$finalImage = new sfValidatedFile($imageTempFile, $imageType, 'uploads/tmp_images/'.$imageTempFile, filesize('uploads/tmp_images/'.$imageTempFile), $path);
+		$finalImage = new sfValidatedFile($imageTempFile, $imageType, '/tmp/'.$imageTempFile, filesize('/tmp/'.$imageTempFile), $path);
 
 		if ($this->getObject()->image) {
 			unlink('uploads/production_images/'.$this->getObject()->image);
@@ -195,7 +195,7 @@ class CollectionDetailForm extends BaseCollectionDetailForm
       }
 
       if ('/tmp/'.$this->getObject()->image){
-        unlink('uploads/tmp_images/' .$this->getObject()->image);
+        unlink('/tmp/'.$this->getObject()->image);
       }
 
 
