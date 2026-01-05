@@ -213,6 +213,9 @@ class CollectionForm extends BaseCollectionForm
       if (!$this->getObject()->saison_id) {
         $this->defaults['saison_id'] = SaisonTable::getInstance()->getIgByLibelle('ETE '.date('Y'));
       }
+      if (!$this->getObject()->situation) {
+        $this->defaults['situation'] = Situations::SITUATION_ATT_CONFIRMATION;
+      }
       if (sfConfig::get('app_no_metrage')) {
         $this->defaults['devise_id'] = Devise::DOLLAR_ID;
       }
