@@ -736,13 +736,6 @@ function calculeIndicateurs(tr) {
     const commission = document.getElementById('collection_prix_fournisseur');
     const commissionUnite = document.getElementById('collection_devise_fournisseur_id');
 
-    if(inputAchat) {
-      inputAchat.disabled = (commissionUnite.value != 4);
-      if(inputAchat.disabled) {
-        inputAchat.value = null;
-      }
-    }
-
     const prixAchat = inputAchat && parseFloat(inputAchat.value) || 0;
     const prixVente = parseFloat(inputVente.value) || 0;
 
