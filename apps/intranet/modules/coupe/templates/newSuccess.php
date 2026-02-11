@@ -1,11 +1,11 @@
 <form method="post" action="" enctype="multipart/form-data">
     <div class="productName">
         <span>Nouvelles coupes</span>
-        <div class="actions">
+        <div class="actions action-buttons">
             <input type="submit" value="Valider"> <?php echo link_to('Retour à la liste', 'coupe'); ?>
         </div>
     </div>
-    
+
     <?php echo $form->renderHiddenFields(false) ?>
 
     <?php if ($form->hasGlobalErrors()): ?>
