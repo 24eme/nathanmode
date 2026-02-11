@@ -27,15 +27,15 @@ class productionGeneratorHelper extends BaseProductionGeneratorHelper
       if (isset($params['params']) && isset($params['params']['obj'])) {
         $obj = $params['params']['obj'];
         if ($obj->isSoldee()) {
-          return link_to(__($params['label'], array(), 'sf_admin'), 'productiondetails/CommandesSoldees', array('class' => ' btn  btn-lg','style' => 'margin-left:auto; width:95px; height:30px;; color: var(--couleur-primaire) !important; background-color:white; border: var(--couleur-primaire) solid 1px; margin-left:30rem;'));
+          return link_to(__($params['label'], array(), 'sf_admin'), 'productiondetails/CommandesSoldees', array('class' => ' btn  btn-lg','style' => 'margin-left:auto; width:95px; height:30px; color: var(--couleur-primaire) !important; background-color:white; border: var(--couleur-primaire) solid 1px; margin-left:30rem;'));
         }
       }
-      return link_to(__($params['label'], array(), 'sf_admin'), '@collection_detail', array('class' => ' btn  btn-lg','style' => 'margin-left:auto; width:95px; height:30px;; color: var(--couleur-primaire) !important; background-color:white; border: var(--couleur-primaire) solid 1px; margin-left:30rem;'));
+      return link_to(__($params['label'], array(), 'sf_admin'), '@collection_detail', array('class' => ' btn  btn-lg','style' => 'margin-left:auto; width:95px; height:30px; color: var(--couleur-primaire) !important; background-color:white; border: var(--couleur-primaire) solid 1px; margin-left:30rem; text-transform:uppercase; font-size:1rem; font-weight:bold;'));
     }
 
     public function linkToSave($object, $params)
     {
-      return '<input type="submit" value="'.__($params['label'], array(), 'sf_admin').'" class="btn btn-lg" style="margin-left:auto; width:95px; height:30px;" />';
+      return '<input type="submit" value="'.__($params['label'], array(), 'sf_admin').'" class="btn btn-lg" style="margin-left:auto; width:95px; height:30px; padding:0 !important;" />';
     }
 
 }
