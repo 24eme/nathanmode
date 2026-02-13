@@ -1362,3 +1362,19 @@ th[class*="sf_admin_list_th_saison"] {
 .condition-paiement > .chosen-container {
     width:100% !important;
 }
+
+.actions > .action-buttons {
+  width:100%;
+}
+
+.action-buttons > a, .action-buttons > input {
+	width: max-content;
+	height: 30px !important;
+	border-radius: 5px;
+	text-align: center;
+	font-weight:bold;
+	text-transform:uppercase;
+	font-size: 1rem;
+	line-height: 30px !important;
+	padding: 0px 20px !important;
+}
