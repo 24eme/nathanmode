@@ -22,7 +22,7 @@ class CoupeForm extends BaseCoupeForm
   		$this->setWidget('fichier', new sfWidgetFormInputFileEditable(array(
                                                                       'file_src' => FactureTable::getInstance()->getUploadPath(false).$this->getObject()->fichier,
                                                                        'edit_mode' => $this->getObject()->fichier,
-                                                                       'template' => '%input%<br />%delete% Suppr. le fichier<a href="%file%" target="_blank">Voir le fichier</a>'
+                                                                       'template' => '%input%<br />%delete% Suppr. le fichier<a href="%file%" target="_blank" class="btn btn-sm btn-secondary">Voir le fichier</a>'
                                                                     )));
   		$this->setWidget('livre_le', new sfWidgetFormInputText(array(), array('type' => 'date')));
   		$this->getWidget('livre_le')->setLabel("Expédié le");
@@ -52,7 +52,7 @@ class CoupeForm extends BaseCoupeForm
       $this->setWidget('fichier_confirmation', new sfWidgetFormInputFileEditable(array(
                                                                     'file_src' => CoupeTable::getInstance()->getUploadPath(false).$this->getObject()->fichier_confirmation,
                                                                      'edit_mode' => $this->getObject()->fichier_confirmation,
-                                                                     'template' => '%input%<br />%delete% Suppr. le fichier<a href="%file%" target="_blank">Voir le fichier</a>'
+                                                                     'template' => '%input%<br />%delete% Suppr. le fichier<a href="%file%" target="_blank" class="btn btn-sm btn-secondary">Voir le fichier</a>'
                                                                   )));
       $this->setValidator('fichier_confirmation', new sfValidatorFile(
           array('required' => false,

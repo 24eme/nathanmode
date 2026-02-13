@@ -907,8 +907,12 @@ td.uploadFile label{
 	line-height:19px !important;
 	float:left !important;
 }
-td.uploadFile a{
+td.uploadFile a {
   float:right !important;
+	color: white;
+	text-decoration: none;
+	margin-top: 2px;
+	padding: 2px 4px;
 }
 
 td.uploadFile.pt-1 > input[id^="collection_details_"],
