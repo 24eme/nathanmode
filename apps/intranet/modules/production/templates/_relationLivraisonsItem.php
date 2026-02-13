@@ -43,7 +43,7 @@
   <td class="uploadFile" style="padding-top:4px;">
       <label for="<?php echo $form['fichier']->renderId(); ?>" style="cursor: pointer;">
         <?php if($form['fichier']->getValue()): ?>
-            <a style="margin-bottom:10px;" href="<?php echo FactureTable::getInstance()->getUploadPath(false).$form['fichier']->getValue(); ?>" target="_blank">Voir la facture</a>
+            <a style="margin-bottom:10px;" href="<?php echo FactureTable::getInstance()->getUploadPath(false).$form['fichier']->getValue(); ?>" target="_blank" class="btn btn-sm btn-secondary">Voir la facture</a>
         <?php else: ?>
             <span class="btn btn-sm btn-outline-secondary"><i class="bi bi-upload"></i></span>
         <?php endif; ?>
