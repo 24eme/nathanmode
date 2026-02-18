@@ -337,13 +337,13 @@ a:hover.logOut{
 .productName > span:first-of-type {
   background-color:#eeeeee;
   border-radius : 5px;
-  width: 20%;
+  width: fit-content;
   text-transform: none;
   font-weight: normal;
   height: 2.25rem;
   text-align: center;
   line-height: 1.60rem;
-  padding: 0.25rem 0.5rem;
+  padding: 0.25rem 1rem;
   font-size:1rem;
   color:var(--couleur-primaire) !important;
 }
@@ -1399,5 +1399,9 @@ th[class*="sf_admin_list_th_saison"] {
 	text-transform:none;
 	font-size: 1rem;
 	line-height: 1.60rem !important;
-	padding: 0.25rem 0.5rem !important;
+	padding: 0.25rem 1rem !important;
+}
+
+.btn-pad {
+  padding-inline:1rem;
 }

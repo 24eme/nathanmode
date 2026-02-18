@@ -33,22 +33,22 @@
               <span class="bi bi-person-square fs-6"> <?php echo ($sf_user->isAuthenticated())? $sf_user->getGuardUser()->getFirstName() : 'Connexion' ?></span>
             </a>
             <?php if ($sf_user->isAuthenticated()): ?>
-            <ul class="nav col-12 col-lg-auto" style="width: 53rem;margin-top: 0.40rem;">
+            <ul class="nav col-12 col-lg-auto" style="width: 57rem;margin-top: 0.40rem;">
               <span style="display: inline-flex;margin-left: 6.5rem;">
               <li class="nav-item me-1">
-                <a class="btn btn-light btn-sm<?php if (sfContext::getInstance()->getModuleName() == 'activite'): ?> active<?php endif; ?>" href="<?php echo url_for('@activite') ?>">Commercial Activity</a>
+                <a class="btn btn-light btn-sm btn-pad<?php if (sfContext::getInstance()->getModuleName() == 'activite'): ?> active<?php endif; ?>" href="<?php echo url_for('@activite') ?>">Commercial Activity</a>
               </li>
               <li class="nav-item me-1">
-                <a class="btn btn-light btn-sm<?php if (sfContext::getInstance()->getModuleName() == 'client'): ?> active<?php endif; ?>" href="<?php echo url_for('@client') ?>">Clients</a>
+                <a class="btn btn-light btn-sm btn-pad<?php if (sfContext::getInstance()->getModuleName() == 'client'): ?> active<?php endif; ?>" href="<?php echo url_for('@client') ?>">Clients</a>
               </li>
               <li class="nav-item me-1">
-                <a class="btn btn-light btn-sm<?php if (sfContext::getInstance()->getModuleName() == 'fournisseur'): ?> active<?php endif; ?>" href="<?php echo url_for('@fournisseur') ?>">Fournisseurs</a>
+                <a class="btn btn-light btn-sm btn-pad<?php if (sfContext::getInstance()->getModuleName() == 'fournisseur'): ?> active<?php endif; ?>" href="<?php echo url_for('@fournisseur') ?>">Fournisseurs</a>
               </li>
               <li class="nav-item me-1">
-                <a class="btn btn-light btn-sm<?php if (sfContext::getInstance()->getModuleName() == 'commercial'): ?> active<?php endif; ?>" href="<?php echo url_for('@commercial') ?>">Commerciaux</a>
+                <a class="btn btn-light btn-sm btn-pad<?php if (sfContext::getInstance()->getModuleName() == 'commercial'): ?> active<?php endif; ?>" href="<?php echo url_for('@commercial') ?>">Commerciaux</a>
               </li>
               <li class="nav-item me-1">
-                <a class="btn btn-light btn-sm<?php if (sfContext::getInstance()->getModuleName() == 'sfGuardUser'): ?> active<?php endif; ?>" href="<?php echo url_for('@sf_guard_user') ?>">Administrateurs</a>
+                <a class="btn btn-light btn-sm btn-pad<?php if (sfContext::getInstance()->getModuleName() == 'sfGuardUser'): ?> active<?php endif; ?>" href="<?php echo url_for('@sf_guard_user') ?>">Administrateurs</a>
               </li>
               </span>
               <li class="nav-item" style="margin-left:auto;">
