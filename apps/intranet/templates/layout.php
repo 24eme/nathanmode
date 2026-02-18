@@ -27,13 +27,14 @@
     </head>
     <body>
       <header class="mb-3">
-        <div id="navbar" style="height: 42px;">
+        <div id="navbar" style="height: 52px;">
           <div class="d-flex align-items-center container h-100">
             <a href="<?php echo url_for('@homepage') ?>" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
               <span class="bi bi-person-square fs-6"> <?php echo ($sf_user->isAuthenticated())? $sf_user->getGuardUser()->getFirstName() : 'Connexion' ?></span>
             </a>
             <?php if ($sf_user->isAuthenticated()): ?>
-            <ul class="nav col-12 col-lg-auto">
+            <ul class="nav col-12 col-lg-auto" style="width: 53rem;margin-top: 0.40rem;">
+              <span style="display: inline-flex;margin-left: 6.5rem;">
               <li class="nav-item me-1">
                 <a class="btn btn-light btn-sm<?php if (sfContext::getInstance()->getModuleName() == 'activite'): ?> active<?php endif; ?>" href="<?php echo url_for('@activite') ?>">Commercial Activity</a>
               </li>
@@ -49,7 +50,8 @@
               <li class="nav-item me-1">
                 <a class="btn btn-light btn-sm<?php if (sfContext::getInstance()->getModuleName() == 'sfGuardUser'): ?> active<?php endif; ?>" href="<?php echo url_for('@sf_guard_user') ?>">Administrateurs</a>
               </li>
-              <li class="nav-item">
+              </span>
+              <li class="nav-item" style="margin-left:auto;">
                 <a class="nav-link text-white px-0" href="<?php echo url_for('@sf_guard_signout') ?>"><i class="bi bi-box-arrow-right"></i> Déconnexion</a>
               </li>
             </ul>
@@ -64,22 +66,22 @@
             <?php if ($sf_user->isAuthenticated()): ?>
             <ul class="nav col-12 col-lg-auto">
               <li class="nav-item me-1">
-                <a style="min-width: 120px" class="py-2 px-3 border btn btn-light<?php if (sfContext::getInstance()->getModuleName() == 'coupe'): ?> active<?php endif; ?>" href="<?php echo url_for('@coupe') ?>"><i class="bi bi-scissors fs-4"></i><br /><small>Coupe</small></a>
+                <a style="min-width: 120px" class="py-2 px-3 border btn btn-light<?php if (sfContext::getInstance()->getModuleName() == 'coupe'): ?> active<?php endif; ?>" href="<?php echo url_for('@coupe') ?>"><i class="bi bi-scissors fs-4"></i><br /><span class="nav2-buttons">Coupe</span></a>
               </li>
               <li class="nav-item me-1">
-                  <a style="min-width: 120px" class="py-2 px-3 border btn btn-light<?php if (in_array(sfContext::getInstance()->getModuleName(), ['production', 'productiondetails'])): ?> active<?php endif; ?>" href="<?php echo url_for('@collection_detail') ?>"><i class="bi bi-asterisk fs-4"></i><br /><small>Production</small></a>
+                  <a style="min-width: 120px" class="py-2 px-3 border btn btn-light<?php if (in_array(sfContext::getInstance()->getModuleName(), ['production', 'productiondetails'])): ?> active<?php endif; ?>" href="<?php echo url_for('@collection_detail') ?>"><i class="bi bi-asterisk fs-4"></i><br /><span class="nav2-buttons">Production</span></a>
               </li>
               <li class="nav-item me-1">
-                <a style="min-width: 120px" class="py-2 px-3 border btn btn-light<?php if (sfContext::getInstance()->getModuleName() == 'facure' || sfContext::getInstance()->getModuleName() == 'facure_payee'): ?> active<?php endif; ?>" href="<?php echo url_for('@facture') ?>"><i class="bi bi-file-earmark-text fs-4"></i><br /><small>Factures</small></a>
+                <a style="min-width: 120px" class="py-2 px-3 border btn btn-light<?php if (sfContext::getInstance()->getModuleName() == 'facure' || sfContext::getInstance()->getModuleName() == 'facure_payee'): ?> active<?php endif; ?>" href="<?php echo url_for('@facture') ?>"><i class="bi bi-file-earmark-text fs-4"></i><br /><span class="nav2-buttons">Factures</span></a>
               </li>
               <li class="nav-item me-1">
-                <a style="min-width: 120px" class="py-2 px-3 border btn btn-light<?php if (sfContext::getInstance()->getModuleName() == 'credit'): ?> active<?php endif; ?>" href="<?php echo url_for('@credit') ?>"><i class="bi bi-currency-euro fs-4"></i><br /><small>Notes de crédits</small></a>
+                <a style="min-width: 120px" class="py-2 px-3 border btn btn-light<?php if (sfContext::getInstance()->getModuleName() == 'credit'): ?> active<?php endif; ?>" href="<?php echo url_for('@credit') ?>"><i class="bi bi-currency-euro fs-4"></i><br /><span class="nav2-buttons">Notes de crédits</span></a>
               </li>
               <li class="nav-item me-1">
-                <a style="min-width: 120px" class="py-2 px-3 border btn btn-light<?php if (sfContext::getInstance()->getModuleName() == 'bon'): ?> active<?php endif; ?>" href="<?php echo url_for('@bon') ?>"><i class="bi bi-bar-chart-fill fs-4"></i><br /><small>Statistiques</small></a>
+                <a style="min-width: 120px" class="py-2 px-3 border btn btn-light<?php if (sfContext::getInstance()->getModuleName() == 'bon'): ?> active<?php endif; ?>" href="<?php echo url_for('@bon') ?>"><i class="bi bi-bar-chart-fill fs-4"></i><br /><span class="nav2-buttons">Statistiques</span></a>
               </li>
               <li class="nav-item me-1">
-                <a style="min-width: 120px" class="py-2 px-3 border btn btn-light<?php if (sfContext::getInstance()->getModuleName() == 'commande'): ?> active<?php endif; ?>" href="<?php echo url_for('@commande') ?>"><i class="bi bi-bar-chart-fill fs-4"></i><br /><small class="mt-2">Statistiques Com.</small></a>
+                <a style="min-width: 120px" class="py-2 px-3 border btn btn-light<?php if (sfContext::getInstance()->getModuleName() == 'commande'): ?> active<?php endif; ?>" href="<?php echo url_for('@commande') ?>"><i class="bi bi-bar-chart-fill fs-4"></i><br /><span class="mt-2 nav2-buttons">Statistiques Com.</span></a>
               </li>
               <li class="nav-item me-1">
                 <span data-toggle="tooltip" data-placement="left" style="min-height: 63px" class=" pt-3 px-3 border btn btn-light" title="<?php echo Change::getInfos() ?>"><i class="bi bi-currency-exchange fs-2"></i></span>

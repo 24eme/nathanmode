@@ -334,6 +334,20 @@ a:hover.logOut{
 	margin:0 0 0 5px;
 }
 
+.productName > span:first-of-type {
+  background-color:#eeeeee;
+  border-radius : 5px;
+  width: 20%;
+  text-transform: none;
+  font-weight: normal;
+  height: 2.25rem;
+  text-align: center;
+  line-height: 1.60rem;
+  padding: 0.25rem 0.5rem;
+  font-size:1rem;
+  color:var(--couleur-primaire) !important;
+}
+
 .actions input[type=submit] {
 	display:block;
 	float:left;
@@ -619,7 +633,7 @@ a:hover.btAdd{
 
 .tableNm th{
 	background: var(--couleur-primaire) repeat-x bottom;
-	font-size:12px;
+	font-size:0.80rem;
 	text-align:left;
 	padding:5px 5px 9px 5px;
 	border-left:1px solid #fff;
@@ -1187,6 +1201,15 @@ dl, ol, ul {
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
 	font-weight: bold;
 }
+
+.nav-item > a {
+  font-size: 1rem;
+}
+
+.nav2-buttons {
+  font-size:1rem;
+}
+
 .card-deck .card {
 	max-width: 29.6%;
 }
@@ -1369,12 +1392,12 @@ th[class*="sf_admin_list_th_saison"] {
 
 .action-buttons > a, .action-buttons > input {
 	width: max-content;
-	height: 30px !important;
+	height: 2.25rem !important;
 	border-radius: 5px;
 	text-align: center;
-	font-weight:bold;
-	text-transform:uppercase;
+	font-weight:normal;
+	text-transform:none;
 	font-size: 1rem;
-	line-height: 30px !important;
-	padding: 0px 20px !important;
+	line-height: 1.60rem !important;
+	padding: 0.25rem 0.5rem !important;
 }
