@@ -108,6 +108,7 @@ all:
         CUIR_PANTALON: "PANTALON (CUIR)"
         CUIR_TOP: "TOP (CUIR)"
         CUIR_GILET: "GILET (CUIR)"
+        CUIR_ROBE: "ROBE (CUIR)"
         FAKELEATHER_VESTE: "VESTE (FAKE LEATHER)"
   devise:
     dollar: true
