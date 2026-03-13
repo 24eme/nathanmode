@@ -8,6 +8,7 @@ all:
       Eliott: 10
   situations:
     liste:
+      ATT_COMMANDE_OFFICIELLE: "ATTENTE COMMANDE OFFICIELLE"
       EN_COURS:           "IN PROCESS"   # Statut structurant
       ATT_CONFIRMATION:   "ATT PROFORMA" # Statut structurant
       DEPOSIT_EN_ATTENTE:  "DEPOSIT EN ATTENTE"
