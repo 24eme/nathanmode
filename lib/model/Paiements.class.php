@@ -14,21 +14,24 @@ class Paiements
       '90_JOURS_FIN_DE_MOIS' => 105,
       '90_JOURS_FIN_DE_MOIS_10' => 115,
       'PAIEMENT_AVANCE' => 0,
+			'PAIEMENT_AVANCE_30_COMMANDE_70_ENVOI' => 0,
       'PAIEMENT_AVANCE_2_PERCENT_ESCOMPTE' => 0,
       'PAIEMENT_AVANCE_3_PERCENT_ESCOMPTE' => 0,
       'PAIEMENT_AVANCE_4_PERCENT_ESCOMPTE' => 0,
       'PAIEMENT_AVANCE_5_PERCENT_ESCOMPTE' => 0,
       'LC' => 0,
-      'LC_A_60_JOURS' => 60,
-      'LC_A_90_JOURS' => 90,
+      'LC_A_30_JOURS' => 30,
+      'LC_A_45_JOURS' => 45,
+			'LC_A_75_JOURS' => 75,
+			'LC_A_90_JOURS' => 90,
       'CASH_ON_DELIVERY' => 0
 	);
-	
+
     public static function getListe() {
 
-        return sfConfig::get('app_paiements_liste');
+        return sfConfig::get('app_conditions_paiement_liste');
     }
-    
+
     public static function getNbJoursByStatut($statut) {
     	$correspondances = self::$_correspondances_jours;
     	return $correspondances[$statut];
