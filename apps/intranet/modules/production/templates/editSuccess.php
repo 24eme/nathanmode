@@ -99,12 +99,12 @@
                         <td><?php echo $facture->getPieceCategorie() ?></td>
                         <td><?php echo $facture->getQualite() ?></td>
                         <td></td>
-                        <td><?php echo ($facture->getPiece())? $facture->getPiece() : $facture->getMetrage(); ?></td>
+                        <td><?php echo ($facture->getPiece())? (-1* $facture->getPiece()) : (-1* $facture->getMetrage()); ?></td>
                         <td><?php echo $facture->getDeviseMontant()->getSymbole(); ?></td>
                         <td style="text-align: right;"><?php echo number_format(-1* $facture->getTotalFournisseur(), 2, ',', ' ') ?></td>
                         <td  style="text-align: right;"><?php echo number_format(-1* $facture->getMontantTotal(), 2, ',', ' ') ?></td>
                       </tr>
-                    <?php $ca += -1* $facture->getMontantTotal(); $com += -1* $facture->getTotalFournisseur(); $quantite += ($facture->getPiece())? $facture->getPiece() : $facture->getMetrage(); endif; ?>
+                    <?php $ca += -1* $facture->getMontantTotal(); $com += -1* $facture->getTotalFournisseur(); $quantite += ($facture->getPiece())? (-1* $facture->getPiece()) : (-1* $facture->getMetrage()); endif; ?>
                   <?php endforeach; ?>
                   <?php if ($cc = $collection->getCreditCommande()): ?>
                       <tr>
@@ -112,12 +112,12 @@
                         <td><?php echo $cc->getPieceCategorie() ?></td>
                         <td><?php echo $cc->getQualite() ?></td>
                         <td></td>
-                        <td><?php echo ($cc->getPiece())? $cc->getPiece() : $cc->getMetrage(); ?></td>
+                        <td><?php echo ($cc->getPiece())? ($cc->getPiece() * -1) : ($cc->getMetrage() * -1); ?></td>
                         <td><?php echo $cc->getDeviseMontant()->getSymbole(); ?></td>
                         <td style="text-align: right;"><?php echo number_format(-1* $cc->getTotalFournisseur(), 2, ',', ' ') ?></td>
                         <td style="text-align: right;"><?php echo number_format(-1 * $cc->getMontantTotal(), 2, ',', ' ') ?></td>
                       </tr>
-                  <?php $ca += -1* $cc->getMontantTotal(); $com += -1* $cc->getTotalFournisseur(); $quantite += ($cc->getPiece())? $cc->getPiece() : $cc->getMetrage(); endif; ?>
+                  <?php $ca += -1* $cc->getMontantTotal(); $com += -1* $cc->getTotalFournisseur(); $quantite += ($cc->getPiece())? ($cc->getPiece() * -1) : ($cc->getMetrage() * -1); endif; ?>
                   <tr>
                     <td colspan="4" style="text-align: right;"><strong>TOTAL</strong></td>
                     <td><strong><?php echo $quantite ?></strong></td>
