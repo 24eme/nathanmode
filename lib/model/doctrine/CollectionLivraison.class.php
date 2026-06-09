@@ -42,7 +42,72 @@ class CollectionLivraison extends BaseCollectionLivraison
             unlink($path);
         }
     }
-    
+
+    public function getDetail() {
+      foreach ($this->getCollection()->getCollectionDetails() as $collectionDetail) {
+          if (
+            $collectionDetail->getQualite() == $this->getQualite() &&
+            $collectionDetail->getColori() == $this->getColori() &&
+            $collectionDetail->getPieceCategorie() == $this->getPieceCategorie()
+          ) {
+            return $collectionDetail;
+          }
+      }
+      return null;
+    }
+
+    public function getPrixAchat() {
+      if ($detail = $this->getDetail()) {
+        return $detail->getPrixAchat();
+      }
+      throw new Exception('detail non identifié');
+    }
+
+    public function getDeviseFournisseurId() {
+      if ($this->getCollection()->getPrixFournisseur() == "" && $this->getCollection()->getDeviseFournisseurId() == Devise::POURCENTAGE_ID) {
+
+        return $this->getCollection()->getFournisseur()->getDeviseId();
+      }
+
+      return $this->getCollection()->getDeviseFournisseurId();
+    }
+
+    public function getPrixVente() {
+
+        return $this->getPrix();
+    }
+
+    public function getPrixFournisseur() {
+      if($this->getCollection()->getPartMarge()) {
+          return round((100 - ($this->getPrixAchat() * 100 / $this->getPrixVente()) * $this->getCollection()->getPartMarge() / 100), 2);
+      }
+
+      if ($this->getCollection()->getPrixFournisseur() == "" && $this->getCollection()->getDeviseFournisseurId() == Devise::POURCENTAGE_ID) {
+
+        return $this->getCollection()->getFournisseur()->getCommission();
+      }
+
+      return $this->getCollection()->getPrixFournisseur();
+    }
+
+    public function getTheoreticalMontantCommission() {
+        if ($this->getCollection()->getDeviseFournisseur()->isPourcentage() ||$this->getCollection()->getPartMarge()) {
+        	try {
+        		if ($this->getPiece() && is_numeric($this->getPiece())) {
+        			return round(($this->getPiece() * $this->getPrixVente() * $this->getPrixFournisseur() / 100), 2);
+        		} elseif ($this->getMetrage() && is_numeric($this->getMetrage())) {
+        			return round(($this->getMetrage() * $this->getPrixVente() * $this->getPrixFournisseur() / 100), 2);
+        		} else {
+              return 0;
+            }
+        	} catch (Exception $e) {
+           		return 0;
+        	}
+        }
+
+        return $this->getCollection()->getPrixFournisseur();
+    }
+
   public function save(Doctrine_Connection $conn = null)
   {
   	$facture = $this->updateFacture();
@@ -63,14 +128,9 @@ class CollectionLivraison extends BaseCollectionLivraison
     $facture->setCommercialId($this->getCollection()->getCommercialId());
     $facture->setClientId($this->getCollection()->getClientId());
     $facture->setDeviseMontantId($this->getDeviseId());
-    $facture->setDeviseFournisseurId($this->getCollection()->getDeviseFournisseurId());
+    $facture->setDeviseFournisseurId($this->getDeviseFournisseurId());
     $facture->setDeviseCommercialId($this->getCollection()->getDeviseCommercialId());
-    if ($this->getCollection()->getPrixFournisseur() != "" || $this->getCollection()->getDeviseFournisseurId() != Devise::POURCENTAGE_ID)
-    	$facture->setPrixFournisseur($this->getCollection()->getPrixFournisseur());
-    else {
-    	$facture->setPrixFournisseur($this->getCollection()->getFournisseur()->getCommission());
-    	$facture->setDeviseFournisseurId($this->getCollection()->getFournisseur()->getDeviseId());
-    }
+    $facture->setPrixFournisseur($this->getPrixFournisseur());
     if ($this->getCollection()->getPrixCommercial() != "" || $this->getCollection()->getDeviseCommercialId() != Devise::POURCENTAGE_ID)
     	$facture->setPrixCommercial($this->getCollection()->getPrixCommercial());
     else {
@@ -121,19 +181,7 @@ class CollectionLivraison extends BaseCollectionLivraison
     else
     	$facture->setRelation(Facture::TYPE_COLLECTION);
 
-    if ($this->getCollection()->getDeviseFournisseur() && $this->getCollection()->getDeviseFournisseur()->isPourcentage()) {
-    	try {
-    		if ($this->getPiece() && is_numeric($this->getPiece())) {
-    			$facture->setTotalFournisseur($this->getPiece() * $this->getPrix() * $facture->getPrixFournisseur() / 100);
-    		} elseif ($this->getMetrage() && is_numeric($this->getMetrage())) {
-    			$facture->setTotalFournisseur($this->getMetrage() * $this->getPrix() * $facture->getPrixFournisseur() / 100);
-    		}
-    	} catch (Exception $e) {
-    		$facture->setTotalFournisseur(0);
-    	}
-    } else {
-    	$facture->setTotalFournisseur($this->getCollection()->getPrixFournisseur());
-    }
+    $facture->setTotalFournisseur($this->getTheoreticalMontantCommission());
 
     if ($this->getCollection()->getDeviseCommercial() && $this->getCollection()->getDeviseCommercial()->isPourcentage()) {
     	try {

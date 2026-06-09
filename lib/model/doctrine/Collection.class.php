@@ -53,6 +53,22 @@ class Collection extends BaseCollection
       return $quantiteEntree - $quantiteSortie;
     }
 
+    private function getRestantCom() {
+      $restantCom = 0;
+      foreach ($this->getCollectionDetails() as $collectionDetail) {
+          if ($q = $collectionDetail->getResteALivrerProduit()) {
+            if ($this->getDeviseFournisseur()->isPourcentage()||$this->getPartMarge()) {
+            	try {
+            		$restantCom += round(($q * $collectionDetail->getPrixVente() * $collectionDetail->getPrixFournisseur() / 100), 2);
+            	} catch (Exception $e) {
+               		continue;
+            	}
+            }
+          }
+      }
+      return $restantCom;
+    }
+
 
     public function delete(Doctrine_Connection $conn = null)
     {
@@ -194,14 +210,8 @@ class Collection extends BaseCollection
       $creditCommande->setCommercialId($this->getCommercialId());
       $creditCommande->setClientId($this->getClientId());
       $creditCommande->setDeviseMontantId($deviseId);
-      $creditCommande->setDeviseFournisseurId($this->getDeviseFournisseurId());
       $creditCommande->setDeviseCommercialId($this->getDeviseCommercialId());
-      if ($this->getPrixFournisseur() != "" || $this->getDeviseFournisseurId() != Devise::POURCENTAGE_ID)
-      	$creditCommande->setPrixFournisseur($this->getPrixFournisseur());
-      else {
-      	$creditCommande->setPrixFournisseur($this->getFournisseur()->getCommission());
-      	$creditCommande->setDeviseFournisseurId($this->getFournisseur()->getDeviseId());
-      }
+      $creditCommande->setPrixFournisseur($this->getPrixFournisseur());
       if ($this->getPrixCommercial() != "" || $this->getDeviseCommercialId() != Devise::POURCENTAGE_ID)
       	$creditCommande->setPrixCommercial($this->getPrixCommercial());
       else {
@@ -223,13 +233,7 @@ class Collection extends BaseCollection
       else
       	$creditCommande->setRelation(Facture::TYPE_COLLECTION);
 
-      if ($this->getDeviseFournisseur() && $this->getDeviseFournisseur()->isPourcentage()) {
-      	try {
-      			$creditCommande->setTotalFournisseur($montant * $creditCommande->getPrixFournisseur() / 100);
-      	} catch (Exception $e) {
-      		$creditCommande->setTotalFournisseur(0);
-      	}
-      }
+      $creditCommande->setTotalFournisseur($this->getRestantCom());
 
       if ($this->getDeviseCommercial() && $this->getDeviseFournisseur()->isPourcentage()) {
       	try {
