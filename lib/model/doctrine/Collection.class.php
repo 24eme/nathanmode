@@ -210,8 +210,12 @@ class Collection extends BaseCollection
       $creditCommande->setCommercialId($this->getCommercialId());
       $creditCommande->setClientId($this->getClientId());
       $creditCommande->setDeviseMontantId($deviseId);
+      $creditCommande->setDeviseFournisseurId($this->getDeviseFournisseurId());
       $creditCommande->setDeviseCommercialId($this->getDeviseCommercialId());
       $creditCommande->setPrixFournisseur($this->getPrixFournisseur());
+      if ($this->getPrixFournisseur() == "" && $this->getDeviseFournisseurId() == Devise::POURCENTAGE_ID) {
+      	$creditCommande->setDeviseFournisseurId($this->getFournisseur()->getDeviseId());
+      }
       if ($this->getPrixCommercial() != "" || $this->getDeviseCommercialId() != Devise::POURCENTAGE_ID)
       	$creditCommande->setPrixCommercial($this->getPrixCommercial());
       else {
