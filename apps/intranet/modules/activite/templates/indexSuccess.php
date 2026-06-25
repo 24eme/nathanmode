@@ -31,11 +31,18 @@
 			<div class="centered text-white d-flex justify-content-center align-items-center"><strong>Commercial</strong></div>
 		</a>
 	</div>
-
 </div>
 
 <?php include_partial('activite/clientModal'); ?>
 <?php include_partial('activite/fournisseurModal'); ?>
 <?php include_partial('activite/commercialModal'); ?>
-
 </div>
+<?php if ($dashboard = sfConfig::get('app_commercial_activity_metabase_dashboard')): ?>
+	<iframe
+	src="<?php echo sfConfig::get('app_commercial_activity_metabase_dashboard') ?>"
+	frameborder="0"
+	width="100%"
+	height="4550px"
+	allowtransparency
+	></iframe>
+<?php endif; ?>
