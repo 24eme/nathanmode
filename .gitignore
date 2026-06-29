@@ -5,6 +5,7 @@ cache/*
 log/*
 data/fixtures
 config/databases.yml
+config/app.yml
 *~
 .settings
 .project

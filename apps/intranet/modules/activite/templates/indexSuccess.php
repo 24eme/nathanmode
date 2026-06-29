@@ -37,9 +37,9 @@
 <?php include_partial('activite/fournisseurModal'); ?>
 <?php include_partial('activite/commercialModal'); ?>
 </div>
-<?php if ($dashboard = sfConfig::get('app_commercial_activity_metabase_dashboard')): ?>
+<?php if ($dashboard = sfConfig::get('app_commercial_activity_metabase_dashboard_'.sfConfig::get('sf_app'))): ?>
 	<iframe
-	src="<?php echo sfConfig::get('app_commercial_activity_metabase_dashboard') ?>"
+	src="<?php echo $dashboard ?>"
 	frameborder="0"
 	width="100%"
 	height="4550px"

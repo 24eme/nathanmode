@@ -1,0 +1,7 @@
+# You_can_find_more_information_about_this_file_on_the_symfony_website:
+# http://www.symfony-project.org/reference/1_4/en/11-App
+
+# default_values
+all:
+  commercial_activity_metabase_dashboard:
+    linup: "linkto_public_metabase_dashboard"
