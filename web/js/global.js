@@ -752,8 +752,8 @@ function calculeIndicateurs(tr) {
     if(commissionUnite.value == 4 && commission.value) {
       partMargeCoef = parseFloat(commission.value) / 100;
       marge = (prixVente - prixAchat) * partMargeCoef;
-      coef = prixAchat !== 0 ? (prixVente / prixAchat) * partMargeCoef : 0;
-      part = prixVente !== 0 ? (marge / prixVente * 100) * partMargeCoef: 0;
+      coef = prixAchat !== 0 ? (prixVente / prixAchat) : 0;
+      part = prixVente !== 0 ? (marge / prixVente * 100) : 0;
     }
 
     let prixVenteEur = prixVente;
