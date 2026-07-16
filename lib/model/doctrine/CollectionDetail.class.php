@@ -72,12 +72,10 @@ class CollectionDetail extends BaseCollectionDetail
 
   public function getPrixFournisseur() {
     if($this->getCollection()->getPartMarge()) {
-
-        return round((100 - ($this->getPrixAchat() * 100 / $this->getPrixVente()) * $this->getCollection()->getPartMarge() / 100), 2);
+        return round((($this->getPrixVente() - $this->getPrixAchat()) * $this->getCollection()->getPartMarge() / 100) / $this->getPrixVente() * 100, 2);
     }
 
     if ($this->getCollection()->getPrixFournisseur() == "" && $this->getCollection()->getDeviseFournisseurId() == Devise::POURCENTAGE_ID) {
-
       return $this->getCollection()->getFournisseur()->getCommission();
     }
 
