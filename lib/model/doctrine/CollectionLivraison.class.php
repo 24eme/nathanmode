@@ -79,34 +79,31 @@ class CollectionLivraison extends BaseCollectionLivraison
 
     public function getPrixFournisseur() {
       if($this->getCollection()->getPartMarge()) {
-          return round((100 - ($this->getPrixAchat() * 100 / $this->getPrixVente()) * $this->getCollection()->getPartMarge() / 100), 2);
+          return round((($this->getPrixVente() - $this->getPrixAchat()) * $this->getCollection()->getPartMarge() / 100) / $this->getPrixVente() * 100, 2);
       }
-
       if ($this->getCollection()->getPrixFournisseur() == "" && $this->getCollection()->getDeviseFournisseurId() == Devise::POURCENTAGE_ID) {
-
         return $this->getCollection()->getFournisseur()->getCommission();
       }
-
+      throw new sfException("Definir avec LMA/Linup comment gérer le calcul de la com en numéraire en fonction de la quantité");
       return $this->getCollection()->getPrixFournisseur();
     }
 
-    public function getTheoreticalMontantCommission() {
-        if ($this->getCollection()->getDeviseFournisseur()->isPourcentage() ||$this->getCollection()->getPartMarge()) {
-        	try {
-        		if ($this->getPiece() && is_numeric($this->getPiece())) {
-        			return round(($this->getPiece() * $this->getPrixVente() * $this->getPrixFournisseur() / 100), 2);
-        		} elseif ($this->getMetrage() && is_numeric($this->getMetrage())) {
-        			return round(($this->getMetrage() * $this->getPrixVente() * $this->getPrixFournisseur() / 100), 2);
-        		} else {
-              return 0;
-            }
-        	} catch (Exception $e) {
-           		return 0;
-        	}
-        }
-
-        return $this->getCollection()->getPrixFournisseur();
+  public function getTheoreticalMontantCommission() {
+    $q = 0;
+    if ($this->getPiece() && is_numeric($this->getPiece())) {
+      $q = $this->getPiece();
+    } elseif ($this->getMetrage() && is_numeric($this->getMetrage())) {
+      $q = $this->getMetrage();
     }
+    if($this->getCollection()->getPartMarge()) {
+      $m = (($this->getPrixVente() -  $this->getPrixAchat()) * $this->getCollection()->getPartMarge() / 100);
+      return round($q * $m, 2);
+    } elseif ($this->getCollection()->getDeviseFournisseur()->isPourcentage()) {
+      return round(($q * $this->getPrixVente() * $this->getPrixFournisseur() / 100), 2);
+    } else {
+      return $this->getCollection()->getPrixFournisseur();
+    }
+  }
 
   public function save(Doctrine_Connection $conn = null)
   {

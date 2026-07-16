@@ -56,15 +56,14 @@ class Collection extends BaseCollection
     private function getRestantCom() {
       $restantCom = 0;
       foreach ($this->getCollectionDetails() as $collectionDetail) {
-          if ($q = $collectionDetail->getResteALivrerProduit()) {
-            if ($this->getDeviseFournisseur()->isPourcentage()||$this->getPartMarge()) {
-            	try {
-            		$restantCom += round(($q * $collectionDetail->getPrixVente() * $collectionDetail->getPrixFournisseur() / 100), 2);
-            	} catch (Exception $e) {
-               		continue;
-            	}
-            }
+        if ($q = $collectionDetail->getResteALivrerProduit()) {
+          if($this->getPartMarge()) {
+            $m = (($collectionDetail->getPrixVente() -  $collectionDetail->getPrixAchat()) * $this->getPartMarge() / 100);
+            $restantCom += round($q * $m, 2);
+          } elseif ($this->getCollection()->getDeviseFournisseur()->isPourcentage()) {
+            $restantCom += round(($q * $collectionDetail->getPrixVente() * $collectionDetail->getPrixFournisseur() / 100), 2);
           }
+        }
       }
       return $restantCom;
     }
