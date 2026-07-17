@@ -76,7 +76,6 @@ class CollectionDetail extends BaseCollectionDetail
     if ($this->getCollection()->getPrixFournisseur() == "" && $this->getCollection()->getDeviseFournisseurId() == Devise::POURCENTAGE_ID) {
       return $this->getCollection()->getFournisseur()->getCommission();
     }
-    throw new sfException("Definir avec LMA/Linup comment gérer le calcul de la com en numéraire en fonction de la quantité");
     return $this->getCollection()->getPrixFournisseur();
   }
 
