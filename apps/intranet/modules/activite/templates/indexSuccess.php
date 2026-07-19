@@ -1,6 +1,6 @@
 <div class="text-end">
 <a class="btn btn-light btn-sm float-end mb-2" style="text-decoration: none;" href="<?php echo url_for('activiteRapport') ?>"><i class="bi bi-clipboard-data"></i> Rapport global</a>
-<a class="btn btn-light btn-sm float-end mb-2 ms-1" style="text-decoration: none;" href="<?php echo url_for('activiteGraph') ?>"><i class="bi bi-graph-up"></i> Graphique du CA</a>
+<a class="btn btn-light btn-sm float-end mb-2 me-1" style="text-decoration: none;" href="<?php echo url_for('activiteGraph') ?>"><i class="bi bi-graph-up"></i> Graphique du CA</a>
 </div>
 
 <?php if ($dashboard = sfConfig::get('app_commercial_activity_metabase_dashboard')): ?>
