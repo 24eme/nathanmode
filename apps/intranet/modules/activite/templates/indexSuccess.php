@@ -1,19 +1,19 @@
-<div class="text-end">
-<a class="btn btn-light btn-sm float-end mb-2" style="text-decoration: none;" href="<?php echo url_for('activiteRapport') ?>"><i class="bi bi-clipboard-data"></i> Rapport global</a>
-<a class="btn btn-light btn-sm float-end mb-2 me-1" style="text-decoration: none;" href="<?php echo url_for('activiteGraph') ?>"><i class="bi bi-graph-up"></i> Graphique du CA</a>
-</div>
-
 <?php if ($dashboard = sfConfig::get('app_commercial_activity_metabase_dashboard')): ?>
-        <iframe
-        src="<?php echo sfConfig::get('app_commercial_activity_metabase_dashboard') ?>"
-        frameborder="0"
-        width="100%"
-        height="5250px"
-        allowtransparency
-        ></iframe>
+	<div class="text-end">
+	<a class="btn btn-light btn-sm float-end mb-2" style="text-decoration: none;" href="<?php echo url_for('activiteRapport') ?>"><i class="bi bi-clipboard-data"></i> Rapport global</a>
+	<a class="btn btn-light btn-sm float-end mb-2 me-1" style="text-decoration: none;" href="<?php echo url_for('activiteGraph') ?>"><i class="bi bi-graph-up"></i> Graphique du CA</a>
+	</div>
+
+  <iframe
+  src="<?php echo sfConfig::get('app_commercial_activity_metabase_dashboard') ?>"
+  frameborder="0"
+  width="100%"
+  height="5250px"
+  allowtransparency
+  ></iframe>
 <?php endif; ?>
 
-<div id="containerCA" class="container d-none" style="max-width: 1140px;">
+<div id="containerCA" class="container <?php if($dashboard): ?>d-none<?php endif; ?>" style="max-width: 1140px;">
 
 <h1 class="text-center p-3 text-dark">Commercial Activity</h1>
 
