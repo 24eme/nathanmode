@@ -8,7 +8,7 @@
   src="<?php echo sfConfig::get('app_commercial_activity_metabase_dashboard') ?>"
   frameborder="0"
   width="100%"
-  height="5250px"
+  height="7500px"
   allowtransparency
   ></iframe>
 <?php endif; ?>
