@@ -126,7 +126,13 @@ all:
         CUIR_TOP: "TOP (CUIR)"
         CUIR_GILET: "GILET (CUIR)"
         CUIR_ROBE: "ROBE (CUIR)"
+        CUIR_JUPE: "JUPE (CUIR)"
         FAKELEATHER_VESTE: "VESTE (FAKE LEATHER)"
+        TECHNIQUE_MANTEAU: "MANTEAU (TECHNIQUE)"
+        TECHNIQUE_VESTE: "VESTE (TECHNIQUE)"
+        COSTUME: "COSTUME"
+        DENIM_COSTUME: "COSTUME (DENIM)"
+        DENIM_PANTALON: "PANTALON (DENIM)"
   devise:
     dollar: true
   no_metrage: true
