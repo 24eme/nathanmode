@@ -60,7 +60,7 @@ class Collection extends BaseCollection
           if($this->getPartMarge()) {
             $m = (($collectionDetail->getPrixVente() -  $collectionDetail->getPrixAchat()) * $this->getPartMarge() / 100);
             $restantCom += round($q * $m, 2);
-          } elseif ($this->getCollection()->getDeviseFournisseur()->isPourcentage()) {
+          } elseif ($this->getDeviseFournisseur()->isPourcentage()) {
             $restantCom += round(($q * $collectionDetail->getPrixVente() * $collectionDetail->getPrixFournisseur() / 100), 2);
           }
         }

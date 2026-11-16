@@ -25,16 +25,17 @@ EOF;
         $databaseManager = new sfDatabaseManager($this->configuration);
         $connection = $databaseManager->getDatabase($options['connection'])->getConnection();
 
+        $devise = sfConfig::get('app_devise_dollar') ? 2 : 1;
         $now = new DateTime();
         $now->setTimezone(new DateTimeZone('Europe/Paris'));
 
         $activity = new Activite($now->format('Y-01-01'), $now->format('Y-m-d'), null, null, null);
 
-        $log = new ActiviteLogger($now->format('Y-m-d H:i:s'), $activity->getMontant(), $activity->getCom(), $activity->getMts(), $activity->getPcsAccessoires(), $activity->getPcsNonAccessoires());
+        $log = new ActiviteLogger($now->format('Y-m-d H:i:s'), $activity->getMontant($devise), $activity->getCom($devise), $activity->getMts($devise), $activity->getPcsAccessoires($devise), $activity->getPcsNonAccessoires($devise));
         $result = $log->save();
 
         if ($result) {
-          echo "Erreur dans l'enregistrement des valeurs : ".$now->format('Y-m-d H:i:s').", ".$activity->getMontant().", ".$activity->getCom().", ".$activity->getMts().", ".$activity->getPcsAccessoires().", ".$activity->getPcsNonAccessoires()."\n";
+          echo "Erreur dans l'enregistrement des valeurs : ".$now->format('Y-m-d H:i:s').", ".$activity->getMontant($devise).", ".$activity->getCom($devise).", ".$activity->getMts($devise).", ".$activity->getPcsAccessoires($devise).", ".$activity->getPcsNonAccessoires($devise)."\n";
         }
     }
 
